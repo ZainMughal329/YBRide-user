@@ -1,0 +1,28 @@
+import 'package:flutter/material.dart';
+
+class AppColors {
+
+  static final Color appBarTextColor = Colors.black;
+
+  static final Color buttonColor =  Color(0xff583d8b);
+  static final Color textColor = Colors.white70;
+  static final Color buttonTextColor = Colors.white;
+  static final Color appBarColor =  Colors.white;
+
+  static final Color headingColor = Colors.black;
+  static final Color iconColor = Color(0xff583d8b);
+  static final Color activeTextFieldColor = Color(0xff583d8b);
+  static final Color nonActiveTextFieldColor = Color(0xff606060);
+  static final Color detailsIconColor = Colors.black;
+  static final Color orangeColor = Color(0xfff26b35);
+  static final Color promoCodeColor = Colors.yellow;
+  static Color dotColor = Color(0xffafafaf);
+  static final Color snackBarBgColor = Color(0xff583d8b);
+  static final Color snackBarTextColor = Colors.white;
+  static final Color whiteColor = Colors.white;
+  static final Color settingsIconColor = Color(0xff606060);
+  static final Color blackColor = Colors.black;
+  static final Color headerBgColor =  Color(0xff583d8b);
+
+
+}
