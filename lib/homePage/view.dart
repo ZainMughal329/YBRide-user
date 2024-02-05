@@ -52,60 +52,72 @@ class HomePage extends StatelessWidget {
               children: [
                 ResponsiveWidget.isLargeScreen(context) ? HomePageWidget() : ResponsiveWidget.isMediumScreen(context) ?HomePageWidgetMediumScreen() : HomePageWidgetSmallScreen(),
                 SizedBox(height: 70,),
-                HeadingTextWidget(title: 'Not your average rental car',fontSize: 40,fontWeight: FontWeight.bold,),
+                HeadingTextWidget(title: 'Not your average rental car',fontSize: ResponsiveWidget.isLargeScreen(context) ? 40 : 26,fontWeight: FontWeight.bold,),
                 SizedBox(height: 50,),
                 ResponsiveWidget.isLargeScreen(context) ? Padding(
                   padding:  EdgeInsets.symmetric(horizontal:48),
                   child: AverageRentalCar(),
-                ) : ResponsiveWidget.isMediumScreen(context) ?Padding(
+                )
+                    :
+                ResponsiveWidget.isMediumScreen(context) ?
+                Padding(
                 padding:  EdgeInsets.symmetric(horizontal:250),
                   child:AverageRentalCarMediumScreen(),
-                ) : Padding(padding:
+                )
+                    : Padding(padding:
                 EdgeInsets.symmetric(horizontal:120),
                   child: AverageRentalCarSmallScreen(),
                 ),
                 SizedBox(height: 90,),
-                downlaod_YBRide(),
+                ResponsiveWidget.isLargeScreen(context) ? downlaod_YBRide() : downlaod_YBRideMediumScreen(),
+
+
                 SizedBox(height: 90,),
-                HeadingTextWidget(title: 'Cars in our fleet',fontSize: 30,fontWeight: FontWeight.bold,),
+                HeadingTextWidget(title: 'Cars in our fleet',fontSize: ResponsiveWidget.isLargeScreen(context) ? 40 : 26,fontWeight: FontWeight.bold,),
                 SizedBox(height: 30,),
                 Padding(
-                  padding:  EdgeInsets.symmetric(horizontal:64),
-                  child: CarTypes(),
+                  padding:  EdgeInsets.symmetric(horizontal:ResponsiveWidget.isLargeScreen(context) ? 64 : 0),
+                  child: ResponsiveWidget.isLargeScreen(context) ? CarTypes() : SingleChildScrollView(child: CarTypesMediumScreen()),
                 ),
                 SizedBox(height: 50,),
+
                 Padding(
-                  padding:  EdgeInsets.symmetric(horizontal:70),
-                  child: howItWorkWidget(),
+                  padding:  EdgeInsets.symmetric(horizontal:ResponsiveWidget.isLargeScreen(context) ? 70 : 0),
+                  child: ResponsiveWidget.isLargeScreen(context) ? howItWorkWidget() : howItWorkWidgetMediumScreen(),
                 ),
                 SizedBox(height: 50,),
-                HeadingTextWidget(title: '150,000 customers later',fontSize: 40,fontWeight: FontWeight.bold,),
+                HeadingTextWidget(title: '150,000 customers later',fontSize:ResponsiveWidget.isLargeScreen(context) ? 40 : 26,fontWeight: FontWeight.bold,),
                 SizedBox(height: 5,),
                 SubHeadingTextWidget(title: '93% of customers give us five stars'),
                 SizedBox(height: 20,),
-                Padding(
+                ResponsiveWidget.isLargeScreen(context) ? Padding(
                   padding:  EdgeInsets.symmetric(horizontal:80),
                   child: ratingStarsWidget(),
+                ) : Padding(
+                  padding:  EdgeInsets.symmetric(horizontal:20),
+                  child: ratingStarsWidgetMediumScreen(),
                 ),
                 SizedBox(height: 50,),
-                HeadingTextWidget(title: 'Locations',fontSize: 35,fontWeight: FontWeight.bold,),
+                HeadingTextWidget(title: 'Locations',fontSize: ResponsiveWidget.isLargeScreen(context) ? 40 : 26,fontWeight: FontWeight.bold,),
                 SizedBox(height: 30,),
                 Container(
-                  height: 350,
-                  width: 1050,
+                  height: ResponsiveWidget.isLargeScreen(context) ? 350 : ResponsiveWidget.isMediumScreen(context)  ? 250 : 150,
+                  width: ResponsiveWidget.isLargeScreen(context) ? 1050 : MediaQuery.of(context).size.width *.85,
                   decoration: BoxDecoration(
                     image: DecorationImage(image: AssetImage('assets/images/locations.webp'),fit: BoxFit.fill),
                     borderRadius: BorderRadius.all(Radius.circular(15))
                   ),
                 ),
                 SizedBox(height: 15,),
-                SubHeadingTextWidget(title: 'BOSTON'),
+                SubHeadingTextWidget(title: 'BOSTON',textColor: AppColors.blackColor,decorationColor: AppColors.blackColor,decoration: TextDecoration.underline,),
+                SizedBox(height: 15,),
+
                 SizedBox(height: 60,),
-                Padding(
+                ResponsiveWidget.isLargeScreen(context) ? Padding(
                     padding:  EdgeInsets.symmetric(horizontal:80),
-                    child: gotAnswerWidget()),
+                    child: gotAnswerWidget()) : gotAnswerWidgetMediumScreen(context),
                 SizedBox(height: 90,),
-                Footer(),
+                Footer(context),
                 SizedBox(height: 40,),
                 Padding(
                     padding:  EdgeInsets.symmetric(horizontal:100),

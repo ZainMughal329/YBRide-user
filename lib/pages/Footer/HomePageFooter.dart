@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:yb_ride_user_web/components/headingTextWidget.dart';
 import 'package:yb_ride_user_web/components/subHeadingText.dart';
+import 'package:yb_ride_user_web/helper/responsive.dart';
 import '../../helper/appColors.dart';
-Widget Footer(){
+Widget Footer(BuildContext context){
   return Stack(
     children:[
       Container(
@@ -17,13 +18,38 @@ Widget Footer(){
           color: AppColors.buttonColor,
           child: Stack(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 30),
-                child: Align(
-                  alignment: Alignment.center,
-                  child: HeadingTextWidget(title: "There's a better way to rent",textColor: Colors.white,fontWeight: FontWeight.bold,fontSize: 30,),
-                ),
+              Column(
+                children: [
+                  Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 30),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: HeadingTextWidget(title: "There's a better way to rent",textColor: Colors.white,fontWeight: FontWeight.bold,fontSize: ResponsiveWidget.isLargeScreen(context) ? 30 : 22,),
+                    ),
+                  ),
+
+
+                  ResponsiveWidget.isLargeScreen(context) ? Container() :Container(
+                    height: 50,
+                    width: 100,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        color: Colors.deepPurple
+                    ),
+                    child: Center(
+                      child: HeadingTextWidget(
+                        title: 'Download',
+                        textColor: AppColors.whiteColor,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                  Spacer(),
+
+                ],
               ),
+
 
             ],
           ),
@@ -34,7 +60,7 @@ Widget Footer(){
         padding: EdgeInsets.only(top:300),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Row(
+          child: ResponsiveWidget.isLargeScreen(context) ? Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -87,6 +113,43 @@ Widget Footer(){
                 SizedBox(height: 20,),
                 SubHeadingTextWidget(title: 'Accessibility',textColor: Colors.black),
               ],)),
+            ],
+          ) : Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height:30),
+              Image(image: AssetImage('assets/images/YBRIDE text.jpg'),height: 60,width: 60,),
+              SizedBox(height: 50,),
+              HeadingTextWidget(title: 'Get Started'),
+              SizedBox(height: 20,),
+              SubHeadingTextWidget(title: 'Book a car',textColor: Colors.black,),
+              SizedBox(height: 20,),
+              SubHeadingTextWidget(title: 'Drivers Partners',textColor: Colors.black,),
+              SizedBox(height: 50,),
+              HeadingTextWidget(title: 'Resources'),
+              SizedBox(height: 20,),
+              SubHeadingTextWidget(title: 'My Trip',textColor: Colors.black),
+              SizedBox(height: 20,),
+              SubHeadingTextWidget(title: 'Help',textColor: Colors.black),
+              SizedBox(height: 20,),
+              SubHeadingTextWidget(title: 'Referrals',textColor: Colors.black),
+              SizedBox(height: 20,),
+              SubHeadingTextWidget(title: 'Contact us',textColor: Colors.black),
+              SizedBox(height: 20,),
+              SubHeadingTextWidget(title: 'Do not sell my personal information',textColor: Colors.black),
+              SizedBox(height: 50,),
+              HeadingTextWidget(title: 'Blog'),
+              SizedBox(height: 20,),
+              SubHeadingTextWidget(title: 'Careers',textColor: Colors.black),
+              SizedBox(height: 20,),
+              SubHeadingTextWidget(title: 'Team and culture',textColor: Colors.black),
+              SizedBox(height: 20,),
+              SubHeadingTextWidget(title: 'Terms',textColor: Colors.black),
+              SizedBox(height: 20,),
+              SubHeadingTextWidget(title: 'Privacy us',textColor: Colors.black),
+              SizedBox(height: 20,),
+              SubHeadingTextWidget(title: 'Accessibility',textColor: Colors.black),
             ],
           ),
         ),

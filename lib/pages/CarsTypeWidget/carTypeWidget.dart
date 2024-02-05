@@ -52,6 +52,57 @@ Widget CarTypes(){
   );
 }
 
+Widget CarTypesMediumScreen(){
+  return SingleChildScrollView(
+
+    scrollDirection: Axis.horizontal,
+    physics: BouncingScrollPhysics(),
+    child: Padding(
+      padding: const EdgeInsets.all(40.0),
+      child: Row(
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CardWidget(image: 'assets/images/cars.webp', heading: 'Economy',
+                subHeading: 'Toyota Corolla or similar',),
+
+            ],),
+          SizedBox(width: 50,),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CardWidget(image: 'assets/images/mobile.webp', heading: 'Sedan',
+                subHeading: 'Chevrolet Malibu or similar',),
+
+            ],),
+          SizedBox(width: 50,),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+
+            children: [
+              CardWidget(image: 'assets/images/Couple.webp', heading: 'SUV',
+                subHeading: "Volkswagen Tiguan or similar",),
+            ],),
+          SizedBox(width: 50,),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CardWidget(image: 'assets/images/mobile.webp', heading: 'Premium',
+                subHeading: 'Audi Q3 or similar',),
+
+            ],),
+        ],
+      ),
+    ),
+  );
+}
+
+
 
 class CardWidget extends StatefulWidget {
   final String image;
@@ -71,8 +122,8 @@ class _CardWidgetState extends State<CardWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          height: 170,
-          width: 300,
+          height: 150,
+          width: 250,
           decoration: BoxDecoration(
             image: DecorationImage(image: AssetImage(widget.image),fit: BoxFit.fill),
             // color: Colors.blue,

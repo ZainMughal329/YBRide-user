@@ -47,7 +47,7 @@ Widget AverageRentalCar(){
 
 Widget AverageRentalCarMediumScreen(){
   return Padding(
-    padding: const EdgeInsets.all(32.0),
+    padding: const EdgeInsets.all(2.0),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -139,7 +139,7 @@ class _CardWidgetState extends State<CardWidget> {
       children: [
         Container(
           height: 250,
-          width: 450,
+          // width: 450,
           decoration: BoxDecoration(
             image: DecorationImage(image: AssetImage(widget.image),fit: BoxFit.fill),
             // color: Colors.blue,
