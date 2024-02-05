@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:yb_ride_user_web/components/headingTextWidget.dart';
 import 'package:yb_ride_user_web/components/subHeadingText.dart';
