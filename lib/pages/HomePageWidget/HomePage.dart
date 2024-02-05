@@ -115,7 +115,7 @@ Widget HomePageWidgetMediumScreen(){
                 image: DecorationImage(image: AssetImage('assets/images/homePage.webp'),fit: BoxFit.fill)
             ),
             height: 350,
-            width: 800,
+            // width: 800,
           ),
           SizedBox(height: 30,),
           HeadingTextWidget(title: 'Rental Cars, Your Way.',fontWeight: FontWeight.bold,fontSize: 30,textColor: Colors.black,),

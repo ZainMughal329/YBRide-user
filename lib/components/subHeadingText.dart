@@ -37,6 +37,7 @@ class SubHeadingTextWidget extends StatelessWidget {
       style: GoogleFonts.openSans(
         decoration: decoration,
         decorationColor: decorationColor,
+        decorationStyle: TextDecorationStyle.solid,
         color: textColor,
         fontSize: fontSize,
         fontWeight: fontWeight,
