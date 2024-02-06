@@ -1,9 +1,12 @@
 
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:yb_ride_user_web/helper/responsive.dart';
 import 'package:yb_ride_user_web/pages/customAppBar/customAppBar.dart';
 
+import '../../../components/drwer.dart';
 import '../../../components/headingTextWidget.dart';
 import '../../../helper/appColors.dart';
 import 'controller.dart';
@@ -15,16 +18,20 @@ class TripsPages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
     final controller = TripCon();
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: BuildDrawer.buildDrawer(context),
+      drawerScrimColor: Colors.white,
+      drawerEnableOpenDragGesture: false,
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(255, 255, 255, 1),
         // scrolledUnderElevation: 1,
-        title: Padding(
-          padding:  EdgeInsets.only(left: 20),
-          child: HeadingTextWidget(title:'YBRide',fontWeight: FontWeight.bold,fontSize:30 ,),
-        ),
-        actions: [
+        leading: Container(),
+
+        title: HeadingTextWidget(title:'YBRide',fontWeight: FontWeight.bold,fontSize:30 ,),
+        actions: ResponsiveWidget.isLargeScreen(context) ? [
           HeadingTextWidget(title: 'Become a driver partner',textColor:AppColors.appBarTextColor,fontSize: 14,fontWeight: FontWeight.normal),
           SizedBox(width: 20,),
           HeadingTextWidget(title: '|',textColor: AppColors.appBarTextColor,fontSize: 14,fontWeight: FontWeight.normal),
@@ -39,6 +46,12 @@ class TripsPages extends StatelessWidget {
           SizedBox(width: 20,),
           HeadingTextWidget(title: 'Sign out',textColor: AppColors.appBarTextColor,fontSize: 14,fontWeight: FontWeight.normal),
           SizedBox(width: 30,),
+        ] : [
+          IconButton(onPressed: (){
+            _scaffoldKey.currentState!.openDrawer();
+
+          }, icon: Icon(Icons.menu,color: Colors.grey,),),
+          SizedBox(width: 30,),
         ],
       ),
      body: SafeArea(child: Column(
@@ -46,7 +59,7 @@ class TripsPages extends StatelessWidget {
          Container(
            child: TabBar(
              indicatorSize: TabBarIndicatorSize.tab,
-             tabAlignment:TabAlignment.fill,
+             tabAlignment:TabAlignment.center,
              labelColor: Colors.black54,
              indicatorColor: AppColors.buttonColor,
              indicator: UnderlineTabIndicator(
@@ -57,6 +70,7 @@ class TripsPages extends StatelessWidget {
                fontWeight: FontWeight.w600,
              ),
              indicatorPadding: EdgeInsets.all(0),
+
              unselectedLabelColor: Colors.black54,
              unselectedLabelStyle: GoogleFonts.openSans(
                fontSize: 16,
@@ -97,3 +111,4 @@ class TripsPages extends StatelessWidget {
     );
   }
 }
+

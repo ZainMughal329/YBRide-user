@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yb_ride_user_web/helper/responsive.dart';
 import 'package:yb_ride_user_web/pages/BostonPage/Widgets/deliverToYourWidget.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/appBarFooter/appBatFooter.dart';
 
@@ -56,24 +57,35 @@ class BostonPage extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              DeliverToYourDoorWidget(context),
+              ResponsiveWidget.isLargeScreen(context)?
+              DeliverToYourDoorWidget(context):
+                  ResponsiveWidget.isMediumScreen(context)?
+              DeliverToYourDoorWidgetMediumPage(context):
+                      DeliverToYourDoorWidgetSmall(context)
+              ,
               SizedBox(height: 50,),
-              HeadingTextWidget(title: 'How it works',fontWeight: FontWeight.bold,fontSize: 40,),
+              ResponsiveWidget.isLargeScreen(context) ? HeadingTextWidget(title: 'How it works',fontWeight: FontWeight.bold,fontSize: 40,) : ResponsiveWidget.isSmallScreen(context) ?
+              HeadingTextWidget(title: 'How it works',fontWeight: FontWeight.bold,fontSize: 25,)
+
+                  : Container(),
               SizedBox(height: 25,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 80),
                 child: Divider(thickness: .5,),
               ),
               SizedBox(height: 25,),
-              HowitWorks(),
+              ResponsiveWidget.isLargeScreen(context)?
+              HowitWorks():
+
+              HowitWorksSmall(),
               SizedBox(height: 50,),
-              RealPeopleHaveWidget(),
+              ResponsiveWidget.isSmallScreen(context) || ResponsiveWidget.isMediumScreen(context) ? RealPeopleHaveWidgetSmall() : RealPeopleHaveWidget(),
               SizedBox(height: 60,),
-              gotFrequesntlyaQuestionsWidget(),
+              ResponsiveWidget.isLargeScreen(context) ? gotFrequesntlyaQuestionsWidget() : gotFrequesntlyaQuestionsWidgetSmall(),
               SizedBox(height: 100,),
               Divider(),
               SizedBox(height:15,),
-              appBarFooter(),
+              ResponsiveWidget.isLargeScreen(context) ? appBarFooter() : appBarFooterSmall(context),
             ],
           ),
         ),
