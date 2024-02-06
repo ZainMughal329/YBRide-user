@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yb_ride_user_web/pages/BostonPage/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Accounts/view.dart';
+import 'package:yb_ride_user_web/pages/appBarPages/FaqS/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Referrals/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Trips/view.dart';
 import 'package:yb_ride_user_web/sessions/login/view.dart';

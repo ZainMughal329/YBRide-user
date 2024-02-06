@@ -3,6 +3,8 @@ import 'package:flutter_admin_scaffold/admin_scaffold.dart';
 import 'package:get/get.dart';
 import 'package:yb_ride_user_web/components/subHeadingText.dart';
 import 'package:yb_ride_user_web/helper/responsive.dart';
+import 'package:yb_ride_user_web/pages/BostonPage/view.dart';
+import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/view.dart';
 import '../components/drwer.dart';
 import '../components/headingTextWidget.dart';
 import '../helper/appColors.dart';
@@ -11,6 +13,7 @@ import '../pages/Footer/HomePageFooter.dart';
 import '../pages/HomePageWidget/HomePage.dart';
 import '../pages/RatingStarsWidget/ratingStarsWidget.dart';
 import '../pages/appBarPages/Accounts/view.dart';
+import '../pages/appBarPages/FaqS/view.dart';
 import '../pages/appBarPages/Referrals/view.dart';
 import '../pages/appBarPages/Trips/view.dart';
 import '../pages/averageRentalCarWidget/averageRentalCarWidget.dart';
@@ -49,11 +52,16 @@ class HomePage extends StatelessWidget {
             ),
             actions: ResponsiveWidget.isLargeScreen(context)
                 ? [
-                    HeadingTextWidget(
-                        title: 'Become a driver partner',
-                        textColor: AppColors.appBarTextColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal),
+                    InkWell(
+                      onTap: () {
+                        Get.to(() => BecomeDriverPage());
+                      },
+                      child: HeadingTextWidget(
+                          title: 'Become a driver partner',
+                          textColor: AppColors.appBarTextColor,
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal),
+                    ),
                     SizedBox(
                       width: 20,
                     ),
@@ -65,11 +73,16 @@ class HomePage extends StatelessWidget {
                     SizedBox(
                       width: 20,
                     ),
-                    HeadingTextWidget(
-                        title: 'FAQ',
-                        textColor: AppColors.appBarTextColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal),
+                    InkWell(
+                      onTap: () {
+                        Get.to(() => FaqPage());
+                      },
+                      child: HeadingTextWidget(
+                          title: 'FAQ',
+                          textColor: AppColors.appBarTextColor,
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal),
+                    ),
                     SizedBox(
                       width: 20,
                     ),
@@ -262,11 +275,16 @@ class HomePage extends StatelessWidget {
                 SizedBox(
                   height: 15,
                 ),
-                SubHeadingTextWidget(
-                  title: 'BOSTON',
-                  textColor: AppColors.blackColor,
-                  decorationColor: AppColors.blackColor,
-                  decoration: TextDecoration.underline,
+                InkWell(
+                  onTap: (){
+                    Get.to(()=>BostonPage());
+                  },
+                  child: SubHeadingTextWidget(
+                    title: 'BOSTON',
+                    textColor: AppColors.blackColor,
+                    decorationColor: AppColors.blackColor,
+                    decoration: TextDecoration.underline,
+                  ),
                 ),
                 SizedBox(
                   height: 15,

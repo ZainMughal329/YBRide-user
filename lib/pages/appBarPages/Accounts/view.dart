@@ -10,6 +10,10 @@ import 'package:yb_ride_user_web/pages/appBarPages/appBarFooter/appBatFooter.dar
 import '../../../components/drwer.dart';
 import '../../../components/headingTextWidget.dart';
 import '../../../helper/responsive.dart';
+import '../Become_Driver/view.dart';
+import '../FaqS/view.dart';
+import '../Referrals/view.dart';
+import '../Trips/view.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});
@@ -36,21 +40,89 @@ class AccountPage extends StatelessWidget {
         ),
         actions: ResponsiveWidget.isLargeScreen(context)
         ?  [
-          HeadingTextWidget(title: 'Become a driver partner',textColor:AppColors.appBarTextColor,fontSize: 14,fontWeight: FontWeight.normal),
-          SizedBox(width: 20,),
-          HeadingTextWidget(title: '|',textColor: AppColors.appBarTextColor,fontSize: 14,fontWeight: FontWeight.normal),
-          SizedBox(width: 20,),
-          HeadingTextWidget(title: 'FAQ',textColor: AppColors.appBarTextColor,fontSize: 14,fontWeight: FontWeight.normal),
-          SizedBox(width: 20,),
-          HeadingTextWidget(title: 'Account',textColor: AppColors.appBarTextColor,fontSize: 14,fontWeight: FontWeight.normal,),
-          SizedBox(width: 20,),
-          HeadingTextWidget(title: 'Referrals',textColor: AppColors.appBarTextColor,fontSize: 14,fontWeight: FontWeight.normal,),
-          SizedBox(width: 20,),
-          HeadingTextWidget(title: 'My Trips',textColor: AppColors.appBarTextColor,fontSize: 14,fontWeight: FontWeight.normal),
-          SizedBox(width: 20,),
+          InkWell(
+            onTap: () {
+              Get.to(() => BecomeDriverPage());
+            },
+            child: HeadingTextWidget(
+                title: 'Become a driver partner',
+                textColor: AppColors.appBarTextColor,
+                fontSize: 14,
+                fontWeight: FontWeight.normal),
+          ),
+          SizedBox(
+            width: 20,
+          ),
+          HeadingTextWidget(
+              title: '|',
+              textColor: AppColors.appBarTextColor,
+              fontSize: 14,
+              fontWeight: FontWeight.normal),
+          SizedBox(
+            width: 20,
+          ),
+          InkWell(
+            onTap: () {
+              Get.to(() => FaqPage());
+            },
+            child: HeadingTextWidget(
+                title: 'FAQ',
+                textColor: AppColors.appBarTextColor,
+                fontSize: 14,
+                fontWeight: FontWeight.normal),
+          ),
+          SizedBox(
+            width: 20,
+          ),
+          InkWell(
+              onTap: () {
+                Get.to(() => AccountPage());
+              },
+              child: HeadingTextWidget(
+                title: 'Account',
+                textColor: AppColors.appBarTextColor,
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+              )),
+          SizedBox(
+            width: 20,
+          ),
+          InkWell(
+              onTap: () {
+                Get.to(() => ReferralPage());
+              },
+              child: HeadingTextWidget(
+                title: 'Referrals',
+                textColor: AppColors.appBarTextColor,
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+              )),
+          SizedBox(
+            width: 20,
+          ),
+          InkWell(
+              onTap: () {
+                Get.to(() => TripsPages());
+              },
+              child: HeadingTextWidget(
+                  title: 'My Trips',
+                  textColor: AppColors.appBarTextColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal)),
+          SizedBox(
+            width: 20,
+          ),
           GestureDetector(
-              child: HeadingTextWidget(title: 'Sign out',textColor: AppColors.appBarTextColor,fontSize: 14,fontWeight: FontWeight.normal)),
-          SizedBox(width: 30,),
+              onTap: () {
+              },
+              child: HeadingTextWidget(
+                  title: 'Sign out',
+                  textColor: AppColors.appBarTextColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal)),
+          SizedBox(
+            width: 30,
+          ),
         ] :[
           IconButton(
             onPressed: () {

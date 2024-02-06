@@ -2,6 +2,7 @@
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:yb_ride_user_web/helper/responsive.dart';
 import 'package:yb_ride_user_web/pages/customAppBar/customAppBar.dart';
@@ -9,6 +10,10 @@ import 'package:yb_ride_user_web/pages/customAppBar/customAppBar.dart';
 import '../../../components/drwer.dart';
 import '../../../components/headingTextWidget.dart';
 import '../../../helper/appColors.dart';
+import '../Accounts/view.dart';
+import '../Become_Driver/view.dart';
+import '../FaqS/view.dart';
+import '../Referrals/view.dart';
 import 'controller.dart';
 import 'my_trips/my_trips/view.dart';
 import 'my_trips/shared_trips/view.dart';
@@ -32,20 +37,89 @@ class TripsPages extends StatelessWidget {
 
         title: HeadingTextWidget(title:'YBRide',fontWeight: FontWeight.bold,fontSize:30 ,),
         actions: ResponsiveWidget.isLargeScreen(context) ? [
-          HeadingTextWidget(title: 'Become a driver partner',textColor:AppColors.appBarTextColor,fontSize: 14,fontWeight: FontWeight.normal),
-          SizedBox(width: 20,),
-          HeadingTextWidget(title: '|',textColor: AppColors.appBarTextColor,fontSize: 14,fontWeight: FontWeight.normal),
-          SizedBox(width: 20,),
-          HeadingTextWidget(title: 'FAQ',textColor: AppColors.appBarTextColor,fontSize: 14,fontWeight: FontWeight.normal),
-          SizedBox(width: 20,),
-          HeadingTextWidget(title: 'Account',textColor: AppColors.appBarTextColor,fontSize: 14,fontWeight: FontWeight.normal,),
-          SizedBox(width: 20,),
-          HeadingTextWidget(title: 'Referrals',textColor: AppColors.appBarTextColor,fontSize: 14,fontWeight: FontWeight.normal,),
-          SizedBox(width: 20,),
-          HeadingTextWidget(title: 'My Trips',textColor: AppColors.appBarTextColor,fontSize: 14,fontWeight: FontWeight.normal),
-          SizedBox(width: 20,),
-          HeadingTextWidget(title: 'Sign out',textColor: AppColors.appBarTextColor,fontSize: 14,fontWeight: FontWeight.normal),
-          SizedBox(width: 30,),
+          InkWell(
+            onTap: () {
+              Get.to(() => BecomeDriverPage());
+            },
+            child: HeadingTextWidget(
+                title: 'Become a driver partner',
+                textColor: AppColors.appBarTextColor,
+                fontSize: 14,
+                fontWeight: FontWeight.normal),
+          ),
+          SizedBox(
+            width: 20,
+          ),
+          HeadingTextWidget(
+              title: '|',
+              textColor: AppColors.appBarTextColor,
+              fontSize: 14,
+              fontWeight: FontWeight.normal),
+          SizedBox(
+            width: 20,
+          ),
+          InkWell(
+            onTap: () {
+              Get.to(() => FaqPage());
+            },
+            child: HeadingTextWidget(
+                title: 'FAQ',
+                textColor: AppColors.appBarTextColor,
+                fontSize: 14,
+                fontWeight: FontWeight.normal),
+          ),
+          SizedBox(
+            width: 20,
+          ),
+          InkWell(
+              onTap: () {
+                Get.to(() => AccountPage());
+              },
+              child: HeadingTextWidget(
+                title: 'Account',
+                textColor: AppColors.appBarTextColor,
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+              )),
+          SizedBox(
+            width: 20,
+          ),
+          InkWell(
+              onTap: () {
+                Get.to(() => ReferralPage());
+              },
+              child: HeadingTextWidget(
+                title: 'Referrals',
+                textColor: AppColors.appBarTextColor,
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+              )),
+          SizedBox(
+            width: 20,
+          ),
+          InkWell(
+              onTap: () {
+                Get.to(() => TripsPages());
+              },
+              child: HeadingTextWidget(
+                  title: 'My Trips',
+                  textColor: AppColors.appBarTextColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal)),
+          SizedBox(
+            width: 20,
+          ),
+          InkWell(
+              onTap: () {
+              },
+              child: HeadingTextWidget(
+                  title: 'Sign out',
+                  textColor: AppColors.appBarTextColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal)),
+          SizedBox(
+            width: 30,
+          ),
         ] : [
           IconButton(onPressed: (){
             _scaffoldKey.currentState!.openDrawer();

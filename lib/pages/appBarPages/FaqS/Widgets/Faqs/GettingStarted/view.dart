@@ -1,21 +1,18 @@
 
 
-
-
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:yb_ride_user_web/pages/appBarPages/FaqS/controller.dart';
+import 'package:yb_ride_user_web/components/subHeadingText.dart';
 
-import 'Widgets/ContainerFaqsWidget.dart';
-import 'Widgets/RentalCars.dart';
-import 'Widgets/footer.dart';
+import '../../ContainerFaqsWidget.dart';
+import '../../RentalCars.dart';
+import '../../footer.dart';
+import 'gettingStartedWidget.dart';
 
-class FaqPage extends StatelessWidget {
-  const FaqPage({super.key});
+class GettingStartedPage extends StatelessWidget {
+  const GettingStartedPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final con = Get.put(FaqCon());
     return SingleChildScrollView(
       child: Center(
         child: Column(
@@ -23,8 +20,8 @@ class FaqPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             RentalcarsWidget(),
-            SizedBox(height: 50,),
-            ContainerFaqs(),
+            SizedBox(height: 20,),
+            GettingStartedWidgte(),
             SizedBox(height: 100,),
             FooterWidget(),
 
