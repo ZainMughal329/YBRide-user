@@ -1,5 +1,7 @@
 
 
+import 'dart:js';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:yb_ride_user_web/components/headingTextWidget.dart';
@@ -43,7 +45,7 @@ Widget howItWorkWidget(){
   );
 }
 
-Widget howItWorkWidgetMediumScreen(){
+Widget howItWorkWidgetMediumScreen(BuildContext context){
   return Container(
     width: 450,
     child: Padding(
@@ -56,11 +58,11 @@ Widget howItWorkWidgetMediumScreen(){
           SizedBox(height:5,),
           SubHeadingTextWidget(title: 'Stay in control of your trip from beginning to end.',fontSize: 15,fontWeight: FontWeight.normal,textColor: Colors.black,),
           SizedBox(height:90,),
-          onTapAnswerMediumScreen('Book a car from our fleet', 'Tell us where you want to get the car and choose a good time to meet.'),
+          onTapAnswerMediumScreen('Book a car from our fleet', 'Tell us where you want to get the car and choose a good time to meet.',context),
           SizedBox(height:20,),
-          onTapAnswerMediumScreen('Get it delivered', 'YBRide Surfers can deliver your vehicle and pick it up when you’re done. If it’s more convenient, you can pick it up yourself at one of our lots.'),
+          onTapAnswerMediumScreen('Get it delivered', 'YBRide Surfers can deliver your vehicle and pick it up when you’re done. If it’s more convenient, you can pick it up yourself at one of our lots.',context),
           SizedBox(height:20,),
-          onTapAnswerMediumScreen('Return the car', 'If you chose delivery, a YBRide Surfer will pick up the car at the return address you selected. Otherwise, you can return the car to one of our lots.'),
+          onTapAnswerMediumScreen('Return the car', 'If you chose delivery, a YBRide Surfer will pick up the car at the return address you selected. Otherwise, you can return the car to one of our lots.',context),
           SizedBox(height:20,),
         ],
       ),
@@ -91,36 +93,39 @@ Widget onTapAnswer(String title,String subTitle){
     ],
   );
 }
-Widget onTapAnswerMediumScreen(String title,String subTitle){
+Widget onTapAnswerMediumScreen(String title,String subTitle,BuildContext context){
   return Column(
     mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      ExpansionTile(
+      Theme(
+        data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+        child: ExpansionTile(
 
-        title: HeadingTextWidget(
-          title: title,
-          fontSize: 16,
-          fontWeight: FontWeight.w600,
-        ),
-        children: [
-          Container(
-            height: 350,
-            decoration: BoxDecoration(
-              image: DecorationImage(image: AssetImage('assets/images/howWorks.webp'),fit: BoxFit.fill),
-              // color: Colors.blue,
+          title: HeadingTextWidget(
+            title: title,
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+          ),
+          children: [
+            Container(
+              height: 350,
+              decoration: BoxDecoration(
+                image: DecorationImage(image: AssetImage('assets/images/howWorks.webp'),fit: BoxFit.fill),
+                // color: Colors.blue,
+
+              ),
 
             ),
-
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          Padding(
-            padding:  EdgeInsets.all(16.0),
-            child: SubHeadingTextWidget(title:subTitle ,fontSize: 15,fontWeight: FontWeight.normal,textColor: Colors.black,),
-          ),
-        ],
+            SizedBox(
+              height: 15,
+            ),
+            Padding(
+              padding:  EdgeInsets.all(16.0),
+              child: SubHeadingTextWidget(title:subTitle ,fontSize: 15,fontWeight: FontWeight.normal,textColor: Colors.black,),
+            ),
+          ],
+        ),
       ),
       // Divider(),
     ],

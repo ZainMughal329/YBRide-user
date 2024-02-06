@@ -61,6 +61,95 @@ Widget RealPeopleHaveWidget(){
   );
 }
 
+Widget RealPeopleHaveWidgetSmall(){
+
+  return Container(
+    width: double.infinity,
+    decoration: BoxDecoration(
+        color: Colors.purple.withOpacity(.2)
+    ),
+    child: Padding(
+      padding:  EdgeInsets.symmetric(vertical: 40 , horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(width: 40,),
+          HeadingTextWidget(title: 'What Real People',fontWeight: FontWeight.bold,fontSize: 25,),
+          SizedBox(height: 10,),
+          HeadingTextWidget(title: 'have to say',fontWeight: FontWeight.bold,fontSize: 25,textColor: AppColors.buttonColor,),
+          SizedBox(height: 10,),
+          SubHeadingTextWidget(title: "YBRide customers are passionate about how we are revolutionizing car rental. See for yourself." , fontSize: 13,textColor: Colors.black,fontWeight: FontWeight.w600,),
+          SizedBox(height: 30,),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              HeadingTextWidget(
+                height: 1.5,
+
+                title: 'Game Changer!' , textColor: Colors.black,fontSize: 16,fontWeight: FontWeight.w600,),
+              SizedBox(
+                height: 5,
+              ),
+              SubHeadingTextWidget(title: "Finally no lines at car rental garages, no rude employees, and most of all NO STRESS. Car gets delivered to your door, paperwork is all through app. Chat with customer service is also easy and fast. Thank you!!!",textColor: Colors.black,fontSize: 16,fontWeight: FontWeight.normal,),
+
+            SizedBox(
+              height: 20,
+            ),
+              Divider(),
+              SizedBox(
+                height: 20,
+              ),
+            ],
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              HeadingTextWidget(
+                height: 1.5,
+                title: 'YBRide is THE PLACE -- the only place for our rental cars from now on.' , textColor: Colors.black,fontSize: 16,fontWeight: FontWeight.w600,),
+              SizedBox(
+                height: 5,
+              ),
+              SubHeadingTextWidget(title: "We were a pain with numerous questions and many rounds of last-minute changes! Throughout our many conversations, these people were lovely, caring & oh so easy to work with. So personable! The car and Surfer who delivered it were fabulous",textColor: Colors.black,fontSize: 16,fontWeight: FontWeight.normal,),
+
+              SizedBox(
+                height: 20,
+              ),
+              Divider(),
+              SizedBox(
+                height: 20,
+              ),
+            ],
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              HeadingTextWidget(
+                height: 1.5,
+                title: 'Never renting from a traditional car rental company again?' , textColor: Colors.black,fontSize: 16,fontWeight: FontWeight.w600,),
+              SizedBox(
+                height: 5,
+              ),
+              SubHeadingTextWidget(title: "The responses from the chat conversations are quick, precise, and the reps are very polite. This is my first time using this company and I must say I was skeptical at first but not anymore the surfer was awesome and answered my questions with ease",textColor: Colors.black,fontSize: 16,fontWeight: FontWeight.normal,),
+
+              SizedBox(
+                height: 20,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+            ],
+          ),
+
+
+
+        ],
+      ),
+    ),
+  );
+}
+
+
 
 Widget onTapAnswer(String title,String subTitle){
   return Column(
