@@ -21,7 +21,7 @@ class insuranceandAccidentspPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            RentalcarsWidget(),
+            RentalcarsWidget(context),
             SizedBox(height: 20,),
             InsuranceandAccidentspWidgte(),
             SizedBox(height: 100,),

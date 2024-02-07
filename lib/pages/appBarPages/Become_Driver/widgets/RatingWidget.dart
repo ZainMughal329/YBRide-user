@@ -33,9 +33,27 @@ Widget RetingWidgte(){
 }
 
 
+Widget RetingWidgteSmall(){
+
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 100),
+    child: Column(
+      children: [
+        reuseableContainer("I can't say enough good things about YBRIde, the overall rental experience and their customer service. I rented a car with them today for the first time and it was a great experience. ", 'Jonny'),
+        SizedBox(height: 10,),
+        reuseableContainer("YBRide is THE PLACE -- the only place for our rental cars from now on.last minute changes!  Throughout our many conversations, these people were lovely, caring & oh so easy to work with. ", 'Bobby Badshah'),
+        SizedBox(height: 10,),
+        reuseableContainer("Little hassle. No long lines, excellent service and punctuality. Also, a more personal feel regarding my rental experience. Kyte is an excellent company and I won't rent another way again.", 'Danny'),
+        SizedBox(height: 10,),
+        reuseableContainer("My new favorite car rental service. Person shows up with the car to your doorstep to dropoff and pick up. Hastle free - no need to fill gas or anything, they take care of it for you. Love the app and the great communication.", 'Smith')
+      ],
+    ),
+  );
+}
+
 Widget reuseableContainer(String title,String subtitle){
   return Container(
-    height: 270,
+    // height: 270,
     width: 900,
     decoration: BoxDecoration(
       color: Colors.purple.withOpacity(.2),
@@ -51,15 +69,15 @@ Widget reuseableContainer(String title,String subtitle){
             alignment: Alignment.topLeft,
             child: Container(
                 height: 60,
-                width: 200,
+                width: 250,
                 child: Image(image: AssetImage('assets/images/ratingStars.webp'))),
           ),
           SizedBox(height: 10,),
-          HeadingTextWidget(
-            title: title,fontSize: 18,
+          SubHeadingTextWidget(
+            title: title,fontSize: 16,
             fontWeight: FontWeight.w600,),
           SizedBox(height: 5,),
-          SubHeadingTextWidget(title: subtitle)
+          SubHeadingTextWidget(title: subtitle,fontSize: 12,decorationColor: Colors.black,decoration:TextDecoration.underline,fontWeight: FontWeight.normal,)
 
         ],
       ),

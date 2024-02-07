@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:yb_ride_user_web/components/subHeadingText.dart';
+import 'package:yb_ride_user_web/helper/responsive.dart';
 
 import '../../ContainerFaqsWidget.dart';
 import '../../RentalCars.dart';
@@ -19,9 +20,9 @@ class GettingStartedPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            RentalcarsWidget(),
+            RentalcarsWidget(context),
             SizedBox(height: 20,),
-            GettingStartedWidgte(),
+            ResponsiveWidget.isSmallScreen(context)  ? GettingStartedWidgteSmall():GettingStartedWidgte(),
             SizedBox(height: 100,),
             FooterWidget(),
 

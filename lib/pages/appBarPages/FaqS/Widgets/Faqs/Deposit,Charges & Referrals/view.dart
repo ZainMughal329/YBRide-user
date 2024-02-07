@@ -21,7 +21,7 @@ class DepositandReferralsPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            RentalcarsWidget(),
+            RentalcarsWidget(context),
             SizedBox(height: 20,),
             DepositandrefferalsWidget(),
             SizedBox(height: 100,),

@@ -35,3 +35,23 @@ Widget firstPageWidget(){
     );
 
 }
+
+Widget firstPageWidgetSmall(){
+  return
+    Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        SubHeadingTextWidget(title: 'Earn by delivering and returning rental cars when you want. The best part is you don\'t need a car!',textAlign: TextAlign.center,fontSize: 20,fontWeight: FontWeight.normal,textColor: Colors.black,),
+        SizedBox(height: 20,),
+
+        reuseableButton('SignUp Now', () { }),
+        SizedBox(height: 12,),
+        SubHeadingTextWidget(title: "Takes less than 5 minutes!",fontSize: 13,),
+        Image(
+          image: AssetImage('assets/images/become_driver.png'),height: 300,width: 300,
+        )
+      ],
+    );
+
+}
