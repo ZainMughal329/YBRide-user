@@ -19,7 +19,7 @@ class VerificationandDriverPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            RentalcarsWidget(),
+            RentalcarsWidget(context),
             SizedBox(height: 20,),
             VerificationandDriverWidgte(),
             SizedBox(height: 100,),

@@ -21,7 +21,7 @@ class deliveryandReturnPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            RentalcarsWidget(),
+            RentalcarsWidget(context),
             SizedBox(height: 20,),
             DeliveryandReturnWidget(),
             SizedBox(height: 100,),

@@ -65,6 +65,74 @@ Widget HoeItWorks(){
 
 }
 
+Widget HoeItWorksSmall(){
+  return
+    Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+          color: Colors.purple.withOpacity(.2)
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 100),
+        child: Column(
+          children: [
+            SizedBox(height: 50,),
+            HeadingTextWidget(title: 'How it Works',fontWeight: FontWeight.bold,fontSize: 20,),
+            SizedBox(height: 70,),
+            CardWidgetSmall(image: 'assets/images/cars.webp',
+              subHeading: 'Earn when you choose. Easily select trips based on time, location and earnings amount.',),
+            SizedBox(height: 30,),
+            CardWidgetSmall(image: 'assets/images/mobile.webp',
+              subHeading: "Start by delivering a car from our lot or by picking up a car at a customer's address.",),
+            SizedBox(height: 30,),
+            CardWidgetSmall(image: 'assets/images/Couple.webp',
+              subHeading: "End by delivering the car to the customer or returning a car to our lot. It's easy!",),
+            SizedBox(height: 50,),
+            reuseableButton('SignUp Now', () {
+            }),
+            SizedBox(height: 50,),
+
+
+          ],
+        ),
+      ),
+    );
+
+}
+
+class CardWidgetSmall extends StatelessWidget {
+
+  final String image;
+  String? heading;
+  final String subHeading;
+  CardWidgetSmall({super.key, required this.image, required this.subHeading});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+          height: 200,
+          width: 200,
+          decoration: BoxDecoration(
+              image: DecorationImage(image: AssetImage(image),fit: BoxFit.fill),
+              // color: Colors.blue,
+              shape: BoxShape.circle
+          ),
+        ),
+        SizedBox(height: 20,),
+        HeadingTextWidget(title:heading ?? '',),
+        SizedBox(height: 20,),
+        SubHeadingTextWidget(title:subHeading,textAlign: TextAlign.center,)
+      ],
+    );
+  }
+}
+
+
+
 class CardWidget extends StatefulWidget {
   final String image;
   String? heading;

@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yb_ride_user_web/components/headingTextWidget.dart';
 import 'package:yb_ride_user_web/components/subHeadingText.dart';
+import 'package:yb_ride_user_web/helper/responsive.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/widgets/RatingWidget.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/widgets/becomeDriverFooter.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/widgets/firstPageWidget.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/widgets/howItWorksWidget.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/widgets/howTosSgnUpForm.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/widgets/whyEarnWithYbRideWidget.dart';
+import 'package:yb_ride_user_web/pages/appBarPages/appBarFooter/appBatFooter.dart';
 
 import '../../../helper/appColors.dart';
 import 'controller.dart';
@@ -21,7 +23,7 @@ class BecomeDriverPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final con = Get.put(BecomeDriverCon());
     return Scaffold(
-      body: SingleChildScrollView(
+      body: ResponsiveWidget.isLargeScreen(context) ? SingleChildScrollView(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -55,6 +57,52 @@ class BecomeDriverPage extends StatelessWidget {
               SizedBox(height: 100,),
 
               
+            ],
+          ),
+        ),
+      ) : SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 20,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 100),
+                child: Image(image: AssetImage('assets/images/YBRIDE text.jpg',),height: 30,width: 35,),
+              ),
+              SizedBox(height: 20,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 100),
+                child: HeadingTextWidget(title: 'Become a YBRide Driver Partner',fontWeight: FontWeight.bold,fontSize: 20,textAlign: TextAlign.center,),
+              ),
+              SizedBox(height: 30,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 100),
+                child: HeadingTextWidget(title: 'Earn More With Flexible Hours',fontWeight: FontWeight.bold,fontSize: 18,),
+              ),
+              SizedBox(height: 50,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 100),
+                child: firstPageWidgetSmall(),
+              ),
+              SizedBox(height: 40,),
+              HoeItWorksSmall(),
+              SizedBox(height: 70,),
+              Center(child: HeadingTextWidget(title: 'Why earn with YBRide?',fontWeight: FontWeight.bold,fontSize: ResponsiveWidget.isLargeScreen(context) ? 40 : 20,)),
+              SizedBox(height: 70,),
+              WhyEarnWithYBRideSmall(),
+              SizedBox(height: 70,),
+              howToSignUpSmall(),
+              SizedBox(height: 70,),
+              Center(child: HeadingTextWidget(title: 'Users already love YBRide!',textAlign: TextAlign.center,fontWeight: FontWeight.bold,fontSize: 20,height: 1.25,)),
+              SizedBox(height: 70,),
+              RetingWidgteSmall(),
+              SizedBox(height: 100,),
+              appBarFooterSmall(context),
+              SizedBox(height: 100,),
+
+
             ],
           ),
         ),

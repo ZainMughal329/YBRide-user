@@ -113,6 +113,85 @@ Widget ContainerFaqs(){
   );
 }
 
+Widget ContainerFaqsSmall(){
+
+  return Material(
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // SizedBox(height: 10,),
+          ReusebaleContainer(
+              'Getting Started','9 articles',Icons.star,(){
+            Get.to(()=>GettingStartedPage());
+
+          }
+          ),
+          SizedBox(height: 20,),
+          ReusebaleContainer(
+              'Booking Charges & Cancellation','4 articles',Icons.edit_note,
+                  (){
+                Get.to(()=>BookingandCancellationPage());
+
+              }
+          ),
+          SizedBox(height: 20,),
+          ReusebaleContainer(
+              'Delivery & Return','29 articles',Icons.location_on,
+                  (){
+                Get.to(()=>deliveryandReturnPage());
+
+
+              }
+          ),
+          SizedBox(height: 20,),
+          ReusebaleContainer(
+              'Deposits, Charges,Payment & Referrals','11 articles',Icons.money_rounded,
+                  (){
+                Get.to(()=>DepositandReferralsPage());
+
+              }
+          ),
+          SizedBox(height: 20,),
+          ReusebaleContainer('Electric Vehicles (EV)','13 articles',Icons.flash_on,(){
+            Get.to(()=>EVPage());
+
+          }),
+          SizedBox(height: 20,),
+          ReusebaleContainer('Insurance , Accidents & Incidents','20 articles',Icons.article_outlined,
+                  (){
+                Get.to(()=>insuranceandAccidentspPage());
+
+
+              }
+          ),
+          SizedBox(height: 20,),
+          ReusebaleContainer('Self PickUp and Return','12 articles',Icons.location_on,(){
+
+            Get.to(()=>SelfandPickUpPage());
+
+          }),
+          SizedBox(height: 20,),
+          ReusebaleContainer('Vehicles & Equipment','6 articles',Icons.car_crash,(){
+            Get.to(()=>VehicleandEquipmentPage());
+
+          }),
+          SizedBox(height: 20,),
+          ReusebaleContainer('Verification & Driver Requirements', '8 articles', Icons.person,(){
+            Get.to(()=>VerificationandDriverPage());
+
+          })
+
+        ],
+      ),
+    ),
+  );
+}
+
+
+
 
 Widget ReusebaleContainer(String title,String subTitle,IconData icon,VoidCallback ontap){
 
