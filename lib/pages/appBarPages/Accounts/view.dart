@@ -7,8 +7,10 @@ import 'package:yb_ride_user_web/helper/appColors.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Accounts/controller.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/appBarFooter/appBatFooter.dart';
 
+import '../../../components/countryCodeTextField.dart';
 import '../../../components/drwer.dart';
 import '../../../components/headingTextWidget.dart';
+import '../../../helper/api.dart';
 import '../../../helper/responsive.dart';
 import '../Become_Driver/view.dart';
 import '../FaqS/view.dart';
@@ -148,7 +150,7 @@ class AccountPage extends StatelessWidget {
                 height: 70,
               ),
               Padding(
-                  padding: EdgeInsets.only(right: 350),
+                  padding: EdgeInsets.only(right: 685),
                   child: HeadingTextWidget(title: 'Account',fontWeight: FontWeight.bold,fontSize: 30,)),
               SizedBox(height: 20,),
               Padding(
@@ -176,17 +178,21 @@ class AccountPage extends StatelessWidget {
                 child: Row(
                   children: [
                     Expanded(child: ReuseableTextField(
-                        contr: con.state.emailCon,
+                      readOnly: true,
+                        contr:TextEditingController(text: APis.auth.currentUser!.email.toString()),
                         label: 'Email Address',
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.emailAddress,
                         obsecure: false)),
-                    Expanded(child: ReuseableTextField(
-                        contr: con.state.numberCon,
+                    Expanded(child:Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 18),
+                      child: CountryCodePickerTextField(
                         label: 'Phone Number',
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.emailAddress,
-                        obsecure: false)),
+                        onChanged: (value){
+                         con. state.countryCode.value=value.dialCode.toString();
+                        },
+                      ),
+                    )),
                   ],
                 ),
               ),

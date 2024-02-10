@@ -189,11 +189,16 @@ class LoginPages extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(width: 10,),
-                        Container(
-                          height:25,
-                          width: 30,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(image: AssetImage('assets/images/google.webp')),
+                        InkWell(
+                          onTap: (){
+                            con.handleGoogleSignIn(context);
+                          },
+                          child: Container(
+                            height:25,
+                            width: 30,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(image: AssetImage('assets/images/google.webp')),
+                            ),
                           ),
                         ),
                         SizedBox(width: 5,),
