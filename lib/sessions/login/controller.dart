@@ -44,7 +44,7 @@ class loginCon extends GetxController{
       final chatUser = UserModel(
           userName: user.displayName.toString(),
           id: user.uid.toString(),
-          password:user.updatePassword('').toString(),
+          // password:user.updatePassword('').toString(),
           email: user.email.toString(),
           );
 

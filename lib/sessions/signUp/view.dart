@@ -160,7 +160,8 @@ class SignUpPages extends StatelessWidget {
                     final user =UserModel(
                       userName: con.state.userNameCon.text.trim().toString(),
                         email:con.state.emailCon.text.trim().toString() ,
-                        password: con.state.passwordCon.text.trim().toString());
+                        // password: con.state.passwordCon.text.trim().toString()
+                    );
                     con.storeUser(user, context, con.state.emailCon.text.trim().toString(), con.state.passwordCon.text.trim().toString(),con.state.userNameCon.text.trim().toString());
 
                   },

@@ -1,12 +1,12 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class UserModel {
+class SurferModel {
   String? id;
   final String userName;
   final String email;
   // final String password;
-  UserModel({
+  SurferModel({
     this.id = '',
     required this.userName,
     required this.email,
@@ -20,10 +20,10 @@ class UserModel {
       // 'Password': password,
     };
   }
-  factory UserModel.fromSnapshot(
+  factory SurferModel.fromSnapshot(
       DocumentSnapshot<Map<String, dynamic>> documentSnapshot) {
     final data = documentSnapshot.data()!;
-    return UserModel(
+    return SurferModel(
       userName: data['userName'],
       id: data['id'],
       email: data['Email'],

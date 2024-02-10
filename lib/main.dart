@@ -1,17 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:yb_ride_user_web/pages/BostonPage/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Accounts/view.dart';
-import 'package:yb_ride_user_web/pages/appBarPages/FaqS/Widgets/Faqs/GettingStarted/view.dart';
-import 'package:yb_ride_user_web/pages/appBarPages/FaqS/view.dart';
-import 'package:yb_ride_user_web/pages/appBarPages/Referrals/view.dart';
-import 'package:yb_ride_user_web/pages/appBarPages/Trips/view.dart';
+import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/SignUpForm.dart';
+import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/view.dart';
 import 'package:yb_ride_user_web/sessions/login/view.dart';
-import 'package:yb_ride_user_web/sessions/signUp/view.dart';
 
-import 'homePage/view.dart';
-import 'pages/appBarPages/Become_Driver/view.dart';
+import 'checkOut/view.dart';
+
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -39,7 +35,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  HomePage(),
+      home:  SurferSignUpForm(),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yb_ride_user_web/Vehicle/view.dart';
 import 'package:yb_ride_user_web/homePage/state.dart';
 import '../../components/headingTextWidget.dart';
 import '../../components/reuseableButton.dart';
@@ -32,7 +33,7 @@ Widget HomePageWidget(){
                 color: Colors.white,
               ),
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 25,horizontal: 25),
+                padding: const EdgeInsets.symmetric(vertical: 25,horizontal:35),
                 child: Center(
                   child: Row(
                     children: [
@@ -77,7 +78,11 @@ Widget HomePageWidget(){
                         ),
                         height: 60,
                         width: 90,
-                        child: Center(child: HeadingTextWidget(title: 'GO')),
+                        child: Center(child: InkWell(
+                            onTap: (){
+                              Get.to(()=>VehiclePage());
+                            },
+                            child: HeadingTextWidget(title: 'GO'))),
                       )
 
                     ],
