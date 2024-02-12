@@ -10,6 +10,9 @@ import 'package:geocoding/geocoding.dart';
 class HomePageState{
 
 
+  RxBool isExpanded = false.obs;
+
+
   final auth  =FirebaseAuth.instance;
   //  homePage Variables
   final pickupController = TextEditingController();
@@ -18,26 +21,34 @@ class HomePageState{
   final toController = TextEditingController();
   final isSwitchButtonVal =false.obs;
   final isButtonVisible = false.obs;
+  TextEditingController locationSearchController = TextEditingController();
 
 
 
   //Places Variables
   Uuid? uuid ;
   String? sessionToken;
-  final locationSearchController = TextEditingController();
+
   RxInt results = 0.obs;
   RxList placeList = [].obs;
+  RxList primaryText = [].obs;
   RxBool searchLoading = false.obs;
   RxBool locationSelected = false.obs;
   // var loc = LatLng(42.361145, -71.057083).obs;
 
 
   RxString selectedPlace = 'Tap to Search'.obs;
+  RxBool fromAddressSelected = false.obs;
   RxString returnPlace = 'Return Place'.obs;
+  RxBool toAddressSelected = false.obs;
   RxDouble fromLat = 0.0.obs;
   RxDouble fromLang = 0.0.obs;
   RxDouble toLat = 0.0.obs;
   RxDouble toLang = 0.0.obs;
+
+  RxBool timeandDateSelected = false.obs;
+//trued
+  RxBool startEndDateSelected = false.obs;
 
   RxString fromMonth = "".obs;
   RxString fromMonthName = "".obs;

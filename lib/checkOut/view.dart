@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:yb_ride_user_web/checkOut/controller.dart';
 import 'package:yb_ride_user_web/components/reuseableButton.dart';
 import 'package:yb_ride_user_web/components/subHeadingText.dart';
+import 'package:yb_ride_user_web/helper/AppConstants.dart';
 import 'Widget/coverage/CoverageWidget.dart';
 import 'Widget/driver/driversWidgte.dart';
 import 'Widget/payment/paymentWidget.dart';
@@ -14,11 +15,21 @@ import 'Widget/tripDetails/tripDetailsWidget.dart';
 import 'Widget/welcomeToYBride/welcometoYBRide.dart';
 
 class CheckOutPage extends StatelessWidget {
-  const CheckOutPage({super.key});
+  final double carRent;
+  final String carType;
+   CheckOutPage({super.key,required this.carType,required this.carRent});
 
   @override
   Widget build(BuildContext context) {
-    final con = Get.put(CheckOutCon());
+    final controller = Get.put(CheckOutCon());
+    AppConstants.vehicleType = carType;
+    // controller.getCheckoutPayments();
+    controller.state.carRent = carRent;
+    controller.state.totalPrice.value = carRent;
+    print('=======================>>>>');
+    print(AppConstants.vehicleType);
+    print(controller.state.totalPrice.value);
+    // return Container();
     return Scaffold(
       body: SingleChildScrollView(
         child: Center(
@@ -26,7 +37,7 @@ class CheckOutPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(height: 20,),
-          Image(image: AssetImage('assets/images/YBRIDE text.jpg',),height: 80,width: 80,),
+          // Image(image: AssetImage('assets/images/YBRIDE text.jpg',),height: 80,width: 80,),
             SizedBox(height: 10,),
             Divider(thickness: .6,),
             SizedBox(height: 30,),
