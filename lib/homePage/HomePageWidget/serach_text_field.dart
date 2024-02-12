@@ -33,6 +33,7 @@ Widget SearchTextField(BuildContext context , HomePageCon cont){
           CupertinoIcons.search,
           size: 26,
         ),
+        suffixIcon: Icon(Icons.arrow_forward_outlined),
         enabled: true,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),

@@ -9,18 +9,7 @@ import 'package:http/http.dart' as http;
 
 Future<void> returnPlacesBottomSheet(BuildContext context) async {
 
-  void printRes(String response) {
-    // String response = "[AutocompletePrediction(distanceMeters: 0, placeId: ChIJGzE9DS1l44kRoOhiASS_fHg, placeTypes: null, primaryText: Boston, secondaryText: MA, USA, fullText: Boston, MA, USA), AutocompletePrediction(distanceMeters: 0, placeId: ChIJN0na1RRw44kRRFEtH8OUkww, placeTypes: null, primaryText: Boston Logan International Airport (BOS), secondaryText: East Boston, MA, USA, fullText: Boston Logan International Airport (BOS), East Boston, MA, USA), AutocompletePrediction(distanceMeters: 0, placeId: ChIJM_dWOMXC10cRDJGg8UHVBoQ, placeTypes: null, primaryText: Boston, secondaryText: UK, fullText: Boston, UK), AutocompletePrediction(distanceMeters: 0, placeId: ChIJKyNuvJ1w44kRBE-pe_yDhj8, placeTypes: null, primaryText: Boston Common, secondaryText: Tremont Street, Boston, MA, USA, fullText: Boston Common, Tremont Street, Boston, MA, USA), AutocompletePrediction(distanceMeters: 0, placeId: ChIJFzjlY_B544kRyL6j4ABuNCs, placeTypes: null, primaryText: Boston University, secondaryText: Commonwealth Avenue, Boston, MA, USA, fullText: Boston University, Commonwealth Avenue, Boston, MA, USA)]";
 
-    // Extracting fullText using regular expression
-    RegExp regExp = RegExp(r'fullText: (.*?),');
-    Iterable<Match> matches = regExp.allMatches(response);
-
-    // Printing fullText values
-    for (Match match in matches) {
-      print(match.group(1));
-    }
-  }
 
 return showModalBottomSheet(context: context, builder: (_){
 

@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_google_places_sdk/flutter_google_places_sdk.dart';
 import 'package:get/get.dart';
+import 'package:yb_ride_user_web/Vehicle/view.dart';
 import 'package:yb_ride_user_web/homePage/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Accounts/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/SignUpForm.dart';
