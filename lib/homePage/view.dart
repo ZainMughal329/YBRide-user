@@ -3,6 +3,7 @@ import 'package:flutter_admin_scaffold/admin_scaffold.dart';
 import 'package:get/get.dart';
 import 'package:yb_ride_user_web/components/subHeadingText.dart';
 import 'package:yb_ride_user_web/helper/responsive.dart';
+import 'package:yb_ride_user_web/homePage/HomePageWidget/HomePage.dart';
 import 'package:yb_ride_user_web/pages/BostonPage/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/view.dart';
 import '../components/drwer.dart';
@@ -10,7 +11,6 @@ import '../components/headingTextWidget.dart';
 import '../helper/appColors.dart';
 import '../pages/CarsTypeWidget/carTypeWidget.dart';
 import '../pages/Footer/HomePageFooter.dart';
-import '../pages/HomePageWidget/HomePage.dart';
 import '../pages/RatingStarsWidget/ratingStarsWidget.dart';
 import '../pages/appBarPages/Accounts/view.dart';
 import '../pages/appBarPages/FaqS/view.dart';
@@ -156,10 +156,10 @@ class HomePage extends StatelessWidget {
             child: Column(
               children: [
                 ResponsiveWidget.isLargeScreen(context)
-                    ? HomePageWidget()
+                    ? HomePageWidget(context,con)
                     : ResponsiveWidget.isMediumScreen(context)
-                        ? HomePageWidgetMediumScreen()
-                        : HomePageWidgetSmallScreen(),
+                        ? HomePageWidgetMediumScreen(con)
+                        : HomePageWidgetSmallScreen(con),
                 SizedBox(
                   height: 70,
                 ),
