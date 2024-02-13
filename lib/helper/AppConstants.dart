@@ -1,4 +1,17 @@
 class AppConstants {
+
+
+
+  static  String playStoreLink="";
+  static  String appStoreLink="";
+  static String instagramLink="";
+  static String twitterLink="";
+  static String fbLink="";
+  static String ybEmail="";
+  static String ybPhone="";
+
+
+
   static final String google_api_key = 'AIzaSyAL3BrJ_7Q2cCjaPYMjEbfrmRSM2TBtPk0';
 
   static final String stripe_publish_key = 'pk_test_51Ogo46EwduwUAGBRz8KlKG0uKlP2DL1KfBVj3Iqum4fSQVtOfD4WPCisOOmVfIoEAKsBJNTI0WzOmpOLmntqPTTJ00F599LcQW';
