@@ -55,6 +55,8 @@ dependencies:
   country_code_picker:
   # country code picker
   fl_country_code_picker:
+  url_launcher: ^6.2.4
+
 
   #   to get the id of mobile device
   uuid:
