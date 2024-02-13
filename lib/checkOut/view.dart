@@ -14,20 +14,20 @@ import 'Widget/tripDetails/tripDetailsWidget.dart';
 import 'Widget/welcomeToYBride/welcometoYBRide.dart';
 
 class CheckOutPage extends StatelessWidget {
+  final double carPrice;
   final double carRent;
   final String carType;
-   CheckOutPage({super.key,required this.carType,required this.carRent});
+   CheckOutPage({super.key,required this.carType,required this.carRent,required this.carPrice});
 
   @override
   Widget build(BuildContext context) {
+
     final controller = Get.put(CheckOutCon());
+    controller.getCheckoutPayments();
     AppConstants.vehicleType = carType;
-    // controller.getCheckoutPayments();
+    controller.state.carPricePerDay=carPrice;
     controller.state.carRent = carRent;
     controller.state.totalPrice.value = carRent;
-    print('=======================>>>>');
-    print(AppConstants.vehicleType);
-    print(controller.state.totalPrice.value);
     // return Container();
     return Scaffold(
       body: Center(
@@ -52,7 +52,7 @@ class CheckOutPage extends StatelessWidget {
                       SizedBox(
                         height: 20,
                       ),
-                      driverWidget(),
+                      driverWidget(context, controller),
                       SizedBox(
                         height: 20,
                       ),
@@ -110,7 +110,7 @@ class CheckOutPage extends StatelessWidget {
               SizedBox(
                 width: 10,
               ),
-              Expanded(child: priceContainerWidget())
+              Expanded(child: priceContainerWidget(controller))
             ],
           ),
         )
@@ -134,7 +134,7 @@ class CheckOutPage extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                driverWidget(),
+                driverWidget(context, controller),
                 SizedBox(
                   height: 20,
                 ),

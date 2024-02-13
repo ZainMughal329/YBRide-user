@@ -37,6 +37,20 @@ class AppConstants {
   static String toTimeinMiliSeconds = "";
 
 
+  //Checkout Payments
+  //Payments
+  static double tempDeposit = 0.0;
+  static String paymentId = '';
+  static String bookingDate = '';
+  static double deliveryCharges = 0.0;
+  static double bostonPoliceFees = 0.0;
+  static double bostonParking = 0.0;
+  static double bostonConventionCenter = 0.0;
+  static double totalAmountToPay = 0.0;
+  static double salesTaxPercentage = 0.0;
+  static String pickUpLoc = "";
+
+
 
 
 }

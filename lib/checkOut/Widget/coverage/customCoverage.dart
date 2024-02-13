@@ -80,9 +80,9 @@ Future coverageBottomSheet(BuildContext context) {
                                 con.state.cdwSwitchVal.value, (value) {
                               con.state.cdwSwitchVal.value = value;
                               if(!value){
-                                con.subtractCustomCoverageValue('CDW');
+                                // con.subtractCustomCoverageValue('CDW');
                               }
-                              con.updateTotalPrice_Custom_CDW();
+                              // con.updateTotalPrice_Custom_CDW();
                             }),
                           ),
                           SizedBox(
@@ -97,9 +97,9 @@ Future coverageBottomSheet(BuildContext context) {
                                 con.state.rcliSwitchVal.value, (value) {
                               con.state.rcliSwitchVal.value = value;
                               if(!value){
-                                con.subtractCustomCoverageValue('RCLI');
+                                // con.subtractCustomCoverageValue('RCLI');
                               }
-                              con.updateTotalPrice_Custom_RCLI();
+                              // con.updateTotalPrice_Custom_RCLI();
                             }),
                           ),
                           SizedBox(
@@ -114,10 +114,10 @@ Future coverageBottomSheet(BuildContext context) {
                                 con.state.sliSwitchVal.value, (value) {
                               con.state.sliSwitchVal.value = value;
                               if(!value){
-                                con.subtractCustomCoverageValue('SLI');
+                                // con.subtractCustomCoverageValue('SLI');
                               }
 
-                              con.updateTotalPrice_Custom_SLI();
+                              // con.updateTotalPrice_Custom_SLI();
                             }),
                           ),
                           SizedBox(

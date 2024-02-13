@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_google_places_sdk/flutter_google_places_sdk.dart';
 import 'package:get/get.dart';
 import 'package:yb_ride_user_web/Vehicle/view.dart';
+import 'package:yb_ride_user_web/helper/AppConstants.dart';
 import 'package:yb_ride_user_web/homePage/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Accounts/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/SignUpForm.dart';
@@ -33,6 +34,8 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
+    AppConstants.rentDays = 3;
+    // AppConstants.totalPrice = 120;
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'YbRide Users',
@@ -40,7 +43,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: HomePage(),
+      home: CheckOutPage(carType: 'SUV',carRent: 130,carPrice: 43,),
     );
   }
 }
