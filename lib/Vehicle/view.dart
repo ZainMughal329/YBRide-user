@@ -168,6 +168,8 @@ class VehiclePage extends StatelessWidget {
                                     .toString()).toStringAsFixed(2);
                             String carType = snapshot.data!.docs[index]['type']
                                 .toString();
+                            double price = double.parse((snapshot
+                                .data!.docs[index]['pricePerDay']).toString());
                             return Center(
                               child: Column(
                                 children: [
@@ -206,6 +208,7 @@ class VehiclePage extends StatelessWidget {
                                       Get.to(() => CheckOutPage(
                                         carRent: controller.state.rentPerDay * AppConstants.rentDays,
                                         carType: carType,
+                                        carPrice: price,
                                       ));
                                     },
                                   ),
@@ -218,6 +221,8 @@ class VehiclePage extends StatelessWidget {
                                     .toString()).toStringAsFixed(2);
                             String carType = snapshot.data!.docs[index]['type']
                                 .toString();
+                            double price = double.parse((snapshot
+                                .data!.docs[index]['pricePerDay']).toString());
                             return Column(
                               children: [
                                 CarCardMediumScreen(
@@ -254,6 +259,7 @@ class VehiclePage extends StatelessWidget {
                                     Get.to(() => CheckOutPage(
                                       carRent: controller.state.rentPerDay * AppConstants.rentDays,
                                       carType: carType,
+                                      carPrice: price,
                                     ));
                                   },
                                 ),
@@ -265,6 +271,8 @@ class VehiclePage extends StatelessWidget {
                                     .toString()).toStringAsFixed(2);
                             String carType = snapshot.data!.docs[index]['type']
                                 .toString();
+                           double price = double.parse((snapshot
+                               .data!.docs[index]['pricePerDay']).toString());
 
                             return Column(
                               children: [
@@ -310,6 +318,7 @@ class VehiclePage extends StatelessWidget {
                                     Get.to(() => CheckOutPage(
                                       carRent: controller.state.rentPerDay * AppConstants.rentDays,
                                       carType: carType,
+                                      carPrice: price,
                                     ));
                                   },
                                 ),

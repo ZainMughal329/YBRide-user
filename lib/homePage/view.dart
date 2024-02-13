@@ -157,8 +157,8 @@ class HomePage extends StatelessWidget {
               ResponsiveWidget.isLargeScreen(context)
                   ? HomePageWidget(context,con)
                   : ResponsiveWidget.isMediumScreen(context)
-                  ? HomePageWidgetMediumScreen(con)
-                  : HomePageWidgetSmallScreen(con),
+                  ? HomePageWidgetMediumScreen(context,con)
+                  : HomePageWidgetSmallScreen(context,con),
               SizedBox(
                 height: 70,
               ),
