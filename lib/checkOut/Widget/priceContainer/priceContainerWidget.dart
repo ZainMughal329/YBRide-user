@@ -115,3 +115,115 @@ Widget priceContainerWidget(){
     ),
   );
 }
+
+Widget priceContainerWidgetSmall(){
+  return  Container(
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.all(Radius.circular(10)),
+      // color: Colors.grey
+      border: Border.all(color: Colors.black54.withOpacity(.1)),
+      // boxShadow: [
+      //   BoxShadow(color: Colors.black54)
+      // ]
+    ),
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Image(image: AssetImage('assets/images/7_seater-3.webp'),height: 90,width: 130,),
+              SizedBox(width: 30,),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  HeadingTextWidget(title: 'SUV',fontSize: 15,),
+                  Row(
+                    children: [
+                      SubHeadingTextWidget(title: '5 days',fontSize: 13,textColor: Colors.black,),
+                      SizedBox(width: 7,),
+                      SubHeadingTextWidget(title: '.',fontSize: 13,textColor: Colors.black,),
+                      SizedBox(width: 7,),
+                      SubHeadingTextWidget(title: 'Feb 20',fontSize: 13,textColor: Colors.black,),
+                      SizedBox(width: 7,),
+                      SubHeadingTextWidget(title: '-',fontSize: 13,textColor: Colors.black,),
+                      SizedBox(width: 7,),
+                      SubHeadingTextWidget(title: 'Feb 24',fontSize: 13,textColor: Colors.black,),
+
+                    ],
+                  )
+
+
+                ],
+              ),
+            ],
+          ),
+          SizedBox(height: 30,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SubHeadingTextWidget(title: 'Your YBRide',fontSize: 13,textColor: Colors.black,),
+              SubHeadingTextWidget(title: '\$'+'30.00 * 5 days',fontSize: 13,textColor: Colors.black,),
+
+
+            ],
+          ),
+          SizedBox(height: 30,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SubHeadingTextWidget(title: 'Sales tax',fontSize: 13,textColor: Colors.black,),
+              SubHeadingTextWidget(title: '\$'+'15.88',fontSize: 13,textColor: Colors.black,),
+            ],
+          ),
+          SizedBox(height: 30,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              HeadingTextWidget(title: 'Total',fontSize: 15,textColor: Colors.black,),
+              SubHeadingTextWidget(title: '\$'+'170.99',fontSize: 13,textColor: Colors.black,),
+            ],
+          ),
+          SizedBox(height: 30,),
+          Row(
+            children: [
+              Icon(Icons.emoji_emotions_outlined),
+              SizedBox(width: 20,),
+              SubHeadingTextWidget(title: "Weekday savings included, you're getting a great deal.",fontSize: 13,textColor: Colors.black,)
+            ],
+          ),
+          SizedBox(height: 30,),
+
+          Row(
+            children: [
+              Icon(Icons.done),
+              SizedBox(width: 20,),
+              Column(
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      HeadingTextWidget(title: 'Free Cancellation ',fontSize: 13,),
+                      SubHeadingTextWidget(title: 'until ',fontSize: 13,textColor: Colors.black,),
+                      HeadingTextWidget(title: 'Feb 21.',fontSize: 13,),
+                      SubHeadingTextWidget(title: '. Cancel at least 24 hours',fontSize: 13,textColor: Colors.black,),
+
+
+
+
+                    ],
+                  ),
+                  SubHeadingTextWidget(title: "in advance for a full refund in the form of YBRide Credits",fontSize: 13,textColor: Colors.black,)
+                ],
+              )
+
+            ],
+          ),
+        ],
+      ),
+    ),
+  );
+}

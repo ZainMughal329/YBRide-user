@@ -7,6 +7,7 @@ import 'package:yb_ride_user_web/helper/appColors.dart';
 import 'package:yb_ride_user_web/homePage/view.dart';
 import 'package:yb_ride_user_web/sessions/signUp/state.dart';
 
+import '../../checkOut/view.dart';
 import '../../model/userModel/user_model.dart';
 
 class signUpCon extends GetxController{
@@ -37,7 +38,7 @@ class signUpCon extends GetxController{
         .set(user.toJson())
         .whenComplete(() {
       Get.snackbar('Message', 'Registered Successfully',backgroundColor:Colors.white ,colorText: AppColors.buttonColor.withOpacity(.8));
-      Get.off(()=>HomePage());
+      Get.off(()=>CheckOutPage());
     }).catchError((error, stackTrace) {
       Get.snackbar('Message', "Error occurred",backgroundColor:Colors.white ,colorText: AppColors.buttonColor.withOpacity(.8));
     });

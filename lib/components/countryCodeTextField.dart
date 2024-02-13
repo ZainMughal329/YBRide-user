@@ -28,6 +28,7 @@ class CountryCodePickerTextField extends StatelessWidget {
       ),
       decoration: InputDecoration(
         prefixIcon: CountryCodePicker(
+          initialSelection: '+1',
           onChanged: onChanged,
           // Customize CountryCodePicker properties as needed
         ),

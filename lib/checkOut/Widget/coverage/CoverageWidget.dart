@@ -207,6 +207,203 @@ Widget CoverageWidget(BuildContext context){
     ),
   );
 }
+
+
+Widget CoverageWidgetSmall(BuildContext context){
+  final state = CheckOutState();
+  return Container(
+    decoration: BoxDecoration(
+        border: Border.all(color: Colors.black54.withOpacity(.1)),
+        borderRadius: BorderRadius.all(Radius.circular(10))
+    ),
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: 15,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: HeadingTextWidget(title: '3. Coverage',fontWeight: FontWeight.bold,fontSize: 23,),
+          ),
+          SizedBox(height: 20,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 17),
+            child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  border: Border.all(color: Colors.black54)
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        HeadingTextWidget(title: 'Standard Coverage',fontSize: 15,),
+                        Obx(() =>_checkBox(state.standardCoverage.value, (value) {
+                          state.standardCoverage.value = value;
+                        }),),
+
+                      ],),
+                    SizedBox(height: 10,),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SubHeadingTextWidget(title: 'Provides liability insurance which is a mandatory legal requirements in all'
+                            '50 states, and covers any damage done to the car past a \$500 deductible',fontSize: 13,textColor: Colors.black,),
+                        SizedBox(height: 10,),
+                        SubHeadingTextWidget(title: '\$49.98 | day',fontSize: 13,textColor: Colors.black,),
+
+                      ],
+                    )
+
+                  ],
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 20,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 17),
+            child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  border: Border.all(color: Colors.black54)
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        HeadingTextWidget(title: 'Liability insurance',fontSize: 15,),
+                        Obx(() =>_checkBox(state.liabilityInsurance.value, (value) {
+                          state.liabilityInsurance.value = value;
+                        }),),
+
+                      ],),
+                    SizedBox(height: 10,),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SubHeadingTextWidget(title: 'Provides liability insurance which is a mandatory legal requirements in all'
+                            '50 states. Driving without liability insurance is illegal',fontSize: 13,textColor: Colors.black,),
+                        SizedBox(height: 10,),
+                        SubHeadingTextWidget(title: '\$19.98 | day',fontSize: 13,textColor: Colors.black,),
+                      ],
+                    ),
+
+                  ],
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 20,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 17),
+            child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  border: Border.all(color: Colors.black54)
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        HeadingTextWidget(title: 'I have my own',fontSize: 15,),
+                        Obx(() =>_checkBox(state.iHaveMyOwn.value, (value) {
+                          state.iHaveMyOwn.value = value;
+                        }),),
+
+                      ],),
+                    SizedBox(height: 10,),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SubHeadingTextWidget(title: "You have your own insurance that complies with local requirements. You"
+                            "understand that is illegal to drive without liability insurance, and that"
+                            "you'll be liable for any damage done to a 3rd party.",fontSize: 13,textColor: Colors.black,),
+                        SizedBox(height: 10,),
+                        SubHeadingTextWidget(title: '\$0.00 | day',fontSize: 13,textColor: Colors.black,),
+                      ],
+                    )
+
+                  ],
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 20,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 17),
+            child: Container(
+              width: 277,
+              height: 50,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(100)),
+                color: Colors.grey.shade100
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                child: Center(
+                  child: InkWell(
+                      onTap: (){
+                        coverageBottomSheet(context);
+
+                      },
+                      child: HeadingTextWidget(title: 'Add custom coverage',fontSize: 13,textColor: Colors.black,)),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 20,),
+          Divider(color: Colors.black54,),
+          SizedBox(height: 20,),
+          ListTile(
+            leading: Icon(Icons.location_on),
+            title: HeadingTextWidget(title: 'Unlimited miles',fontSize: 15,),
+            subtitle: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SubHeadingTextWidget(title: '300 miles/day included before upgrading.We charge',fontSize: 13,textColor: Colors.black,),
+                SubHeadingTextWidget(title: '\$0.45/mile after that',fontSize: 13,textColor: Colors.black,),
+              ],
+            ),
+            trailing: Obx(() =>_checkBox(state.UnlimitedMiles.value, (value) {
+              state.UnlimitedMiles.value = value;
+            }),),
+          ),
+          SizedBox(height: 20,),
+
+
+
+
+
+
+
+
+        ],
+      ),
+    ),
+  );
+}
 Widget _checkBox(bool val, ValueChanged<bool>? onChanged){
   return Checkbox(
       shape: ContinuousRectangleBorder(
