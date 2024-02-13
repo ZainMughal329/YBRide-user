@@ -59,6 +59,120 @@ Widget HomePageWidget(BuildContext context, HomePageCon controller) {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       // where widgets
+
+
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.15,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            HeadingTextWidget(
+                              title: 'From',
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Obx((){
+                              return SubHeadingTextWidget(title: "${controller.state.fromMonthName.value} ${controller.state.fromDate.value}, ${controller.state.fromTime.value}");
+                            }),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      HeadingTextWidget(
+                          title: '|',
+                          textColor: Colors.black54,
+                          fontSize: 50,
+                          fontWeight: FontWeight.w100),
+                      // SizedBox(
+                      //   width: 20,
+                      // ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.15,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            HeadingTextWidget(
+                              title: 'To',
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Obx((){
+                              return SubHeadingTextWidget(title: "${controller.state.toMonthName.value} ${controller.state.toDate.value}, ${controller.state.toTime.value}");
+                            }),
+                          ],
+                        ),
+                      ),
+                      HeadingTextWidget(
+                          title: '|',
+                          textColor: Colors.black54,
+                          fontSize: 50,
+                          fontWeight: FontWeight.w100),
+                      SizedBox(
+                        width: 30,
+                      ),Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            // color: Colors.grey.withOpacity(.1)
+                        color: AppColors.buttonColor,
+                        ),
+                        height: 60,
+                        // width: 50,
+                        child: Padding(
+                          padding:  EdgeInsets.symmetric(horizontal: 10),
+                          child: Center(
+                            child: InkWell(
+                              onTap: (){
+                                rangePicker(context,controller);
+                              },
+                              child: HeadingTextWidget(
+                                  title: 'Select Date',
+                                  textColor: Colors.white,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+
+          // 2nd row
+          SizedBox(height: 10,),
+          Container(
+            height: 100,
+            // width: 800,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(100),
+              color: Colors.white,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 35),
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // where widgets
                       Obx((){
                         return controller.state.selectedPlace.value=='Tap to Search' ? InkWell(
                           onTap: (){
@@ -133,37 +247,37 @@ Widget HomePageWidget(BuildContext context, HomePageCon controller) {
                       // SizedBox(
                       //   width: 50,
                       // ),
-                      HeadingTextWidget(
-                          title: '|',
-                          textColor: Colors.black54,
-                          fontSize: 50,
-                          fontWeight: FontWeight.w100),
-                      SizedBox(
-                        width: 20,
-                      ),
                       InkWell(
                         onTap: (){
                           rangePicker(context,controller);
                         },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.15,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              HeadingTextWidget(
-                                title: 'From',
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Obx((){
-                                return SubHeadingTextWidget(title: "${controller.state.fromMonthName.value} ${controller.state.fromDate.value}, ${controller.state.fromTime.value}");
-                              }),
-                            ],
-                          ),
+                        child: SubHeadingTextWidget(
+                            title: 'Select Date',
+                            textColor: Colors.black54,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w100),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.15,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            HeadingTextWidget(
+                              title: 'From',
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Obx((){
+                              return SubHeadingTextWidget(title: "${controller.state.fromMonthName.value} ${controller.state.fromDate.value}, ${controller.state.fromTime.value}");
+                            }),
+                          ],
                         ),
                       ),
                       SizedBox(

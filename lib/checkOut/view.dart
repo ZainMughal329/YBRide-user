@@ -49,17 +49,17 @@ class CheckOutPage extends StatelessWidget {
                 children: [
                   Expanded(child: Column(
                     children: [
-                      welcomeYBRide(context),
+                      // welcomeYBRide(context),
                       SizedBox(height: 20,),
-                      driverWidget(),
+                      // driverWidget(),
                       SizedBox(height: 20,),
-                      TripDetailsWidget(),
+                      // TripDetailsWidget(),
                       SizedBox(height: 20,),
-                      CoverageWidget(context),
+                      // CoverageWidget(context),
                       SizedBox(height: 20,),
-                      paymentWidget(),
+                      // paymentWidget(),
                       SizedBox(height: 20,),
-                      promoCodeWidget(context),
+                      // promoCodeWidget(context),
                       SizedBox(height: 20,),
                       RoundButton(title: 'Book now', onPress: (){
 
@@ -81,7 +81,7 @@ class CheckOutPage extends StatelessWidget {
                     ],
                   )),
                   SizedBox(width: 10,),
-                  Expanded(child:priceContainerWidget() )
+                  // Expanded(child:priceContainerWidget() )
                 ],
               ),
             )
