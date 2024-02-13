@@ -3,10 +3,16 @@ import 'package:get/get.dart';
 
 class CheckOutState{
 
+
+
+  double carRent = 0.0;
+  RxDouble totalPrice = 0.0.obs;
+
+
   final firstNameCon = TextEditingController();
   final lastNameCon = TextEditingController();
   final phoneNumCon = TextEditingController();
-  RxString countryCode = "+92".obs;
+  RxString countryCode = "+1".obs;
   final isDriverAge = false.obs;
   final isDelivery = false.obs;
   final isSelfPickup = false.obs;
@@ -21,7 +27,7 @@ class CheckOutState{
   final cdwSwitchVal = false.obs;
   final rcliSwitchVal = false.obs;
   final sliSwitchVal = false.obs;
-  RxDouble totalPrice = 2.11.obs;
+
   var isLoading = true.obs;
 
 

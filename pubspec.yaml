@@ -55,6 +55,27 @@ dependencies:
   country_code_picker:
   # country code picker
   fl_country_code_picker:
+  url_launcher: ^6.2.4
+
+
+  #   to get the id of mobile device
+  uuid:
+    # for date and time
+  intl:
+  flutter_datetime_picker: ^1.5.1
+  #  date picker
+  syncfusion_flutter_datepicker: ^24.1.47
+  # internet connectivity
+  http:
+
+  #  to convert place into latLang
+  geocoding: ^2.1.1
+
+# dependencies for places
+#  flutter_google_places_hoc081098:
+#  google_places_flutter: ^2.0.8
+#  flutter_google_places_web: ^1.0.2
+  flutter_google_places_sdk: ^0.3.7
 
 
 
