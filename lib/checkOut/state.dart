@@ -12,7 +12,7 @@ class CheckOutState{
   final firstNameCon = TextEditingController();
   final lastNameCon = TextEditingController();
   final phoneNumCon = TextEditingController();
-  RxString countryCode = "+92".obs;
+  RxString countryCode = "+1".obs;
   final isDriverAge = false.obs;
   final isDelivery = false.obs;
   final isSelfPickup = false.obs;

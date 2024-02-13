@@ -229,6 +229,239 @@ Widget TripDetailsWidget(){
     ),
   );
 }
+
+Widget TripDetailsWidgetSmall(){
+  final state = CheckOutState();
+  return Container(
+    decoration: BoxDecoration(
+        border: Border.all(color: Colors.black54.withOpacity(.1)),
+        borderRadius: BorderRadius.all(Radius.circular(10))
+    ),
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: 15,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: HeadingTextWidget(title: '2. Trip Details',fontWeight: FontWeight.bold,fontSize: 23,),
+          ),
+          SizedBox(height: 15,),
+          ListTile(
+            leading: Icon(Icons.car_rental_outlined),
+            title: HeadingTextWidget(title: 'SUV',fontSize: 15,),
+            subtitle: SubHeadingTextWidget(title: 'Hyundai Tucson . 5 seats',fontSize: 13,textColor: Colors.black,),
+            trailing: Container(
+              height: 100,
+              width: 90,
+              decoration: BoxDecoration(
+                  color: Colors.grey.withOpacity(.1),
+                  borderRadius: BorderRadius.all(Radius.circular(100))
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 5),
+                child: Center(
+                  child: SubHeadingTextWidget(title: 'Edit',textColor: Colors.black,fontWeight: FontWeight.bold,fontSize: 13,),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 15,),
+          Divider(thickness: .5,),
+          SizedBox(height: 15,),
+          ListTile(
+            leading: Icon(Icons.location_on),
+            title: HeadingTextWidget(title: 'Tokyo,DC',fontSize: 15,),
+            subtitle: Row(
+              children: [
+                SubHeadingTextWidget(title: 'Fri',fontSize: 13,textColor: Colors.black,),
+                SubHeadingTextWidget(title: ', ',fontSize: 13,textColor: Colors.black,),
+                SubHeadingTextWidget(title: 'Feb'+' ',fontSize: 13,textColor: Colors.black,),
+                SubHeadingTextWidget(title: '23',fontSize: 13,textColor: Colors.black,),
+                SubHeadingTextWidget(title: ' at ',fontSize: 13,textColor: Colors.black,),
+                SubHeadingTextWidget(title: '10.00 AM',fontSize: 13,textColor: Colors.black,),
+              ],
+            ),
+            trailing: Container(
+              height: 100,
+              width: 90,
+              decoration: BoxDecoration(
+                  color: Colors.grey.withOpacity(.1),
+                  borderRadius: BorderRadius.all(Radius.circular(100))
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 5),
+                child: Center(
+                  child: SubHeadingTextWidget(title: 'Edit',fontWeight: FontWeight.bold,fontSize: 13,textColor: Colors.black,),
+                ),
+              ),
+            ),
+          ),
+
+          SizedBox(height: 30,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 17),
+            child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  color: Colors.blue.withOpacity(.1)
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 20),
+                child: Column(
+                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SubHeadingTextWidget(title: "Provide the address you'd like the car to be delivered to",fontSize: 13,textColor: Colors.black,),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      height: 50,
+                      width: 70,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(10))
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 5),
+                        child: Center(
+                          child: SubHeadingTextWidget(title: 'Edit',fontSize: 13,textColor: Colors.black,fontWeight: FontWeight.bold,),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 20,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 17),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+
+                Container(
+                  height: 100,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      border: Border.all(color: Colors.black54)
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 0,horizontal: 20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Spacer(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            HeadingTextWidget(title: 'Delivery',fontSize: 15,),
+                            Obx(() =>_checkBox(state.isDelivery.value, (value) {
+                              state.isDelivery.value = value;
+                            }),),
+
+                          ],),
+
+                        SizedBox(height: 10,),
+                        SubHeadingTextWidget(title: 'Home,Hotel, or other address',fontSize: 13,textColor: Colors.black,),
+                        Spacer(),
+
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20,),
+
+                Container(
+                  height: 100,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      border: Border.all(color: Colors.black54)
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 0,horizontal: 20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Spacer(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            HeadingTextWidget(title: 'Self-Pickup',fontSize: 15,),
+                            Obx(() =>_checkBox(state.isSelfPickup.value, (value) {
+                              state.isSelfPickup.value = value;
+                            }),),
+
+                          ],),
+                        SizedBox(height: 10,),
+                        SubHeadingTextWidget(title: 'Meet at our lot and save on delivery fees',fontSize: 13,textColor: Colors.black,),
+                        Spacer(),
+
+                      ],
+                    ),
+                  ),
+                ),
+
+              ],
+            ),
+          ),
+          SizedBox(height: 20,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 17),
+            child: SubHeadingTextWidget(title: 'Be prepared to meet your surfer within 10 minutes of your scheduled delivery.',fontSize: 13,textColor: Colors.black,),
+          ),
+          SizedBox(height: 20,),
+          Divider(color: Colors.black54,),
+          SizedBox(height: 20,),
+          ListTile(
+            leading: Icon(Icons.location_on),
+            title: HeadingTextWidget(title: 'Tokyo,DC',fontSize: 15,),
+            subtitle: Row(
+              children: [
+                SubHeadingTextWidget(title: 'Fri',fontSize: 13,textColor: Colors.black,),
+                SubHeadingTextWidget(title: ', ',fontSize: 13,textColor: Colors.black,),
+                SubHeadingTextWidget(title: 'Feb'+' ',fontSize: 13,textColor: Colors.black,),
+                SubHeadingTextWidget(title: '23',fontSize: 13,textColor: Colors.black,),
+                SubHeadingTextWidget(title: ' at ',fontSize: 13,textColor: Colors.black,),
+                SubHeadingTextWidget(title: '10.00 AM',fontSize: 13,textColor: Colors.black,),
+              ],
+            ),
+            trailing: Container(
+              height: 100,
+              width: 90,
+              decoration: BoxDecoration(
+                  color: Colors.grey.withOpacity(.1),
+                  borderRadius: BorderRadius.all(Radius.circular(10))
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 5),
+                child: Center(
+                  child: SubHeadingTextWidget(title: 'Edit',fontSize: 13,textColor: Colors.black,fontWeight: FontWeight.bold,),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 20,),
+
+
+
+
+
+
+
+
+        ],
+      ),
+    ),
+  );
+}
+
 Widget _checkBox(bool val, ValueChanged<bool>? onChanged){
   return Checkbox(
       shape: ContinuousRectangleBorder(
