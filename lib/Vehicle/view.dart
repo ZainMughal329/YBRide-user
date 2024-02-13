@@ -1,9 +1,8 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yb_ride_user_web/Vehicle/Controller.dart';
+import 'package:yb_ride_user_web/helper/AppConstants.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/appBarFooter/appBatFooter.dart';
 import '../checkOut/view.dart';
 import '../components/drwer.dart';
@@ -25,8 +24,8 @@ class VehiclePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final GlobalKey<ScaffoldState> _scaffoldKey =
-    new GlobalKey<ScaffoldState>();
-    final con = Get.put(VehicleCon());
+        new GlobalKey<ScaffoldState>();
+    final controller = Get.put(VehicleCon());
 
     return Scaffold(
       key: _scaffoldKey,
@@ -48,94 +47,97 @@ class VehiclePage extends StatelessWidget {
         ),
         actions: ResponsiveWidget.isLargeScreen(context)
             ? [
-          SizedBox(
-            width: 20,
-          ),
-          InkWell(
-            onTap: () {
-              Get.to(() => FaqPage());
-            },
-            child: HeadingTextWidget(
-                title: 'FAQ',
-                textColor: AppColors.appBarTextColor,
-                fontSize: 14,
-                fontWeight: FontWeight.normal),
-          ),
-          SizedBox(
-            width: 20,
-          ),
-          InkWell(
-              onTap: () {
-                Get.to(() => AccountPage());
-              },
-              child: HeadingTextWidget(
-                title: 'Account',
-                textColor: AppColors.appBarTextColor,
-                fontSize: 14,
-                fontWeight: FontWeight.normal,
-              )),
-          SizedBox(
-            width: 20,
-          ),
-          InkWell(
-              onTap: () {
-                Get.to(() => ReferralPage());
-              },
-              child: HeadingTextWidget(
-                title: 'Referrals',
-                textColor: AppColors.appBarTextColor,
-                fontSize: 14,
-                fontWeight: FontWeight.normal,
-              )),
-          SizedBox(
-            width: 20,
-          ),
-          InkWell(
-              onTap: () {
-                Get.to(() => TripsPages());
-              },
-              child: HeadingTextWidget(
-                  title: 'My Trips',
-                  textColor: AppColors.appBarTextColor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.normal)),
-          SizedBox(
-            width: 20,
-          ),
-          InkWell(
-              onTap: () {
-              },
-              child: HeadingTextWidget(
-                  title: 'Sign out',
-                  textColor: AppColors.appBarTextColor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.normal)),
-          SizedBox(
-            width: 30,
-          ),
-        ]
+                SizedBox(
+                  width: 20,
+                ),
+                InkWell(
+                  onTap: () {
+                    Get.to(() => FaqPage());
+                  },
+                  child: HeadingTextWidget(
+                      title: 'FAQ',
+                      textColor: AppColors.appBarTextColor,
+                      fontSize: 14,
+                      fontWeight: FontWeight.normal),
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                InkWell(
+                    onTap: () {
+                      Get.to(() => AccountPage());
+                    },
+                    child: HeadingTextWidget(
+                      title: 'Account',
+                      textColor: AppColors.appBarTextColor,
+                      fontSize: 14,
+                      fontWeight: FontWeight.normal,
+                    )),
+                SizedBox(
+                  width: 20,
+                ),
+                InkWell(
+                    onTap: () {
+                      Get.to(() => ReferralPage());
+                    },
+                    child: HeadingTextWidget(
+                      title: 'Referrals',
+                      textColor: AppColors.appBarTextColor,
+                      fontSize: 14,
+                      fontWeight: FontWeight.normal,
+                    )),
+                SizedBox(
+                  width: 20,
+                ),
+                InkWell(
+                    onTap: () {
+                      Get.to(() => TripsPages());
+                    },
+                    child: HeadingTextWidget(
+                        title: 'My Trips',
+                        textColor: AppColors.appBarTextColor,
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal)),
+                SizedBox(
+                  width: 20,
+                ),
+                InkWell(
+                    onTap: () {},
+                    child: HeadingTextWidget(
+                        title: 'Sign out',
+                        textColor: AppColors.appBarTextColor,
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal)),
+                SizedBox(
+                  width: 30,
+                ),
+              ]
             : [
-          IconButton(
-            onPressed: () {
-              _scaffoldKey.currentState!.openDrawer();
-            },
-            icon: Icon(
-              Icons.menu,
-              color: Colors.grey,
-            ),
-          ),
-          SizedBox(
-            width: 30,
-          ),
-        ],
+                IconButton(
+                  onPressed: () {
+                    _scaffoldKey.currentState!.openDrawer();
+                  },
+                  icon: Icon(
+                    Icons.menu,
+                    color: Colors.grey,
+                  ),
+                ),
+                SizedBox(
+                  width: 30,
+                ),
+              ],
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 30,),
+            SizedBox(
+              height: 30,
+            ),
             weekDayContainer(),
-            SizedBox(height: 30,),
+            SizedBox(
+              height: 30,
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 100),
               child: Divider(),
@@ -161,6 +163,11 @@ class VehiclePage extends StatelessWidget {
                       itemBuilder: (context, index) {
                         if (snapshot.data!.docs.length != 0) {
                           if (ResponsiveWidget.isSmallScreen(context)) {
+                            String priceOfCar = double.parse(
+                                (snapshot.data!.docs[index]['pricePerDay'])
+                                    .toString()).toStringAsFixed(2);
+                            String carType = snapshot.data!.docs[index]['type']
+                                .toString();
                             return Center(
                               child: Column(
                                 children: [
@@ -170,8 +177,7 @@ class VehiclePage extends StatelessWidget {
                                     vehicle: snapshot
                                         .data!.docs[index]['vehicle']
                                         .toString(),
-                                    seats: snapshot
-                                        .data!.docs[index]['seats']
+                                    seats: snapshot.data!.docs[index]['seats']
                                         .toString(),
                                     suitcase: snapshot
                                         .data!.docs[index]['suitcase']
@@ -179,8 +185,7 @@ class VehiclePage extends StatelessWidget {
                                     price: double.parse(snapshot
                                         .data!.docs[index]['pricePerDay']
                                         .toString()),
-                                    gas: snapshot
-                                        .data!.docs[index]['fuelType']
+                                    gas: snapshot.data!.docs[index]['fuelType']
                                         .toString(),
                                     transmission: snapshot
                                         .data!.docs[index]['transmission']
@@ -194,23 +199,31 @@ class VehiclePage extends StatelessWidget {
                                         .data!.docs[index]['noOfVehicles']
                                         .toString(),
                                     onPress: () {
-                                      Get.to(
-                                          ()=>CheckOutPage()
-                                      );
+                                      controller.state.rentPerDay = double.parse(priceOfCar.toString());
+                                      // double rent = double.parse(controller.state.rentPerDay.toString());
+                                      print(controller.state.rentPerDay);
+                                      controller.calculateNoDays();
+                                      Get.to(() => CheckOutPage(
+                                        carRent: controller.state.rentPerDay * AppConstants.rentDays,
+                                        carType: carType,
+                                      ));
                                     },
                                   ),
                                 ],
                               ),
                             );
-                          } else if (ResponsiveWidget.isMediumScreen(
-                              context)) {
+                          } else if (ResponsiveWidget.isMediumScreen(context)) {
+                            String priceOfCar = double.parse(
+                                (snapshot.data!.docs[index]['pricePerDay'])
+                                    .toString()).toStringAsFixed(2);
+                            String carType = snapshot.data!.docs[index]['type']
+                                .toString();
                             return Column(
                               children: [
                                 CarCardMediumScreen(
                                   type: snapshot.data!.docs[index]['type']
                                       .toString(),
-                                  vehicle: snapshot
-                                      .data!.docs[index]['vehicle']
+                                  vehicle: snapshot.data!.docs[index]['vehicle']
                                       .toString(),
                                   seats: snapshot.data!.docs[index]['seats']
                                       .toString(),
@@ -220,8 +233,7 @@ class VehiclePage extends StatelessWidget {
                                   price: double.parse(snapshot
                                       .data!.docs[index]['pricePerDay']
                                       .toString()),
-                                  gas: snapshot
-                                      .data!.docs[index]['fuelType']
+                                  gas: snapshot.data!.docs[index]['fuelType']
                                       .toString(),
                                   transmission: snapshot
                                       .data!.docs[index]['transmission']
@@ -235,21 +247,31 @@ class VehiclePage extends StatelessWidget {
                                       .data!.docs[index]['noOfVehicles']
                                       .toString(),
                                   onPress: () {
-                                    Get.to(
-                                        ()=>CheckOutPage());
+                                    controller.state.rentPerDay = double.parse(priceOfCar.toString());
+                                    // double rent = double.parse(controller.state.rentPerDay.toString());
+                                    print(controller.state.rentPerDay);
+                                    controller.calculateNoDays();
+                                    Get.to(() => CheckOutPage(
+                                      carRent: controller.state.rentPerDay * AppConstants.rentDays,
+                                      carType: carType,
+                                    ));
                                   },
                                 ),
                               ],
                             );
-                          } else if(ResponsiveWidget.isLargeScreen(context)) {
+                          } else if (ResponsiveWidget.isLargeScreen(context)) {
+                            String priceOfCar = double.parse(
+                                (snapshot.data!.docs[index]['pricePerDay'])
+                                    .toString()).toStringAsFixed(2);
+                            String carType = snapshot.data!.docs[index]['type']
+                                .toString();
 
                             return Column(
                               children: [
                                 CarCardLargeScreen(
                                   type: snapshot.data!.docs[index]['type']
                                       .toString(),
-                                  vehicle: snapshot
-                                      .data!.docs[index]['vehicle']
+                                  vehicle: snapshot.data!.docs[index]['vehicle']
                                       .toString(),
                                   seats: snapshot.data!.docs[index]['seats']
                                       .toString(),
@@ -259,8 +281,7 @@ class VehiclePage extends StatelessWidget {
                                   price: double.parse(snapshot
                                       .data!.docs[index]['pricePerDay']
                                       .toString()),
-                                  gas: snapshot
-                                      .data!.docs[index]['fuelType']
+                                  gas: snapshot.data!.docs[index]['fuelType']
                                       .toString(),
                                   transmission: snapshot
                                       .data!.docs[index]['transmission']
@@ -277,9 +298,19 @@ class VehiclePage extends StatelessWidget {
                                       .data!.docs[index]['description']
                                       .toString(),
                                   onPress: () {
-                                    Get.to(
-                                        ()=>CheckOutPage()
-                                    );
+
+                                    controller.state.rentPerDay = double.parse(priceOfCar.toString());
+                                    // double rent = double.parse(controller.state.rentPerDay.toString());
+                                    print(controller.state.rentPerDay);
+                                    controller.calculateNoDays();
+
+                                    print(controller.state.rentPerDay * AppConstants.rentDays);
+                                    print(carType);
+
+                                    Get.to(() => CheckOutPage(
+                                      carRent: controller.state.rentPerDay * AppConstants.rentDays,
+                                      carType: carType,
+                                    ));
                                   },
                                 ),
                               ],
@@ -298,7 +329,9 @@ class VehiclePage extends StatelessWidget {
                     return Container();
                   }
                 }),
-            SizedBox(height: 30,),
+            SizedBox(
+              height: 30,
+            ),
             appBarFooter()
           ],
         ),

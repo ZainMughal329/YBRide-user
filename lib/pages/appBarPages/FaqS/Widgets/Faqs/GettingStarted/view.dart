@@ -10,7 +10,8 @@ import '../../footer.dart';
 import 'gettingStartedWidget.dart';
 
 class GettingStartedPage extends StatelessWidget {
-  const GettingStartedPage({super.key});
+  final String colName , appBarName;
+  const GettingStartedPage({super.key, required this.colName, required this.appBarName});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class GettingStartedPage extends StatelessWidget {
           children: [
             RentalcarsWidget(context),
             SizedBox(height: 20,),
-            ResponsiveWidget.isSmallScreen(context)  ? GettingStartedWidgteSmall():GettingStartedWidgte(),
+            ResponsiveWidget.isSmallScreen(context)  ? GettingStartedWidgteSmall(colName,appBarName):GettingStartedWidgte(colName,appBarName),
             SizedBox(height: 100,),
             FooterWidget(),
 

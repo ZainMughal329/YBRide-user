@@ -38,7 +38,7 @@ class signUpCon extends GetxController{
         .set(user.toJson())
         .whenComplete(() {
       Get.snackbar('Message', 'Registered Successfully',backgroundColor:Colors.white ,colorText: AppColors.buttonColor.withOpacity(.8));
-      Get.off(()=>CheckOutPage());
+      Get.off(()=>HomePage());
     }).catchError((error, stackTrace) {
       Get.snackbar('Message', "Error occurred",backgroundColor:Colors.white ,colorText: AppColors.buttonColor.withOpacity(.8));
     });

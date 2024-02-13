@@ -74,6 +74,9 @@ dependencies:
 #  google_places_flutter: ^2.0.8
 #  flutter_google_places_web: ^1.0.2
   flutter_google_places_sdk: ^0.3.7
+
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

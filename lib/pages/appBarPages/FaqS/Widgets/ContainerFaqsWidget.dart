@@ -6,16 +6,7 @@ import 'package:get/get.dart';
 import 'package:yb_ride_user_web/components/headingTextWidget.dart';
 import 'package:yb_ride_user_web/components/subHeadingText.dart';
 import 'package:yb_ride_user_web/helper/appColors.dart';
-
-import 'Faqs/Booking Chnages & Cancellation/view.dart';
-import 'Faqs/Delivery  & Return/view.dart';
-import 'Faqs/Deposit,Charges & Referrals/view.dart';
-import 'Faqs/Electric Vehicles (EV)/view.dart';
 import 'Faqs/GettingStarted/view.dart';
-import 'Faqs/Insurance & Accidents/view.dart';
-import 'Faqs/Self & PickUp and Retuern/view.dart';
-import 'Faqs/Vehicles & Equipments/view.dart';
-import 'Faqs/Verification & Drivers Requirements/view.dart';
 
 Widget ContainerFaqs(){
 
@@ -30,16 +21,16 @@ Widget ContainerFaqs(){
           Row(
             children: [
               Expanded(child: ReusebaleContainer(
-              'Getting Started','9 articles',Icons.star,(){
-                Get.to(()=>GettingStartedPage());
+              'Getting Started','Articles',Icons.star,(){
+                Get.to(()=>GettingStartedPage(colName: 'gettingStarted', appBarName: 'Getting Started',));
 
               }
               )),
               SizedBox(width: 20,),
               Expanded(child: ReusebaleContainer(
-                'Booking Charges & Cancellation','4 articles',Icons.edit_note,
+                'Booking Charges & Cancellation','Articles',Icons.edit_note,
                       (){
-                  Get.to(()=>BookingandCancellationPage());
+                        Get.to(()=>GettingStartedPage(colName: 'bookingChanges', appBarName: 'Booking Charges & Cancellation',));
 
                   }
               ))
@@ -49,18 +40,18 @@ Widget ContainerFaqs(){
           Row(
             children: [
               Expanded(child: ReusebaleContainer(
-                'Delivery & Return','29 articles',Icons.location_on,
+                'Delivery & Return','Articles',Icons.location_on,
                       (){
-                        Get.to(()=>deliveryandReturnPage());
+                        Get.to(()=>GettingStartedPage(colName: 'deliveryReturn', appBarName: 'Delivery & Return',));
 
 
                   }
               )),
               SizedBox(width: 20,),
               Expanded(child: ReusebaleContainer(
-                'Deposits, Charges,Payment & Referrals','11 articles',Icons.money_rounded,
+                'Deposits, Charges,Payment & Referrals','Articles',Icons.money_rounded,
                       (){
-                        Get.to(()=>DepositandReferralsPage());
+                        Get.to(()=>GettingStartedPage(colName: 'deposits', appBarName: 'Charges,Payment & Referrals',));
 
                   }
               ))
@@ -69,14 +60,14 @@ Widget ContainerFaqs(){
           SizedBox(height: 20,),
           Row(
             children: [
-              Expanded(child: ReusebaleContainer('Electric Vehicles (EV)','13 articles',Icons.flash_on,(){
-                Get.to(()=>EVPage());
+              Expanded(child: ReusebaleContainer('Electric Vehicles (EV)','Articles',Icons.flash_on,(){
+                Get.to(()=>GettingStartedPage(colName: 'electricVehicles', appBarName: 'Electric Vehicles (EV)',));
 
               })),
               SizedBox(width: 20,),
-              Expanded(child: ReusebaleContainer('Insurance , Accidents & Incidents','20 articles',Icons.article_outlined,
+              Expanded(child: ReusebaleContainer('Insurance , Accidents & Incidents','Articles',Icons.article_outlined,
                       (){
-                        Get.to(()=>insuranceandAccidentspPage());
+                        Get.to(()=>GettingStartedPage(colName: 'insurance', appBarName: 'Insurance , Accidents & Incidents',));
 
 
                   }
@@ -86,14 +77,14 @@ Widget ContainerFaqs(){
           SizedBox(height: 20,),
           Row(
             children: [
-              Expanded(child: ReusebaleContainer('Self PickUp and Return','12 articles',Icons.location_on,(){
+              Expanded(child: ReusebaleContainer('Self PickUp and Return','Articles',Icons.location_on,(){
 
-                Get.to(()=>SelfandPickUpPage());
+                Get.to(()=>GettingStartedPage(colName: 'selfPickup', appBarName: 'Self PickUp and Return',));
 
               })),
               SizedBox(width: 20,),
-              Expanded(child: ReusebaleContainer('Vehicles & Equipment','6 articles',Icons.car_crash,(){
-                Get.to(()=>VehicleandEquipmentPage());
+              Expanded(child: ReusebaleContainer('Vehicles & Equipment','Articles',Icons.car_crash,(){
+                Get.to(()=>GettingStartedPage(colName: 'vehiclesEquipments', appBarName: 'Vehicles & Equipment',));
 
               }))
             ],
@@ -101,8 +92,8 @@ Widget ContainerFaqs(){
           SizedBox(height: 20,),
           Padding(
             padding: const EdgeInsets.only(right: 540),
-            child: ReusebaleContainer('Verification & Driver Requirements', '8 articles', Icons.person,(){
-              Get.to(()=>VerificationandDriverPage());
+            child: ReusebaleContainer('Verification & Driver Requirements', 'Articles', Icons.person,(){
+              Get.to(()=>GettingStartedPage(colName: 'verification', appBarName: 'Verification & Driver Requirements',));
 
             }),
           )
@@ -124,63 +115,63 @@ Widget ContainerFaqsSmall(){
         children: [
           // SizedBox(height: 10,),
           ReusebaleContainer(
-              'Getting Started','9 articles',Icons.star,(){
-            Get.to(()=>GettingStartedPage());
+              'Getting Started','Articles',Icons.star,(){
+            Get.to(()=>GettingStartedPage(colName: 'gettingStarted', appBarName: 'Getting Started',));
 
           }
           ),
           SizedBox(height: 20,),
           ReusebaleContainer(
-              'Booking Charges & Cancellation','4 articles',Icons.edit_note,
+              'Booking Charges & Cancellation','Articles',Icons.edit_note,
                   (){
-                Get.to(()=>BookingandCancellationPage());
+                    Get.to(()=>GettingStartedPage(colName: 'bookingChanges', appBarName: 'Booking Charges & Cancellation',));
 
               }
           ),
           SizedBox(height: 20,),
           ReusebaleContainer(
-              'Delivery & Return','29 articles',Icons.location_on,
+              'Delivery & Return','Articles',Icons.location_on,
                   (){
-                Get.to(()=>deliveryandReturnPage());
+                    Get.to(()=>GettingStartedPage(colName: 'deliveryReturn', appBarName: 'Delivery & Return',));
 
 
               }
           ),
           SizedBox(height: 20,),
           ReusebaleContainer(
-              'Deposits, Charges,Payment & Referrals','11 articles',Icons.money_rounded,
+              'Deposits, Charges,Payment & Referrals','Articles',Icons.money_rounded,
                   (){
-                Get.to(()=>DepositandReferralsPage());
+                    Get.to(()=>GettingStartedPage(colName: 'deposits', appBarName: 'Charges,Payment & Referrals',));
 
               }
           ),
           SizedBox(height: 20,),
-          ReusebaleContainer('Electric Vehicles (EV)','13 articles',Icons.flash_on,(){
-            Get.to(()=>EVPage());
+          ReusebaleContainer('Electric Vehicles (EV)','Articles',Icons.flash_on,(){
+            Get.to(()=>GettingStartedPage(colName: 'electricVehicles', appBarName: 'Electric Vehicles (EV)',));
 
           }),
           SizedBox(height: 20,),
-          ReusebaleContainer('Insurance , Accidents & Incidents','20 articles',Icons.article_outlined,
+          ReusebaleContainer('Insurance , Accidents & Incidents','Articles',Icons.article_outlined,
                   (){
-                Get.to(()=>insuranceandAccidentspPage());
+                    Get.to(()=>GettingStartedPage(colName: 'insurance', appBarName: 'Insurance , Accidents & Incidents',));
 
 
               }
           ),
           SizedBox(height: 20,),
-          ReusebaleContainer('Self PickUp and Return','12 articles',Icons.location_on,(){
+          ReusebaleContainer('Self PickUp and Return','Articles',Icons.location_on,(){
 
-            Get.to(()=>SelfandPickUpPage());
-
-          }),
-          SizedBox(height: 20,),
-          ReusebaleContainer('Vehicles & Equipment','6 articles',Icons.car_crash,(){
-            Get.to(()=>VehicleandEquipmentPage());
+            Get.to(()=>GettingStartedPage(colName: 'selfPickup', appBarName: 'Self PickUp and Return',));
 
           }),
           SizedBox(height: 20,),
-          ReusebaleContainer('Verification & Driver Requirements', '8 articles', Icons.person,(){
-            Get.to(()=>VerificationandDriverPage());
+          ReusebaleContainer('Vehicles & Equipment','Articles',Icons.car_crash,(){
+            Get.to(()=>GettingStartedPage(colName: 'vehiclesEquipments', appBarName: 'Vehicles & Equipment',));
+
+          }),
+          SizedBox(height: 20,),
+          ReusebaleContainer('Verification & Driver Requirements', 'Articles', Icons.person,(){
+            Get.to(()=>GettingStartedPage(colName: 'verification', appBarName: 'Verification & Driver Requirements',));
 
           })
 

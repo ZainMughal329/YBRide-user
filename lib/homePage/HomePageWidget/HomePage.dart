@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-// import 'package:google_places_flutter/google_places_flutter.dart';
+
 
 import 'package:get/get.dart';
-// import 'package:google_places_flutter/model/prediction.dart';
-//
-
-// import 'package:google_places_flutter/model/prediction.dart';
 import 'package:yb_ride_user_web/Vehicle/view.dart';
+import 'package:yb_ride_user_web/components/snackbar_widget.dart';
 import 'package:yb_ride_user_web/helper/AppConstants.dart';
-import 'package:yb_ride_user_web/homePage/HomePageWidget/places_bottom_sheet.dart';
+import 'package:yb_ride_user_web/homePage/HomePageWidget/rangePicker.dart';
+import 'package:yb_ride_user_web/homePage/HomePageWidget/to_bottom_sheet.dart';
+import 'package:yb_ride_user_web/homePage/HomePageWidget/where_bottom_sheet.dart';
 import 'package:yb_ride_user_web/homePage/controller.dart';
 import 'package:yb_ride_user_web/homePage/state.dart';
 import '../../components/headingTextWidget.dart';
@@ -18,8 +17,8 @@ import '../../components/subHeadingText.dart';
 import '../../helper/appColors.dart';
 
 Widget HomePageWidget(BuildContext context, HomePageCon controller) {
-  final searchController = TextEditingController();
-  const kGoogleApiKey = 'AIzaSyA8mT_fcQoFRNpBokvTjVXsuc-TB9k-leI';
+  controller.getCurrentDate();
+
 
   return Container(
     decoration: BoxDecoration(
@@ -54,115 +53,181 @@ Widget HomePageWidget(BuildContext context, HomePageCon controller) {
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 35),
               child: Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // where widgets
-                    InkWell(
-                      onTap: (){
-returnPlacesBottomSheet(context);
-                      },
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          HeadingTextWidget(title: 'Where',fontSize: 14,fontWeight: FontWeight.bold,),
-                          SizedBox(
-                            height: 10,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // where widgets
+                      Obx((){
+                        return controller.state.selectedPlace.value=='Tap to Search' ? InkWell(
+                          onTap: (){
+                            whereBottomSheet(context, controller);
+                          },
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.15,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                HeadingTextWidget(title: 'Where',fontSize: 14,fontWeight: FontWeight.bold,),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                SubHeadingTextWidget(
+                                    title: "City,address,hotel,airport.."),
+                              ],
+                            ),
                           ),
-                          SubHeadingTextWidget(
-                              title: "City,address,hotel,airport.."),
-                        ],
+                        ) : Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              HeadingTextWidget(title: 'Where'),
+                              Flexible(child: SubHeadingTextWidget(title: controller.state.selectedPlace.value,)),
+                            ],
+                          ),
+                        );
+                      }),
+                      SizedBox(
+                        width: 50,
                       ),
-                    ),
-                    // to widgets
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        InkWell(
-                            onTap: () {},
-                            child: HeadingTextWidget(
-                              title: 'To',
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                            )),
-                        SizedBox(
-                          height: 10,
+                      HeadingTextWidget(
+                          title: '|',
+                          textColor: Colors.black54,
+                          fontSize: 50,
+                          fontWeight: FontWeight.w100),
+                      // to widgets
+                      Obx((){
+                        return controller.state.returnPlace.value=='Return Place' ? InkWell(
+                          onTap: (){
+                            toBottomSheet(context, controller);
+                          },
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.15,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                HeadingTextWidget(title: 'To',fontSize: 14,fontWeight: FontWeight.bold,),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                SubHeadingTextWidget(
+                                    title: "City,address,hotel,airport.."),
+                              ],
+                            ),
+                          ),
+                        ) : Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              HeadingTextWidget(title: 'To'),
+                              Flexible(child: SubHeadingTextWidget(title: controller.state.returnPlace.value,)),
+                            ],
+                          ),
+                        );
+                      }),
+                      // SizedBox(
+                      //   width: 50,
+                      // ),
+                      HeadingTextWidget(
+                          title: '|',
+                          textColor: Colors.black54,
+                          fontSize: 50,
+                          fontWeight: FontWeight.w100),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      InkWell(
+                        onTap: (){
+                          rangePicker(context,controller);
+                        },
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.15,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              HeadingTextWidget(
+                                title: 'From',
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Obx((){
+                                return SubHeadingTextWidget(title: "${controller.state.fromMonthName.value} ${controller.state.fromDate.value}, ${controller.state.fromTime.value}");
+                              }),
+                            ],
+                          ),
                         ),
-                        SubHeadingTextWidget(
-                            title: "City,address,hotel,airport.."),
-                      ],
-                    ),
-                    SizedBox(
-                      width: 50,
-                    ),
-                    HeadingTextWidget(
-                        title: '|',
-                        textColor: Colors.black54,
-                        fontSize: 50,
-                        fontWeight: FontWeight.w100),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        HeadingTextWidget(
-                          title: 'From',
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      HeadingTextWidget(
+                          title: '|',
+                          textColor: Colors.black54,
+                          fontSize: 50,
+                          fontWeight: FontWeight.w100),
+                      // SizedBox(
+                      //   width: 20,
+                      // ),
+                      InkWell(
+                        onTap: (){
+                          // rangePicker(context,controller);
+                        },
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.15,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              HeadingTextWidget(
+                                title: 'To',
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Obx((){
+                                return SubHeadingTextWidget(title: "${controller.state.toMonthName.value} ${controller.state.toDate.value}, ${controller.state.toTime.value}");
+                              }),
+                            ],
+                          ),
                         ),
-                        SizedBox(
-                          height: 10,
+                      ),
+                      // SizedBox(
+                      //   width: 30,
+                      // ),
+                      InkWell(
+                        onTap: (){
+                          if(controller.state.fromAddressSelected.value==true &&
+                              controller.state.toAddressSelected.value==true&&
+                              controller.state.timeandDateSelected.value==true
+                          ){
+                            controller.moveToSelectVehicleScreen();
+                          }else{
+                            Snackbar.showSnackBar('YB-Ride', "Select All Information", Icons.error_outline);
+                          }
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100),
+                              color: Colors.grey.withOpacity(.1)),
+                          height: 60,
+                          width: 50,
+                          child: Center(
+                              child: HeadingTextWidget(title: 'GO')),
                         ),
-                        SubHeadingTextWidget(title: "Feb 03, 11.00 AM")
-                      ],
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    HeadingTextWidget(
-                        title: '|',
-                        textColor: Colors.black54,
-                        fontSize: 50,
-                        fontWeight: FontWeight.w100),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        HeadingTextWidget(
-                          title: 'To',
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        SubHeadingTextWidget(title: "Feb 07, 2.00 PM")
-                      ],
-                    ),
-                    SizedBox(
-                      width: 30,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          color: Colors.grey.withOpacity(.1)),
-                      height: 60,
-                      width: 90,
-                      child: Center(
-                          child: InkWell(
-                              onTap: () {
-                                Get.to(() => VehiclePage());
-                              },
-                              child: HeadingTextWidget(title: 'GO'))),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
