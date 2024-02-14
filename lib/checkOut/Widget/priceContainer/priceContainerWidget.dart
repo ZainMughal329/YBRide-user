@@ -71,6 +71,14 @@ Widget priceContainerWidget(CheckOutCon controller){
               SubHeadingTextWidget(title: '\$'+'15.88'),
             ],
           ),
+          SizedBox(height: 10,),
+          Obx(() => controller.state.isDriverAge.value==true ? Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SubHeadingTextWidget(title: 'Under 25 years fee'),
+              SubHeadingTextWidget(title: '\$'+'${controller.state.licenseFee} * ${AppConstants.rentDays} days'),
+            ],
+          ) : Container(),),
           SizedBox(height: 30,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

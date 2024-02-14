@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:yb_ride_user_web/checkOut/controller.dart';
 import 'package:yb_ride_user_web/checkOut/state.dart';
+import 'package:yb_ride_user_web/components/snackbar_widget.dart';
 import '../../../../../main.dart';
 import '../../../components/headingTextWidget.dart';
 import '../../../components/reuseableButton.dart';
 import '../../../components/textField.dart';
-Future promoCodeBottomSheet(BuildContext context) {
+
+Future promoCodeBottomSheet(BuildContext context, CheckOutCon cont) {
   final state = CheckOutState();
 
   final scrollController = ScrollController();
   final focusNode = FocusNode();
   state.promoCodeCon.addListener(() {
-    if(state.promoCodeCon.text.trim().isNotEmpty){
-      state.buttonVisible.value=true;
-    }else{
-      state.buttonVisible.value=false;
+    if (state.promoCodeCon.text.trim().isNotEmpty) {
+      state.buttonVisible.value = true;
+    } else {
+      state.buttonVisible.value = false;
     }
   });
   return showModalBottomSheet(
@@ -44,8 +47,7 @@ Future promoCodeBottomSheet(BuildContext context) {
                     color: Colors.black.withOpacity(0.5), // Shadow color
                     spreadRadius: 1, // Spread radius
                     blurRadius: 5, // Blur radius
-                    offset: Offset(0,
-                        -3),
+                    offset: Offset(0, -3),
                   ),
                 ],
               ),
@@ -61,40 +63,59 @@ Future promoCodeBottomSheet(BuildContext context) {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Padding(
-                        padding:  EdgeInsets.only(left: 100),
+                        padding: EdgeInsets.only(left: 100),
                         child: IconButton(
                           icon: Icon(FontAwesomeIcons.xmark),
                           onPressed: () {
-                            Navigator.of(context).pop(); // Close the bottom sheet
+                            Navigator.of(context)
+                                .pop(); // Close the bottom sheet
                           },
                         ),
                       ),
-                      SizedBox(width:150,),
+                      SizedBox(
+                        width: 150,
+                      ),
                       HeadingTextWidget(
-                        title: "Add promo code", fontWeight: FontWeight.bold),
+                          title: "Add promo code", fontWeight: FontWeight.bold),
                     ],
                   ),
-
-                  Divider(color: Colors.black54,thickness: 0.4,),
+                  Divider(
+                    color: Colors.black54,
+                    thickness: 0.4,
+                  ),
                   SizedBox(
                     height: 20,
                   ),
                   ReuseableTextField(
-                      contr:state.promoCodeCon,
+                      contr: state.promoCodeCon,
                       focusNode: focusNode,
                       label: 'promo code',
                       textInputAction: TextInputAction.done,
                       keyboardType: TextInputType.text,
                       obsecure: false),
                   SizedBox(
-                    height:  20,
+                    height: 20,
                   ),
-
-                  Obx(()=> state.buttonVisible.value ? RoundButton(title: 'Apply promo code', onPress: (){
-                  }) : Container(),
+                  Obx(
+                    () => state.buttonVisible.value
+                        ? RoundButton(
+                            title: 'Apply promo code',
+                            onPress: () {
+                              if (state.promoCodeCon.text.trim().isNotEmpty) {
+                                cont.checkPromoCode(context,
+                                    state.promoCodeCon.text.trim().toString());
+                              } else {
+                                Snackbar.showSnackBar(
+                                    "YB-Ride",
+                                    "Enter valid code",
+                                    Icons.question_mark_outlined);
+                              }
+                            },
+                          )
+                        : Container(),
                   ),
                   SizedBox(
-                    height:100,
+                    height: 100,
                   ),
                 ],
               ),
@@ -105,4 +126,3 @@ Future promoCodeBottomSheet(BuildContext context) {
     },
   );
 }
-

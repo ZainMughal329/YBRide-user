@@ -26,6 +26,7 @@ class CheckOutState{
 
   final cdwSwitchVal = false.obs;
   final rcliSwitchVal = false.obs;
+  final assistantSwitchVal = false.obs;
   final sliSwitchVal = false.obs;
 
   var isLoading = true.obs;
@@ -33,30 +34,40 @@ class CheckOutState{
 
   // Variables for checkout
 
+  RxBool customCoverageValue = false.obs;
+
   RxBool dataLoaded = false.obs;
-  double? delivery;
-  double? essential ;
-  double? standard ;
-  double? CDW ;
-  double? RCLI ;
-  double? SLI ;
-  double? assistance;
-  double? licenseFee ;
-  double? unlimitedMiles ;
+  double delivery =0.0;
+  double? essential=0.0 ;
+  double? standard =0.0;
+  double? CDW=0.0 ;
+  double? RCLI =0.0;
+  double? SLI =0.0;
+  double? assistance=0.0;
+  double? licenseFee =0.0;
+  double? unlimitedMiles=0.0 ;
   String? pickupLoc;
 
 
   //Dynamic Payments
-  static double tempDeposit = 0.0;
-  static String paymentId = '';
-  static String bookingDate = '';
-  static double deliveryCharges = 0.0;
-  static double bostonPoliceFees = 0.0;
-  static double bostonParking = 0.0;
-  static double bostonConventionCenter = 0.0;
-  static double totalAmountToPay = 0.0;
-  static double salesTaxPercentage = 0.0;
-  static String pickUpLoc = "";
+ double tempDeposit = 0.0;
+String paymentId = '';
+ String bookingDate = '';
+ // double deliveryCharges = 0.0;
+  double bostonPoliceFees = 0.0;
+   double bostonParking = 0.0;
+   double bostonConventionCenter = 0.0;
+   double totalAmountToPay = 0.0;
+   double salesTaxPercentage = 0.0;
+   String pickUpLoc = "";
+
+
+  //
+String carDescription = '';
+
+  RxBool promoCodeapplied = false.obs;
+  RxDouble promoDiscount = 0.0.obs;
+
 
 
 
