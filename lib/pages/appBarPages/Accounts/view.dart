@@ -1,4 +1,5 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yb_ride_user_web/components/reuseableButton.dart';
@@ -142,100 +143,114 @@ class AccountPage extends StatelessWidget {
       ),
       body: ResponsiveWidget.isLargeScreen(context)? SingleChildScrollView(
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 70,
-              ),
-              Padding(
-                  padding: EdgeInsets.only(right: 685),
-                  child: HeadingTextWidget(title: 'Account',fontWeight: FontWeight.bold,fontSize: 30,)),
-              SizedBox(height: 20,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 250),
-                child: Row(
-                  children: [
-                    Expanded(child: ReuseableTextField(
-                        contr: con.state.firstNameCon,
-                        label: 'First Name',
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.emailAddress,
-                        obsecure: false)),
-                    Expanded(child: ReuseableTextField(
-                        contr: con.state.lastNameCon,
-                        label: 'Last Name',
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.emailAddress,
-                        obsecure: false)),
-                  ],
-                ),
-              ),
-              SizedBox(height: 20,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 250),
-                child: Row(
-                  children: [
-                    Expanded(child: ReuseableTextField(
-                      readOnly: true,
-                        contr:TextEditingController(text: APis.auth.currentUser!.email.toString()),
-                        label: 'Email Address',
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.emailAddress,
-                        obsecure: false)),
-                    Expanded(child:Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 18),
-                      child: CountryCodePickerTextField(
-                        label: 'Phone Number',
-                        onChanged: (value){
-                         con. state.countryCode.value=value.dialCode.toString();
-                        },
-                      ),
-                    )),
-                  ],
-                ),
-              ),
-              SizedBox(height: 20,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 250),
-                child: Row(
-                  children: [
-                    SizedBox(width: 22,),
-                    Expanded(child:
-                    Container(
-                      height: 60,
-                      width: 55,
-                      decoration: BoxDecoration(
+          child: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+            stream: APis.db.collection('').snapshots(),
+            builder: (context, snapshot){
+    if (!snapshot.hasData) {
+    return Center(
+    child: CircularProgressIndicator(
+    color: AppColors.whiteColor,
+    ),
+    );}
+    else if (snapshot.hasData){
+      return  Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: 70,
+          ),
+          Padding(
+              padding: EdgeInsets.only(right: 685),
+              child: HeadingTextWidget(title: 'Account',fontWeight: FontWeight.bold,fontSize: 30,)),
+          SizedBox(height: 20,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 250),
+            child: ReuseableTextField(
+                contr: con.state.NameCon,
+                label: ' Name',
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.emailAddress,
+                obsecure: false),
+          ),
+          SizedBox(height: 20,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 250),
+
+            child: ReuseableTextField(
+                readOnly: true,
+                contr:TextEditingController(text: APis.auth.currentUser!.email.toString()),
+                label: 'Email Address',
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.emailAddress,
+                obsecure: false),
+          ),
+          SizedBox(height: 20,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 270),
+            child: CountryCodePickerTextField(
+              label: 'Phone Number',
+              onChanged: (value){
+                con. state.countryCode.value=value.dialCode.toString();
+              },
+            ),
+          ),
+
+
+          SizedBox(height: 20,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 250),
+            child: Row(
+                children: [
+                  SizedBox(width: 22,),
+                  Expanded(child:
+                  Container(
+                    height: 60,
+                    width: 55,
+                    decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         color: AppColors.buttonColor
-                      ),
-                      child: Center(
-                        child: HeadingTextWidget(
-                          title: 'Save Changes',
-                          fontSize: 14,
-                          textColor: AppColors.whiteColor,
-                        ),
-                      ),
-                    )
                     ),
-                    SizedBox(width: 150,),
-                    Expanded(child: HeadingTextWidget(
-                      title: 'Delete account',textColor: Colors.red,
-                      fontWeight: FontWeight.w500,
-                    ))
-                  ]
-                ),
-              ),
-              SizedBox(height: 50,),
-              Divider(),
-              SizedBox(height: 20,),
-              appBarFooter(),
-              SizedBox(
-                height: 20,
-              ),
+                    child: Center(
+                      child: HeadingTextWidget(
+                        title: 'Save Changes',
+                        fontSize: 14,
+                        textColor: AppColors.whiteColor,
+                      ),
+                    ),
+                  )
+                  ),
+                  SizedBox(width: 150,),
+                  Expanded(child: HeadingTextWidget(
+                    title: 'Delete account',textColor: Colors.red,
+                    fontWeight: FontWeight.w500,
+                  ))
+                ]
+            ),
+          ),
+          SizedBox(height: 50,),
+          Divider(),
+          SizedBox(height: 20,),
+          appBarFooter(),
+          SizedBox(
+            height: 20,
+          ),
 
-            ],
+        ],
+      );
+
+    }else{
+      return Center(
+        child: Text(
+          'Something went wrong',
+          style: Theme.of(context).textTheme.subtitle1,
+        ),
+      );
+    }
+    }
+
+
+
           ),
         ),
       ) :
@@ -257,13 +272,13 @@ class AccountPage extends StatelessWidget {
                 ),
                 SizedBox(height: 20,),
                 ReuseableTextField(
-                    contr: con.state.firstNameCon,
+                    contr: con.state.NameCon,
                     label: 'First Name',
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.emailAddress,
                     obsecure: false),
                 ReuseableTextField(
-                    contr: con.state.lastNameCon,
+                    contr: con.state.NameCon,
                     label: 'Last Name',
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.emailAddress,
