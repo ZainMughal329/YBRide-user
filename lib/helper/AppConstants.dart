@@ -65,5 +65,24 @@ class AppConstants {
 
 
 
+  //PromoCode details
+  static bool isPromoApplied = false;
+  static double promoDiscountAmount = 0.0;
+
+
+  static bool isPickup = false;
+  static bool isDeliver =false;
+
+  static bool standardProtection=false;
+  static bool liabilityProtection=false;
+  static bool i_have_own=false;
+  static bool customCoverage=false;
+  static double totalCustomCoverage=0.0;
+
+  static bool unlimitedMiles = false;
+  static bool under25Years = false;
+
+
+
 
 }

@@ -170,6 +170,9 @@ class VehiclePage extends StatelessWidget {
                                 .toString();
                             double price = double.parse((snapshot
                                 .data!.docs[index]['pricePerDay']).toString());
+                            String vehicleDescription = snapshot.data!.docs[index]['vehicle']
+                                .toString()+'-'+snapshot.data!.docs[index]['seats']
+                                .toString();
                             return Center(
                               child: Column(
                                 children: [
@@ -209,6 +212,7 @@ class VehiclePage extends StatelessWidget {
                                         carRent: controller.state.rentPerDay * AppConstants.rentDays,
                                         carType: carType,
                                         carPrice: price,
+                                        carDescription: vehicleDescription,
                                       ));
                                     },
                                   ),
@@ -223,6 +227,9 @@ class VehiclePage extends StatelessWidget {
                                 .toString();
                             double price = double.parse((snapshot
                                 .data!.docs[index]['pricePerDay']).toString());
+                            String vehicleDescription = snapshot.data!.docs[index]['vehicle']
+                                .toString()+'-'+snapshot.data!.docs[index]['seats']
+                                .toString();
                             return Column(
                               children: [
                                 CarCardMediumScreen(
@@ -260,6 +267,7 @@ class VehiclePage extends StatelessWidget {
                                       carRent: controller.state.rentPerDay * AppConstants.rentDays,
                                       carType: carType,
                                       carPrice: price,
+                                      carDescription: vehicleDescription,
                                     ));
                                   },
                                 ),
@@ -273,7 +281,9 @@ class VehiclePage extends StatelessWidget {
                                 .toString();
                            double price = double.parse((snapshot
                                .data!.docs[index]['pricePerDay']).toString());
-
+                            String vehicleDescription = snapshot.data!.docs[index]['vehicle']
+                                .toString()+'-'+snapshot.data!.docs[index]['seats']
+                                .toString();
                             return Column(
                               children: [
                                 CarCardLargeScreen(
@@ -319,6 +329,7 @@ class VehiclePage extends StatelessWidget {
                                       carRent: controller.state.rentPerDay * AppConstants.rentDays,
                                       carType: carType,
                                       carPrice: price,
+                                      carDescription: vehicleDescription,
                                     ));
                                   },
                                 ),

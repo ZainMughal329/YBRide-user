@@ -43,8 +43,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-
-      home: CheckOutPage(carType: 'SUV',carRent: 130,carPrice: 43,),
+  home: HomePage(),
+      // home: CheckOutPage(carType: 'SUV',carRent: 130,carPrice: 43,carDescription: 'Nessan Versa - 5 seats',),
     );
   }
 }

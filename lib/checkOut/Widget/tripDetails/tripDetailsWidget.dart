@@ -2,16 +2,18 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yb_ride_user_web/checkOut/controller.dart';
 import 'package:yb_ride_user_web/checkOut/state.dart';
 import 'package:yb_ride_user_web/components/headingTextWidget.dart';
 import 'package:yb_ride_user_web/components/subHeadingText.dart';
 import 'package:yb_ride_user_web/components/textField.dart';
+import 'package:yb_ride_user_web/helper/AppConstants.dart';
 
 import '../../../components/countryCodeTextField.dart';
 
-Widget TripDetailsWidget(){
-  final state = CheckOutState();
-  return Container(
+Widget TripDetailsWidget(CheckOutCon controller){
+  final state = controller.state;
+  return Obx(() =>  Container(
     decoration: BoxDecoration(
         border: Border.all(color: Colors.black54.withOpacity(.1)),
         borderRadius: BorderRadius.all(Radius.circular(10))
@@ -30,53 +32,50 @@ Widget TripDetailsWidget(){
           SizedBox(height: 15,),
           ListTile(
             leading: Icon(Icons.car_rental_outlined),
-            title: HeadingTextWidget(title: 'SUV',),
-            subtitle: SubHeadingTextWidget(title: 'Hyundai Tucson . 5 seats',),
-            trailing: Container(
-              height: 100,
-              width: 90,
-              decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(.1),
-                borderRadius: BorderRadius.all(Radius.circular(100))
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 5),
-                child: Center(
-                  child: SubHeadingTextWidget(title: 'Edit',textColor: Colors.black54,fontWeight: FontWeight.bold,),
-                ),
-              ),
-            ),
+            title: HeadingTextWidget(title: '${AppConstants.vehicleType}',),
+            subtitle: SubHeadingTextWidget(title: '${state.carDescription}',),
+            // trailing: Container(
+            //   height: 100,
+            //   width: 90,
+            //   decoration: BoxDecoration(
+            //     color: Colors.grey.withOpacity(.1),
+            //     borderRadius: BorderRadius.all(Radius.circular(100))
+            //   ),
+            //   child: Padding(
+            //     padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 5),
+            //     child: Center(
+            //       child: SubHeadingTextWidget(title: 'Edit',textColor: Colors.black54,fontWeight: FontWeight.bold,),
+            //     ),
+            //   ),
+            // ),
           ),
           SizedBox(height: 15,),
           Divider(thickness: .5,),
           SizedBox(height: 15,),
           ListTile(
             leading: Icon(Icons.location_on),
-            title: HeadingTextWidget(title: 'Tokyo,DC',),
+            title: controller.state.isSelfPickup.value==true? HeadingTextWidget(title: '${AppConstants.pickUpLoc}',) : HeadingTextWidget(title: '${AppConstants.fromAddress}',),
             subtitle: Row(
               children: [
-                SubHeadingTextWidget(title: 'Fri'),
-                SubHeadingTextWidget(title: ', '),
-                SubHeadingTextWidget(title: 'Feb'+' '),
-                SubHeadingTextWidget(title: '23'),
+                SubHeadingTextWidget(title: '${AppConstants.fromDateName}, ${AppConstants.fromMonthName} ${AppConstants.fromDate}'),
                 SubHeadingTextWidget(title: ' at '),
-                SubHeadingTextWidget(title: '10.00 AM'),
+                SubHeadingTextWidget(title: '${AppConstants.fromTime}'),
               ],
             ),
-            trailing: Container(
-              height: 100,
-              width: 90,
-              decoration: BoxDecoration(
-                  color: Colors.grey.withOpacity(.1),
-                  borderRadius: BorderRadius.all(Radius.circular(100))
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 5),
-                child: Center(
-                  child: SubHeadingTextWidget(title: 'Edit',textColor: Colors.black54,fontWeight: FontWeight.bold,),
-                ),
-              ),
-            ),
+            // trailing: Container(
+            //   height: 100,
+            //   width: 90,
+            //   decoration: BoxDecoration(
+            //       color: Colors.grey.withOpacity(.1),
+            //       borderRadius: BorderRadius.all(Radius.circular(100))
+            //   ),
+            //   child: Padding(
+            //     padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 5),
+            //     child: Center(
+            //       child: SubHeadingTextWidget(title: 'Edit',textColor: Colors.black54,fontWeight: FontWeight.bold,),
+            //     ),
+            //   ),
+            // ),
           ),
 
           SizedBox(height: 30,),
@@ -92,21 +91,21 @@ Widget TripDetailsWidget(){
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SubHeadingTextWidget(title: "Provide the address you'd like the car to be delivered to"),
-                    Container(
-                      height: 50,
-                      width: 90,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(100))
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 5),
-                        child: Center(
-                          child: SubHeadingTextWidget(title: 'Edit',textColor: Colors.black54,fontWeight: FontWeight.bold,),
-                        ),
-                      ),
-                    ),
+                   controller.state.isSelfPickup.value==true?  SubHeadingTextWidget(title: "Pick up your Kyte at our Parking lot in Boston"): SubHeadingTextWidget(title: "Your ride will be delivered to the starting address you provided"),
+                    // Container(
+                    //   height: 50,
+                    //   width: 90,
+                    //   decoration: BoxDecoration(
+                    //       color: Colors.white,
+                    //       borderRadius: BorderRadius.all(Radius.circular(100))
+                    //   ),
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 5),
+                    //     child: Center(
+                    //       child: SubHeadingTextWidget(title: 'Edit',textColor: Colors.black54,fontWeight: FontWeight.bold,),
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -133,8 +132,17 @@ Widget TripDetailsWidget(){
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             HeadingTextWidget(title: 'Delivery'),
-                            Obx(() =>_checkBox(state.isDelivery.value, (value) {
+                            Obx(() =>_checkBox(
+                                state.isDelivery.value,
+                                    (value) {
                               state.isDelivery.value = value;
+                              if(value==true || state.isSelfPickup.value==true){
+                                state.isSelfPickup.value=false;
+                                controller.addInTotalPrice(AppConstants.deliveryCharges, false);
+                              }
+                              if(value==false){
+                                controller.subtractFromTotalPrince(AppConstants.deliveryCharges, false);
+                              }
                             }),),
 
                           ],),
@@ -149,8 +157,8 @@ Widget TripDetailsWidget(){
                 SizedBox(width: 7,),
                 Expanded(child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    border: Border.all(color: Colors.black54)
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      border: Border.all(color: Colors.black54)
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 20),
@@ -161,12 +169,25 @@ Widget TripDetailsWidget(){
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                          HeadingTextWidget(title: 'Self-Pickup'),
-                          Obx(() =>_checkBox(state.isSelfPickup.value, (value) {
-                            state.isSelfPickup.value = value;
-                          }),),
+                            HeadingTextWidget(title: 'Self-Pickup'),
+                            Obx(() =>_checkBox(
+                                state.isSelfPickup.value,
+                                  (value) {
 
-                        ],),
+                                  if(value==true){
+                                    if(state.isDelivery.value==true){
+                                      state.isDelivery.value=false;
+                                      controller.subtractFromTotalPrince(AppConstants.deliveryCharges, false);
+                                    }
+                                    state.isSelfPickup.value=value;
+                                  }
+                                  state.isSelfPickup.value=value;
+
+
+                              },
+                              ),  ),
+
+                          ],),
                         SizedBox(height: 10,),
                         SubHeadingTextWidget(title: 'Meet at our lot and save on'),
                         SubHeadingTextWidget(title: 'delivery fees'),
@@ -180,40 +201,37 @@ Widget TripDetailsWidget(){
             ),
           ),
           SizedBox(height: 20,),
-          Padding(
+          controller.state.isDelivery.value==true ? Padding(
             padding: const EdgeInsets.symmetric(horizontal: 17),
             child: SubHeadingTextWidget(title: 'Be prepared to meet your surfer within 10 minutes of your scheduled delivery.'),
-          ),
+          ): Container(),
           SizedBox(height: 20,),
           Divider(color: Colors.black54,),
           SizedBox(height: 20,),
           ListTile(
             leading: Icon(Icons.location_on),
-            title: HeadingTextWidget(title: 'Tokyo,DC',),
+            title: controller.state.isDelivery.value ==true ? HeadingTextWidget(title: '${AppConstants.toAddress}',):HeadingTextWidget(title: '${AppConstants.pickUpLoc}'),
             subtitle: Row(
               children: [
-                SubHeadingTextWidget(title: 'Fri'),
-                SubHeadingTextWidget(title: ', '),
-                SubHeadingTextWidget(title: 'Feb'+' '),
-                SubHeadingTextWidget(title: '23'),
+                SubHeadingTextWidget(title: '${AppConstants.toDateName}, ${AppConstants.toMonthName} ${AppConstants.toDate}'),
                 SubHeadingTextWidget(title: ' at '),
-                SubHeadingTextWidget(title: '10.00 AM'),
+                SubHeadingTextWidget(title: '${AppConstants.toTime}'),
               ],
             ),
-            trailing: Container(
-              height: 100,
-              width: 90,
-              decoration: BoxDecoration(
-                  color: Colors.grey.withOpacity(.1),
-                  borderRadius: BorderRadius.all(Radius.circular(100))
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 5),
-                child: Center(
-                  child: SubHeadingTextWidget(title: 'Edit',textColor: Colors.black54,fontWeight: FontWeight.bold,),
-                ),
-              ),
-            ),
+            // trailing: Container(
+            //   height: 100,
+            //   width: 90,
+            //   decoration: BoxDecoration(
+            //       color: Colors.grey.withOpacity(.1),
+            //       borderRadius: BorderRadius.all(Radius.circular(100))
+            //   ),
+            //   child: Padding(
+            //     padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 5),
+            //     child: Center(
+            //       child: SubHeadingTextWidget(title: 'Edit',textColor: Colors.black54,fontWeight: FontWeight.bold,),
+            //     ),
+            //   ),
+            // ),
           ),
           SizedBox(height: 20,),
 
@@ -227,7 +245,7 @@ Widget TripDetailsWidget(){
         ],
       ),
     ),
-  );
+  ));
 }
 
 Widget TripDetailsWidgetSmall(){
