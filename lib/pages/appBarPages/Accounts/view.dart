@@ -1,6 +1,9 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:yb_ride_user_web/components/reuseableButton.dart';
 import 'package:yb_ride_user_web/components/textField.dart';
 import 'package:yb_ride_user_web/helper/appColors.dart';
@@ -142,100 +145,57 @@ class AccountPage extends StatelessWidget {
       ),
       body: ResponsiveWidget.isLargeScreen(context)? SingleChildScrollView(
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 70,
-              ),
-              Padding(
-                  padding: EdgeInsets.only(right: 685),
-                  child: HeadingTextWidget(title: 'Account',fontWeight: FontWeight.bold,fontSize: 30,)),
-              SizedBox(height: 20,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 250),
-                child: Row(
-                  children: [
-                    Expanded(child: ReuseableTextField(
-                        contr: con.state.firstNameCon,
-                        label: 'First Name',
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.emailAddress,
-                        obsecure: false)),
-                    Expanded(child: ReuseableTextField(
-                        contr: con.state.lastNameCon,
-                        label: 'Last Name',
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.emailAddress,
-                        obsecure: false)),
-                  ],
-                ),
-              ),
-              SizedBox(height: 20,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 250),
-                child: Row(
-                  children: [
-                    Expanded(child: ReuseableTextField(
-                      readOnly: true,
-                        contr:TextEditingController(text: APis.auth.currentUser!.email.toString()),
-                        label: 'Email Address',
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.emailAddress,
-                        obsecure: false)),
-                    Expanded(child:Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 18),
-                      child: CountryCodePickerTextField(
-                        label: 'Phone Number',
-                        onChanged: (value){
-                         con. state.countryCode.value=value.dialCode.toString();
-                        },
-                      ),
-                    )),
-                  ],
-                ),
-              ),
-              SizedBox(height: 20,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 250),
-                child: Row(
-                  children: [
-                    SizedBox(width: 22,),
-                    Expanded(child:
-                    Container(
-                      height: 60,
-                      width: 55,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        color: AppColors.buttonColor
-                      ),
-                      child: Center(
-                        child: HeadingTextWidget(
-                          title: 'Save Changes',
-                          fontSize: 14,
-                          textColor: AppColors.whiteColor,
-                        ),
-                      ),
-                    )
-                    ),
-                    SizedBox(width: 150,),
-                    Expanded(child: HeadingTextWidget(
-                      title: 'Delete account',textColor: Colors.red,
-                      fontWeight: FontWeight.w500,
-                    ))
-                  ]
-                ),
-              ),
-              SizedBox(height: 50,),
-              Divider(),
-              SizedBox(height: 20,),
-              appBarFooter(),
-              SizedBox(
-                height: 20,
-              ),
+          child: StreamBuilder<DocumentSnapshot<Map<String,dynamic>>>(
+            stream: APis.db.collection('web_users').doc(APis.auth.currentUser!.uid).snapshots(),
+            builder: (BuildContext context ,snapshot){
+              if(!snapshot.hasData){
+                return Center(
+                  child: Container(
+                    height: 100,
+                    width: 100,
+                    child: Lottie.asset('assets/lottie/loading2.json'),
+                  ),
+                );
+              }
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: 70,
+                  ),
+                  Padding(
+                      padding: EdgeInsets.only(right: 740),
+                      child: HeadingTextWidget(title: 'Account',fontWeight: FontWeight.bold,fontSize: 30,)),
+                  SizedBox(height: 20,),
+                  Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 260),
+                      child:InkWell(
+                          onTap: (){
+                            con.NameDialogAlert(context, con.state.Name.value.toString(), snapshot.data!['id'].toString());
+                          },
+                          child: reusebaleTextFields(title: 'Name', iconData: Icons.percent_outlined, value: snapshot.data!['userName'].toString()))
+                  ),
+                  SizedBox(height: 20,),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 260),
+                    child: reusebaleTextFields(title: 'Email', iconData: Icons.email_outlined, value: snapshot.data!['Email'].toString()),
+                  ),
+                  SizedBox(height: 50,),
+                  Divider(),
+                  SizedBox(height: 20,),
+                  appBarFooter(),
+                  SizedBox(
+                    height: 20,
+                  ),
 
-            ],
+                ],
+              );
+
+
+
+            },
+
           ),
         ),
       ) :
@@ -244,84 +204,129 @@ class AccountPage extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 20.0),
           child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 20,
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.0),
-                  child: HeadingTextWidget(title: 'Account',fontWeight: FontWeight.bold,fontSize: 20,),
-                ),
-                SizedBox(height: 20,),
-                ReuseableTextField(
-                    contr: con.state.firstNameCon,
-                    label: 'First Name',
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.emailAddress,
-                    obsecure: false),
-                ReuseableTextField(
-                    contr: con.state.lastNameCon,
-                    label: 'Last Name',
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.emailAddress,
-                    obsecure: false),
-                ReuseableTextField(
-                    contr: con.state.emailCon,
-                    label: 'Email Address',
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.emailAddress,
-                    obsecure: false),
-                ReuseableTextField(
-                    contr: con.state.numberCon,
-                    label: 'Phone Number',
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.emailAddress,
-                    obsecure: false),
-                SizedBox(height: 20,),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          height: 60,
-                          width: 110,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(10)),
-                              color: AppColors.buttonColor
-                          ),
-                          child: Center(
-                            child: HeadingTextWidget(
-                              title: 'Save Changes',
-                              fontSize: 12,
-                              textColor: AppColors.whiteColor,
-                            ),
-                          ),
-                        ),
-                        HeadingTextWidget(
-                          title: 'Delete account',textColor: Colors.red,
-                          fontWeight: FontWeight.w500,
-                        )
-                      ]
-                  ),
-                ),
-                SizedBox(height: 50,),
-                Divider(),
-                SizedBox(height: 20,),
-                ResponsiveWidget.isLargeScreen(context) ? appBarFooter() : appBarFooterSmall(context),
-                SizedBox(
-                  height: 20,
-                ),
+            child: StreamBuilder<DocumentSnapshot<Map<String,dynamic>>>(
+              stream: APis.db.collection('web_users').doc(APis.auth.currentUser!.uid).snapshots(),
+              builder: (BuildContext context,snapshot){
+                if(!snapshot.hasData){
+                  return Center(
+                    child: Container(
+                      height: 100,
+                      width: 100,
+                      child: Lottie.asset('assets/lottie/loading2.json'),
+                    ),
+                  );
+                }
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20.0),
+                      child: HeadingTextWidget(title: 'Account',fontWeight: FontWeight.bold,fontSize: 20,),
+                    ),
+                    SizedBox(height: 20,),
+                    InkWell(
+                        onTap: (){
+                          con.NameDialogAlert(context, con.state.Name.value.toString(), snapshot.data!['id'].toString());
+                        },
+                        child: reusebaleTextFields(title: 'Name', iconData: Icons.percent_outlined, value: snapshot.data!['userName'].toString())),
+                    reusebaleTextFields(title: 'Email', iconData: Icons.email_outlined, value: snapshot.data!['Email'].toString()),
 
-              ],
+                    SizedBox(height: 50,),
+                    Divider(),
+                    SizedBox(height: 20,),
+                    ResponsiveWidget.isLargeScreen(context) ? appBarFooter() : appBarFooterSmall(context),
+                    SizedBox(
+                      height: 20,
+                    ),
+
+                  ],
+                );
+
+              },
+
             ),
           ),
         ),
       )
       ,
+    );
+  }
+}
+class reusebaleTextFields extends StatelessWidget {
+  final String title, value;
+  final Color? iconColor, valueColor;
+  final VoidCallback? onpress;
+  final IconData iconData;
+
+  reusebaleTextFields({
+    Key? key,
+    required this.title,
+    this.iconColor,
+    this.onpress,
+    this.valueColor,
+    required this.iconData,
+    required this.value,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: AppColors.buttonColor),
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+      child: ListTile(
+        title: GestureDetector(
+          onTap: () {
+            onpress;
+          },
+          child: AbsorbPointer(
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: title,
+                hintStyle: GoogleFonts.poppins(
+                    textStyle:TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.buttonColor
+                    )
+                ),
+                border: InputBorder.none,
+              ),
+              style: Theme.of(context).textTheme.subtitle2,
+            ),
+          ),
+        ),
+        leading: Icon(
+          iconData,
+          color: AppColors.buttonColor,
+          size: 30,
+        ),
+        trailing: Container(
+          decoration: BoxDecoration(
+            border: Border.all(color:AppColors.buttonColor),
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+
+            child: Text(
+                value,
+                style: GoogleFonts.poppins(
+                    textStyle:TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 20,
+                      color: AppColors.buttonColor
+                    )
+                )
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
