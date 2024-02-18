@@ -9,6 +9,7 @@ import 'package:yb_ride_user_web/pages/appBarPages/Accounts/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/SignUpForm.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/FaqS/view.dart';
+import 'package:yb_ride_user_web/pages/appBarPages/Trips/view.dart';
 import 'package:yb_ride_user_web/sessions/login/view.dart';
 
 import 'checkOut/view.dart';
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-  home: HomePage(),
+  home: TripsPages(),
       // home: CheckOutPage(carType: 'SUV',carRent: 130,carPrice: 43,carDescription: 'Nessan Versa - 5 seats',),
     );
   }

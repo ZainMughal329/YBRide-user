@@ -40,7 +40,7 @@ class PaymentController extends GetxController {
                 ],
               ),
             ));
-        createBooking(context);
+        // createBooking(context);
 
         paymentIntent = null;
       }).onError((error, stackTrace) {
@@ -130,67 +130,67 @@ class PaymentController extends GetxController {
     return result.toString(); // Output: 16375
   }
 
-  setPaymentLoadin(bool val){
-    cont.state.paymentLoading.value=val;
-  }
-
-  Future<void> createBooking(BuildContext context) async{
-    String docId = DateTime.now().millisecondsSinceEpoch.toString();
-    setPaymentLoadin(true);
-    BookingModel booking = BookingModel(
-      id: SessionController().userId.toString(),
-      paymentId: AppConstants.paymentId,
-      bookingDate: docId,
-      fullName: '${AppConstants.custFirstName} ${AppConstants.custLastName}',
-      email: AppConstants.custEmail,
-      phone: AppConstants.custPhoneNo,
-      completeFromAddress: AppConstants.fromAddress.toString(),
-      completeToAddress: AppConstants.toAddress.toString(),
-      fromDateEpoch: AppConstants.epochFromDate.toString(),
-      toDateEpoch: AppConstants.epochToDate.toString(),
-      fromTimeEpoch: AppConstants.fromTimeinMiliSeconds.toString(),
-      toTimeEpoch: AppConstants.toTimeinMiliSeconds.toString(),
-      noOfDays: AppConstants.rentDays,
-      vehicleType: AppConstants.vehicleType.toString(),
-      totalPrice: AppConstants.totalAmountToPay,
-      isPickUp: AppConstants.isPickup,
-      isDelivery: AppConstants.isDeliver,
-      isStandardProtection: AppConstants.standardProtection,
-      isLiabilityProtection: AppConstants.liabilityProtection,
-      isIHaveOwnProtection: AppConstants.i_have_own,
-      isCustomCoverage: AppConstants.customCoverage,
-      totalCustomCoverage: AppConstants.totalCustomCoverage,
-      isUnlimitedMiles: AppConstants.unlimitedMiles,
-      isUnder25years: AppConstants.under25Years,
-      isPromoCodeApplied: AppConstants.isPromoApplied,
-      promoDiscountAmount: AppConstants.promoDiscountAmount,
-      status: 'pending', isReturnedDeposit: false,
-    );
-
-    try{
-      await APis.db.collection('all_bookings').doc(docId).set(booking.toJson()).then((value){
-        Navigator.pop(context);
-        // Code to redirect to Trips Screen
-        resetReferralCredit();
-        setPaymentLoadin(false);
-        Snackbar.showSnackBar("YB-Ride", 'Payed and Booked Successfully', Icons.done_all);
-        AppConstants.resetToInitialState();
-        // Get.offNamed(RoutesName.applicationScreen,arguments: {
-        //   'index':0,
-        // });
-        Get.offAll(()=>HomePage());
-
-
-      }).onError((error, stackTrace){
-        setPaymentLoadin(false);
-        Snackbar.showSnackBar("YB-Ride", error.toString(), Icons.error_outline);
-      });
-    }catch(e){
-      setPaymentLoadin(false);
-      Snackbar.showSnackBar("YB-Ride", e.toString(), Icons.error_outline);
-    }
-
-  }
+  // setPaymentLoadin(bool val){
+  //   cont.state.paymentLoading.value=val;
+  // }
+  //
+  // Future<void> createBooking(BuildContext context) async{
+  //   String docId = DateTime.now().millisecondsSinceEpoch.toString();
+  //   setPaymentLoadin(true);
+  //   BookingModel booking = BookingModel(
+  //     id: SessionController().userid.toString(),
+  //     paymentId: AppConstants.paymentId,
+  //     bookingDate: docId,
+  //     fullName: '${AppConstants.custFirstName} ${AppConstants.custLastName}',
+  //     email: AppConstants.custEmail,
+  //     phone: AppConstants.custPhoneNo,
+  //     completeFromAddress: AppConstants.fromAddress.toString(),
+  //     completeToAddress: AppConstants.toAddress.toString(),
+  //     fromDateEpoch: AppConstants.epochFromDate.toString(),
+  //     toDateEpoch: AppConstants.epochToDate.toString(),
+  //     fromTimeEpoch: AppConstants.fromTimeinMiliSeconds.toString(),
+  //     toTimeEpoch: AppConstants.toTimeinMiliSeconds.toString(),
+  //     noOfDays: AppConstants.rentDays,
+  //     vehicleType: AppConstants.vehicleType.toString(),
+  //     totalPrice: AppConstants.totalAmountToPay,
+  //     isPickUp: AppConstants.isPickup,
+  //     isDelivery: AppConstants.isDeliver,
+  //     isStandardProtection: AppConstants.standardProtection,
+  //     isLiabilityProtection: AppConstants.liabilityProtection,
+  //     isIHaveOwnProtection: AppConstants.i_have_own,
+  //     isCustomCoverage: AppConstants.customCoverage,
+  //     totalCustomCoverage: AppConstants.totalCustomCoverage,
+  //     isUnlimitedMiles: AppConstants.unlimitedMiles,
+  //     isUnder25years: AppConstants.under25Years,
+  //     isPromoCodeApplied: AppConstants.isPromoApplied,
+  //     promoDiscountAmount: AppConstants.promoDiscountAmount,
+  //     status: 'pending', isReturnedDeposit: false,
+  //   );
+  //
+  //   try{
+  //     await APis.db.collection('all_bookings').doc(docId).set(booking.toJson()).then((value){
+  //       Navigator.pop(context);
+  //       // Code to redirect to Trips Screen
+  //       resetReferralCredit();
+  //       setPaymentLoadin(false);
+  //       Snackbar.showSnackBar("YB-Ride", 'Payed and Booked Successfully', Icons.done_all);
+  //       AppConstants.resetToInitialState();
+  //       // Get.offNamed(RoutesName.applicationScreen,arguments: {
+  //       //   'index':0,
+  //       // });
+  //       Get.offAll(()=>HomePage());
+  //
+  //
+  //     }).onError((error, stackTrace){
+  //       setPaymentLoadin(false);
+  //       Snackbar.showSnackBar("YB-Ride", error.toString(), Icons.error_outline);
+  //     });
+  //   }catch(e){
+  //     setPaymentLoadin(false);
+  //     Snackbar.showSnackBar("YB-Ride", e.toString(), Icons.error_outline);
+  //   }
+  //
+  // }
 
 
   Future<void> resetReferralCredit() async{
