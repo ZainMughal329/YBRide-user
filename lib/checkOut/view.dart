@@ -326,6 +326,11 @@ class CheckOutPage extends StatelessWidget {
     AppConstants.totalPrice=controller.state.totalPrice.value;
     AppConstants.vehicleType=carType;
 
+    AppConstants.custFirstName=controller.state.firstNameCon.text.trim.toString();
+    AppConstants.custLastName=controller.state.lastNameCon.text.trim.toString();
+    AppConstants.custEmail=controller.state.emailCon.text.trim.toString();
+    AppConstants.custPhoneNo=controller.state.phoneNumCon.text.trim.toString();
+
     // condition for getting vehicle
     if(controller.state.isSelfPickup.value==true){
       AppConstants.isPickup=true;

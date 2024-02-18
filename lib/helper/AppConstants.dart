@@ -83,6 +83,55 @@ class AppConstants {
   static bool under25Years = false;
 
 
+  static String custFirstName ="";
+  static String custLastName ="";
+  static String custEmail ="";
+  static String custPhoneNo ="";
 
+
+
+  static void resetToInitialState() {
+    fromAddress = 'Tap to Search';
+    toAddress = 'Return Place';
+    epochFromDate = "";
+    fromMonth = "";
+    fromMonthName = "";
+    fromDate = "";
+    fromDateName = "";
+    fromYear = "";
+    fromTime = "11:00 AM";
+    fromTimeinMiliSeconds = "";
+    epochToDate="";
+    toMonth = "";
+    toMonthName = "";
+    toDate = "";
+    toDateName = "";
+    toYear = "";
+    toTime = "11:00 AM";
+    toTimeinMiliSeconds = "";
+    rentDays = 0.0;
+    totalPrice =0.0;
+    vehicleType = "";
+    isPickup = false;
+    isDeliver =false;
+    standardProtection=false;
+    liabilityProtection=false;
+    i_have_own=false;
+    customCoverage=false;
+    totalCustomCoverage=0.0;
+    unlimitedMiles = false;
+    under25Years = false;
+    isPromoApplied = false;
+    promoDiscountAmount = 0.0;
+    custFirstName="";
+    custLastName="";
+    custEmail="";
+    custPhoneNo="";
+    paymentId = '';
+    bookingDate = '';
+    // Get.delete<BookNowView>();
+    // Get.delete<CarDetailsScreen>();
+    // Get.delete<CheckOutScreen>();
+  }
 
 }

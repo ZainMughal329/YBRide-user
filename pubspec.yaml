@@ -77,6 +77,7 @@ dependencies:
 #  flutter_google_places_web: ^1.0.2
   flutter_google_places_sdk: ^0.3.7
   screenshot: ^2.1.0
+  flutter_stripe:
 
 
 
