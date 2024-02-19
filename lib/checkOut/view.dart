@@ -57,6 +57,7 @@ class CheckOutPage extends StatelessWidget {
     controller.getReceiptCharges();
     // return Container();
     return Scaffold(
+
       body: Center(
         child: ResponsiveWidget.isLargeScreen(context)
             ? Padding(
