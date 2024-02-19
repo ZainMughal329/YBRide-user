@@ -20,7 +20,7 @@ class loginCon extends GetxController{
    void LogIn(BuildContext context , String email,String password)async{
       try{
          state.auth.signInWithEmailAndPassword(email: email, password: password).then((value) async{
-            SessionController().userid= value.user!.uid.toString();
+            SessionController().userId= value.user!.uid.toString();
             Get.offAll(()=>HomePage());
             state.emailCon.clear();
             state.passwordCon.clear();
@@ -60,7 +60,7 @@ class loginCon extends GetxController{
          // SessionController().userId = user!.uid.toString();
          Navigator.pop(context);
          if (user != null) {
-            SessionController().userid = user.user!.uid.toString();
+            SessionController().userId = user.user!.uid.toString();
             if ((await userExists())) {
                return Get.off(()=>HomePage());
             } else {

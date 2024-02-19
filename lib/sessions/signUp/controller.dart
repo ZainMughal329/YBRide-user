@@ -8,6 +8,8 @@ import 'package:yb_ride_user_web/homePage/view.dart';
 import 'package:yb_ride_user_web/sessions/signUp/state.dart';
 
 import '../../checkOut/view.dart';
+import '../../helper/api.dart';
+import '../../helper/session_Controller.dart';
 import '../../model/userModel/user_model.dart';
 
 class signUpCon extends GetxController{
@@ -21,6 +23,7 @@ class signUpCon extends GetxController{
       )
           .then((value) {
         userinfo.id = state.auth.currentUser!.uid.toString();
+        SessionController().userId = APis.auth.currentUser!.uid.toString();
         createUser(userinfo);
       }).onError((error, stackTrace) {
         Get.snackbar('Error',error.toString(),backgroundColor: AppColors.buttonColor.withOpacity(.8),colorText: Colors.white);

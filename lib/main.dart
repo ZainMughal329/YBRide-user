@@ -2,19 +2,19 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_google_places_sdk/flutter_google_places_sdk.dart';
 import 'package:get/get.dart';
-import 'package:yb_ride_user_web/Vehicle/view.dart';
 import 'package:yb_ride_user_web/helper/AppConstants.dart';
+import 'package:yb_ride_user_web/helper/api.dart';
 import 'package:yb_ride_user_web/homePage/view.dart';
-import 'package:yb_ride_user_web/pages/appBarPages/Accounts/view.dart';
-import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/SignUpForm.dart';
-import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/view.dart';
-import 'package:yb_ride_user_web/pages/appBarPages/FaqS/view.dart';
-import 'package:yb_ride_user_web/sessions/login/view.dart';
+import 'package:yb_ride_user_web/sessions/signUp/view.dart';
 
 import 'checkOut/view.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  // Stripe.publishableKey = AppConstants.stripe_publish_key;
+  //
+  // Stripe.merchantIdentifier = 'YB-Web';
+  // await Stripe.instance.applySettings();
   await FlutterGooglePlacesSdkPlatform.instance.initialize('AIzaSyA8mT_fcQoFRNpBokvTjVXsuc-TB9k-leI');
   await Firebase.initializeApp(
     options: FirebaseOptions(
@@ -28,6 +28,8 @@ void main() async{
         measurementId: "G-MKWZLB0PF7"
     )
   );
+
+
   runApp(const MyApp());
 }
 class MyApp extends StatelessWidget {
@@ -43,7 +45,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-  home: HomePage(),
+  home: APis.auth.currentUser != null ? HomePage() : SignUpPages(),
+      // home: PracticePAge(),
       // home: CheckOutPage(carType: 'SUV',carRent: 130,carPrice: 43,carDescription: 'Nessan Versa - 5 seats',),
     );
   }

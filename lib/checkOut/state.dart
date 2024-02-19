@@ -8,10 +8,10 @@ class CheckOutState{
   RxDouble totalPrice = 0.0.obs;
 
 
-  final firstNameCon = TextEditingController();
-  final lastNameCon = TextEditingController();
-  final emailCon = TextEditingController();
-  final phoneNumCon = TextEditingController();
+  final TextEditingController firstNameCon = TextEditingController();
+  final TextEditingController lastNameCon = TextEditingController();
+  final TextEditingController emailCon = TextEditingController();
+  final TextEditingController phoneNumCon = TextEditingController();
   RxString countryCode = "+1".obs;
   final isDriverAge = false.obs;
   final isDelivery = false.obs;
@@ -20,6 +20,8 @@ class CheckOutState{
   final standardCoverage = false.obs;
   final liabilityInsurance = false.obs;
   final iHaveMyOwn = false.obs;
+  final paymentCheck = false.obs;
+
 
   final promoCodeCon = TextEditingController();
   final buttonVisible = false.obs;
