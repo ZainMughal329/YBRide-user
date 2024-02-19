@@ -3,6 +3,7 @@ import 'dart:html' as html;
 
 import 'package:flutter/material.dart';
 import 'package:screenshot/screenshot.dart';
+import 'package:yb_ride_user_web/checkOut/Widget/payment/payment_dialouge.dart';
 import 'package:yb_ride_user_web/components/headingTextWidget.dart';
 import 'package:yb_ride_user_web/components/reuseableButton.dart';
 import 'package:yb_ride_user_web/components/snackbar_widget.dart';
@@ -238,9 +239,13 @@ Future showRecipetSheet(
                         screenshotController.capture().then(
                               (Uint8List? image) {
                             _saveReceipt(image);
+                            showCustomDialog(context);
                           },
                         );
                         Navigator.pop(context);
+                        Navigator.pop(context);
+                        // final con = Get.put(PaymentController());
+                        // con.makePayment(context, AppConstants.totalPrice);
                         // final payController = PaymentController();
                         // await payController.makePayment(
                         //     context, totalAmountToPay);

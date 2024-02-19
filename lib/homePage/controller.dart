@@ -178,6 +178,7 @@ class HomePageCon extends GetxController{
           String formattedDateYear = DateFormat('yy').format(EndDateDay);
 
           AppConstants.epochToDate = EndDateDay.millisecondsSinceEpoch.toString();
+          print('end date:' + AppConstants.epochToDate,);
           state.toDate.value = formattedDateDay;
           state.toDateName.value = day;
           state.toMonth.value = formattedDateMonth;

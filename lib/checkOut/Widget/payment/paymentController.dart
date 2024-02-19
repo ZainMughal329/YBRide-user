@@ -194,7 +194,7 @@ class PaymentController extends GetxController {
 
 
   Future<void> resetReferralCredit() async{
-    await APis.db.collection('users').doc(SessionController().userid.toString()).update({
+    await APis.db.collection('users').doc(SessionController().userId.toString()).update({
       'referralDiscount':0
     });
   }
