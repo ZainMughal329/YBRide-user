@@ -44,7 +44,7 @@ class AccountPage extends StatelessWidget {
           child: HeadingTextWidget(title:'YBRide',fontWeight: FontWeight.bold,fontSize:30 ,),
         ),
         actions: ResponsiveWidget.isLargeScreen(context)
-        ?  [
+            ?  [
           InkWell(
             onTap: () {
               Get.to(() => BecomeDriverPage());
@@ -290,9 +290,9 @@ class reusebaleTextFields extends StatelessWidget {
                 hintText: title,
                 hintStyle: GoogleFonts.poppins(
                     textStyle:TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.buttonColor
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.buttonColor
                     )
                 ),
                 border: InputBorder.none,
@@ -318,9 +318,9 @@ class reusebaleTextFields extends StatelessWidget {
                 value,
                 style: GoogleFonts.poppins(
                     textStyle:TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 20,
-                      color: AppColors.buttonColor
+                        fontWeight: FontWeight.w500,
+                        fontSize: 20,
+                        color: AppColors.buttonColor
                     )
                 )
             ),

@@ -82,6 +82,7 @@ dependencies:
   flutter_stripe_web:
   stripe_checkout: ^1.0.2
   js:
+  lazy_sign_in_google: ^2.1.2
 
 
 
