@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../components/subHeadingText.dart';
+import '../SignUpForm.dart';
 import '../view.dart';
 
 Widget firstPageWidget(){
@@ -20,7 +22,9 @@ Widget firstPageWidget(){
               SizedBox(height: 10,),
               SubHeadingTextWidget(title: "you don't need a car!",fontSize: 22,textColor: Colors.black,),
               SizedBox(height: 30,),
-              reuseableButton('SignUp Now', () { }),
+              reuseableButton('SignUp Now', () {
+                Get.to(()=>SurferSignUpForm());
+              }),
               SizedBox(height: 12,),
               SubHeadingTextWidget(title: "Takes less than 5 minutes!",fontSize: 13,),
 
@@ -45,7 +49,9 @@ Widget firstPageWidgetSmall(){
         SubHeadingTextWidget(title: 'Earn by delivering and returning rental cars when you want. The best part is you don\'t need a car!',textAlign: TextAlign.center,fontSize: 20,fontWeight: FontWeight.normal,textColor: Colors.black,),
         SizedBox(height: 20,),
 
-        reuseableButton('SignUp Now', () { }),
+        reuseableButton('SignUp Now', () {
+          Get.to(()=>SurferSignUpForm());
+        }),
         SizedBox(height: 12,),
         SubHeadingTextWidget(title: "Takes less than 5 minutes!",fontSize: 13,),
         Image(

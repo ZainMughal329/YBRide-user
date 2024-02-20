@@ -4,11 +4,10 @@ import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 class BecomeDriverState {
 
   var isCollapsed = false.obs;
-
+  final loading = false.obs;
   RxBool focused = false.obs;
   final countryPicker = FlCountryCodePicker();
-  final fNameCon = TextEditingController();
-  final lNameCon = TextEditingController();
+  final NameCon = TextEditingController();
   final emailCon = TextEditingController();
   final phoneNumberCon = TextEditingController();
 
