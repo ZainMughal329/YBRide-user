@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:yb_ride_user_web/checkOut/controller.dart';
+import 'package:yb_ride_user_web/components/snackbar_widget.dart';
 
 import '../../../components/headingTextWidget.dart';
 import '../../../components/subHeadingText.dart';
 import '../../../helper/appColors.dart';
 
-Future coverageBottomSheet(BuildContext context) {
-  final con = CheckOutCon();
+Future coverageBottomSheet(BuildContext context,CheckOutCon con) {
+  final state = con.state;
   final scrollController = ScrollController();
 
   return showModalBottomSheet(
@@ -74,16 +75,24 @@ Future coverageBottomSheet(BuildContext context) {
                           Obx(
                                 () => _buildDetailItem(
                                 'Damage Protection (CDW) & Roadside\nAssistance',
-                                '\$24.99 | day',
+                                '\$${state.CDW} | day',
                                 'Avoid paying for any damages done to the car that\nexceeds a \$500 deductible and benefit from 24/7\nroadside assistance.',
                                 context,
-                                con.state.cdwSwitchVal.value, (value) {
-                              con.state.cdwSwitchVal.value = value;
-                              if(!value){
-                                con.subtractCustomCoverageValue('CDW');
+                                con.state.cdwSwitchVal.value,
+                                        (value) {
+                              if(value==true){
+                                con.state.cdwSwitchVal.value=true;
+                                con.addInTotalPrice(state.CDW, true);
+                                con.state.customCoverageValue.value=true;
                               }
-                              con.updateTotalPrice_Custom_CDW();
-                            }),
+                              if(value==false){
+                                con.state.cdwSwitchVal.value=false;
+                                con.subtractFromTotalPrince(state.CDW, true);
+                                con.checkAllCustomValues();
+                              }
+
+                            },
+                                ),
                           ),
                           SizedBox(
                             height: 10,
@@ -91,15 +100,47 @@ Future coverageBottomSheet(BuildContext context) {
                           Obx(
                                 () => _buildDetailItem(
                                 'Liability Protection (RCLI)',
-                                '\$29.99 | day',
+                                '\$${state.RCLI} | day',
                                 'Provides liability insurance which a mandatory legal\nrequirement in all 50 states',
                                 context,
-                                con.state.rcliSwitchVal.value, (value) {
-                              con.state.rcliSwitchVal.value = value;
-                              if(!value){
-                                con.subtractCustomCoverageValue('RCLI');
+                                con.state.rcliSwitchVal.value,
+                                        (value) {
+                                          if(value==true){
+                                            con.state.rcliSwitchVal.value=true;
+                                            con.addInTotalPrice(state.RCLI, true);
+                                            con.state.customCoverageValue.value=true;
+                                          }
+                                          if(value==false){
+                                            con.state.rcliSwitchVal.value=false;
+                                            con.subtractFromTotalPrince(state.RCLI, true);
+                                            con.checkAllCustomValues();
+                                          }
+                              // con.updateTotalPrice_Custom_RCLI();
+                            },
+                                ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Obx(
+                                () => _buildDetailItem(
+                                'Roadside Assistance',
+                                '\$${state.assistance} | day',
+                                'Covers Roadside Assistance costs',
+                                context,
+                                con.state.assistantSwitchVal.value, (value) {
+                              con.state.assistantSwitchVal.value = value;
+                              if(value==true){
+                                con.state.assistantSwitchVal.value=true;
+                                con.addInTotalPrice(state.assistance, true);
+                                con.state.customCoverageValue.value=true;
                               }
-                              con.updateTotalPrice_Custom_RCLI();
+                              if(value==false){
+                                con.state.assistantSwitchVal.value=false;
+                                con.subtractFromTotalPrince(state.assistance, true);
+                                con.checkAllCustomValues();
+                              }
+                              // con.updateTotalPrice_Custom_RCLI();
                             }),
                           ),
                           SizedBox(
@@ -108,16 +149,21 @@ Future coverageBottomSheet(BuildContext context) {
                           Obx(
                                 () => _buildDetailItem(
                                 'Supplemental Liability (SLI)',
-                                '\$19.99 | day',
+                                '\$${state.SLI} | day',
                                 'Covers supplemental liability beyond State Maximums.\nDoes not replace RCLI',
                                 context,
-                                con.state.sliSwitchVal.value, (value) {
-                              con.state.sliSwitchVal.value = value;
-                              if(!value){
-                                con.subtractCustomCoverageValue('SLI');
-                              }
-
-                              con.updateTotalPrice_Custom_SLI();
+                                con.state.sliSwitchVal.value,
+                                        (value) {
+                                          if(value==true){
+                                            con.state.sliSwitchVal.value=true;
+                                            con.addInTotalPrice(state.SLI, true);
+                                            con.state.customCoverageValue.value=true;
+                                          }
+                                          if(value==false){
+                                            con.state.sliSwitchVal.value=false;
+                                            con.subtractFromTotalPrince(state.SLI, true);
+                                            con.checkAllCustomValues();
+                                          }
                             }),
                           ),
                           SizedBox(
@@ -183,62 +229,13 @@ Future coverageBottomSheet(BuildContext context) {
                                                 ],
                                               ),
                                               Container(
-                                                child: con.state.isLoading.value
-                                                    ? Center(
-                                                  child: Container(
-                                                    height: 45,
-                                                    width: 60,
-                                                    child: Lottie.asset(
-                                                        'assets/lottie/loading2.json'),
-                                                  ),
-                                                )
-                                                    : con.state.sliSwitchVal
-                                                    .value ==
-                                                    true ||
-                                                    con
-                                                        .state
-                                                        .rcliSwitchVal
-                                                        .value ==
-                                                        true ||
-                                                    con
-                                                        .state
-                                                        .cdwSwitchVal
-                                                        .value ==
-                                                        true
-                                                    ? Row(
-                                                  children: [
-                                                    SubHeadingTextWidget(
-                                                      title:
-                                                      '\$${con.state.totalPrice.value.toStringAsFixed(2)}',
-                                                      fontSize: 13,
-                                                      decoration:
-                                                      TextDecoration
-                                                          .lineThrough,
-                                                      decorationColor:
-                                                      AppColors.buttonColor,
-                                                      // textColor: Theme.of(
-                                                      //     context)
-                                                      //     .lightTextColor,
-                                                    ),
-                                                    SizedBox(
-                                                      width: 5,
-                                                    ),
-                                                    SubHeadingTextWidget(
-                                                      title:
-                                                      '\$${con.state.totalPrice.value.toStringAsFixed(2)}',
-                                                      fontSize: 13,
-                                                      // textColor: Theme.of(
-                                                      //     context)
-                                                      //     .headingColor,
-                                                    ),
-                                                  ],
-                                                )
-                                                    : SubHeadingTextWidget(
-                                                  title: '\$${con.state.totalPrice.value.toStringAsFixed(2)}',
+                                                child: SubHeadingTextWidget(
+                                                  title:
+                                                  '\$${con.state.totalPrice.value.toStringAsFixed(2)}',
                                                   fontSize: 13,
                                                   // textColor: Theme.of(
                                                   //     context)
-                                                  //     .lightTextColor,
+                                                  //     .headingColor,
                                                 ),
                                               ),
                                             ],
@@ -249,36 +246,18 @@ Future coverageBottomSheet(BuildContext context) {
                                     ],
                                   ),
                                   SizedBox(width: 6),
-                                  con.state.sliSwitchVal.value == true ||
-                                      con.state.rcliSwitchVal.value ==
-                                          true ||
-                                      con.state.cdwSwitchVal.value == true
-                                      ? InkWell(
-                                    onTap: () {},
-                                    child: Padding(
-                                      padding: EdgeInsets.only(
-                                          bottom:17),
-                                      child: Container(
-                                        height: 50,
-                                        width: 170,
-                                        decoration: BoxDecoration(
-                                          color: AppColors.buttonColor
-                                              .withOpacity(0.8),
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(10),
-                                            // topRight: Radius.circular(10),
-                                          ),
-                                        ),
-                                        child: Center(
-                                            child: HeadingTextWidget(
-                                              title: 'Add personal data',
-                                              textColor: Colors.white,
-                                              fontSize: 14,
-                                            )),
-                                      ),
-                                    ),
-                                  )
-                                      : Padding(
+                              InkWell(
+                                onTap: (){
+                                  if(state.cdwSwitchVal.value==false && state.sliSwitchVal.value==false
+                                  && state.assistantSwitchVal.value==false && state.sliSwitchVal.value==false
+                                  ){
+                                    Snackbar.showSnackBar('YB-Ride', "Enter Coverage Value", Icons.error_outline);
+                                  }else{
+                                    Navigator.pop(context);
+                                  }
+
+                                },
+                                child: Padding(
                                     padding: EdgeInsets.only(
                                         bottom:17),
                                     child: Container(
@@ -293,12 +272,63 @@ Future coverageBottomSheet(BuildContext context) {
                                       ),
                                       child: Center(
                                           child: HeadingTextWidget(
-                                            title: 'Add personal data',
+                                            title: 'Add Coverage ',
                                             textColor: Colors.white,
                                             fontSize: 14,
                                           )),
                                     ),
                                   ),
+                              ),
+                                  // con.state.sliSwitchVal.value == true ||
+                                  //     con.state.rcliSwitchVal.value ==
+                                  //         true ||
+                                  //     con.state.cdwSwitchVal.value == true
+                                  //     ? InkWell(
+                                  //   onTap: () {},
+                                  //   child: Padding(
+                                  //     padding: EdgeInsets.only(
+                                  //         bottom:17),
+                                  //     child: Container(
+                                  //       height: 50,
+                                  //       width: 170,
+                                  //       decoration: BoxDecoration(
+                                  //         color: AppColors.buttonColor
+                                  //             .withOpacity(0.8),
+                                  //         borderRadius: BorderRadius.all(
+                                  //           Radius.circular(10),
+                                  //           // topRight: Radius.circular(10),
+                                  //         ),
+                                  //       ),
+                                  //       child: Center(
+                                  //           child: HeadingTextWidget(
+                                  //             title: 'Add personal data',
+                                  //             textColor: Colors.white,
+                                  //             fontSize: 14,
+                                  //           )),
+                                  //     ),
+                                  //   ),
+                                  // )
+                                  //     : Padding(
+                                  //   padding: EdgeInsets.only(
+                                  //       bottom:17),
+                                  //   child: Container(
+                                  //     height: 50,
+                                  //     width: 170,
+                                  //     decoration: BoxDecoration(
+                                  //       color: Color(0xff9e7fde),
+                                  //       borderRadius: BorderRadius.all(
+                                  //         Radius.circular(10),
+                                  //         // topRight: Radius.circular(10),
+                                  //       ),
+                                  //     ),
+                                  //     child: Center(
+                                  //         child: HeadingTextWidget(
+                                  //           title: 'Add personal data',
+                                  //           textColor: Colors.white,
+                                  //           fontSize: 14,
+                                  //         )),
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ),

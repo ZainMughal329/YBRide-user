@@ -50,6 +50,88 @@ class AppConstants {
   static String toTimeinMiliSeconds = "";
 
 
+  //Checkout Payments
+  //Payments
+  static double tempDeposit = 0.0;
+  static String paymentId = '';
+  static String bookingDate = '';
+  static double deliveryCharges = 0.0;
+  static double bostonPoliceFees = 0.0;
+  static double bostonParking = 0.0;
+  static double bostonConventionCenter = 0.0;
+  static double totalAmountToPay = 0.0;
+  static double salesTaxPercentage = 0.0;
+  static String pickUpLoc = "";
 
+
+
+  //PromoCode details
+  static bool isPromoApplied = false;
+  static double promoDiscountAmount = 0.0;
+
+
+  static bool isPickup = false;
+  static bool isDeliver =false;
+
+  static bool standardProtection=false;
+  static bool liabilityProtection=false;
+  static bool i_have_own=false;
+  static bool customCoverage=false;
+  static double totalCustomCoverage=0.0;
+
+  static bool unlimitedMiles = false;
+  static bool under25Years = false;
+
+
+  static String custFirstName ="";
+  static String custLastName ="";
+  static String custEmail ="";
+  static String custPhoneNo ="";
+
+
+
+  static void resetToInitialState() {
+    fromAddress = 'Tap to Search';
+    toAddress = 'Return Place';
+    epochFromDate = "";
+    fromMonth = "";
+    fromMonthName = "";
+    fromDate = "";
+    fromDateName = "";
+    fromYear = "";
+    fromTime = "11:00 AM";
+    fromTimeinMiliSeconds = "";
+    epochToDate="";
+    toMonth = "";
+    toMonthName = "";
+    toDate = "";
+    toDateName = "";
+    toYear = "";
+    toTime = "11:00 AM";
+    toTimeinMiliSeconds = "";
+    rentDays = 0.0;
+    totalPrice =0.0;
+    vehicleType = "";
+    isPickup = false;
+    isDeliver =false;
+    standardProtection=false;
+    liabilityProtection=false;
+    i_have_own=false;
+    customCoverage=false;
+    totalCustomCoverage=0.0;
+    unlimitedMiles = false;
+    under25Years = false;
+    isPromoApplied = false;
+    promoDiscountAmount = 0.0;
+    custFirstName="";
+    custLastName="";
+    custEmail="";
+    custPhoneNo="";
+    paymentId = '';
+    bookingDate = '';
+    // Get.delete<BookNowView>();
+    // Get.delete<CarDetailsScreen>();
+    // Get.delete<CheckOutScreen>();
+  }
 
 }

@@ -16,20 +16,29 @@ import '../../model/userModel/user_model.dart';
 
 class loginCon extends GetxController{
 
+
    final state = loginState();
+   void setLoading(bool value){
+      state.loading.value=value;
+   }
    void LogIn(BuildContext context , String email,String password)async{
+      setLoading(true);
       try{
          state.auth.signInWithEmailAndPassword(email: email, password: password).then((value) async{
-            SessionController().userid= value.user!.uid.toString();
+
+            SessionController().userId= value.user!.uid.toString();
             Get.offAll(()=>HomePage());
             state.emailCon.clear();
             state.passwordCon.clear();
+            setLoading(false);
          }).onError((error, stackTrace){
+            setLoading(false);
             Get.snackbar('Error',error.toString(),backgroundColor:Colors.white ,colorText: AppColors.buttonColor.withOpacity(.8));
             (false);
             // state.loading.value=false;
          });
       }catch(e){
+         setLoading(false);
          Get.snackbar('Error', e.toString());
          // state.loading.value=false;
       }
@@ -56,11 +65,11 @@ class loginCon extends GetxController{
 
    handleGoogleSignIn(BuildContext context) async {
       // showProgressIndicator(context);
-      _signInWithGoogle().then((user) async {
+      signInWithGoogle().then((user) async {
          // SessionController().userId = user!.uid.toString();
          Navigator.pop(context);
          if (user != null) {
-            SessionController().userid = user.user!.uid.toString();
+            SessionController().userId = user.user!.uid.toString();
             if ((await userExists())) {
                return Get.off(()=>HomePage());
             } else {
@@ -72,7 +81,7 @@ class loginCon extends GetxController{
       });
    }
 
-   Future<UserCredential?> _signInWithGoogle() async {
+   Future<UserCredential?> signInWithGoogle() async {
       try {
          await InternetAddress.lookup('google.com');
          // Trigger the authentication flow
@@ -94,6 +103,8 @@ class loginCon extends GetxController{
          return null;
       }
    }
+
+
 
 
 

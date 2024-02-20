@@ -23,8 +23,8 @@ Future<void> rangePicker(BuildContext context , HomePageCon cont) async{
           backgroundColor: Colors.white,
           view: DateRangePickerView.month,
           selectionMode: DateRangePickerSelectionMode.range,
-          minDate: DateTime(
-              2024, int.parse("${cont.state.fromMonth.value}"), int.parse("${cont.state.fromDate.value}")),
+          // minDate: DateTime(
+          //     2024, int.parse("${cont.state.fromMonth.value}"), int.parse("${cont.state.fromDate.value}")),
           maxDate: DateTime(2029, 12, 31),
           todayHighlightColor: AppColors.buttonColor,
           viewSpacing: 5,

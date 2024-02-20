@@ -2,10 +2,13 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:yb_ride_user_web/checkOut/controller.dart';
 import 'package:yb_ride_user_web/components/headingTextWidget.dart';
 import 'package:yb_ride_user_web/components/subHeadingText.dart';
+import 'package:yb_ride_user_web/helper/AppConstants.dart';
 
-Widget priceContainerWidget(){
+Widget priceContainerWidget(CheckOutCon controller){
   return  Container(
     decoration: BoxDecoration(
       borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -32,15 +35,15 @@ Widget priceContainerWidget(){
                   HeadingTextWidget(title: 'SUV'),
                   Row(
                     children: [
-                      SubHeadingTextWidget(title: '5 days'),
+                      SubHeadingTextWidget(title: '${AppConstants.rentDays} days'),
                       SizedBox(width: 7,),
                       SubHeadingTextWidget(title: '.'),
                       SizedBox(width: 7,),
-                      SubHeadingTextWidget(title: 'Feb 20'),
+                      SubHeadingTextWidget(title: '${AppConstants.fromMonthName} ${AppConstants.fromDate}'),
                       SizedBox(width: 7,),
                       SubHeadingTextWidget(title: '-'),
                       SizedBox(width: 7,),
-                      SubHeadingTextWidget(title: 'Feb 24'),
+                      SubHeadingTextWidget(title: '${AppConstants.toMonthName} ${AppConstants.toDate}'),
 
                     ],
                   )
@@ -55,7 +58,7 @@ Widget priceContainerWidget(){
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SubHeadingTextWidget(title: 'Your YBRide'),
-              SubHeadingTextWidget(title: '\$'+'30.00 * 5 days'),
+              SubHeadingTextWidget(title: '\$'+'${controller.state.carPricePerDay} * ${AppConstants.rentDays} days'),
 
 
             ],
@@ -68,12 +71,20 @@ Widget priceContainerWidget(){
               SubHeadingTextWidget(title: '\$'+'15.88'),
             ],
           ),
+          SizedBox(height: 10,),
+          Obx(() => controller.state.isDriverAge.value==true ? Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SubHeadingTextWidget(title: 'Under 25 years fee'),
+              SubHeadingTextWidget(title: '\$'+'${controller.state.licenseFee} * ${AppConstants.rentDays} days'),
+            ],
+          ) : Container(),),
           SizedBox(height: 30,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               HeadingTextWidget(title: 'Total'),
-              SubHeadingTextWidget(title: '\$'+'170.99'),
+              Obx(() =>SubHeadingTextWidget(title: '\$'+'${controller.state.totalPrice.value}'),),
             ],
           ),
           SizedBox(height: 30,),

@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:lottie/lottie.dart';
 import 'package:yb_ride_user_web/model/userModel/user_model.dart';
 import 'package:yb_ride_user_web/sessions/login/view.dart';
 import 'package:yb_ride_user_web/sessions/signUp/controller.dart';
@@ -17,6 +19,9 @@ class SignUpPages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final con = Get.put(signUpCon());
+
+
+
     return Scaffold(
       backgroundColor: Colors.grey.withOpacity(.3),
       body: Center(
@@ -155,12 +160,13 @@ class SignUpPages extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 16.0),
+                Obx(() => con.state.loading.value == false?
                 InkWell(
                   onTap: (){
                     final user =UserModel(
                       userName: con.state.userNameCon.text.trim().toString(),
-                        email:con.state.emailCon.text.trim().toString() ,
-                        // password: con.state.passwordCon.text.trim().toString()
+                      email:con.state.emailCon.text.trim().toString() ,
+                      // password: con.state.passwordCon.text.trim().toString()
                     );
                     con.storeUser(user, context, con.state.emailCon.text.trim().toString(), con.state.passwordCon.text.trim().toString(),con.state.userNameCon.text.trim().toString());
 
@@ -180,7 +186,7 @@ class SignUpPages extends StatelessWidget {
                       ),
                     ),
                   ),
-                ),
+                ) :Lottie.asset('assets/lottie/loading2.json',height: 100,width: 100)),
                 SizedBox(height: 16.0),
                 Align(
                   alignment: Alignment.topLeft,
@@ -197,39 +203,44 @@ class SignUpPages extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 16.0),
-                Row(
-                  children: [
-                    Expanded(child: Divider()),
-                    SubHeadingTextWidget(title: 'OR'),
-                    Expanded(child: Divider()),
-                  ],
-                ),
-                SizedBox(height: 16.0),
-                Container(
-                  width: 400,
-                  height: 50,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black54)
-                  ),
-                  child: Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(width: 10,),
-                        Container(
-                          height:25,
-                          width: 30,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(image: AssetImage('assets/images/google.webp')),
-                          ),
-                        ),
-                        SizedBox(width: 5,),
-                        SubHeadingTextWidget(title: 'Continue with Google',fontSize: 16,)
-                      ],
-                    ),
-                  ),
-                )
+                // Row(
+                //   children: [
+                //     Expanded(child: Divider()),
+                //     SubHeadingTextWidget(title: 'OR'),
+                //     Expanded(child: Divider()),
+                //   ],
+                // ),
+                // SizedBox(height: 16.0),
+                // InkWell(
+                //   onTap: (){
+                //     _handleSignIn();
+                //   },
+                //   child: Container(
+                //     width: 400,
+                //     height: 50,
+                //     decoration: BoxDecoration(
+                //         border: Border.all(color: Colors.black54)
+                //     ),
+                //     child: Center(
+                //       child: Row(
+                //         mainAxisAlignment: MainAxisAlignment.start,
+                //         crossAxisAlignment: CrossAxisAlignment.start,
+                //         children: [
+                //           SizedBox(width: 10,),
+                //           Container(
+                //             height:25,
+                //             width: 30,
+                //             decoration: BoxDecoration(
+                //               image: DecorationImage(image: AssetImage('assets/images/google.webp')),
+                //             ),
+                //           ),
+                //           SizedBox(width: 5,),
+                //           SubHeadingTextWidget(title: 'Continue with Google',fontSize: 16,)
+                //         ],
+                //       ),
+                //     ),
+                //   ),
+                // )
               ],
             ),
           ),
@@ -237,4 +248,6 @@ class SignUpPages extends StatelessWidget {
       ),
     );
   }
+
+
 }
