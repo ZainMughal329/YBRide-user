@@ -148,206 +148,217 @@ class VehiclePage extends StatelessWidget {
             StreamBuilder<QuerySnapshot>(
                 stream: APis.db.collection('vehicleData').snapshots(),
                 builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                  if (snapshot.hasError) {
+                  if (!snapshot.hasData) {
                     return Center(
                       child: Container(
-                        height: 150,
-                        width: 150,
+                        height: 100,
+                        width: 100,
                         child: Lottie.asset('assets/lottie/loading2.json'),
                       ),
                     );
-                  } else if (snapshot.hasData) {
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: snapshot.data!.docs.length,
-                      itemBuilder: (context, index) {
-                        if (snapshot.data!.docs.length != 0) {
-                          if (ResponsiveWidget.isSmallScreen(context)) {
-                            String priceOfCar = double.parse(
-                                (snapshot.data!.docs[index]['pricePerDay'])
-                                    .toString()).toStringAsFixed(2);
-                            String carType = snapshot.data!.docs[index]['type']
-                                .toString();
-                            double price = double.parse((snapshot
-                                .data!.docs[index]['pricePerDay']).toString());
-                            String vehicleDescription = snapshot.data!.docs[index]['vehicle']
-                                .toString()+'-'+snapshot.data!.docs[index]['seats']
-                                .toString();
-                            return Center(
-                              child: Column(
-                                children: [
-                                  CarCardSmallScreen(
-                                    type: snapshot.data!.docs[index]['type']
-                                        .toString(),
-                                    vehicle: snapshot
-                                        .data!.docs[index]['vehicle']
-                                        .toString(),
-                                    seats: snapshot.data!.docs[index]['seats']
-                                        .toString(),
-                                    suitcase: snapshot
-                                        .data!.docs[index]['suitcase']
-                                        .toString(),
-                                    price: double.parse(snapshot
-                                        .data!.docs[index]['pricePerDay']
-                                        .toString()),
-                                    gas: snapshot.data!.docs[index]['fuelType']
-                                        .toString(),
-                                    transmission: snapshot
-                                        .data!.docs[index]['transmission']
-                                        .toString(),
-                                    bluetooth: snapshot
-                                        .data!.docs[index]['bluetooth']
-                                        .toString(),
-                                    ac: snapshot.data!.docs[index]['ac']
-                                        .toString(),
-                                    vehiclesLeft: snapshot
-                                        .data!.docs[index]['noOfVehicles']
-                                        .toString(),
-                                    onPress: () {
-                                      controller.state.rentPerDay = double.parse(priceOfCar.toString());
-                                      // double rent = double.parse(controller.state.rentPerDay.toString());
-                                      print(controller.state.rentPerDay);
-                                      controller.calculateNoDays();
-                                      Get.to(() => CheckOutPage(
-                                        carRent: controller.state.rentPerDay * AppConstants.rentDays,
-                                        carType: carType,
-                                        carPrice: price,
-                                        carDescription: vehicleDescription,
-                                      ));
-                                    },
-                                  ),
-                                ],
-                              ),
-                            );
-                          } else if (ResponsiveWidget.isMediumScreen(context)) {
-                            String priceOfCar = double.parse(
-                                (snapshot.data!.docs[index]['pricePerDay'])
-                                    .toString()).toStringAsFixed(2);
-                            String carType = snapshot.data!.docs[index]['type']
-                                .toString();
-                            double price = double.parse((snapshot
-                                .data!.docs[index]['pricePerDay']).toString());
-                            String vehicleDescription = snapshot.data!.docs[index]['vehicle']
-                                .toString()+'-'+snapshot.data!.docs[index]['seats']
-                                .toString();
-                            return Column(
-                              children: [
-                                CarCardMediumScreen(
-                                  type: snapshot.data!.docs[index]['type']
-                                      .toString(),
-                                  vehicle: snapshot.data!.docs[index]['vehicle']
-                                      .toString(),
-                                  seats: snapshot.data!.docs[index]['seats']
-                                      .toString(),
-                                  suitcase: snapshot
-                                      .data!.docs[index]['suitcase']
-                                      .toString(),
-                                  price: double.parse(snapshot
-                                      .data!.docs[index]['pricePerDay']
-                                      .toString()),
-                                  gas: snapshot.data!.docs[index]['fuelType']
-                                      .toString(),
-                                  transmission: snapshot
-                                      .data!.docs[index]['transmission']
-                                      .toString(),
-                                  bluetooth: snapshot
-                                      .data!.docs[index]['bluetooth']
-                                      .toString(),
-                                  ac: snapshot.data!.docs[index]['ac']
-                                      .toString(),
-                                  vehiclesLeft: snapshot
-                                      .data!.docs[index]['noOfVehicles']
-                                      .toString(),
-                                  onPress: () {
-                                    controller.state.rentPerDay = double.parse(priceOfCar.toString());
-                                    // double rent = double.parse(controller.state.rentPerDay.toString());
-                                    print(controller.state.rentPerDay);
-                                    controller.calculateNoDays();
-                                    Get.to(() => CheckOutPage(
-                                      carRent: controller.state.rentPerDay * AppConstants.rentDays,
-                                      carType: carType,
-                                      carPrice: price,
-                                      carDescription: vehicleDescription,
-                                    ));
-                                  },
-                                ),
-                              ],
-                            );
-                          } else if (ResponsiveWidget.isLargeScreen(context)) {
-                            String priceOfCar = double.parse(
-                                (snapshot.data!.docs[index]['pricePerDay'])
-                                    .toString()).toStringAsFixed(2);
-                            String carType = snapshot.data!.docs[index]['type']
-                                .toString();
-                           double price = double.parse((snapshot
-                               .data!.docs[index]['pricePerDay']).toString());
-                            String vehicleDescription = snapshot.data!.docs[index]['vehicle']
-                                .toString()+'-'+snapshot.data!.docs[index]['seats']
-                                .toString();
-                            return Column(
-                              children: [
-                                CarCardLargeScreen(
-                                  type: snapshot.data!.docs[index]['type']
-                                      .toString(),
-                                  vehicle: snapshot.data!.docs[index]['vehicle']
-                                      .toString(),
-                                  seats: snapshot.data!.docs[index]['seats']
-                                      .toString(),
-                                  suitcase: snapshot
-                                      .data!.docs[index]['suitcase']
-                                      .toString(),
-                                  price: double.parse(snapshot
-                                      .data!.docs[index]['pricePerDay']
-                                      .toString()),
-                                  gas: snapshot.data!.docs[index]['fuelType']
-                                      .toString(),
-                                  transmission: snapshot
-                                      .data!.docs[index]['transmission']
-                                      .toString(),
-                                  bluetooth: snapshot
-                                      .data!.docs[index]['bluetooth']
-                                      .toString(),
-                                  ac: snapshot.data!.docs[index]['ac']
-                                      .toString(),
-                                  vehiclesLeft: snapshot
-                                      .data!.docs[index]['noOfVehicles']
-                                      .toString(),
-                                  description: snapshot
-                                      .data!.docs[index]['description']
-                                      .toString(),
-                                  onPress: () {
-
-                                    controller.state.rentPerDay = double.parse(priceOfCar.toString());
-                                    // double rent = double.parse(controller.state.rentPerDay.toString());
-                                    print(controller.state.rentPerDay);
-                                    controller.calculateNoDays();
-
-                                    print(controller.state.rentPerDay * AppConstants.rentDays);
-                                    print(carType);
-
-                                    Get.to(() => CheckOutPage(
-                                      carRent: controller.state.rentPerDay * AppConstants.rentDays,
-                                      carType: carType,
-                                      carPrice: price,
-                                      carDescription: vehicleDescription,
-                                    ));
-                                  },
-                                ),
-                              ],
-                            );
-                          }
-                        } else {
+                  }
+                  var data = snapshot.data!.docs;
+                  return data.length != 0 ?ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: snapshot.data!.docs.length,
+                    itemBuilder: (context, index) {
+                      if (snapshot.data!.docs.length != 0) {
+                        if (ResponsiveWidget.isSmallScreen(context)) {
+                          String priceOfCar = double.parse(
+                              (snapshot.data!.docs[index]['pricePerDay'])
+                                  .toString()).toStringAsFixed(2);
+                          String carType = snapshot.data!.docs[index]['type']
+                              .toString();
+                          double price = double.parse((snapshot
+                              .data!.docs[index]['pricePerDay']).toString());
+                          String vehicleDescription = snapshot.data!.docs[index]['vehicle']
+                              .toString()+'-'+snapshot.data!.docs[index]['seats']
+                              .toString();
                           return Center(
-                            child: HeadingTextWidget(
-                              title: 'No data is stored yet.',
+                            child: Column(
+                              children: [
+                                CarCardSmallScreen(
+                                  type: snapshot.data!.docs[index]['type']
+                                      .toString(),
+                                  vehicle: snapshot
+                                      .data!.docs[index]['vehicle']
+                                      .toString(),
+                                  seats: snapshot.data!.docs[index]['seats']
+                                      .toString(),
+                                  suitcase: snapshot
+                                      .data!.docs[index]['suitcase']
+                                      .toString(),
+                                  price: double.parse(snapshot
+                                      .data!.docs[index]['pricePerDay']
+                                      .toString()),
+                                  gas: snapshot.data!.docs[index]['fuelType']
+                                      .toString(),
+                                  transmission: snapshot
+                                      .data!.docs[index]['transmission']
+                                      .toString(),
+                                  bluetooth: snapshot
+                                      .data!.docs[index]['bluetooth']
+                                      .toString(),
+                                  ac: snapshot.data!.docs[index]['ac']
+                                      .toString(),
+                                  vehiclesLeft: snapshot
+                                      .data!.docs[index]['noOfVehicles']
+                                      .toString(),
+                                  onPress: () {
+                                    controller.state.rentPerDay = double.parse(priceOfCar.toString());
+                                    // double rent = double.parse(controller.state.rentPerDay.toString());
+                                    print(controller.state.rentPerDay);
+                                    controller.calculateNoDays();
+                                    Get.to(() => CheckOutPage(
+                                      carRent: controller.state.rentPerDay * AppConstants.rentDays,
+                                      carType: carType,
+                                      carPrice: price,
+                                      carDescription: vehicleDescription,
+                                    ));
+                                  },
+                                ),
+                              ],
                             ),
                           );
+                        } else if (ResponsiveWidget.isMediumScreen(context)) {
+                          String priceOfCar = double.parse(
+                              (snapshot.data!.docs[index]['pricePerDay'])
+                                  .toString()).toStringAsFixed(2);
+                          String carType = snapshot.data!.docs[index]['type']
+                              .toString();
+                          double price = double.parse((snapshot
+                              .data!.docs[index]['pricePerDay']).toString());
+                          String vehicleDescription = snapshot.data!.docs[index]['vehicle']
+                              .toString()+'-'+snapshot.data!.docs[index]['seats']
+                              .toString();
+                          return Column(
+                            children: [
+                              CarCardMediumScreen(
+                                type: snapshot.data!.docs[index]['type']
+                                    .toString(),
+                                vehicle: snapshot.data!.docs[index]['vehicle']
+                                    .toString(),
+                                seats: snapshot.data!.docs[index]['seats']
+                                    .toString(),
+                                suitcase: snapshot
+                                    .data!.docs[index]['suitcase']
+                                    .toString(),
+                                price: double.parse(snapshot
+                                    .data!.docs[index]['pricePerDay']
+                                    .toString()),
+                                gas: snapshot.data!.docs[index]['fuelType']
+                                    .toString(),
+                                transmission: snapshot
+                                    .data!.docs[index]['transmission']
+                                    .toString(),
+                                bluetooth: snapshot
+                                    .data!.docs[index]['bluetooth']
+                                    .toString(),
+                                ac: snapshot.data!.docs[index]['ac']
+                                    .toString(),
+                                vehiclesLeft: snapshot
+                                    .data!.docs[index]['noOfVehicles']
+                                    .toString(),
+                                onPress: () {
+                                  controller.state.rentPerDay = double.parse(priceOfCar.toString());
+                                  // double rent = double.parse(controller.state.rentPerDay.toString());
+                                  print(controller.state.rentPerDay);
+                                  controller.calculateNoDays();
+                                  Get.to(() => CheckOutPage(
+                                    carRent: controller.state.rentPerDay * AppConstants.rentDays,
+                                    carType: carType,
+                                    carPrice: price,
+                                    carDescription: vehicleDescription,
+                                  ));
+                                },
+                              ),
+                            ],
+                          );
+                        } else if (ResponsiveWidget.isLargeScreen(context)) {
+                          String priceOfCar = double.parse(
+                              (snapshot.data!.docs[index]['pricePerDay'])
+                                  .toString()).toStringAsFixed(2);
+                          String carType = snapshot.data!.docs[index]['type']
+                              .toString();
+                          double price = double.parse((snapshot
+                              .data!.docs[index]['pricePerDay']).toString());
+                          String vehicleDescription = snapshot.data!.docs[index]['vehicle']
+                              .toString()+'-'+snapshot.data!.docs[index]['seats']
+                              .toString();
+                          return Column(
+                            children: [
+                              CarCardLargeScreen(
+                                type: snapshot.data!.docs[index]['type']
+                                    .toString(),
+                                vehicle: snapshot.data!.docs[index]['vehicle']
+                                    .toString(),
+                                seats: snapshot.data!.docs[index]['seats']
+                                    .toString(),
+                                suitcase: snapshot
+                                    .data!.docs[index]['suitcase']
+                                    .toString(),
+                                price: double.parse(snapshot
+                                    .data!.docs[index]['pricePerDay']
+                                    .toString()),
+                                gas: snapshot.data!.docs[index]['fuelType']
+                                    .toString(),
+                                transmission: snapshot
+                                    .data!.docs[index]['transmission']
+                                    .toString(),
+                                bluetooth: snapshot
+                                    .data!.docs[index]['bluetooth']
+                                    .toString(),
+                                ac: snapshot.data!.docs[index]['ac']
+                                    .toString(),
+                                vehiclesLeft: snapshot
+                                    .data!.docs[index]['noOfVehicles']
+                                    .toString(),
+                                description: snapshot
+                                    .data!.docs[index]['description']
+                                    .toString(),
+                                onPress: () {
+
+                                  controller.state.rentPerDay = double.parse(priceOfCar.toString());
+                                  // double rent = double.parse(controller.state.rentPerDay.toString());
+                                  print(controller.state.rentPerDay);
+                                  controller.calculateNoDays();
+
+                                  print(controller.state.rentPerDay * AppConstants.rentDays);
+                                  print(carType);
+
+                                  Get.to(() => CheckOutPage(
+                                    carRent: controller.state.rentPerDay * AppConstants.rentDays,
+                                    carType: carType,
+                                    carPrice: price,
+                                    carDescription: vehicleDescription,
+                                  ));
+                                },
+                              ),
+                            ],
+                          );
                         }
-                      },
-                    );
-                  } else {
-                    return Container();
-                  }
+                      } else {
+                        return Center(
+                          child: HeadingTextWidget(
+                            title: 'No data is stored yet.',
+                          ),
+                        );
+                      }
+                    },
+                  ):Container();
+                  // if (snapshot.hasError) {
+                  //   return Center(
+                  //     child: Container(
+                  //       height: 150,
+                  //       width: 150,
+                  //       child: Lottie.asset('assets/lottie/loading2.json'),
+                  //     ),
+                  //   );
+                  // } else if (snapshot.hasData) {
+                  //   return ;
+                  // } else {
+                  //   return Container();
+                  // }
                 }),
             SizedBox(
               height: 30,

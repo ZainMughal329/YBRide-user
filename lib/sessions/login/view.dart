@@ -109,7 +109,7 @@ class LoginPages extends StatelessWidget {
                     fontSize: 15,
                   ),
                   controller: con.state.passwordCon,
-                  textInputAction: TextInputAction.next,
+                  textInputAction: TextInputAction.done,
                   decoration: InputDecoration(
                     labelText: 'Password',
                     border: OutlineInputBorder(),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/controller.dart';
 import '../../../../main.dart';
 import '../../../components/headingTextWidget.dart';
@@ -356,15 +357,14 @@ class SurferSignUpForm extends GetView<BecomeDriverCon> {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 40),
-                    child: Row(children: [
-                    Expanded(child: Column(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20),
                         child: HeadingTextWidget(
-                          title: 'FIRST NAME ',
+                          title: ' NAME ',
                           // textColor: Theme.of(context).headingColor,
                         ),
                       ),
@@ -372,40 +372,18 @@ class SurferSignUpForm extends GetView<BecomeDriverCon> {
                         height: 5,
                       ),
                       ReuseableTextField(
-                          contr: controller.state.fNameCon,
-                          label: 'First Name',
+                          contr: controller.state.NameCon,
+                          label: ' Name',
                           textInputAction: TextInputAction.next,
                           keyboardType: TextInputType.text,
                           obsecure: false),
                       SizedBox(
                         height: 10,
                       ),
-                    ],))  ,
-                      Expanded(child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          child: HeadingTextWidget(
-                            title: 'LAST NAME ',
-                            // textColor: Theme.of(context).headingColor,
-                          )),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        ReuseableTextField(
-                            contr: controller.state.lNameCon,
-                            label: 'Last Name',
-                            textInputAction: TextInputAction.next,
-                            keyboardType: TextInputType.text,
-                            obsecure: false),
-                        SizedBox(
-                          height: 10,
-                        ),],))
                     ],),
                   ),
                   SizedBox(
-                    height: 40,
+                    height: 20,
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 40),
@@ -495,8 +473,6 @@ class SurferSignUpForm extends GetView<BecomeDriverCon> {
                       ],
                     ),
                   ),
-
-
                   SizedBox(
                     height: 20,
                   ),
@@ -511,10 +487,20 @@ class SurferSignUpForm extends GetView<BecomeDriverCon> {
                   SizedBox(
                     height: 25,
                   ),
-                  RoundButton(
+                  Obx(() => controller.state.loading == false?
+                    RoundButton(
                     title: 'Submit',
-                    onPress: () {},
-                  ),
+                    onPress: () {
+                      String id = DateTime.now().millisecondsSinceEpoch.toString();
+                      controller.createSurfer(
+                          id,
+                          controller.state.NameCon.text.trim(),
+                          controller.state.emailCon.text.trim(),
+                          controller.state.phoneNumberCon.text.trim(),
+                          controller.state.serviceOffering.value.trim()
+                      );
+                    },
+                  ):Center(child: Lottie.asset('assets/lottie/loading2.json',height: 100,width: 100))),
                 ],
               ),
               Positioned(
@@ -534,7 +520,6 @@ class SurferSignUpForm extends GetView<BecomeDriverCon> {
                   ),
                 ),
               ),
-
             ],
           ),
         ),

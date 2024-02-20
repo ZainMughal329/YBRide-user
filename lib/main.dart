@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_google_places_sdk/flutter_google_places_sdk.dart';
 import 'package:get/get.dart';
+import 'package:yb_ride_user_web/Vehicle/view.dart';
 import 'package:yb_ride_user_web/helper/AppConstants.dart';
 import 'package:yb_ride_user_web/helper/api.dart';
 import 'package:yb_ride_user_web/homePage/view.dart';
@@ -52,7 +53,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-  home: APis.auth.currentUser != null ? HomePage() : LoginPages(),
+  home: APis.auth.currentUser != null ? HomePage() : HomePage(),
       // home: PracticePAge(),
       // home: CheckOutPage(carType: 'SUV',carRent: 130,carPrice: 43,carDescription: 'Nessan Versa - 5 seats',),
     );

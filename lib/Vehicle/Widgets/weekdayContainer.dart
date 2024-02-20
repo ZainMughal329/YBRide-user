@@ -49,7 +49,7 @@ Widget weekDayContainer(){
                       fontSize: 20,
                     ),
                     SizedBox(
-                      width: 800,
+                      width: 720,
                     ),
                     GestureDetector(
                         onTap: () {

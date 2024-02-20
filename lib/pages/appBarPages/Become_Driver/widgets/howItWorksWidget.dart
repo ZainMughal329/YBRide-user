@@ -1,9 +1,11 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../components/headingTextWidget.dart';
 import '../../../../components/subHeadingText.dart';
+import '../SignUpForm.dart';
 import '../view.dart';
 
 Widget HoeItWorks(){
@@ -55,6 +57,8 @@ Widget HoeItWorks(){
           ),
           SizedBox(height: 50,),
           reuseableButton('SignUp Now', () {
+            Get.to(()=>SurferSignUpForm());
+
           }),
           SizedBox(height: 50,),
 
@@ -89,6 +93,7 @@ Widget HoeItWorksSmall(){
               subHeading: "End by delivering the car to the customer or returning a car to our lot. It's easy!",),
             SizedBox(height: 50,),
             reuseableButton('SignUp Now', () {
+              Get.to(()=>SurferSignUpForm());
             }),
             SizedBox(height: 50,),
 
