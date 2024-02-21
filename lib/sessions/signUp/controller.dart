@@ -7,10 +7,12 @@ import 'package:yb_ride_user_web/sessions/signUp/state.dart';
 import '../../helper/api.dart';
 import '../../helper/session_Controller.dart';
 import '../../model/userModel/user_model.dart';
-class signUpCon extends GetxController{
+
+class signUpCon extends GetxController {
   final state = SignUpState();
-  void setLoading(bool value){
-    state.loading.value=value;
+
+  void setLoading(bool value) {
+    state.loading.value = value;
   }
 
   // void registerUserWithEmailAndPassword(
@@ -56,8 +58,8 @@ class signUpCon extends GetxController{
   //   }
   // }
 
-  Future<void> registerUserWithEmailAndPassword(
-      UserModel userinfo, String email, String password, String userName) async {
+  Future<void> registerUserWithEmailAndPassword(UserModel userinfo,
+      String email, String password, String userName) async {
     setLoading(true);
     try {
       // Check if the user already exists in the "drivers" collection
@@ -65,7 +67,8 @@ class signUpCon extends GetxController{
 
       if (!userExists) {
         // User does not exist, proceed with signup
-        UserCredential userCredential = await state.auth.createUserWithEmailAndPassword(
+        UserCredential userCredential =
+            await state.auth.createUserWithEmailAndPassword(
           email: email,
           password: password,
         );
@@ -97,39 +100,37 @@ class signUpCon extends GetxController{
   }
 
   Future<bool> checkIfUserExists(String email) async {
-  try {
-    var snapshot = await APis.db
-        .collection('drivers')
-        .where('email', isEqualTo: email)
-        .get();
-    return snapshot.docs.isNotEmpty;
-  } catch (e) {
-    // Handle any errors
-    print(e);
-    return false;
+    try {
+      var snapshot = await APis.db
+          .collection('drivers')
+          .where('email', isEqualTo: email)
+          .get();
+      return snapshot.docs.isNotEmpty;
+    } catch (e) {
+      // Handle any errors
+      print(e);
+      return false;
+    }
   }
-}
-
 
   createUser(UserModel user) async {
     await state.dbFireStore
         .doc(state.auth.currentUser!.uid)
         .set(user.toJson())
         .whenComplete(() {
-      Get.snackbar('Message', 'Registered Successfully',backgroundColor:Colors.white ,colorText: AppColors.buttonColor.withOpacity(.8));
-      Get.off(()=>HomePage());
+      Get.snackbar('Message', 'Registered Successfully',
+          backgroundColor: Colors.white,
+          colorText: AppColors.buttonColor.withOpacity(.8));
+      Get.off(() => HomePage());
     }).catchError((error, stackTrace) {
-      Get.snackbar('Message', "Error occurred",backgroundColor:Colors.white ,colorText: AppColors.buttonColor.withOpacity(.8));
+      Get.snackbar('Message', "Error occurred",
+          backgroundColor: Colors.white,
+          colorText: AppColors.buttonColor.withOpacity(.8));
     });
   }
 
-
-  void storeUser(
-      UserModel user, BuildContext context, String email, String pass,String userName) async {
-    registerUserWithEmailAndPassword(user, email, pass,userName);
+  void storeUser(UserModel user, BuildContext context, String email,
+      String pass, String userName) async {
+    registerUserWithEmailAndPassword(user, email, pass, userName);
   }
-
-
-
-
 }

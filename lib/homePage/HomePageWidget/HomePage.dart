@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 import 'package:get/get.dart';
 import 'package:yb_ride_user_web/Vehicle/view.dart';
 import 'package:yb_ride_user_web/components/snackbar_widget.dart';
@@ -19,7 +18,6 @@ import '../../helper/appColors.dart';
 Widget HomePageWidget(BuildContext context, HomePageCon controller) {
   // controller.getCurrentDate();
 
-
   return Container(
     decoration: BoxDecoration(
         // color: Colors.blue,
@@ -33,59 +31,67 @@ Widget HomePageWidget(BuildContext context, HomePageCon controller) {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-
           HeadingTextWidget(
             title: 'Rental Cars, Your Way.',
             fontWeight: FontWeight.bold,
             fontSize: 40,
-            textColor: AppColors.textColor,
+            textColor: Colors.white,
           ),
           SizedBox(
             height: 30,
           ),
           Container(
-            height: 100,
-            // width: 800,
+            height: 80,
+            width: 700,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(100),
               color: Colors.white,
             ),
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 35),
+              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
               child: Center(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       // where widgets
 
-
                       SizedBox(
-                        width: 20,
+                        width: 10,
                       ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.15,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            HeadingTextWidget(
-                              title: 'From',
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Obx((){
-                              return controller.state.timeandDateSelected.value==true? SubHeadingTextWidget(title: "${controller.state.fromMonthName.value} ${controller.state.fromDate.value}, ${controller.state.fromTime.value}") : SubHeadingTextWidget(title: "Select Start Date");
-                            }),
-                          ],
+                      Expanded(
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.10,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              HeadingTextWidget(
+                                title: 'From',
+                                fontSize: 13,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Obx(() {
+                                return controller
+                                            .state.timeandDateSelected.value ==
+                                        true
+                                    ? SubHeadingTextWidget(
+                                 fontSize: 12,textColor: Colors.grey,
+                                        title:
+                                            "${controller.state.fromMonthName.value} ${controller.state.fromDate.value}, ${controller.state.fromTime.value}")
+                                    : SubHeadingTextWidget(
+                                        title: "Select Start Date" , fontSize: 12,textColor: Colors.grey,);
+                              }),
+                            ],
+                          ),
                         ),
                       ),
                       SizedBox(
-                        width: 20,
+                        width: 10,
                       ),
                       HeadingTextWidget(
                           title: '|',
@@ -95,24 +101,36 @@ Widget HomePageWidget(BuildContext context, HomePageCon controller) {
                       // SizedBox(
                       //   width: 20,
                       // ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.15,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            HeadingTextWidget(
-                              title: 'To',
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Obx((){
-                              return controller.state.timeandDateSelected.value==true?SubHeadingTextWidget(title: "${controller.state.toMonthName.value} ${controller.state.toDate.value}, ${controller.state.toTime.value}") : SubHeadingTextWidget(title: 'Select End Date');
-                            }),
-                          ],
+                      Expanded(
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.10,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              HeadingTextWidget(
+                                title: 'To',
+                                fontSize: 13,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Obx(() {
+                                return controller
+                                            .state.timeandDateSelected.value ==
+                                        true
+                                    ? SubHeadingTextWidget(
+                                 fontSize: 12,textColor: Colors.grey,
+                                        title:
+                                            "${controller.state.toMonthName.value} ${controller.state.toDate.value}, ${controller.state.toTime.value}")
+                                    : SubHeadingTextWidget(
+                                    fontSize: 12,textColor: Colors.grey,
+                        
+                                        title: 'Select End Date');
+                              }),
+                            ],
+                          ),
                         ),
                       ),
                       HeadingTextWidget(
@@ -121,33 +139,36 @@ Widget HomePageWidget(BuildContext context, HomePageCon controller) {
                           fontSize: 50,
                           fontWeight: FontWeight.w100),
                       SizedBox(
-                        width: 30,
-                      ),Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
                             // color: Colors.grey.withOpacity(.1)
-                        color: AppColors.buttonColor,
-                        ),
-                        height: 60,
-                        // width: 50,
-                        child: Padding(
-                          padding:  EdgeInsets.symmetric(horizontal: 10),
-                          child: Center(
-                            child: InkWell(
-                              onTap: (){
-                                rangePicker(context,controller);
-                              },
-                              child: HeadingTextWidget(
-                                  title: 'Select Date',
-                                  textColor: Colors.white,
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.w500,
+                            color: AppColors.buttonColor,
+                          ),
+                          height: 70,
+                          width: 130,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            child: Center(
+                              child: InkWell(
+                                onTap: () {
+                                  rangePicker(context, controller);
+                                },
+                                child: Center(
+                                  child: HeadingTextWidget(
+                                    title: 'Click to Select Date',
+                                    textColor: Colors.white,
+                                    fontSize: 10,                                fontWeight: FontWeight.w500,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
                         ),
                       ),
-
                     ],
                   ),
                 ),
@@ -156,140 +177,225 @@ Widget HomePageWidget(BuildContext context, HomePageCon controller) {
           ),
 
           // 2nd row
-          SizedBox(height: 10,),
-          Obx((){
-            return controller.state.timeandDateSelected.value == true ? Container(
-              height: 100,
-              // width: 800,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100),
-                color: Colors.white,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 35),
-                child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        // where widgets
-                        controller.state.selectedPlace.value=='Tap to Search' ? InkWell(
-                          onTap: (){
-                            whereBottomSheet(context, controller);
-                          },
-                          child: Container(
-                            width: MediaQuery.of(context).size.width * 0.15,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                HeadingTextWidget(title: 'Where',fontSize: 14,fontWeight: FontWeight.bold,),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                SubHeadingTextWidget(
-                                    title: "City,address,hotel,airport.."),
-                              ],
-                            ),
-                          ),
-                        ) : InkWell(
-                          onTap: (){
-                            whereBottomSheet(context, controller);
-                          },
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                HeadingTextWidget(title: 'Where'),
-                                Flexible(child: SubHeadingTextWidget(title: controller.state.selectedPlace.value,)),
-                              ],
-                            ),
-                          ),
-                        ),
-                        // SizedBox(
-                        //   width: 50,
-                        // ),
-                        // HeadingTextWidget(
-                        //     title: '|',
-                        //     textColor: Colors.black54,
-                        //     fontSize: 50,
-                        //     fontWeight: FontWeight.w100),
-                        // to widgets
-                        controller.state.returnPlace.value=='Return Place' ? InkWell(
-                          onTap: (){
-                            toBottomSheet(context, controller);
-                          },
-                          child: Container(
-                            width: MediaQuery.of(context).size.width * 0.15,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                HeadingTextWidget(title: 'To',fontSize: 14,fontWeight: FontWeight.bold,),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                SubHeadingTextWidget(
-                                    title: "City,address,hotel,airport.."),
-                              ],
-                            ),
-                          ),
-                        ) : InkWell(
-                          onTap: (){
-                            toBottomSheet(context, controller);
-                          },
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                HeadingTextWidget(title: 'To'),
-                                Flexible(child: SubHeadingTextWidget(title: controller.state.returnPlace.value,)),
-                              ],
-                            ),
-                          ),
-                        ),
-                        // SizedBox(
-                        //   width: 50,
-                        // ),
-
-                        // SizedBox(
-                        //   width: 30,
-                        // ),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: InkWell(
-                            onTap: (){
-                              if(controller.state.fromAddressSelected.value==true &&
-                                  controller.state.toAddressSelected.value==true&&
-                                  controller.state.timeandDateSelected.value==true
-                              ){
-                                controller.moveToSelectVehicleScreen();
-                              }else{
-                                Snackbar.showSnackBar('YB-Ride', "Select All Information", Icons.error_outline);
-                              }
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(100),
-                                  // color: Colors.grey.withOpacity(.1),
-                              color: AppColors.buttonColor
-                              ),
-                              height: 60,
-                              width: 100,
-                              child: Center(
-                                  child: HeadingTextWidget(title: 'GO',textColor: Colors.white,)),
-                            ),
-                          ),
-                        )
-                      ],
+          SizedBox(
+            height: 20,
+          ),
+          Obx(() {
+            return controller.state.timeandDateSelected.value == true
+                ? Container(
+                    height: 80,
+                    width: 700,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: Colors.white,
                     ),
-                  ),
-                ),
-              ),
-            ) : Container();
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 15, horizontal: 25),
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              // where widgets
+                              controller.state.selectedPlace.value ==
+                                      'Tap to Search'
+                                  ? Expanded(
+                                    child: InkWell(
+                                        onTap: () {
+                                          whereBottomSheet(context, controller);
+                                        },
+                                        child: Container(
+                                          width:
+                                              MediaQuery.of(context).size.width *
+                                                  0.10,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              HeadingTextWidget(
+                                                title: 'Where',
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                              SizedBox(
+                                                height: 5,
+                                              ),
+                                              SubHeadingTextWidget(
+                                                  title:
+                                                      "City,address,hotel,airport..",
+                                                fontSize: 11,textColor: Colors.grey,maxLines: 3,overflow: TextOverflow.ellipsis,
+
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                  )
+                                  : Expanded(
+                                    child: InkWell(
+                                        onTap: () {
+                                          whereBottomSheet(context, controller);
+                                        },
+                                        child: Center(
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              HeadingTextWidget(title: 'Where',fontSize: 13,),
+                                              SizedBox(
+                                                height: 5,
+                                              ),
+                                              Flexible(
+                                                  child: SubHeadingTextWidget(
+                                                title: controller
+                                                    .state.selectedPlace.value,
+                                                    fontSize: 11,maxLines: 1,overflow: TextOverflow.ellipsis,textColor: Colors.grey,
+                                              )),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                  ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              HeadingTextWidget(
+                                  title: '|',
+                                  textColor: Colors.black54,
+                                  fontSize: 50,
+                                  fontWeight: FontWeight.w100),
+
+                              Expanded(
+                                child: controller.state.returnPlace.value ==
+                                        'Return Place'
+                                    ? InkWell(
+                                        onTap: () {
+                                          toBottomSheet(context, controller);
+                                        },
+                                        child: Container(
+                                          width:
+                                              MediaQuery.of(context).size.width *
+                                                  0.10,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              HeadingTextWidget(
+                                                title: 'To',
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                              SizedBox(
+                                                height: 5,
+                                              ),
+                                              SubHeadingTextWidget(
+                                                  title:
+                                                      "City,address,hotel,airport..",fontSize: 11,textColor: Colors.grey,maxLines: 1,overflow: TextOverflow.ellipsis,),
+                                            ],
+                                          ),
+                                        ),
+                                      )
+                                    : InkWell(
+                                        onTap: () {
+                                          toBottomSheet(context, controller);
+                                        },
+                                        child: Center(
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              HeadingTextWidget(title: 'To',
+                                              fontSize: 13,),
+                                              SizedBox(
+                                                height: 5,
+                                              ),
+                                              Flexible(
+                                                  child: SubHeadingTextWidget(
+                                                title: controller
+                                                    .state.returnPlace.value,
+                                                    fontSize: 11,textColor: Colors.grey,maxLines: 1,overflow: TextOverflow.ellipsis,
+                                              )),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                              ),
+                              HeadingTextWidget(
+                                  title: '|',
+                                  textColor: Colors.black54,
+                                  fontSize: 50,
+                                  fontWeight: FontWeight.w100),
+                              SizedBox(
+                                width: 10,
+                              ),
+
+                              Expanded(
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: InkWell(
+                                    onTap: () {
+                                      if (controller.state.fromAddressSelected
+                                                  .value ==
+                                              true &&
+                                          controller.state.toAddressSelected
+                                                  .value ==
+                                              true &&
+                                          controller.state.timeandDateSelected
+                                                  .value ==
+                                              true) {
+                                        controller.moveToSelectVehicleScreen();
+                                      } else {
+                                        Snackbar.showSnackBar(
+                                            'YB-Ride',
+                                            "Select All Information",
+                                            Icons.error_outline);
+                                      }
+                                    },
+                                    child: Container(
+                                      height:70,
+                                      width:130,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          // color: Colors.grey.withOpacity(.1),
+                                          color:
+                                          controller.state.fromAddressSelected
+                                              .value ==
+                                              true &&
+                                              controller.state.toAddressSelected
+                                                  .value ==
+                                                  true &&
+                                              controller.state.timeandDateSelected
+                                                  .value ==
+                                                  true ?
+                                          AppColors.buttonColor : Colors.grey.withOpacity(.5),),
+                                      child: Center(
+                                          child: HeadingTextWidget(
+                                        title: 'GO',
+                                        fontSize: 10,
+                                        textColor: Colors.white,
+                                      )),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                : Container();
           })
         ],
       ),
@@ -297,168 +403,185 @@ Widget HomePageWidget(BuildContext context, HomePageCon controller) {
   );
 }
 
-Widget HomePageWidgetMediumScreen(BuildContext context,HomePageCon controller) {
+Widget HomePageWidgetMediumScreen(
+    BuildContext context, HomePageCon controller) {
   // controller.getCurrentDate();
   final state = HomePageState();
-  state.pickupController.addListener(() {
-    if (state.pickupController.text.trim().isNotEmpty) {
-      state.isButtonVisible.value = true;
-    } else {
-      state.isButtonVisible.value = false;
-    }
-  },
+  state.pickupController.addListener(
+    () {
+      if (state.pickupController.text.trim().isNotEmpty) {
+        state.isButtonVisible.value = true;
+      } else {
+        state.isButtonVisible.value = false;
+      }
+    },
   );
 
-  return Obx((){
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              // color: Colors.blue,
-                borderRadius: BorderRadius.all(Radius.circular(15)),
-                image: DecorationImage(
-                    image: AssetImage('assets/images/homePage.webp'),
-                    fit: BoxFit.fill)),
-            height: 350,
-            // width: 800,
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          HeadingTextWidget(
-            title: 'Rental Cars, Your-Way.',
-            fontWeight: FontWeight.bold,
-            fontSize: 30,
-            textColor: Colors.black,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          SubHeadingTextWidget(title: 'New clean cars, No lines or paperwork.'),
-          SizedBox(
-            height: 15,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: InkWell(
-                  onTap: (){
-                    rangePicker(context, controller);
-                  },
-                  child: Container(
-                    height: 50,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: AppColors.buttonColor)
-                    ),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: controller.state.timeandDateSelected.value==true? SubHeadingTextWidget(title: "${controller.state.fromMonthName.value} ${controller.state.fromDate.value}, ${controller.state.fromTime.value}") : SubHeadingTextWidget(title: "Select Start Date"),
+  return Obx(
+    () {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                  // color: Colors.blue,
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                  image: DecorationImage(
+                      image: AssetImage('assets/images/homePage.webp'),
+                      fit: BoxFit.fill)),
+              height: 350,
+              // width: 800,
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            HeadingTextWidget(
+              title: 'Rental Cars, Your-Way.',
+              fontWeight: FontWeight.bold,
+              fontSize: 30,
+              textColor: Colors.black,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            SubHeadingTextWidget(
+                title: 'New clean cars, No lines or paperwork.'),
+            SizedBox(
+              height: 15,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      rangePicker(context, controller);
+                    },
+                    child: Container(
+                      height: 50,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: AppColors.buttonColor)),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: controller.state.timeandDateSelected.value ==
+                                true
+                            ? SubHeadingTextWidget(
+                                title:
+                                    "${controller.state.fromMonthName.value} ${controller.state.fromDate.value}, ${controller.state.fromTime.value}")
+                            : SubHeadingTextWidget(title: "Select Start Date"),
+                      ),
                     ),
                   ),
-                ),),
-              SizedBox(
-                width: 10,
-              ),
-              Expanded(
-                child: InkWell(
-                  onTap: (){
-                    rangePicker(context, controller);
-                  },
-                  child: Container(
-                    height: 50,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: AppColors.buttonColor)
-                    ),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: controller.state.timeandDateSelected.value==true?SubHeadingTextWidget(title: "${controller.state.toMonthName.value} ${controller.state.toDate.value}, ${controller.state.toTime.value}") : SubHeadingTextWidget(title: 'Select End Date')
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      rangePicker(context, controller);
+                    },
+                    child: Container(
+                      height: 50,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: AppColors.buttonColor)),
+                      child: Align(
+                          alignment: Alignment.center,
+                          child: controller.state.timeandDateSelected.value ==
+                                  true
+                              ? SubHeadingTextWidget(
+                                  title:
+                                      "${controller.state.toMonthName.value} ${controller.state.toDate.value}, ${controller.state.toTime.value}")
+                              : SubHeadingTextWidget(title: 'Select End Date')),
                     ),
                   ),
-                ),),
-            ],
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          controller.state.timeandDateSelected.value==true ? InkWell(
-            onTap: (){
-              whereBottomSheet(context, controller);
-            },
-            child: Container(
-              height: 50,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: AppColors.buttonColor)
-              ),
-              child: Padding(
-                padding:  EdgeInsets.only(left:10),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(controller.state.selectedPlace.value.toString()),
                 ),
-              ),
+              ],
             ),
-          ) : Container(),
-          // reuseAbleTextField(state.pickupController, 'PickUp', TextInputType.text,
-          //     TextInputAction.next),
-          SizedBox(
-            height: 15,
-          ),
-          controller.state.timeandDateSelected.value==true ? InkWell(
-            onTap: (){
-              toBottomSheet(context, controller);
-            },
-            child: Container(
-              height: 50,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: AppColors.buttonColor)
-              ),
-              child: Padding(
-                padding:  EdgeInsets.only(left:10),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(controller.state.returnPlace.value.toString()),
-                ),
-              ),
+            SizedBox(
+              height: 10,
             ),
-          ) : Container(),
-          SizedBox(
-            height: 15,
-          ),
+            controller.state.timeandDateSelected.value == true
+                ? InkWell(
+                    onTap: () {
+                      whereBottomSheet(context, controller);
+                    },
+                    child: Container(
+                      height: 50,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: AppColors.buttonColor)),
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 10),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                              controller.state.selectedPlace.value.toString()),
+                        ),
+                      ),
+                    ),
+                  )
+                : Container(),
+            // reuseAbleTextField(state.pickupController, 'PickUp', TextInputType.text,
+            //     TextInputAction.next),
+            SizedBox(
+              height: 15,
+            ),
+            controller.state.timeandDateSelected.value == true
+                ? InkWell(
+                    onTap: () {
+                      toBottomSheet(context, controller);
+                    },
+                    child: Container(
+                      height: 50,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: AppColors.buttonColor)),
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 10),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                              controller.state.returnPlace.value.toString()),
+                        ),
+                      ),
+                    ),
+                  )
+                : Container(),
+            SizedBox(
+              height: 15,
+            ),
 
-
-          SizedBox(
-            height: 15,
-          ),
-          controller.state.timeandDateSelected.value==true? RoundButton(title: 'GO', onPress: () {
-            if(controller.state.fromAddressSelected.value==true &&
-                controller.state.toAddressSelected.value==true&&
-                controller.state.timeandDateSelected.value==true
-            ){
-              controller.moveToSelectVehicleScreen();
-            }else{
-              Snackbar.showSnackBar('YB-Ride', "Select All Information", Icons.error_outline);
-            }
-          } ): Container(),
-        ],
-      ),
-    );
-  },);
+            SizedBox(
+              height: 15,
+            ),
+            controller.state.timeandDateSelected.value == true
+                ? RoundButton(
+                    title: 'GO',
+                    onPress: () {
+                      if (controller.state.fromAddressSelected.value == true &&
+                          controller.state.toAddressSelected.value == true &&
+                          controller.state.timeandDateSelected.value == true) {
+                        controller.moveToSelectVehicleScreen();
+                      } else {
+                        Snackbar.showSnackBar('YB-Ride',
+                            "Select All Information", Icons.error_outline);
+                      }
+                    })
+                : Container(),
+          ],
+        ),
+      );
+    },
+  );
 }
-
-
-
 
 // Smal Address Widget
 Widget HomePageWidgetSmallScreen(BuildContext context, HomePageCon controller) {
-
   final state = controller.state;
   state.pickupController.addListener(() {
     if (state.pickupController.text.trim().isNotEmpty) {
@@ -468,7 +591,7 @@ Widget HomePageWidgetSmallScreen(BuildContext context, HomePageCon controller) {
     }
   });
 
-  return Obx((){
+  return Obx(() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Column(
@@ -477,7 +600,7 @@ Widget HomePageWidgetSmallScreen(BuildContext context, HomePageCon controller) {
         children: [
           Container(
             decoration: BoxDecoration(
-              // color: Colors.blue,
+                // color: Colors.blue,
                 borderRadius: BorderRadius.all(Radius.circular(15)),
                 image: DecorationImage(
                     image: AssetImage('assets/images/homePage.webp'),
@@ -505,18 +628,21 @@ Widget HomePageWidgetSmallScreen(BuildContext context, HomePageCon controller) {
             children: [
               Expanded(
                 child: InkWell(
-                 onTap: (){
-                   rangePicker(context, controller);
-                 },
+                  onTap: () {
+                    rangePicker(context, controller);
+                  },
                   child: Container(
                     height: 50,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: AppColors.buttonColor)
-                    ),
+                        border: Border.all(color: AppColors.buttonColor)),
                     child: Align(
                       alignment: Alignment.center,
-                      child: controller.state.timeandDateSelected.value==true? SubHeadingTextWidget(title: "${controller.state.fromMonthName.value} ${controller.state.fromDate.value}, ${controller.state.fromTime.value}") : SubHeadingTextWidget(title: "Select Start Date"),
+                      child: controller.state.timeandDateSelected.value == true
+                          ? SubHeadingTextWidget(
+                              title:
+                                  "${controller.state.fromMonthName.value} ${controller.state.fromDate.value}, ${controller.state.fromTime.value}")
+                          : SubHeadingTextWidget(title: "Select Start Date"),
                     ),
                   ),
                 ),
@@ -526,19 +652,22 @@ Widget HomePageWidgetSmallScreen(BuildContext context, HomePageCon controller) {
               ),
               Expanded(
                 child: InkWell(
-    onTap: (){
-      rangePicker(context, controller);
-    },
-    child: Container(
+                  onTap: () {
+                    rangePicker(context, controller);
+                  },
+                  child: Container(
                     height: 50,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: AppColors.buttonColor)
-                    ),
+                        border: Border.all(color: AppColors.buttonColor)),
                     child: Align(
-                      alignment: Alignment.center,
-                        child: controller.state.timeandDateSelected.value==true?SubHeadingTextWidget(title: "${controller.state.toMonthName.value} ${controller.state.toDate.value}, ${controller.state.toTime.value}") : SubHeadingTextWidget(title: 'Select End Date')
-                    ),
+                        alignment: Alignment.center,
+                        child: controller.state.timeandDateSelected.value ==
+                                true
+                            ? SubHeadingTextWidget(
+                                title:
+                                    "${controller.state.toMonthName.value} ${controller.state.toDate.value}, ${controller.state.toTime.value}")
+                            : SubHeadingTextWidget(title: 'Select End Date')),
                   ),
                 ),
               ),
@@ -547,47 +676,51 @@ Widget HomePageWidgetSmallScreen(BuildContext context, HomePageCon controller) {
           SizedBox(
             height: 10,
           ),
-          controller.state.timeandDateSelected.value==true ? InkWell(
-            onTap: (){
-              whereBottomSheet(context, controller);
-            },
-            child: Container(
-              height: 50,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: AppColors.buttonColor)
-              ),
-              child: Padding(
-                padding:  EdgeInsets.only(left: 10),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(controller.state.selectedPlace.value.toString()),
-                ),
-              ),
-            ),
-          ) : Container(),
+          controller.state.timeandDateSelected.value == true
+              ? InkWell(
+                  onTap: () {
+                    whereBottomSheet(context, controller);
+                  },
+                  child: Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: AppColors.buttonColor)),
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 10),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                            controller.state.selectedPlace.value.toString()),
+                      ),
+                    ),
+                  ),
+                )
+              : Container(),
           SizedBox(
             height: 15,
           ),
-          controller.state.timeandDateSelected.value==true ? InkWell(
-            onTap: (){
-              toBottomSheet(context, controller);
-            },
-            child: Container(
-              height: 50,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: AppColors.buttonColor)
-              ),
-              child: Padding(
-                padding:  EdgeInsets.only(left: 10),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(controller.state.returnPlace.value.toString()),
-                ),
-              ),
-            ),
-          ) : Container(),
+          controller.state.timeandDateSelected.value == true
+              ? InkWell(
+                  onTap: () {
+                    toBottomSheet(context, controller);
+                  },
+                  child: Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: AppColors.buttonColor)),
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 10),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child:
+                            Text(controller.state.returnPlace.value.toString()),
+                      ),
+                    ),
+                  ),
+                )
+              : Container(),
           SizedBox(
             height: 15,
           ),
@@ -608,17 +741,20 @@ Widget HomePageWidgetSmallScreen(BuildContext context, HomePageCon controller) {
             height: 15,
           ),
 
-          controller.state.timeandDateSelected.value==true ? RoundButton(title: 'GO',
-              onPress: () {
-                if(controller.state.fromAddressSelected.value==true &&
-                    controller.state.toAddressSelected.value==true&&
-                    controller.state.timeandDateSelected.value==true
-                ){
-                  controller.moveToSelectVehicleScreen();
-                }else{
-                  Snackbar.showSnackBar('YB-Ride', "Select All Information", Icons.error_outline);
-                }
-              }) : Container(),
+          controller.state.timeandDateSelected.value == true
+              ? RoundButton(
+                  title: 'GO',
+                  onPress: () {
+                    if (controller.state.fromAddressSelected.value == true &&
+                        controller.state.toAddressSelected.value == true &&
+                        controller.state.timeandDateSelected.value == true) {
+                      controller.moveToSelectVehicleScreen();
+                    } else {
+                      Snackbar.showSnackBar('YB-Ride', "Select All Information",
+                          Icons.error_outline);
+                    }
+                  })
+              : Container(),
         ],
       ),
     );

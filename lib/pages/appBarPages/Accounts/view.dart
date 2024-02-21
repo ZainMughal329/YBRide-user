@@ -202,7 +202,7 @@ class AccountPage extends StatelessWidget {
 
       SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 20.0),
+          padding: EdgeInsets.symmetric(vertical: 20.0 , horizontal: 20),
           child: Center(
             child: StreamBuilder<DocumentSnapshot<Map<String,dynamic>>>(
               stream: APis.db.collection('web_users').doc(APis.auth.currentUser!.uid).snapshots(),
@@ -233,6 +233,8 @@ class AccountPage extends StatelessWidget {
                           con.NameDialogAlert(context, con.state.Name.value.toString(), snapshot.data!['id'].toString());
                         },
                         child: reusebaleTextFields(title: 'Name', iconData: Icons.percent_outlined, value: snapshot.data!['userName'].toString())),
+                    SizedBox(height: 20,),
+
                     reusebaleTextFields(title: 'Email', iconData: Icons.email_outlined, value: snapshot.data!['Email'].toString()),
 
                     SizedBox(height: 50,),
