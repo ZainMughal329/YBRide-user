@@ -5,16 +5,7 @@ import 'package:get/get.dart';
 import 'package:yb_ride_user_web/helper/AppConstants.dart';
 import 'package:yb_ride_user_web/helper/api.dart';
 import 'package:yb_ride_user_web/homePage/view.dart';
-<<<<<<< HEAD
 import 'package:yb_ride_user_web/sessions/signUp/view.dart';
-=======
-import 'package:yb_ride_user_web/pages/appBarPages/Accounts/view.dart';
-import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/SignUpForm.dart';
-import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/view.dart';
-import 'package:yb_ride_user_web/pages/appBarPages/FaqS/view.dart';
-import 'package:yb_ride_user_web/pages/appBarPages/Trips/view.dart';
-import 'package:yb_ride_user_web/sessions/login/view.dart';
->>>>>>> 7f2970417c730592e97274576b2247ed124bd9bf
 
 import 'checkOut/view.dart';
 
@@ -54,12 +45,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-<<<<<<< HEAD
   home: APis.auth.currentUser != null ? HomePage() : SignUpPages(),
       // home: PracticePAge(),
-=======
-  home: TripsPages(),
->>>>>>> 7f2970417c730592e97274576b2247ed124bd9bf
       // home: CheckOutPage(carType: 'SUV',carRent: 130,carPrice: 43,carDescription: 'Nessan Versa - 5 seats',),
     );
   }
