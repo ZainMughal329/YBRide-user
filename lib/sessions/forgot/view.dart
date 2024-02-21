@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:yb_ride_user_web/homePage/controller.dart';
 import 'package:yb_ride_user_web/sessions/forgot/controller.dart';
 import 'package:yb_ride_user_web/sessions/login/view.dart';
@@ -109,10 +110,10 @@ class ForgotPages extends StatelessWidget {
                     child: HeadingTextWidget(title: 'Forgot password?',textColor: AppColors.buttonColor,fontWeight: FontWeight.bold,fontSize: 14,)),
 
                 SizedBox(height: 24.0),
+                Obx(() => con.state.loading == false?
                 InkWell(
                   onTap: (){
-
-                    con.forgotPassword(context, con.state.email.text.trim().toString());
+                    con.forgotPassword(context, con.state.email.text.trim());
                   },
                   child: Container(
                     width: 400,
@@ -129,7 +130,7 @@ class ForgotPages extends StatelessWidget {
                       ),
                     ),
                   ),
-                ),
+                ):Lottie.asset('assets/lottie/loading2.json',height: 100,width: 100)),
                 SizedBox(height: 16.0),
                 Align(
                   alignment: Alignment.center,
@@ -143,7 +144,6 @@ class ForgotPages extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 16.0),
                 SizedBox(height: 16.0),
               ],
             ),

@@ -9,16 +9,24 @@ import 'package:yb_ride_user_web/sessions/login/view.dart';
 class forgotCon extends GetxController{
 
 final state = forgotState();
+void setLoading(bool value){
+  state.loading.value=value;
+}
   void forgotPassword(BuildContext context , String email)async{
+  setLoading(true);
     try{
       state.auth.sendPasswordResetEmail(email: email).then((value) {
+        setLoading(false);
         Get.to(()=>LoginPages());
+        // state.email.value.text.trim() ==null;
         Get.snackbar('Sucess','Check your email to recover your password',backgroundColor:Colors.white ,colorText: AppColors.buttonColor.withOpacity(.8));
 
       }).onError((error, stackTrace) {
+        setLoading(false);
         Get.snackbar('Error',error.toString(),backgroundColor:Colors.white ,colorText: AppColors.buttonColor.withOpacity(.8));
       });
     }catch(e){
+      setLoading(false);
       Get.snackbar('Error', e.toString(),backgroundColor:Colors.white ,colorText: AppColors.buttonColor.withOpacity(.8));
     }
 

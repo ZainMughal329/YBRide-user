@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
 import 'package:get/get.dart';
@@ -6,9 +7,12 @@ import 'package:yb_ride_user_web/helper/responsive.dart';
 import 'package:yb_ride_user_web/homePage/HomePageWidget/HomePage.dart';
 import 'package:yb_ride_user_web/pages/BostonPage/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/view.dart';
+import 'package:yb_ride_user_web/sessions/signUp/view.dart';
 import '../components/drwer.dart';
 import '../components/headingTextWidget.dart';
 import '../helper/appColors.dart';
+import '../helper/session_Controller.dart';
+import '../helper/show_progress_indicator.dart';
 import '../pages/CarsTypeWidget/carTypeWidget.dart';
 import '../pages/Footer/HomePageFooter.dart';
 import '../pages/RatingStarsWidget/ratingStarsWidget.dart';
@@ -124,8 +128,17 @@ class HomePage extends StatelessWidget {
               width: 20,
             ),
             GestureDetector(
-                onTap: () {
-                  con.state.auth.signOut();
+                onTap: () async {
+                  showProgressIndicator(context);
+                  Future.delayed(Duration(seconds: 3) , () async {
+                    await FirebaseAuth.instance.signOut().then((value) {
+
+                      SessionController().userId = '';
+                      Navigator.pop(context);
+                      Get.offAll(SignUpPages());
+                    });
+                  });
+
                 },
                 child: HeadingTextWidget(
                     title: 'Sign out',
@@ -181,7 +194,7 @@ class HomePage extends StatelessWidget {
                 child: AverageRentalCarMediumScreen(),
               )
                   : Padding(
-                padding: EdgeInsets.symmetric(horizontal: 120),
+                padding: EdgeInsets.symmetric(horizontal: 10),
                 child: AverageRentalCarSmallScreen(),
               ),
               SizedBox(

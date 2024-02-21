@@ -1,33 +1,55 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-class SurferModel {
+class DriverModel {
+  final String image;
+  final String name;
+  final String phone;
   String? id;
-  final String userName;
   final String email;
-  // final String password;
-  SurferModel({
+  final String pushToken;
+  final String dateTime;
+  final bool isApproved;
+  final String city;
+
+  DriverModel({
+    required this.image,
+    required this.name,
+    required this.phone,
     this.id = '',
-    required this.userName,
     required this.email,
-    // required this.password,
+    required this.pushToken,
+    required this.dateTime,
+    required this.isApproved,
+    required this.city,
   });
+
   toJson() {
     return {
-      'userName':userName,
       'id': id,
-      'Email': email,
-      // 'Password': password,
+      'image': image,
+      'phone': phone,
+      'name': name,
+      'email': email,
+      'pushToken' : pushToken,
+      'dateTime':dateTime,
+      'isApproved' : isApproved,
+      'city' : city,
     };
   }
-  factory SurferModel.fromSnapshot(
-      DocumentSnapshot<Map<String, dynamic>> documentSnapshot) {
-    final data = documentSnapshot.data()!;
-    return SurferModel(
-      userName: data['userName'],
-      id: data['id'],
-      email: data['Email'],
-      // password: data['Password'],
+
+  factory DriverModel.fromJson(
+      DocumentSnapshot<Map<String, dynamic>> snapshot,
+      ) {
+    final json = snapshot.data()!;
+    return DriverModel(
+      id: json["id"],
+      name: json["name"],
+      image: json["image"],
+      phone: json["phone"],
+      email: json["email"],
+      pushToken : json['pushToken'],
+      dateTime : json['dateTime'],
+      isApproved : json['isApproved'],
+      city : json['city'],
     );
   }
 }

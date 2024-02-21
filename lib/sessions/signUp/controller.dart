@@ -4,39 +4,113 @@ import 'package:get/get.dart';
 import 'package:yb_ride_user_web/helper/appColors.dart';
 import 'package:yb_ride_user_web/homePage/view.dart';
 import 'package:yb_ride_user_web/sessions/signUp/state.dart';
-
-import '../../checkOut/view.dart';
-import '../../components/snackbar_widget.dart';
 import '../../helper/api.dart';
 import '../../helper/session_Controller.dart';
-import '../../helper/show_progress_indicator.dart';
 import '../../model/userModel/user_model.dart';
 
 class signUpCon extends GetxController {
   final state = SignUpState();
 
-  void registerUserWithEmailAndPassword(
-      UserModel userinfo, String email, password, userName) async {
+  void setLoading(bool value) {
+    state.loading.value = value;
+  }
+
+  // void registerUserWithEmailAndPassword(
+  //     UserModel userinfo, String email, password,userName) async {
+  //   setLoading(true);
+  //   try {
+  //     bool userExists = await checkIfUserExists(email);
+  //     if(!userExists){
+  //       UserCredential userCredential = await state.auth.createUserWithEmailAndPassword(
+  //         email: email,
+  //         password: password,
+  //       );
+  //
+  //       userinfo.id = userCredential.user!.uid;
+  //       SessionController().userId = userCredential.user!.uid;
+  //       createUser(userinfo);
+  //       setLoading(false);
+  //     }else{
+  //       Get.snackbar(
+  //         'Error',
+  //         'User already exists',
+  //         backgroundColor: AppColors.buttonColor.withOpacity(.8),
+  //         colorText: Colors.white,
+  //       );
+  //     }
+  //
+  //     // var user = await state.auth
+  //     //     .createUserWithEmailAndPassword(email: email, password: password,
+  //     // )
+  //     //     .then((value) {
+  //     //   userinfo.id = state.auth.currentUser!.uid.toString();
+  //     //   SessionController().userId = APis.auth.currentUser!.uid.toString();
+  //     //   createUser(userinfo);
+  //     }).onError((error, stackTrace) {
+  //       setLoading(false);
+  //       Get.snackbar('Error',error.toString(),backgroundColor: AppColors.buttonColor.withOpacity(.8),colorText: Colors.white);
+  //     });
+  //   } on FirebaseAuthException catch (e) {
+  //     setLoading(false);
+  //     Get.snackbar('msg', e.toString(),backgroundColor:AppColors.buttonColor.withOpacity(.8) ,colorText: Colors.blueGrey.withOpacity(.8));
+  //   } catch (_) {
+  //     setLoading(false);
+  //   }
+  // }
+
+  Future<void> registerUserWithEmailAndPassword(UserModel userinfo,
+      String email, String password, String userName) async {
+    setLoading(true);
     try {
-      var user = await state.auth
-          .createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      )
-          .then((value) {
-        userinfo.id = state.auth.currentUser!.uid.toString();
-        SessionController().userId = APis.auth.currentUser!.uid.toString();
+      // Check if the user already exists in the "drivers" collection
+      bool userExists = await checkIfUserExists(email);
+
+      if (!userExists) {
+        // User does not exist, proceed with signup
+        UserCredential userCredential =
+            await state.auth.createUserWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
+
+        userinfo.id = userCredential.user!.uid;
+        SessionController().userId = userCredential.user!.uid;
         createUser(userinfo);
-      }).onError((error, stackTrace) {
-        Get.snackbar('Error', error.toString(),
-            backgroundColor: AppColors.buttonColor.withOpacity(.8),
-            colorText: Colors.white);
-      });
-    } on FirebaseAuthException catch (e) {
-      Get.snackbar('msg', e.toString(),
+
+        setLoading(false);
+      } else {
+        // User already exists, display error message
+        setLoading(false);
+        Get.snackbar(
+          'Error',
+          'User already exists',
           backgroundColor: AppColors.buttonColor.withOpacity(.8),
-          colorText: Colors.blueGrey.withOpacity(.8));
-    } catch (_) {}
+          colorText: Colors.white,
+        );
+      }
+    } catch (e) {
+      setLoading(false);
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: AppColors.buttonColor.withOpacity(.8),
+        colorText: Colors.white,
+      );
+    }
+  }
+
+  Future<bool> checkIfUserExists(String email) async {
+    try {
+      var snapshot = await APis.db
+          .collection('drivers')
+          .where('email', isEqualTo: email)
+          .get();
+      return snapshot.docs.isNotEmpty;
+    } catch (e) {
+      // Handle any errors
+      print(e);
+      return false;
+    }
   }
 
   createUser(UserModel user) async {

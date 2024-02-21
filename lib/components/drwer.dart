@@ -1,9 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:yb_ride_user_web/components/subHeadingText.dart';
+import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/view.dart';
+import 'package:yb_ride_user_web/pages/appBarPages/FaqS/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Trips/view.dart';
+import 'package:yb_ride_user_web/sessions/signUp/view.dart';
 
+import '../helper/session_Controller.dart';
+import '../helper/show_progress_indicator.dart';
 import '../pages/appBarPages/Accounts/view.dart';
 import '../pages/appBarPages/Referrals/view.dart';
 
@@ -38,7 +44,10 @@ class BuildDrawer {
             ),
             InkWell(
               onTap: () {
+
                 Navigator.pop(context);
+                Get.to(()=>BecomeDriverPage());
+
               },
               child: Text(
                 'Become a Driver Partner',
@@ -55,7 +64,7 @@ class BuildDrawer {
             InkWell(
               onTap: () {
                 Navigator.pop(context);
-                Get.to(()=>AccountPage());
+                Get.to(()=>FaqPage());
               },
               child: Text(
                 'FAQ',
@@ -72,6 +81,8 @@ class BuildDrawer {
             InkWell(
               onTap: () {
                 Navigator.pop(context);
+                Get.to(()=>AccountPage());
+
               },
               child: Text(
                 'Settings',
@@ -122,6 +133,7 @@ class BuildDrawer {
             InkWell(
               onTap: () {
                 Navigator.pop(context);
+                Get.to(()=>FaqPage());
               },
               child: Text(
                 'Get Help',
@@ -136,8 +148,17 @@ class BuildDrawer {
               height: 10,
             ),
             InkWell(
-              onTap: () {
-                Navigator.pop(context);
+              onTap: () async {
+                showProgressIndicator(context);
+                Future.delayed(Duration(seconds: 3) , () async {
+                  await FirebaseAuth.instance.signOut().then((value) {
+
+                    SessionController().userId = '';
+                    Navigator.pop(context);
+                    Get.offAll(SignUpPages());
+                  });
+                });
+
               },
               child: Text(
                 'SignOut',
