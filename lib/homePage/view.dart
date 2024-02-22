@@ -280,7 +280,7 @@ class HomePage extends StatelessWidget {
               ),
               InkWell(
                 onTap: (){
-                  Get.to(()=>BostonPage());
+                  Get.to(()=>HomePage());
                 },
                 child: SubHeadingTextWidget(
                   title: 'BOSTON',
