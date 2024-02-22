@@ -102,19 +102,7 @@ class HomePage extends StatelessWidget {
                   fontSize: 14,
                   fontWeight: FontWeight.normal,
                 )),
-            SizedBox(
-              width: 20,
-            ),
-            InkWell(
-                onTap: () {
-                  Get.to(() => ReferralPage());
-                },
-                child: HeadingTextWidget(
-                  title: 'Referrals',
-                  textColor: AppColors.appBarTextColor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.normal,
-                )),
+
             SizedBox(
               width: 20,
             ),
@@ -292,7 +280,7 @@ class HomePage extends StatelessWidget {
               ),
               InkWell(
                 onTap: (){
-                  Get.to(()=>BostonPage());
+                  Get.to(()=>HomePage());
                 },
                 child: SubHeadingTextWidget(
                   title: 'BOSTON',

@@ -25,7 +25,7 @@ Widget CarTypes(){
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CardWidget(image: 'assets/images/mobile.webp', heading: 'Sedan',
+            CardWidget(image: 'assets/personCar1.jpeg', heading: 'Sedan',
               subHeading: 'Chevrolet Malibu or similar',),
 
           ],)),
@@ -43,7 +43,7 @@ Widget CarTypes(){
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CardWidget(image: 'assets/images/mobile.webp', heading: 'Premium',
+            CardWidget(image: 'assets/personCar2.jpg', heading: 'Premium',
               subHeading: 'Audi Q3 or similar',),
 
           ],)),
@@ -74,7 +74,7 @@ Widget CarTypesMediumScreen(){
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CardWidget(image: 'assets/images/mobile.webp', heading: 'Sedan',
+              CardWidget(image: 'assets/personCar1.jpeg', heading: 'Sedan',
                 subHeading: 'Chevrolet Malibu or similar',),
 
             ],),
@@ -92,7 +92,7 @@ Widget CarTypesMediumScreen(){
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CardWidget(image: 'assets/images/mobile.webp', heading: 'Premium',
+              CardWidget(image: 'assets/personCar2.jpg', heading: 'Premium',
                 subHeading: 'Audi Q3 or similar',),
 
             ],),
