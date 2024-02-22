@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:card_swiper/card_swiper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -13,6 +14,9 @@ import '../../../components/drwer.dart';
 import '../../../components/headingTextWidget.dart';
 import '../../../components/subHeadingText.dart';
 import '../../../helper/appColors.dart';
+import '../../../helper/session_Controller.dart';
+import '../../../helper/show_progress_indicator.dart';
+import '../../../sessions/signUp/view.dart';
 import '../Accounts/view.dart';
 import '../Become_Driver/view.dart';
 import '../FaqS/view.dart';
@@ -63,110 +67,112 @@ class TripsPages extends StatelessWidget {
         backgroundColor: Color.fromRGBO(255, 255, 255, 1),
         // scrolledUnderElevation: 1,
         leading: Container(),
-        title: HeadingTextWidget(
-          title: 'YBRide',
-          fontWeight: FontWeight.bold,
-          fontSize: 30,
+        title: Padding(
+          padding: EdgeInsets.only(left: 20),
+          child: HeadingTextWidget(
+            title: 'YBRide',
+            fontWeight: FontWeight.bold,
+            fontSize: 30,
+          ),
         ),
         actions: ResponsiveWidget.isLargeScreen(context)
             ? [
-                InkWell(
-                  onTap: () {
-                    Get.to(() => BecomeDriverPage());
-                  },
-                  child: HeadingTextWidget(
-                      title: 'Become a driver partner',
-                      textColor: AppColors.appBarTextColor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal),
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                HeadingTextWidget(
-                    title: '|',
-                    textColor: AppColors.appBarTextColor,
-                    fontSize: 14,
-                    fontWeight: FontWeight.normal),
-                SizedBox(
-                  width: 20,
-                ),
-                InkWell(
-                  onTap: () {
-                    Get.to(() => FaqPage());
-                  },
-                  child: HeadingTextWidget(
-                      title: 'FAQ',
-                      textColor: AppColors.appBarTextColor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal),
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                InkWell(
-                    onTap: () {
-                      Get.to(() => AccountPage());
-                    },
-                    child: HeadingTextWidget(
-                      title: 'Account',
-                      textColor: AppColors.appBarTextColor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal,
-                    )),
-                SizedBox(
-                  width: 20,
-                ),
-                InkWell(
-                    onTap: () {
-                      Get.to(() => ReferralPage());
-                    },
-                    child: HeadingTextWidget(
-                      title: 'Referrals',
-                      textColor: AppColors.appBarTextColor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal,
-                    )),
-                SizedBox(
-                  width: 20,
-                ),
-                InkWell(
-                    onTap: () {
-                      Get.to(() => TripsPages());
-                    },
-                    child: HeadingTextWidget(
-                        title: 'My Trips',
-                        textColor: AppColors.appBarTextColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal)),
-                SizedBox(
-                  width: 20,
-                ),
-                InkWell(
-                    onTap: () {},
-                    child: HeadingTextWidget(
-                        title: 'Sign out',
-                        textColor: AppColors.appBarTextColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal)),
-                SizedBox(
-                  width: 30,
-                ),
-              ]
+          InkWell(
+            onTap: () {
+              Get.to(() => BecomeDriverPage());
+            },
+            child: HeadingTextWidget(
+                title: 'Become a driver partner',
+                textColor: AppColors.appBarTextColor,
+                fontSize: 14,
+                fontWeight: FontWeight.normal),
+          ),
+          SizedBox(
+            width: 20,
+          ),
+          HeadingTextWidget(
+              title: '|',
+              textColor: AppColors.appBarTextColor,
+              fontSize: 14,
+              fontWeight: FontWeight.normal),
+          SizedBox(
+            width: 20,
+          ),
+          InkWell(
+            onTap: () {
+              Get.to(() => FaqPage());
+            },
+            child: HeadingTextWidget(
+                title: 'FAQ',
+                textColor: AppColors.appBarTextColor,
+                fontSize: 14,
+                fontWeight: FontWeight.normal),
+          ),
+          SizedBox(
+            width: 20,
+          ),
+          InkWell(
+              onTap: () {
+                Get.to(() => AccountPage());
+              },
+              child: HeadingTextWidget(
+                title: 'Account',
+                textColor: AppColors.appBarTextColor,
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+              )),
+
+          SizedBox(
+            width: 20,
+          ),
+          InkWell(
+              onTap: () {
+                Get.to(() => TripsPages());
+              },
+              child: HeadingTextWidget(
+                  title: 'My Trips',
+                  textColor: AppColors.appBarTextColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal)),
+          SizedBox(
+            width: 20,
+          ),
+          GestureDetector(
+              onTap: () async {
+                showProgressIndicator(context);
+                Future.delayed(Duration(seconds: 3) , () async {
+                  await FirebaseAuth.instance.signOut().then((value) {
+
+                    SessionController().userId = '';
+                    Navigator.pop(context);
+                    Get.offAll(SignUpPages());
+                  });
+                });
+
+              },
+              child: HeadingTextWidget(
+                  title: 'Sign out',
+                  textColor: AppColors.appBarTextColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal)),
+          SizedBox(
+            width: 30,
+          ),
+        ]
             : [
-                IconButton(
-                  onPressed: () {
-                    _scaffoldKey.currentState!.openDrawer();
-                  },
-                  icon: Icon(
-                    Icons.menu,
-                    color: Colors.grey,
-                  ),
-                ),
-                SizedBox(
-                  width: 30,
-                ),
-              ],
+          IconButton(
+            onPressed: () {
+              _scaffoldKey.currentState!.openDrawer();
+            },
+            icon: Icon(
+              Icons.menu,
+              color: Colors.grey,
+            ),
+          ),
+          SizedBox(
+            width: 30,
+          ),
+        ],
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: APis.db.collection('all_bookings').snapshots(),

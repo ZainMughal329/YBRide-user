@@ -1,5 +1,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,6 +16,9 @@ import '../../../components/drwer.dart';
 import '../../../components/headingTextWidget.dart';
 import '../../../helper/api.dart';
 import '../../../helper/responsive.dart';
+import '../../../helper/session_Controller.dart';
+import '../../../helper/show_progress_indicator.dart';
+import '../../../sessions/signUp/view.dart';
 import '../Become_Driver/view.dart';
 import '../FaqS/view.dart';
 import '../Referrals/view.dart';
@@ -40,11 +44,15 @@ class AccountPage extends StatelessWidget {
         // scrolledUnderElevation: 1,
         leading: Container(),
         title: Padding(
-          padding:  EdgeInsets.only(left: 20),
-          child: HeadingTextWidget(title:'YBRide',fontWeight: FontWeight.bold,fontSize:30 ,),
+          padding: EdgeInsets.only(left: 20),
+          child: HeadingTextWidget(
+            title: 'YBRide',
+            fontWeight: FontWeight.bold,
+            fontSize: 30,
+          ),
         ),
         actions: ResponsiveWidget.isLargeScreen(context)
-            ?  [
+            ? [
           InkWell(
             onTap: () {
               Get.to(() => BecomeDriverPage());
@@ -89,19 +97,7 @@ class AccountPage extends StatelessWidget {
                 fontSize: 14,
                 fontWeight: FontWeight.normal,
               )),
-          SizedBox(
-            width: 20,
-          ),
-          InkWell(
-              onTap: () {
-                Get.to(() => ReferralPage());
-              },
-              child: HeadingTextWidget(
-                title: 'Referrals',
-                textColor: AppColors.appBarTextColor,
-                fontSize: 14,
-                fontWeight: FontWeight.normal,
-              )),
+
           SizedBox(
             width: 20,
           ),
@@ -118,7 +114,17 @@ class AccountPage extends StatelessWidget {
             width: 20,
           ),
           GestureDetector(
-              onTap: () {
+              onTap: () async {
+                showProgressIndicator(context);
+                Future.delayed(Duration(seconds: 3) , () async {
+                  await FirebaseAuth.instance.signOut().then((value) {
+
+                    SessionController().userId = '';
+                    Navigator.pop(context);
+                    Get.offAll(SignUpPages());
+                  });
+                });
+
               },
               child: HeadingTextWidget(
                   title: 'Sign out',
@@ -128,7 +134,8 @@ class AccountPage extends StatelessWidget {
           SizedBox(
             width: 30,
           ),
-        ] :[
+        ]
+            : [
           IconButton(
             onPressed: () {
               _scaffoldKey.currentState!.openDrawer();
