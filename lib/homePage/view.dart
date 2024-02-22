@@ -102,19 +102,7 @@ class HomePage extends StatelessWidget {
                   fontSize: 14,
                   fontWeight: FontWeight.normal,
                 )),
-            SizedBox(
-              width: 20,
-            ),
-            InkWell(
-                onTap: () {
-                  Get.to(() => ReferralPage());
-                },
-                child: HeadingTextWidget(
-                  title: 'Referrals',
-                  textColor: AppColors.appBarTextColor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.normal,
-                )),
+
             SizedBox(
               width: 20,
             ),

@@ -32,7 +32,7 @@ Widget firstPageWidget(){
             ],
           )),
           Expanded(child: Image(
-            image: AssetImage('assets/images/become_driver.png'),height: 350,width: 350,
+            image: AssetImage('assets/BecomeDriverMainPage2.webp'),height: 350,width: 350,
           ))
         ],
       ),
@@ -55,7 +55,7 @@ Widget firstPageWidgetSmall(){
         SizedBox(height: 12,),
         SubHeadingTextWidget(title: "Takes less than 5 minutes!",fontSize: 13,),
         Image(
-          image: AssetImage('assets/images/become_driver.png'),height: 300,width: 300,
+          image: AssetImage('assets/BecomeDriverMainPage2.webp'),height: 300,width: 300,
         )
       ],
     );

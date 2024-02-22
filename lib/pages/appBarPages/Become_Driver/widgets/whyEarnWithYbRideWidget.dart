@@ -15,7 +15,7 @@ Widget WhyEarnWithYBRide(){
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              CardWidget(image: 'assets/images/cars.webp',
+              CardWidget(image: 'assets/yellowCar.jpg',
                 heading: 'Earn More, Quickly',
                 subHeading: 'With YBRide, you can complete up to 12 trips per day! Earn more per trip, our rates are above industry average.',),
 
@@ -25,7 +25,7 @@ Widget WhyEarnWithYBRide(){
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              CardWidget(image: 'assets/images/mobile.webp',
+              CardWidget(image: 'assets/greyCar.png',
                 heading: 'No Car Needed',
                 subHeading: "Forget about maintenance costs with a personal vehicle. With YBRide, you don't need a car to start earning!",),
 
@@ -36,7 +36,7 @@ Widget WhyEarnWithYBRide(){
             crossAxisAlignment: CrossAxisAlignment.center,
 
             children: [
-              CardWidget(image: 'assets/images/Couple.webp',
+              CardWidget(image: 'assets/whiteCar.jpg',
                 heading: 'Plan Your Trips Ahead',
                 subHeading: "Select trips and plan your schedule a week in advance to secure your earnings! ",),
             ],)),
@@ -53,15 +53,15 @@ Widget WhyEarnWithYBRideSmall(){
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          CardWidgetSmall(image: 'assets/images/cars.webp',
+          CardWidgetSmall(image: 'assets/yellowCar.jpg',
             heading: 'Earn More, Quickly',
             subHeading: 'With YBRide, you can complete up to 12 trips per day! Earn more per trip, our rates are above industry average.',),
           SizedBox(height: 30,),
-          CardWidgetSmall(image: 'assets/images/mobile.webp',
+          CardWidgetSmall(image: 'assets/greyCar.png',
             heading: 'No Car Needed',
             subHeading: "Forget about maintenance costs with a personal vehicle. With YBRide, you don't need a car to start earning!",),
           SizedBox(height: 30,),
-          CardWidgetSmall(image: 'assets/images/Couple.webp',
+          CardWidgetSmall(image: 'assets/whiteCar.jpg',
             heading: 'Plan Your Trips Ahead',
             subHeading: "Select trips and plan your schedule a week in advance to secure your earnings! ",),
         ],

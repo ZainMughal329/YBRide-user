@@ -30,7 +30,7 @@ Widget HoeItWorks(){
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    CardWidget(image: 'assets/images/cars.webp',
+                    CardWidget(image: 'assets/goldenCar.jpg',
                       subHeading: 'Earn when you choose. Easily select trips based on time, location and earnings amount.',),
 
                   ],)),
@@ -39,7 +39,7 @@ Widget HoeItWorks(){
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    CardWidget(image: 'assets/images/mobile.webp',
+                    CardWidget(image: 'assets/purpleCar1.webp',
                       subHeading: "Start by delivering a car from our lot or by picking up a car at a customer's address.",),
 
                   ],)),
@@ -49,7 +49,7 @@ Widget HoeItWorks(){
                   crossAxisAlignment: CrossAxisAlignment.center,
 
                   children: [
-                    CardWidget(image: 'assets/images/Couple.webp',
+                    CardWidget(image: 'assets/blueCar.jpg',
                       subHeading: "End by delivering the car to the customer or returning a car to our lot. It's easy!",),
                   ],)),
               ],
@@ -83,13 +83,13 @@ Widget HoeItWorksSmall(){
             SizedBox(height: 50,),
             HeadingTextWidget(title: 'How it Works',fontWeight: FontWeight.bold,fontSize: 20,),
             SizedBox(height: 70,),
-            CardWidgetSmall(image: 'assets/images/cars.webp',
+            CardWidgetSmall(image: 'assets/goldenCar.jpg',
               subHeading: 'Earn when you choose. Easily select trips based on time, location and earnings amount.',),
             SizedBox(height: 30,),
-            CardWidgetSmall(image: 'assets/images/mobile.webp',
+            CardWidgetSmall(image: 'assets/purpleCar1.webp',
               subHeading: "Start by delivering a car from our lot or by picking up a car at a customer's address.",),
             SizedBox(height: 30,),
-            CardWidgetSmall(image: 'assets/images/Couple.webp',
+            CardWidgetSmall(image: 'assets/blueCar.jpg',
               subHeading: "End by delivering the car to the customer or returning a car to our lot. It's easy!",),
             SizedBox(height: 50,),
             reuseableButton('SignUp Now', () {

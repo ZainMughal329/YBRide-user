@@ -18,7 +18,7 @@ Widget AverageRentalCar() {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CardLargeWidget(
-              image: 'assets/images/cars.webp',
+              image: 'assets/personCar.jpeg',
               heading: 'Brand new cars',
               subHeading:
                   'Drive a clean, professionally maintained car that we’ve purchased brand new from manufacturers.',
@@ -75,7 +75,7 @@ Widget AverageRentalCarMediumScreen() {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CardWidget(
-                image: 'assets/images/cars.webp',
+                image: 'assets/personCar.jpeg',
                 heading: 'Brand new cars',
                 subHeading:
                     'Drive a clean, professionally maintained car that we’ve purchased brand new from manufacturers.',
@@ -130,7 +130,7 @@ Widget AverageRentalCarSmallScreen() {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CardWidget(
-              image: 'assets/images/cars.webp',
+              image: 'assets/personCar.jpeg',
               heading: 'Brand new cars',
               subHeading:
                   'Drive a clean, professionally maintained car that we’ve purchased brand new from manufacturers.',
