@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:yb_ride_user_web/checkOut/Widget/payment/payment_details_sheet.dart';
+import 'package:yb_ride_user_web/checkOut/Widget/payment_con.dart';
 import 'package:yb_ride_user_web/checkOut/controller.dart';
 import 'package:yb_ride_user_web/components/reuseableButton.dart';
 import 'package:yb_ride_user_web/components/snackbar_widget.dart';
@@ -539,6 +540,8 @@ class CheckOutPage extends StatelessWidget {
                                 padding: EdgeInsets.symmetric(vertical: 10 , horizontal: 40),
                                 child: InkWell(
                                   onTap: (){
+                                    final contt = Get.put(PaymentController());
+                                    contt.createPaymentIntent();
                                     Snackbar.showSnackBar('YB-Ride', 'All fields must be filled', Icons.error);
                                   },
                                   borderRadius:  BorderRadius.circular(5),

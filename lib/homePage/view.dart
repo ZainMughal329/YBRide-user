@@ -8,6 +8,7 @@ import 'package:yb_ride_user_web/homePage/HomePageWidget/HomePage.dart';
 import 'package:yb_ride_user_web/pages/BostonPage/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/view.dart';
 import 'package:yb_ride_user_web/sessions/signUp/view.dart';
+import '../checkOut/Widget/payment_con.dart';
 import '../components/drwer.dart';
 import '../components/headingTextWidget.dart';
 import '../helper/appColors.dart';
@@ -58,6 +59,8 @@ class HomePage extends StatelessWidget {
             InkWell(
               onTap: () {
                 Get.to(() => BecomeDriverPage());
+                // final contt = Get.put(PaymentController());
+                // contt.sendPaymentRequest();
               },
               child: HeadingTextWidget(
                   title: 'Become a driver partner',
