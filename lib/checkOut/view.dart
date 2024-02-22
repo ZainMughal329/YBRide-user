@@ -630,7 +630,7 @@ class CheckOutPage extends StatelessWidget {
                           SubHeadingTextWidget(
                             title:
                                 'By continuing, you confirm that you have read and accepted the trip information',
-                            fontSize: 13,
+                            fontSize: 12,
                             textColor: Colors.black,
                           ),
                           SizedBox(
