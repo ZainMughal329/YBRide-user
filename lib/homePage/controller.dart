@@ -140,6 +140,7 @@ class HomePageCon extends GetxController{
 
 
       AppConstants.epochFromDate = startDateDay.millisecondsSinceEpoch.toString();
+      print('end date in function in epoch is:' +AppConstants.epochFromDate);
       state.fromDate.value = formattedDateDay;
       state.fromDateName.value = day;
       state.fromMonth.value = formattedDateMonth;
@@ -178,7 +179,7 @@ class HomePageCon extends GetxController{
           String formattedDateYear = DateFormat('yy').format(EndDateDay);
 
           AppConstants.epochToDate = EndDateDay.millisecondsSinceEpoch.toString();
-          print('end date:' + AppConstants.epochToDate,);
+          print('end date in function in epoch is:' + AppConstants.epochToDate,);
           state.toDate.value = formattedDateDay;
           state.toDateName.value = day;
           state.toMonth.value = formattedDateMonth;
@@ -270,6 +271,9 @@ class HomePageCon extends GetxController{
 
 
   void moveToSelectVehicleScreen(){
+    print("______________________________");
+    print(AppConstants.epochFromDate);
+    print(AppConstants.epochFromDate);
     AppConstants.fromMonth = state.fromMonth.value;
     AppConstants.fromMonthName = state.fromMonthName.value;
     AppConstants.fromDate = state.fromDate.value;

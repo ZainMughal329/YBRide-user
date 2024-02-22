@@ -9,7 +9,8 @@ import 'package:yb_ride_user_web/components/textField.dart';
 import '../../../components/countryCodeTextField.dart';
 import '../../../helper/api.dart';
 
-Widget driverWidget(BuildContext context,CheckOutCon controller) {
+
+Widget driverWidget(BuildContext context,CheckOutCon controller,TextEditingController nameCon,TextEditingController lName, TextEditingController eCon , TextEditingController pCon) {
   final state = controller.state;
   return Container(
     decoration: BoxDecoration(
@@ -39,7 +40,7 @@ Widget driverWidget(BuildContext context,CheckOutCon controller) {
             children: [
               Expanded(
                   child: ReuseableTextField(
-                      contr: state.firstNameCon,
+                      contr: nameCon,
                       label: 'First Name',
                       textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.text,
@@ -49,7 +50,7 @@ Widget driverWidget(BuildContext context,CheckOutCon controller) {
               ),
               Expanded(
                   child: ReuseableTextField(
-                      contr: state.lastNameCon,
+                      contr: lName,
                       label: 'Last Name',
                       textInputAction: TextInputAction.done,
                       keyboardType: TextInputType.text,
@@ -63,7 +64,7 @@ Widget driverWidget(BuildContext context,CheckOutCon controller) {
             children: [
               Expanded(
                 child: ReuseableTextField(
-                    contr: state.emailCon,
+                    contr: eCon,
                     label: "Email",
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.text,
@@ -76,7 +77,7 @@ Widget driverWidget(BuildContext context,CheckOutCon controller) {
                   child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18),
                 child: CountryCodePickerTextField(
-                  controller: state.phoneNumCon,
+                  controller: pCon,
                   label: 'Phone Number',
                   onChanged: (value) {
                     state.countryCode.value = value.dialCode.toString();
@@ -157,7 +158,7 @@ Widget driverWidget(BuildContext context,CheckOutCon controller) {
   );
 }
 
-Widget driverWidgetSmall() {
+Widget driverWidgetSmall(TextEditingController nameCon,TextEditingController lName, TextEditingController eCon , TextEditingController pCon) {
   final state = CheckOutState();
   return Container(
     decoration: BoxDecoration(
@@ -184,7 +185,7 @@ Widget driverWidgetSmall() {
             height: 15,
           ),
           ReuseableTextField(
-              contr: state.firstNameCon,
+              contr: nameCon,
               label: 'First Name',
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.text,
@@ -193,7 +194,7 @@ Widget driverWidgetSmall() {
             height: 10,
           ),
           ReuseableTextField(
-              contr: state.lastNameCon,
+              contr: lName,
               label: 'Last Name',
               textInputAction: TextInputAction.done,
               keyboardType: TextInputType.text,
@@ -203,7 +204,7 @@ Widget driverWidgetSmall() {
           ),
           ReuseableTextField(
               readOnly: true,
-              contr: TextEditingController(text: 'Name'),
+              contr: eCon,
               label: "Email",
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.text,
@@ -214,6 +215,7 @@ Widget driverWidgetSmall() {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18),
             child: CountryCodePickerTextField(
+              controller: pCon,
               label: 'Phone Number',
               onChanged: (value) {
                 state.countryCode.value = value.dialCode.toString();

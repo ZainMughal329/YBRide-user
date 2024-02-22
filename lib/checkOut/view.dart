@@ -44,6 +44,12 @@ class CheckOutPage extends StatelessWidget {
         });
   }
 
+  final fNameCon = TextEditingController();
+  final lNameCon = TextEditingController();
+  final emailCon = TextEditingController();
+  final phoneCon = TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(CheckOutCon());
@@ -88,7 +94,7 @@ class CheckOutPage extends StatelessWidget {
                             SizedBox(
                               height: 20,
                             ),
-                            driverWidget(context, controller),
+                            driverWidget(context, controller,fNameCon,lNameCon,emailCon,phoneCon),
                             SizedBox(
                               height: 20,
                             ),
@@ -166,12 +172,13 @@ class CheckOutPage extends StatelessWidget {
                                   : RoundButton(
                                   title: 'Book now',
                                   onPress: () {
+                                    // print('name::'+nameCon.text);
                                     setValues(controller);
                                     print(AppConstants.bookingDate +
-                                        controller.state.firstNameCon.text.trim.toString() +
-                                        controller.state.lastNameCon.text.trim.toString() +
-                                        controller.state.phoneNumCon.text.trim.toString() +
-                                        controller.state.emailCon.text.trim.toString() +
+                                        fNameCon.text.trim.toString() +
+                                        lNameCon.text +
+                                        phoneCon.text.trim.toString() +
+                                        emailCon.text+
                                         AppConstants.fromAddress +
                                         AppConstants.toAddress +
                                         AppConstants.fromDate +
@@ -289,7 +296,7 @@ class CheckOutPage extends StatelessWidget {
                           SizedBox(
                             height: 20,
                           ),
-                          driverWidget(context, controller),
+                          driverWidget(context, controller,fNameCon,lNameCon,emailCon,phoneCon),
                           SizedBox(
                             height: 20,
                           ),
@@ -483,7 +490,7 @@ class CheckOutPage extends StatelessWidget {
                           SizedBox(
                             height: 20,
                           ),
-                          driverWidgetSmall(),
+                          driverWidgetSmall(fNameCon,lNameCon,emailCon,phoneCon),
                           SizedBox(
                             height: 20,
                           ),
@@ -672,12 +679,12 @@ class CheckOutPage extends StatelessWidget {
     AppConstants.vehicleType = carType;
 
     AppConstants.custFirstName =
-        controller.state.firstNameCon.text.trim.toString();
+        fNameCon.text;
     AppConstants.custLastName =
-        controller.state.lastNameCon.text.trim.toString();
-    AppConstants.custEmail = controller.state.emailCon.text.trim.toString();
+        lNameCon.text;
+    AppConstants.custEmail = emailCon.text;
     AppConstants.custPhoneNo =
-        controller.state.phoneNumCon.text.trim.toString();
+        phoneCon.text;
 
     // condition for getting vehicle
     if (controller.state.isSelfPickup.value == true) {
