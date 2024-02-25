@@ -89,6 +89,7 @@ Future showRecipetSheet(
 
   return showModalBottomSheet(
       isScrollControlled: true,
+      isDismissible: false,
       useSafeArea: true,
       backgroundColor: Colors.white,
       context: context,

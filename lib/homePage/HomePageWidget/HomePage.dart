@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:yb_ride_user_web/Vehicle/view.dart';
 import 'package:yb_ride_user_web/components/snackbar_widget.dart';
 import 'package:yb_ride_user_web/helper/AppConstants.dart';
+import 'package:yb_ride_user_web/homePage/HomePageWidget/newRangePicker.dart';
 import 'package:yb_ride_user_web/homePage/HomePageWidget/rangePicker.dart';
 import 'package:yb_ride_user_web/homePage/HomePageWidget/to_bottom_sheet.dart';
 import 'package:yb_ride_user_web/homePage/HomePageWidget/where_bottom_sheet.dart';
@@ -155,7 +156,8 @@ Widget HomePageWidget(BuildContext context, HomePageCon controller) {
                             child: Center(
                               child: InkWell(
                                 onTap: () {
-                                  rangePicker(context, controller);
+                                  // rangePicker(context, controller);
+                                  newrangePicker(context, controller);
                                 },
                                 child: Center(
                                   child: HeadingTextWidget(
@@ -457,7 +459,8 @@ Widget HomePageWidgetMediumScreen(
                 Expanded(
                   child: InkWell(
                     onTap: () {
-                      rangePicker(context, controller);
+                      // rangePicker(context, controller);
+                      newrangePicker(context, controller);
                     },
                     child: Container(
                       height: 50,
@@ -482,7 +485,9 @@ Widget HomePageWidgetMediumScreen(
                 Expanded(
                   child: InkWell(
                     onTap: () {
-                      rangePicker(context, controller);
+                      newrangePicker(context, controller);
+
+                      // rangePicker(context, controller);
                     },
                     child: Container(
                       height: 50,
@@ -629,7 +634,9 @@ Widget HomePageWidgetSmallScreen(BuildContext context, HomePageCon controller) {
               Expanded(
                 child: InkWell(
                   onTap: () {
-                    rangePicker(context, controller);
+                    // rangePicker(context, controller);
+                    newrangePicker(context, controller);
+
                   },
                   child: Container(
                     height: 50,
@@ -653,7 +660,9 @@ Widget HomePageWidgetSmallScreen(BuildContext context, HomePageCon controller) {
               Expanded(
                 child: InkWell(
                   onTap: () {
-                    rangePicker(context, controller);
+                    // rangePicker(context, controller);
+                    newrangePicker(context, controller);
+
                   },
                   child: Container(
                     height: 50,

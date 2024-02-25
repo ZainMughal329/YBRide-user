@@ -19,10 +19,6 @@ import 'checkOut/view.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  // Stripe.publishableKey = AppConstants.stripe_publish_key;
-  //
-  // Stripe.merchantIdentifier = 'YB-Web';
-  // await Stripe.instance.applySettings();
   await FlutterGooglePlacesSdkPlatform.instance.initialize('AIzaSyA8mT_fcQoFRNpBokvTjVXsuc-TB9k-leI');
   await Firebase.initializeApp(
       options: FirebaseOptions(

@@ -1,6 +1,5 @@
 {
   "hosting": {
-    "site": "y-ride-user",
     "public": "build/web",
     "ignore": [
       "firebase.json",

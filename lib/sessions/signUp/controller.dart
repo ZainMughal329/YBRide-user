@@ -23,26 +23,28 @@ class signUpCon extends GetxController {
           email: email,
           password: password,
         );
-        userinfo.id = userCredential.user!.uid;
+        userinfo.id = userCredential.user!.uid.toString();
         SessionController().userId = userCredential.user!.uid;
         createUser(userinfo);
         setLoading(false);
-      var user = await state.auth
-          .createUserWithEmailAndPassword(email: email, password: password,
-      )
-          .then((value) {
-        userinfo.id = state.auth.currentUser!.uid.toString();
-        SessionController().userId = APis.auth.currentUser!.uid.toString();
-        createUser(userinfo);
-      }).onError((error, stackTrace) {
-        setLoading(false);
-        Get.snackbar('Error',error.toString(),backgroundColor: AppColors.buttonColor.withOpacity(.8),colorText: Colors.white);
-      });
+      // var user = await state.auth
+      //     .createUserWithEmailAndPassword(email: email, password: password,
+      // )
+      //     .then((value) {
+      //   userinfo.id = state.auth.currentUser!.uid.toString();
+      //   SessionController().userId = APis.auth.currentUser!.uid.toString();
+      //   createUser(userinfo);
+      // }).onError((error, stackTrace) {
+      //   setLoading(false);
+      //   Get.snackbar('Error',error.toString(),backgroundColor: AppColors.buttonColor.withOpacity(.8),colorText: Colors.white);
+      // });
     } on FirebaseAuthException catch (e) {
       setLoading(false);
-      Get.snackbar('msg', e.toString(),backgroundColor:AppColors.buttonColor.withOpacity(.8) ,colorText: Colors.blueGrey.withOpacity(.8));
-    } catch (_) {
+      Get.snackbar('msg', e.toString(),backgroundColor:AppColors.buttonColor.withOpacity(.8) ,colorText: Colors.white.withOpacity(.8));
+    } catch (e) {
       setLoading(false);
+        Get.snackbar('Error',e.toString(),backgroundColor: AppColors.buttonColor.withOpacity(.8),colorText: Colors.white);
+
     }
   }
   //
@@ -101,7 +103,8 @@ class signUpCon extends GetxController {
       Get.snackbar('Message', "Error occurred",
           backgroundColor: Colors.white,
           colorText: AppColors.buttonColor.withOpacity(.8));
-    });
+    },
+      );
   }
 
   void storeUser(UserModel user, BuildContext context, String email,
