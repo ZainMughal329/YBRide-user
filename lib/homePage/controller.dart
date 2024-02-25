@@ -191,6 +191,8 @@ class HomePageCon extends GetxController{
           .then((value) {
         AppConstants.ybEmail = value['ybEmail'];
         AppConstants.ybPhone = value['ybPhone'];
+        AppConstants.ybAccName = value['ybAccountHolderName'];
+        AppConstants.ybAccNumber = value['ybAccountNumber'];
 
         print(value['ybEmail']);
         print(value['ybPhone']);
