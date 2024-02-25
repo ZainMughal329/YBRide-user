@@ -121,6 +121,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.6"
+  date_ranger:
+    dependency: "direct main"
+    description:
+      name: date_ranger
+      sha256: "5d4b4f0594c5ed0ccba43f47381bb5a80ca9c3cd2ebf0985c4bfd2a0f8a2ffd6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   fake_async:
     dependency: transitive
     description:

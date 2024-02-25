@@ -85,6 +85,9 @@ dependencies:
   lazy_sign_in_google: ^2.1.2
 
 
+  date_ranger: ^1.0.1
+
+
 
 dev_dependencies:
   flutter_test:
