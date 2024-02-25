@@ -9,6 +9,8 @@ class AppConstants {
   static String fbLink="";
   static String ybEmail="";
   static String ybPhone="";
+  static String ybAccName="";
+  static String ybAccNumber="";
 
 
 

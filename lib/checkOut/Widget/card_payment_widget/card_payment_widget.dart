@@ -38,7 +38,7 @@ Widget showAdminPayment(BuildContext context) {
               children: [
                 SubHeadingTextWidget(
                   title:
-                  'Users have to pay on the following mentioned account of the YB-Ride Systems.Account # "${183774}"YB-Ride system will confirm the payment and update the status within 2 hours of booking on working days.\nNote: Make sure to confirm the account holder name  while conforming the payments\nEmail: ${AppConstants.ybEmail}\nPhone:${AppConstants.ybPhone}',
+                  'Users have to pay on the following mentioned account of the YB-Ride Systems.Account #"${AppConstants.ybAccNumber}" YB-Ride system will confirm the payment and update the status within 2 hours of booking on working days.\nNote: Make sure to confirm the account holder name "${AppConstants.ybAccName}" while conforming the payments\nEmail: ${AppConstants.ybEmail}\nPhone:${AppConstants.ybPhone}',
                 ),
                 SizedBox(
                   height: 10,
@@ -83,7 +83,7 @@ Widget showAdminPaymentSmall(BuildContext context) {
               children: [
                 SubHeadingTextWidget(
                   title:
-                      'Users have to pay on the following mentioned account of the YB-Ride Systems.Account # "${183774}"YB-Ride system will confirm the payment and update the status within 2 hours of booking on working days.\nNote: Make sure to confirm the account holder name  while conforming the payments\nEmail: ${AppConstants.ybEmail}\nPhone:${AppConstants.ybPhone}',
+                      'Users have to pay on the following mentioned account of the YB-Ride Systems.Account #"${AppConstants.ybAccNumber}" YB-Ride system will confirm the payment and update the status within 2 hours of booking on working days.\nNote: Make sure to confirm the account holder name "${AppConstants.ybAccName}" while conforming the payments\nEmail: ${AppConstants.ybEmail}\nPhone:${AppConstants.ybPhone}',
                   fontSize: 13,
                   textColor: Colors.black,
                 ),

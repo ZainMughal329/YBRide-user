@@ -31,7 +31,7 @@ showCustomDialog(BuildContext context) {
                   textAlign: TextAlign.center,
                   fontWeight: FontWeight.w500,
                   fontSize: 14,
-                  title:'Make payments to the mentioned account "${1783}"Booking will remain in pending state until confirmed by the YB-RIDE Administration.\nContact us on : ${AppConstants.ybPhone}\n${AppConstants.ybEmail}'),
+                  title:'Make payments to the mentioned account "${AppConstants.ybAccNumber}"Booking will remain in pending state until confirmed by the YB-RIDE Administration.\nContact us on : ${AppConstants.ybPhone}\n${AppConstants.ybEmail}'),
               SizedBox(height: 10),
           ],
         ),
