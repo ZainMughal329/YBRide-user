@@ -10,6 +10,7 @@ import 'package:yb_ride_user_web/helper/api.dart';
 import 'package:yb_ride_user_web/helper/session_Controller.dart';
 
 class CheckOutCon extends GetxController{
+
   final state = CheckOutState();
 
   void setDataLoaded(bool val) {

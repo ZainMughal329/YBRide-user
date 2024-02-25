@@ -12,6 +12,9 @@ import 'package:yb_ride_user_web/homePage/state.dart';
 import 'package:http/http.dart' as http;
 import 'package:geocoding/geocoding.dart';
 
+import '../components/snackbar_widget.dart';
+import '../helper/api.dart';
+
 class HomePageCon extends GetxController{
   final state = HomePageState();
 
@@ -177,6 +180,26 @@ class HomePageCon extends GetxController{
 
 
 
+  }
+
+  Future<void> fetchContactDetails() async {
+    try {
+      await APis.db
+          .collection('constants')
+          .doc('constants')
+          .get()
+          .then((value) {
+        AppConstants.ybEmail = value['ybEmail'];
+        AppConstants.ybPhone = value['ybPhone'];
+
+        print(value['ybEmail']);
+        print(value['ybPhone']);
+      }).onError((error, stackTrace) {
+        Snackbar.showSnackBar("YB-Ride", error.toString(), Icons.error_outline);
+      });
+    } catch (e) {
+      Snackbar.showSnackBar("YB-Ride", e.toString(), Icons.error_outline);
+    }
   }
 
   void extractStartEndDate(String output) {

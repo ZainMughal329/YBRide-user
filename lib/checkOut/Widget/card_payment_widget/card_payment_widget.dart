@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../../components/headingTextWidget.dart';
 import '../../../components/subHeadingText.dart';
+import '../../../helper/AppConstants.dart';
+import '../payment/paymentController.dart';
 
+final con = Get.put(PaymentController());
 Widget showAdminPayment(BuildContext context) {
+  con.fetchContactDetails();
+
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 17),
     child: Container(
@@ -31,20 +38,10 @@ Widget showAdminPayment(BuildContext context) {
               children: [
                 SubHeadingTextWidget(
                   title:
-                      'The payment is send to the admin on the following card number and after the payment is received the trip has been approved.',
+                  'Users have to pay on the following mentioned account of the YB-Ride Systems.Account # "${183774}"YB-Ride system will confirm the payment and update the status within 2 hours of booking on working days.\nNote: Make sure to confirm the account holder name  while conforming the payments\nEmail: ${AppConstants.ybEmail}\nPhone:${AppConstants.ybPhone}',
                 ),
                 SizedBox(
                   height: 10,
-                ),
-                Row(
-                  children: [
-                    HeadingTextWidget(title: 'Note: '),
-                    Flexible(
-                      child: SubHeadingTextWidget(
-                          title:
-                              ' Make sure the Card Holder Name and the name while booking the trip is same.'),
-                    ),
-                  ],
                 ),
               ],
             )
@@ -86,30 +83,9 @@ Widget showAdminPaymentSmall(BuildContext context) {
               children: [
                 SubHeadingTextWidget(
                   title:
-                      'The payment is send to the admin on the following card number and after the payment is received the trip has been approved.',
+                      'Users have to pay on the following mentioned account of the YB-Ride Systems.Account # "${183774}"YB-Ride system will confirm the payment and update the status within 2 hours of booking on working days.\nNote: Make sure to confirm the account holder name  while conforming the payments\nEmail: ${AppConstants.ybEmail}\nPhone:${AppConstants.ybPhone}',
                   fontSize: 13,
                   textColor: Colors.black,
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-
-                Row(
-                  children: [
-                    HeadingTextWidget(
-                      title: 'Note: ',
-                      fontSize: 15,
-                    ),
-                    Flexible(
-                      child: SubHeadingTextWidget(
-                        title:
-                            ' Make sure the Card Holder Name and the name while booking the trip is same.',
-                        fontSize: 13,
-                        maxLines: 3,
-                        textColor: Colors.black,
-                      ),
-                    ),
-                  ],
                 ),
               ],
             )

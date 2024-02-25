@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -61,7 +63,9 @@ class CheckOutPage extends StatelessWidget {
     controller.state.totalPrice.value = carRent;
     controller.state.carDescription = carDescription;
     controller.getCheckoutPayments();
+    // controller.fetchContactDetails();
     controller.getReceiptCharges();
+    log('name:'+AppConstants.ybEmail.toString());
     // return Container();
     return Scaffold(
 

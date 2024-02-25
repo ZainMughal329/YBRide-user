@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:yb_ride_user_web/checkOut/Widget/payment/paymentController.dart';
+import 'package:yb_ride_user_web/components/headingTextWidget.dart';
 
 import '../../../components/snackbar_widget.dart';
 import '../../../helper/AppConstants.dart';
@@ -7,19 +10,31 @@ import '../../../helper/session_Controller.dart';
 import '../../../helper/show_progress_indicator.dart';
 import '../../../model/booking_model.dart';
 
+
+
+final con = Get.put(PaymentController());
 showCustomDialog(BuildContext context) {
+  con.fetchContactDetails();
     return showDialog(
+      barrierColor: Colors.white,
+      barrierDismissible: false,
       context: context, builder: (BuildContext context) {
         return AlertDialog(
+
           backgroundColor: Colors.white,
           title: Text('Payment'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Text('Please make sure the name on the card matches the placeholder name.'),
+              HeadingTextWidget(
+                  height: 1.25,
+                  textAlign: TextAlign.center,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14,
+                  title:'Make payments to the mentioned account "${1783}"Booking will remain in pending state until confirmed by the YB-RIDE Administration.\nContact us on : ${AppConstants.ybPhone}\n${AppConstants.ybEmail}'),
               SizedBox(height: 10),
-            ],
-          ),
+          ],
+        ),
           actions: <Widget>[
             TextButton(
               onPressed: () {
@@ -47,7 +62,7 @@ Future<void> createBooking(BuildContext context) async{
   String docId = DateTime.now().millisecondsSinceEpoch.toString();
   showProgressIndicator(context);
   BookingModel booking = BookingModel(
-    id: SessionController().userId.toString(),
+    id: APis.auth.currentUser!.uid,
     paymentId: '',
     bookingDate: docId,
     fullName: '${AppConstants.custFirstName} ${AppConstants.custLastName}',

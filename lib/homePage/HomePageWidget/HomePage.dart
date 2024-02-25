@@ -459,7 +459,8 @@ Widget HomePageWidgetMediumScreen(
                 Expanded(
                   child: InkWell(
                     onTap: () {
-                      rangePicker(context, controller);
+                      // rangePicker(context, controller);
+                      newrangePicker(context, controller);
                     },
                     child: Container(
                       height: 50,
@@ -484,7 +485,9 @@ Widget HomePageWidgetMediumScreen(
                 Expanded(
                   child: InkWell(
                     onTap: () {
-                      rangePicker(context, controller);
+                      newrangePicker(context, controller);
+
+                      // rangePicker(context, controller);
                     },
                     child: Container(
                       height: 50,
@@ -631,7 +634,9 @@ Widget HomePageWidgetSmallScreen(BuildContext context, HomePageCon controller) {
               Expanded(
                 child: InkWell(
                   onTap: () {
-                    rangePicker(context, controller);
+                    // rangePicker(context, controller);
+                    newrangePicker(context, controller);
+
                   },
                   child: Container(
                     height: 50,
@@ -655,7 +660,9 @@ Widget HomePageWidgetSmallScreen(BuildContext context, HomePageCon controller) {
               Expanded(
                 child: InkWell(
                   onTap: () {
-                    rangePicker(context, controller);
+                    // rangePicker(context, controller);
+                    newrangePicker(context, controller);
+
                   },
                   child: Container(
                     height: 50,

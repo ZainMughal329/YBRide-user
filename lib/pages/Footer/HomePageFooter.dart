@@ -11,6 +11,7 @@ import 'package:yb_ride_user_web/pages/appBarPages/FaqS/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Trips/view.dart';
 import '../../helper/api.dart';
 import '../../helper/appColors.dart';
+import '../../homePage/termsAndServices/view.dart';
 import 'contactUsAlertBox.dart';
 import 'controller.dart';
 
@@ -335,17 +336,18 @@ Widget Footer(BuildContext context) {
                   SizedBox(
                     height: 20,
                   ),
-                  SubHeadingTextWidget(
-                      title: 'Team and culture', textColor: Colors.black),
+                  InkWell(
+                    onTap: (){
+                      // Get.to(TermsAndServices());
+                    },
+                    child: SubHeadingTextWidget(
+                        title: 'Team and conditions', textColor: Colors.black),
+                  ),
                   SizedBox(
                     height: 20,
                   ),
-                  SubHeadingTextWidget(title: 'Terms', textColor: Colors.black),
-                  SizedBox(
-                    height: 20,
-                  ),
                   SubHeadingTextWidget(
-                      title: 'Privacy us', textColor: Colors.black),
+                      title: 'Privacy Policy', textColor: Colors.black),
                   SizedBox(
                     height: 20,
                   ),
