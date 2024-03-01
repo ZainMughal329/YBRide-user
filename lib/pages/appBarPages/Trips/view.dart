@@ -9,6 +9,7 @@ import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:yb_ride_user_web/helper/api.dart';
 import 'package:yb_ride_user_web/helper/responsive.dart';
+import 'package:yb_ride_user_web/homePage/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Trips/widgets/tripsCustomAlertBox.dart';
 import '../../../components/drwer.dart';
 import '../../../components/headingTextWidget.dart';
@@ -527,23 +528,28 @@ class TripsPages extends StatelessWidget {
                           ),
                           Padding(
                               padding: EdgeInsets.only(left: 20, right: 20),
-                              child: Container(
-                                width: ResponsiveWidget.isLargeScreen(context)
-                                    ? 400
-                                    : 200,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                    color: AppColors.buttonColor,
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: Colors.grey.withOpacity(.1))
-                                    ]),
-                                child: Center(
-                                  child: HeadingTextWidget(
-                                    title: 'Book your YBCar now',
-                                    textColor: AppColors.whiteColor,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
+                              child: InkWell(
+                                onTap: (){
+                                  Get.to(()=>HomePage());
+                                },
+                                child: Container(
+                                  width: ResponsiveWidget.isLargeScreen(context)
+                                      ? 400
+                                      : 200,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                      color: AppColors.buttonColor,
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.grey.withOpacity(.1))
+                                      ]),
+                                  child: Center(
+                                    child: HeadingTextWidget(
+                                      title: 'Book your YBCar now',
+                                      textColor: AppColors.whiteColor,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                                   ),
                                 ),
                               )),

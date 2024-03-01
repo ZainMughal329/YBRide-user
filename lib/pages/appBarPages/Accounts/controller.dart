@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Accounts/state.dart';
 
@@ -55,6 +56,7 @@ class AccountCon extends GetxController{
                 children: [
                   ReuseableTextField(
                     contr: state.NameCon,
+                    inputFormatters:[FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]'))],
                     label: 'Enter your  Name',
                     keyboardType: TextInputType.emailAddress,
                     obsecure: false,

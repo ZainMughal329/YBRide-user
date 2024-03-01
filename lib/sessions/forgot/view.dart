@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:yb_ride_user_web/components/textField.dart';
 import 'package:yb_ride_user_web/homePage/controller.dart';
 import 'package:yb_ride_user_web/sessions/forgot/controller.dart';
 import 'package:yb_ride_user_web/sessions/login/view.dart';
@@ -80,29 +81,13 @@ class ForgotPages extends StatelessWidget {
                 SubHeadingTextWidget(title: "Enter your email address and we will send you instructions to reset your password."),
                 SizedBox(height: 16.0),
                 SizedBox(height: 16.0),
-                TextFormField(
-                  style: GoogleFonts.openSans(
-                    fontSize: 15,
-                  ),
-                  controller: con.state.email,
+                ReuseableTextField(
+                  obsecure: false,
+                  keyboardType: TextInputType.emailAddress,
+                  useEmailValidation: true,
+                  label:'Email Address' ,
+                  contr: con.state.email,
                   textInputAction: TextInputAction.next,
-                  decoration: InputDecoration(
-                    labelText: 'Email Address',
-                    border: OutlineInputBorder(),
-                    enabled: true,
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                      BorderSide(color: AppColors.nonActiveTextFieldColor),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                      BorderSide(color: AppColors.activeTextFieldColor,width: 1.5),
-                    ),
-                    labelStyle: GoogleFonts.openSans(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
                 ),
                 SizedBox(height: 16.0),
                 Align(

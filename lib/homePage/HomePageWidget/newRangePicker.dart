@@ -13,8 +13,8 @@ import 'package:yb_ride_user_web/homePage/controller.dart';
 
 Future<void> newrangePicker(BuildContext context , HomePageCon cont) async{
   var initialDate = DateTime.now();
-  var initialDateRange =
-  DateTimeRange(start: DateTime.now(), end: DateTime.now().add(Duration(days: 5)));
+  // var initialDateRange =
+  // DateTimeRange(start: DateTime.now(), end: DateTime.now().add(Duration(days: 5)));
   return showModalBottomSheet(
       backgroundColor: Colors.white,
       isScrollControlled: true,
@@ -31,7 +31,7 @@ Future<void> newrangePicker(BuildContext context , HomePageCon cont) async{
             rangeBackground: AppColors.buttonColor.withOpacity(0.5),
             runSpacing: 20,
             initialDate: initialDate,
-            initialRange: initialDateRange,
+            // initialRange: initialDateRange,
             activeDateBottomSpace: 20,
             onRangeChanged: (range) {
               print(range.toString());

@@ -1,5 +1,6 @@
 import 'package:fl_country_code_picker/fl_country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -375,6 +376,7 @@ class SurferSignUpForm extends GetView<BecomeDriverCon> {
                           contr: controller.state.NameCon,
                           label: ' Name',
                           textInputAction: TextInputAction.next,
+                          inputFormatters:[FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]'))],
                           keyboardType: TextInputType.text,
                           obsecure: false),
                       SizedBox(
@@ -406,6 +408,7 @@ class SurferSignUpForm extends GetView<BecomeDriverCon> {
                               contr: controller.state.emailCon,
                               label: 'Email',
                               textInputAction: TextInputAction.next,
+                              useEmailValidation: true,
                               keyboardType: TextInputType.text,
                               obsecure: false),
                           SizedBox(
