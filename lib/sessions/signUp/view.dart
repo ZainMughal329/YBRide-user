@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -10,6 +11,7 @@ import 'package:yb_ride_user_web/sessions/login/view.dart';
 import 'package:yb_ride_user_web/sessions/signUp/controller.dart';
 
 import '../../components/headingTextWidget.dart';
+import '../../components/reusebale_textField.dart';
 import '../../components/subHeadingText.dart';
 import '../../helper/appColors.dart';
 
@@ -85,79 +87,32 @@ class SignUpPages extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 16.0),
-                TextFormField(
-                  style: GoogleFonts.openSans(
-                    fontSize: 15,
-                  ),
-                  controller: con.state.userNameCon,
+                ReuseableTextField(
+                  contr: con.state.userNameCon,
                   textInputAction: TextInputAction.next,
-                  decoration: InputDecoration(
-                    labelText: 'User Name',
-                    border: OutlineInputBorder(),
-                    enabled: true,
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                      BorderSide(color: AppColors.nonActiveTextFieldColor),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                      BorderSide(color: AppColors.activeTextFieldColor,width: 1.5),
-                    ),
-                    labelStyle: GoogleFonts.openSans(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
+                  keyboardType: TextInputType.text,
+                  obsecure: false,
+                  label: 'User Name',
+                  inputFormatters:[FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]'))],
                 ),
                 SizedBox(height: 16.0),
-                TextFormField(
-                  style: GoogleFonts.openSans(
-                    fontSize: 15,
-                  ),
-                  controller: con.state.emailCon,
+                ReuseableTextField(
+                  contr: con.state.emailCon,
+                  label: 'Email Address',
+                  obsecure: false,
+                  keyboardType: TextInputType.emailAddress,
+                  useEmailValidation: true,
                   textInputAction: TextInputAction.next,
-                  decoration: InputDecoration(
-                    labelText: 'Email Address',
-                    border: OutlineInputBorder(),
-                    enabled: true,
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                      BorderSide(color: AppColors.nonActiveTextFieldColor),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                      BorderSide(color: AppColors.activeTextFieldColor,width: 1.5),
-                    ),
-                    labelStyle: GoogleFonts.openSans(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
+
                 ),
                 SizedBox(height: 16.0),
-                TextFormField(
-                  style: GoogleFonts.openSans(
-                    fontSize: 15,
-                  ),
-                  controller: con.state.passwordCon,
+                ReuseableTextField(
+                  obsecure: false,
+                  keyboardType: TextInputType.text,
+                  contr: con.state.passwordCon,
                   textInputAction: TextInputAction.next,
-                  decoration: InputDecoration(
-                    labelText: 'Password',
-                    border: OutlineInputBorder(),
-                    enabled: true,
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                      BorderSide(color: AppColors.nonActiveTextFieldColor),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                      BorderSide(color: AppColors.activeTextFieldColor,width: 1.5),
-                    ),
-                    labelStyle: GoogleFonts.openSans(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
+                  label: 'Password',
+
                 ),
                 SizedBox(height: 16.0),
                 Obx(() => con.state.loading.value == false?

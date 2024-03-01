@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -20,7 +21,7 @@ class AddVehicleForm extends StatelessWidget {
       TextEditingController controller,
       String hint,
       String labelText,
-      TextInputType textInputType,
+  TextInputType textInputType,
       String helperText,
       TextInputAction textInputAction) {
     return TextField(
@@ -438,6 +439,7 @@ class AddVehicleForm extends StatelessWidget {
                                     TextInputAction.next),
                                 SizedBox(height: 16.0),
                                 _reuseAbleTextField(con.state.seatsController, 'No. of seats',
+
                                     'No. of seats', TextInputType.number, 'Number of seats' ,TextInputAction.next),
                                 SizedBox(height: 16.0),
                                 _reuseAbleTextField(

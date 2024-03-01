@@ -11,6 +11,7 @@ import 'package:yb_ride_user_web/sessions/forgot/view.dart';
 import 'package:yb_ride_user_web/sessions/login/controller.dart';
 import 'package:yb_ride_user_web/sessions/signUp/view.dart';
 import '../../components/headingTextWidget.dart';
+import '../../components/reusebale_textField.dart';
 import '../../helper/appColors.dart';
 
 class LoginPages extends StatelessWidget {
@@ -79,54 +80,21 @@ class LoginPages extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 16.0),
-                TextFormField(
-                  style: GoogleFonts.openSans(
-                    fontSize: 15,
-                  ),
-                  controller: con.state.emailCon,
+                ReuseableTextField(
+                  contr: con.state.emailCon,
+                  keyboardType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.next,
-                  decoration: InputDecoration(
-                    labelText: 'Email Address',
-                    border: OutlineInputBorder(),
-                    enabled: true,
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                      BorderSide(color: AppColors.nonActiveTextFieldColor),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                      BorderSide(color: AppColors.activeTextFieldColor,width: 1.5),
-                    ),
-                    labelStyle: GoogleFonts.openSans(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
+                  label:'Email Address' ,
+                  obsecure: false,
+                  useEmailValidation: true,
                 ),
                 SizedBox(height: 16.0),
-                TextFormField(
-                  style: GoogleFonts.openSans(
-                    fontSize: 15,
-                  ),
-                  controller: con.state.passwordCon,
+                ReuseableTextField(
+                  contr: con.state.passwordCon,
                   textInputAction: TextInputAction.done,
-                  decoration: InputDecoration(
-                    labelText: 'Password',
-                    border: OutlineInputBorder(),
-                    enabled: true,
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                      BorderSide(color: AppColors.nonActiveTextFieldColor),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                      BorderSide(color: AppColors.activeTextFieldColor,width: 1.5),
-                    ),
-                    labelStyle: GoogleFonts.openSans(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
+                  keyboardType: TextInputType.text,
+                  obsecure: false,
+                  label: 'password'
                 ),
                 SizedBox(height: 16.0),
                 Align(

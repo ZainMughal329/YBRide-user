@@ -14,9 +14,8 @@ class ReuseableTextField extends StatelessWidget {
   final FocusNode? focusNode;
   final void Function(String)? onChange;
   final List<TextInputFormatter>? inputFormatters;
-  final Icon? prefixIcon;
   final bool useEmailValidation;
-
+  final Icon? prefixIcon;
   ReuseableTextField({
     super.key,
     required this.contr,
@@ -28,8 +27,8 @@ class ReuseableTextField extends StatelessWidget {
     this.onChange,
     this.readOnly = false,
     this.inputFormatters,
-    this.useEmailValidation = false,
     this.prefixIcon,
+    this.useEmailValidation = false,
 
     //
   });
@@ -47,8 +46,8 @@ class ReuseableTextField extends StatelessWidget {
       style: GoogleFonts.openSans(
         fontSize: 15,
       ),
-      inputFormatters: inputFormatters,
       validator: useEmailValidation ? _validateEmail : null,
+      inputFormatters: inputFormatters,
 
       // focusNode: focNode,
       decoration: InputDecoration(
@@ -71,7 +70,8 @@ class ReuseableTextField extends StatelessWidget {
         labelStyle: GoogleFonts.openSans(
           fontSize: 14,
           fontWeight: FontWeight.w500,
-
+          color: Colors.black
+          // color: Theme.of(context).headingColor,
         ),
       ),
     );

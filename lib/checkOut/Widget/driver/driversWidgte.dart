@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:yb_ride_user_web/checkOut/controller.dart';
 import 'package:yb_ride_user_web/checkOut/state.dart';
@@ -42,17 +43,19 @@ Widget driverWidget(BuildContext context,CheckOutCon controller,TextEditingContr
                   child: ReuseableTextField(
                       contr: nameCon,
                       label: 'First Name',
+                      inputFormatters:[FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]'))],
                       textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.text,
                       obsecure: false)),
               SizedBox(
-                width: 2,
+                width: 5,
               ),
               Expanded(
                   child: ReuseableTextField(
                       contr: lName,
                       label: 'Last Name',
                       textInputAction: TextInputAction.done,
+                      inputFormatters:[FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]'))],
                       keyboardType: TextInputType.text,
                       obsecure: false)),
             ],
@@ -67,23 +70,21 @@ Widget driverWidget(BuildContext context,CheckOutCon controller,TextEditingContr
                     contr: eCon,
                     label: "Email",
                     textInputAction: TextInputAction.next,
+                    useEmailValidation: true,
                     keyboardType: TextInputType.text,
                     obsecure: false),
               ),
               SizedBox(
-                width: 2,
+                width: 5,
               ),
               Expanded(
-                  child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 18),
-                child: CountryCodePickerTextField(
-                  controller: pCon,
-                  label: 'Phone Number',
-                  onChanged: (value) {
-                    state.countryCode.value = value.dialCode.toString();
-                  },
-                ),
-              )),
+                  child: CountryCodePickerTextField(
+                    controller: pCon,
+                    label: 'Phone Number',
+                    onChanged: (value) {
+                      state.countryCode.value = value.dialCode.toString();
+                    },
+                  )),
             ],
           ),
           SizedBox(
@@ -188,6 +189,7 @@ Widget driverWidgetSmall(TextEditingController nameCon,TextEditingController lNa
               contr: nameCon,
               label: 'First Name',
               textInputAction: TextInputAction.next,
+              inputFormatters:[FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]'))],
               keyboardType: TextInputType.text,
               obsecure: false),
           SizedBox(
@@ -197,6 +199,7 @@ Widget driverWidgetSmall(TextEditingController nameCon,TextEditingController lNa
               contr: lName,
               label: 'Last Name',
               textInputAction: TextInputAction.done,
+              inputFormatters:[FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]'))],
               keyboardType: TextInputType.text,
               obsecure: false),
           SizedBox(
@@ -206,21 +209,19 @@ Widget driverWidgetSmall(TextEditingController nameCon,TextEditingController lNa
               readOnly: true,
               contr: eCon,
               label: "Email",
+              useEmailValidation: true,
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.text,
               obsecure: false),
           SizedBox(
             height: 10,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 18),
-            child: CountryCodePickerTextField(
-              controller: pCon,
-              label: 'Phone Number',
-              onChanged: (value) {
-                state.countryCode.value = value.dialCode.toString();
-              },
-            ),
+          CountryCodePickerTextField(
+            controller: pCon,
+            label: 'Phone Number',
+            onChanged: (value) {
+              state.countryCode.value = value.dialCode.toString();
+            },
           ),
           SizedBox(
             height: 30,

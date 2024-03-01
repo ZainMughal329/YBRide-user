@@ -47,9 +47,10 @@ Widget weekDayContainer(){
                       title: 'Weekday Savings Included',
                       textColor: AppColors.buttonColor,
                       fontSize: 20,
+
                     ),
                     SizedBox(
-                      width: 720,
+                      width: 600,
                     ),
                     GestureDetector(
                         onTap: () {
