@@ -27,7 +27,6 @@ import 'controller.dart';
 
 class TripsPages extends StatelessWidget {
   TripsPages({super.key});
-
   List<String> economyList = [
     'assets/images/eco-1.webp',
     'assets/images/eco-2.webp',
@@ -53,7 +52,6 @@ class TripsPages extends StatelessWidget {
     'assets/images/7_seater-2.webp',
     'assets/images/7_seater-3.webp',
   ];
-
   @override
   Widget build(BuildContext context) {
     final GlobalKey<ScaffoldState> _scaffoldKey =
@@ -64,117 +62,6 @@ class TripsPages extends StatelessWidget {
       drawer: BuildDrawer.buildDrawer(context),
       drawerScrimColor: Colors.white,
       drawerEnableOpenDragGesture: false,
-      appBar: AppBar(
-        backgroundColor: Color.fromRGBO(255, 255, 255, 1),
-        // scrolledUnderElevation: 1,
-        leading: Container(),
-        title: Padding(
-          padding: EdgeInsets.only(left: 20),
-          child: HeadingTextWidget(
-            title: 'YBRide',
-            fontWeight: FontWeight.bold,
-            fontSize: 30,
-          ),
-        ),
-        actions: ResponsiveWidget.isLargeScreen(context)
-            ? [
-          InkWell(
-            onTap: () {
-              Get.to(() => BecomeDriverPage());
-            },
-            child: HeadingTextWidget(
-                title: 'Become a driver partner',
-                textColor: AppColors.appBarTextColor,
-                fontSize: 14,
-                fontWeight: FontWeight.normal),
-          ),
-          SizedBox(
-            width: 20,
-          ),
-          HeadingTextWidget(
-              title: '|',
-              textColor: AppColors.appBarTextColor,
-              fontSize: 14,
-              fontWeight: FontWeight.normal),
-          SizedBox(
-            width: 20,
-          ),
-          InkWell(
-            onTap: () {
-              Get.to(() => FaqPage());
-            },
-            child: HeadingTextWidget(
-                title: 'FAQ',
-                textColor: AppColors.appBarTextColor,
-                fontSize: 14,
-                fontWeight: FontWeight.normal),
-          ),
-          SizedBox(
-            width: 20,
-          ),
-          InkWell(
-              onTap: () {
-                Get.to(() => AccountPage());
-              },
-              child: HeadingTextWidget(
-                title: 'Account',
-                textColor: AppColors.appBarTextColor,
-                fontSize: 14,
-                fontWeight: FontWeight.normal,
-              )),
-
-          SizedBox(
-            width: 20,
-          ),
-          InkWell(
-              onTap: () {
-                Get.to(() => TripsPages());
-              },
-              child: HeadingTextWidget(
-                  title: 'My Trips',
-                  textColor: AppColors.appBarTextColor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.normal)),
-          SizedBox(
-            width: 20,
-          ),
-          GestureDetector(
-              onTap: () async {
-                showProgressIndicator(context);
-                Future.delayed(Duration(seconds: 3) , () async {
-                  await FirebaseAuth.instance.signOut().then((value) {
-
-                    SessionController().userId = '';
-                    Navigator.pop(context);
-                    Get.offAll(SignUpPages());
-                  });
-                });
-
-              },
-              child: HeadingTextWidget(
-                  title: 'Sign out',
-                  textColor: AppColors.appBarTextColor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.normal)),
-          SizedBox(
-            width: 30,
-          ),
-        ]
-            : [
-          IconButton(
-            onPressed: () {
-              _scaffoldKey.currentState!.openDrawer();
-            },
-            icon: Icon(
-              Icons.menu,
-              color: Colors.grey,
-            ),
-          ),
-          SizedBox(
-            width: 30,
-          ),
-        ],
-      ),
       body: StreamBuilder<QuerySnapshot>(
         stream: APis.db.collection('all_bookings')
             .where('id' , isEqualTo: APis.auth.currentUser!.uid).

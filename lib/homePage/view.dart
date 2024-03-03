@@ -20,7 +20,7 @@ import '../pages/RatingStarsWidget/ratingStarsWidget.dart';
 import '../pages/appBarPages/Accounts/view.dart';
 import '../pages/appBarPages/FaqS/view.dart';
 import '../pages/appBarPages/Referrals/view.dart';
-import '../pages/appBarPages/Trips/view.dart';
+import '../pages/appBarPages/Trips/allTripPage.dart';
 import '../pages/averageRentalCarWidget/averageRentalCarWidget.dart';
 import '../pages/downlaodYBRideWidget/downlaod_ybRide.dart';
 import '../pages/gotAnswerWidget/gotAnswerWidget.dart';

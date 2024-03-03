@@ -22,7 +22,8 @@ import '../../../sessions/signUp/view.dart';
 import '../Become_Driver/view.dart';
 import '../FaqS/view.dart';
 import '../Referrals/view.dart';
-import '../Trips/view.dart';
+import '../Trips/allTripPage.dart';
+import '../Trips/tabBarView.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});
@@ -103,7 +104,7 @@ class AccountPage extends StatelessWidget {
           ),
           InkWell(
               onTap: () {
-                Get.to(() => TripsPages());
+                Get.to(() => TripsHomePage());
               },
               child: HeadingTextWidget(
                   title: 'My Trips',
@@ -172,7 +173,7 @@ class AccountPage extends StatelessWidget {
                     height: 70,
                   ),
                   Padding(
-                      padding: EdgeInsets.only(right: 740),
+                      padding: EdgeInsets.only(right: 630),
                       child: HeadingTextWidget(title: 'Account',fontWeight: FontWeight.bold,fontSize: 30,)),
                   SizedBox(height: 20,),
                   Padding(

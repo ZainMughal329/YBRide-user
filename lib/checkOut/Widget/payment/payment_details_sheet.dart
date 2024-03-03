@@ -16,6 +16,7 @@ import 'package:yb_ride_user_web/helper/appColors.dart';
 Future showRecipetSheet(
     BuildContext context,
     double noOfDays,
+    String id,
     String totalAmount,
     String invoiceDateTime,
     String serviceFromDateTime,
@@ -24,6 +25,8 @@ Future showRecipetSheet(
     String invoiceId,
     String paymentMethod,
     Map<String, double> charges,
+    String vehicleId,
+
     ) {
   ScreenshotController screenshotController = ScreenshotController();
 
@@ -240,7 +243,7 @@ Future showRecipetSheet(
                         screenshotController.capture().then(
                               (Uint8List? image) {
                             _saveReceipt(image);
-                            showCustomDialog(context);
+                            showCustomDialog(context,id,vehicleId);
                           },
                         );
                         Navigator.pop(context);

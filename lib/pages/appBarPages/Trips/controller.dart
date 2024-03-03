@@ -6,7 +6,7 @@ import 'package:yb_ride_user_web/pages/appBarPages/Trips/state.dart';
 
 class TripCon extends GetxController with GetTickerProviderStateMixin{
     final state = TripState();
-  late TabController tabController = TabController(length: 2, vsync: this);
+  late TabController tabController = TabController(length: 5, vsync: this);
     String convertMillisecondsToTimeString(String millsec) {
 
       int milliseconds = int.parse(millsec);

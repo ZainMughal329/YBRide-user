@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:yb_ride_user_web/components/subHeadingText.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/FaqS/view.dart';
-import 'package:yb_ride_user_web/pages/appBarPages/Trips/view.dart';
+import 'package:yb_ride_user_web/pages/appBarPages/Trips/allTripPage.dart';
 import 'package:yb_ride_user_web/sessions/signUp/view.dart';
 
 import '../helper/session_Controller.dart';

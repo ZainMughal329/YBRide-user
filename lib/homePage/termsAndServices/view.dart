@@ -17,11 +17,11 @@
 // import '../../helper/responsive.dart';
 // import '../../helper/session_Controller.dart';
 // import '../../helper/show_progress_indicator.dart';
-// import '../../pages/appBarPages/Accounts/view.dart';
-// import '../../pages/appBarPages/Become_Driver/view.dart';
-// import '../../pages/appBarPages/FaqS/view.dart';
-// import '../../pages/appBarPages/Trips/view.dart';
-// import '../../sessions/signUp/view.dart';
+// import '../../pages/appBarPages/Accounts/allTripPage.dart';
+// import '../../pages/appBarPages/Become_Driver/allTripPage.dart';
+// import '../../pages/appBarPages/FaqS/allTripPage.dart';
+// import '../../pages/appBarPages/Trips/allTripPage.dart';
+// import '../../sessions/signUp/allTripPage.dart';
 //
 // class TermsAndServices extends StatelessWidget {
 //   TermsAndServices({super.key});

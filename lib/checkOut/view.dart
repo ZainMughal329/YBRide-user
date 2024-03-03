@@ -26,13 +26,16 @@ class CheckOutPage extends StatelessWidget {
   final double carRent;
   final String carType;
   final String carDescription;
+  final String vehicleId;
 
   CheckOutPage(
       {super.key,
       required this.carType,
       required this.carRent,
       required this.carPrice,
-      required this.carDescription});
+      required this.carDescription,
+      required this.vehicleId,
+      });
 
   Widget _checkBox(bool val, ValueChanged<bool>? onChanged) {
     return Checkbox(
@@ -206,6 +209,7 @@ class CheckOutPage extends StatelessWidget {
                                     showRecipetSheet(
                                       context,
                                       AppConstants.rentDays,
+                                      AppConstants.paymentId,
                                       AppConstants.totalPrice.toStringAsFixed(2),
                                       DateTime.now().toString(),
                                       '${AppConstants.fromDate} ${AppConstants.fromTime}',
@@ -227,6 +231,8 @@ class CheckOutPage extends StatelessWidget {
                                         'Temporary Deposit':
                                         AppConstants.tempDeposit,
                                       },
+                                      vehicleId.toString(),
+
                                     );
                                   } : (){
                                     Snackbar.showSnackBar("YB-Ride", "Check necessary fields", Icons.error_outline);
@@ -415,6 +421,7 @@ class CheckOutPage extends StatelessWidget {
                                   showRecipetSheet(
                                     context,
                                     AppConstants.rentDays,
+                                    AppConstants.paymentId,
                                     AppConstants.totalPrice.toStringAsFixed(2),
                                     DateTime.now().toString(),
                                     '${AppConstants.fromDate} ${AppConstants.fromTime}',
@@ -436,6 +443,8 @@ class CheckOutPage extends StatelessWidget {
                                       'Temporary Deposit':
                                       AppConstants.tempDeposit,
                                     },
+                                    vehicleId.toString(),
+
                                   );
                                 } : (){Snackbar.showSnackBar("YB-Ride", "Enter necessary fields", Icons.error_outline);},),
                           ),
@@ -471,212 +480,6 @@ class CheckOutPage extends StatelessWidget {
                       ),
                     ),
                   )
-                // : Padding(
-                //     padding: const EdgeInsets.symmetric(horizontal: 20),
-                //     child: SingleChildScrollView(
-                //       child: Column(
-                //         children: [
-                //           SizedBox(
-                //             height: 20,
-                //           ),
-                //           // Image(image: AssetImage('assets/images/YBRIDE text.jpg',),height: 80,width: 80,),
-                //           SizedBox(
-                //             height: 10,
-                //           ),
-                //           Divider(
-                //             thickness: .6,
-                //           ),
-                //           SizedBox(
-                //             height: 30,
-                //           ),
-                //           welcomeYBRide(context),
-                //           SizedBox(
-                //             height: 20,
-                //           ),
-                //           priceContainerWidgetSmall(controller),
-                //           SizedBox(
-                //             height: 20,
-                //           ),
-                //           driverWidgetSmall(controller,fNameCon,lNameCon,emailCon,phoneCon),
-                //           SizedBox(
-                //             height: 20,
-                //           ),
-                //           TripDetailsWidgetSmall(controller),
-                //           SizedBox(
-                //             height: 20,
-                //           ),
-                //           CoverageWidgetSmall(context, controller),
-                //           SizedBox(
-                //             height: 20,
-                //           ),
-                //           paymentWidgetSmall(),
-                //           SizedBox(
-                //             height: 20,
-                //           ),
-                //           promoCodeWidget(context, controller),
-                //           SizedBox(
-                //             height: 10,
-                //           ),
-                //           Divider(),
-                //           SizedBox(
-                //             height: 10,
-                //           ),
-                //           showAdminPaymentSmall(context),
-                //           SizedBox(
-                //             height: 10,
-                //           ),
-                //           Divider(),
-                //           SizedBox(
-                //             height: 10,
-                //           ),
-                //           Padding(
-                //             padding: EdgeInsets.symmetric(horizontal: 17.0),
-                //             child: Row(
-                //               children: [
-                //                 Obx(
-                //                       () => _checkBox(
-                //                     controller.state.paymentCheck.value,
-                //                         (value) {
-                //                       controller.state.paymentCheck.value =
-                //                       !controller.state.paymentCheck.value;
-                //                     },
-                //                   ),
-                //                 ),
-                //                 SizedBox(width: 10,),
-                //                 SubHeadingTextWidget(title: 'Agree and continue'),
-                //               ],
-                //             ),
-                //           ),
-                //           Obx(
-                //                 () => controller.state.paymentCheck.value == false ?
-                //             Center(
-                //               child: Padding(
-                //                 padding: EdgeInsets.symmetric(vertical: 10 , horizontal: 40),
-                //                 child: InkWell(
-                //                   onTap: (){
-                //                     final contt = Get.put(PaymentController());
-                //                     contt.createPaymentIntent();
-                //                     Snackbar.showSnackBar('YB-Ride', 'All fields must be filled', Icons.error);
-                //                   },
-                //                   borderRadius:  BorderRadius.circular(5),
-                //                   child: Container(
-                //                     height: 60,
-                //                     width: double.infinity,
-                //                     decoration: BoxDecoration(
-                //                       borderRadius: BorderRadius.circular(5),
-                //                       color: AppColors.buttonColor.withOpacity(.5),
-                //                     ),
-                //                     child: Center(
-                //                       child: Text(
-                //                         'Book Now',
-                //                         style: GoogleFonts.openSans(color: AppColors.buttonTextColor, fontSize: 14,fontWeight: FontWeight.w600),
-                //                       ),
-                //                     ),
-                //                   ),
-                //                 ),
-                //               ),
-                //             )
-                //
-                //
-                //                 : RoundButton(
-                //                 title: 'Book now',
-                //                 onPress: controller.checkNecessaryValues()  ? () {
-                //                   setValues(controller);
-                //                   print(AppConstants.bookingDate +
-                //                       controller.state.firstNameCon.text.trim.toString() +
-                //                       controller.state.lastNameCon.text.trim.toString() +
-                //                       controller.state.phoneNumCon.text.trim.toString() +
-                //                       controller.state.emailCon.text.trim.toString() +
-                //                       AppConstants.fromAddress +
-                //                       AppConstants.toAddress +
-                //                       AppConstants.fromDate +
-                //                       AppConstants.fromTimeinMiliSeconds +
-                //                       AppConstants.customCoverage.toString() +
-                //                       AppConstants.isDeliver.toString() +
-                //                       AppConstants.i_have_own.toString() +
-                //                       AppConstants.liabilityProtection
-                //                           .toString() +
-                //                       AppConstants.isPickup.toString() +
-                //                       AppConstants.isPromoApplied.toString() +
-                //                       AppConstants.standardProtection
-                //                           .toString() +
-                //                       AppConstants.under25Years.toString() +
-                //                       AppConstants.unlimitedMiles.toString() +
-                //                       AppConstants.rentDays.toString() +
-                //                       AppConstants.toDate.toString() +
-                //                       AppConstants.toTimeinMiliSeconds +
-                //                       AppConstants.totalCustomCoverage
-                //                           .toString() +
-                //                       AppConstants.vehicleType);
-                //                   showRecipetSheet(
-                //                     context,
-                //                     AppConstants.rentDays,
-                //                     AppConstants.totalPrice.toStringAsFixed(2),
-                //                     DateTime.now().toString(),
-                //                     '${AppConstants.fromDate} ${AppConstants.fromTime}',
-                //                     '${AppConstants.toDate} ${AppConstants.toTime}',
-                //                     AppConstants.rentDays,
-                //                     AppConstants.bookingDate,
-                //                     'Card Payment',
-                //                     {
-                //                       'Liability Charges\nRent & others':
-                //                       AppConstants.totalPrice,
-                //                       'Boston Police Training Fees':
-                //                       AppConstants.bostonPoliceFees,
-                //                       'Boston Parking Surcharge':
-                //                       AppConstants.bostonParking,
-                //                       'Boston Convention Center\nFinancing Surcharge':
-                //                       AppConstants.bostonConventionCenter,
-                //                       'Delivery and Return':
-                //                       AppConstants.deliveryCharges,
-                //                       'Temporary Deposit':
-                //                       AppConstants.tempDeposit,
-                //                     },
-                //                   );
-                //                 } : (){Snackbar.showSnackBar("YB-Ride", "Enter necessary fields", Icons.error_outline);},),
-                //           ),
-                //           SizedBox(
-                //             height: 30,
-                //           ),
-                //           SizedBox(
-                //             height: 30,
-                //           ),
-                //           SubHeadingTextWidget(
-                //             title:
-                //                 'By continuing, you confirm that you have read and accepted the trip information',
-                //             fontSize: 12,
-                //             textColor: Colors.black,
-                //           ),
-                //           SizedBox(
-                //             height: 5,
-                //           ),
-                //           Padding(
-                //             padding: const EdgeInsets.symmetric(horizontal: 50),
-                //             child: SubHeadingTextWidget(
-                //               title: 'Terms and Conditions',
-                //               fontSize: 13,
-                //               textColor: Colors.black,
-                //             ),
-                //           ),
-                //           SizedBox(
-                //             height: 5,
-                //           ),
-                //           Padding(
-                //             padding: const EdgeInsets.symmetric(horizontal: 50),
-                //             child: SubHeadingTextWidget(
-                //               title:
-                //                   'You can also view a sample rental contact',
-                //               fontSize: 13,
-                //               textColor: Colors.black,
-                //             ),
-                //           ),
-                //           SizedBox(
-                //             height: 5,
-                //           ),
-                //         ],
-                //       ),
-                //     ),
-                //   ),
       ),
     );
   }
