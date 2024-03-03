@@ -62,6 +62,7 @@ Future<void> createBooking(BuildContext context) async{
   String docId = DateTime.now().millisecondsSinceEpoch.toString();
   showProgressIndicator(context);
   BookingModel booking = BookingModel(
+    state: AppConstants.selectedState,
     id: APis.auth.currentUser!.uid,
     paymentId: '',
     bookingDate: docId,

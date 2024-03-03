@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_google_places_sdk/flutter_google_places_sdk.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 import 'package:geocoding/geocoding.dart';
@@ -30,7 +31,7 @@ class HomePageState{
   String? sessionToken;
 
   RxInt results = 0.obs;
-  RxList placeList = [].obs;
+  RxList <AutocompletePrediction>placeList = <AutocompletePrediction>[].obs;
   RxList primaryText = [].obs;
   RxBool searchLoading = false.obs;
   RxBool locationSelected = false.obs;

@@ -66,36 +66,36 @@ class HomePageCon extends GetxController{
 
 
 
-  void getSuggestions(
-      String input, dynamic sessionToken, HomePageCon controller) async {
-    print("get suggestions called");
-    String baseURL = AppConstants.placesBaseUrl;
-    String kPLACES_API_KEY = AppConstants.kPlacesApiKey;
-    String request =
-        '$baseURL?input=$input&key=$kPLACES_API_KEY&sessiontoken=$sessionToken';
-
-    var response = await http.get(Uri.parse(request)).then((response) {
-      print(response.toString());
-      if (response.statusCode == 200) {
-        List predictions = jsonDecode(response.body.toString())['predictions'];
-        List bostonPredictions = predictions.where((prediction) {
-          return prediction['description'].toLowerCase().contains('boston');
-        }).toList();
-
-        state.results.value = bostonPredictions.length;
-        // cont.state.placeList.value =
-        controller.state.placeList.value = bostonPredictions;
-        print(bostonPredictions.toString());
-
-      } else {
-        print("status code");
-        print(response.statusCode);
-
-      }
-    }).onError((error, stackTrace) {
-      print(error.toString());
-    });
-  }
+  // void getSuggestions(
+  //     String input, dynamic sessionToken, HomePageCon controller) async {
+  //   print("get suggestions called");
+  //   String baseURL = AppConstants.placesBaseUrl;
+  //   String kPLACES_API_KEY = AppConstants.kPlacesApiKey;
+  //   String request =
+  //       '$baseURL?input=$input&key=$kPLACES_API_KEY&sessiontoken=$sessionToken';
+  //
+  //   var response = await http.get(Uri.parse(request)).then((response) {
+  //     print(response.toString());
+  //     if (response.statusCode == 200) {
+  //       List predictions = jsonDecode(response.body.toString())['predictions'];
+  //       List bostonPredictions = predictions.where((prediction) {
+  //         return prediction['description'].toLowerCase().contains('boston');
+  //       }).toList();
+  //
+  //       state.results.value = bostonPredictions.length;
+  //       // cont.state.placeList.value =
+  //       controller.state.placeList.value = bostonPredictions;
+  //       print(bostonPredictions.toString());
+  //
+  //     } else {
+  //       print("status code");
+  //       print(response.statusCode);
+  //
+  //     }
+  //   }).onError((error, stackTrace) {
+  //     print(error.toString());
+  //   });
+  // }
 
 
   void GetCoordinates(BuildContext context) async {
