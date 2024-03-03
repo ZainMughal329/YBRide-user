@@ -1,5 +1,3 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,8 +7,7 @@ import 'package:yb_ride_user_web/helper/AppConstants.dart';
 import 'package:yb_ride_user_web/helper/api.dart';
 import 'package:yb_ride_user_web/helper/session_Controller.dart';
 
-class CheckOutCon extends GetxController{
-
+class CheckOutCon extends GetxController {
   final state = CheckOutState();
 
   void setDataLoaded(bool val) {
@@ -18,16 +15,30 @@ class CheckOutCon extends GetxController{
   }
 
   Future<void> getCheckoutPayments() async {
+    print("----------------------");
+    print(AppConstants.selectedState.toString());
+    String docName = "";
+    if (AppConstants.selectedState == 'MA, USA') {
+      docName = 'massachusetts';
+    } else if (AppConstants.selectedState == 'VA, USA') {
+      docName = 'virginia';
+    } else if (AppConstants.selectedState == 'MD, USA') {
+      docName = 'maryland';
+    } else if (AppConstants.selectedState == 'DC, USA') {
+      docName = 'districtOfColumbia';
+    }
+
     setDataLoaded(false);
     try {
+      getReceiptCharges();
       CollectionReference usersCollection =
-      APis.db.collection('checkoutPayment');
-      QuerySnapshot querySnapshot = await usersCollection.get();
+          APis.db.collection('checkoutPayment');
+      DocumentSnapshot querySnapshot = await usersCollection.doc(docName).get();
 
       // Check if there are any documents in the collection
-      if (querySnapshot.docs.isNotEmpty) {
+      if (querySnapshot.exists) {
         // Get the first document
-        QueryDocumentSnapshot firstDocument = querySnapshot.docs.first;
+        dynamic firstDocument = querySnapshot;
 
         // Get the details from the document
         firstDocument['CDW'];
@@ -36,12 +47,16 @@ class CheckOutCon extends GetxController{
         state.RCLI = double.parse((firstDocument['RCLI']).toString());
         state.SLI = double.parse((firstDocument['SLI']).toString());
         state.essential = double.parse((firstDocument['essential']).toString());
-        state.licenseFee = double.parse((firstDocument['licenseFee']).toString());
+        state.licenseFee =
+            double.parse((firstDocument['licenseFee']).toString());
         state.standard = double.parse((firstDocument['standard']).toString());
-        state.unlimitedMiles = double.parse((firstDocument['unlimitedMiles']).toString());
-        state.assistance = double.parse((firstDocument['assistance']).toString());
+        state.unlimitedMiles =
+            double.parse((firstDocument['unlimitedMiles']).toString());
+        state.assistance =
+            double.parse((firstDocument['assistance']).toString());
         state.pickupLoc = firstDocument['pickUpLoc'];
-        AppConstants.deliveryCharges = double.parse((firstDocument['delivery']).toString());
+        AppConstants.deliveryCharges =
+            double.parse((firstDocument['delivery']).toString());
         AppConstants.pickUpLoc = firstDocument['pickUpLoc'];
         getReceiptCharges();
         setDataLoaded(true);
@@ -58,26 +73,42 @@ class CheckOutCon extends GetxController{
     }
   }
 
-  Future<void> getReceiptCharges() async{
-    try{
+  Future<void> getReceiptCharges() async {
+    String docName = "";
+    if (AppConstants.selectedState == 'MA, USA') {
+      docName = 'massachusetts';
+    } else if (AppConstants.selectedState == 'VA, USA') {
+      docName = 'virginia';
+    } else if (AppConstants.selectedState == 'MD, USA') {
+      docName = 'maryland';
+    } else if (AppConstants.selectedState == 'DC, USA') {
+      docName = 'districtOfColumbia';
+    }
+
+    try {
       CollectionReference usersCollection =
-      APis.db.collection('receipt_charges');
-      QuerySnapshot querySnapshot = await usersCollection.get();
+          APis.db.collection('receipt_charges');
+      DocumentSnapshot querySnapshot = await usersCollection.doc(docName).get();
 
       // Check if there are any documents in the collection
-      if (querySnapshot.docs.isNotEmpty) {
+      if (querySnapshot.exists) {
         // Get the first document
-        QueryDocumentSnapshot firstDocument = querySnapshot.docs.first;
+        dynamic firstDocument = querySnapshot;
 
         // Get the details from the document
-        AppConstants.bostonPoliceFees = double.parse((firstDocument['Boston Convention Center Financing Surcharge']).toString());
-        AppConstants.bostonParking = double.parse((firstDocument['Boston Parking Surcharge']).toString());
-        AppConstants.bostonConventionCenter = double.parse((firstDocument['Boston Police Training Fees']).toString());
-        AppConstants.tempDeposit = double.parse((firstDocument['tempDeposit']).toString());
-        AppConstants.salesTaxPercentage = double.parse((firstDocument['salesTaxPercentage']).toString());
-
+        AppConstants.bostonConventionCenter = double.parse(
+            (firstDocument['Boston Convention Center Financing Surcharge'])
+                .toString());
+        AppConstants.bostonParking = double.parse(
+            (firstDocument['Boston Parking Surcharge']).toString());
+        AppConstants.bostonPoliceFees = double.parse(
+            (firstDocument['Boston Police Training Fees']).toString());
+        AppConstants.tempDeposit =
+            double.parse((firstDocument['tempDeposit']).toString());
+        AppConstants.salesTaxPercentage =
+            double.parse((firstDocument['salesTaxPercentage']).toString());
       }
-    }catch(e){
+    } catch (e) {
       Snackbar.showSnackBar(
           'Error', e.toString(), Icons.error_outline_outlined);
     }
@@ -85,43 +116,38 @@ class CheckOutCon extends GetxController{
 
   //
   void addInTotalPrice(double? price, bool withRentDays) {
-    if(withRentDays==true){
-      double? newprice = AppConstants.rentDays*price!;
+    if (withRentDays == true) {
+      double? newprice = AppConstants.rentDays * price!;
       state.totalPrice.value = state.totalPrice.value + newprice;
-    }else if(withRentDays==false){
+    } else if (withRentDays == false) {
       state.totalPrice.value = state.totalPrice.value + price!;
     }
-
   }
 
   void subtractFromTotalPrince(double? price, bool withRentDays) {
-    if(withRentDays == true){
-      double? newprice = AppConstants.rentDays*price!;
+    if (withRentDays == true) {
+      double? newprice = AppConstants.rentDays * price!;
       state.totalPrice.value = state.totalPrice.value - newprice!;
-    }else if(withRentDays==false){
+    } else if (withRentDays == false) {
       state.totalPrice.value = state.totalPrice.value - price!;
     }
-
   }
 
-
-  void checkAllCustomValues(){
-    if(state.cdwSwitchVal.value==false
-    && state.rcliSwitchVal.value==false
-    && state.assistantSwitchVal.value ==false
-    && state.sliSwitchVal.value==false
-    ){
-      state.customCoverageValue.value=false;
+  void checkAllCustomValues() {
+    if (state.cdwSwitchVal.value == false &&
+        state.rcliSwitchVal.value == false &&
+        state.assistantSwitchVal.value == false &&
+        state.sliSwitchVal.value == false) {
+      state.customCoverageValue.value = false;
     }
   }
-
-
-
 
   Future<void> checkPromoCode(BuildContext context, String code) async {
     try {
-      final doc = await APis.db.collection('promoCodes').where(
-          'code', isEqualTo: code).get();
+      final doc = await APis.db
+          .collection('promoCodes')
+          .where('code', isEqualTo: code)
+          .get();
 
       if (doc.docs.isNotEmpty) {
         final amountInt = doc.docs[0]['discountAmount'];
@@ -137,12 +163,11 @@ class CheckOutCon extends GetxController{
     }
   }
 
-
-  Future<void> checkAndAddValueToUserList(BuildContext context,
-      String promoCode, double amount) async {
+  Future<void> checkAndAddValueToUserList(
+      BuildContext context, String promoCode, double amount) async {
     // Reference to the "user" collection and document with ID "1231231231"
-    DocumentReference userDocumentRef = APis.db.collection('users').doc(
-        'PbeNV2oob0bEWvBDFp1YUJhkuip1');
+    DocumentReference userDocumentRef =
+        APis.db.collection('users').doc('PbeNV2oob0bEWvBDFp1YUJhkuip1');
 
     // Fetch the current document snapshot
     final userDocument = await userDocumentRef.get();
@@ -179,13 +204,11 @@ class CheckOutCon extends GetxController{
     }
   }
 
-
   void applyDiscount(amount) {
-    subtractFromTotalPrince(amount,false);
-    AppConstants.isPromoApplied=true;
-    AppConstants.promoDiscountAmount=amount;
+    subtractFromTotalPrince(amount, false);
+    AppConstants.isPromoApplied = true;
+    AppConstants.promoDiscountAmount = amount;
   }
-
 
   // void setValues(){
   //   AppConstants.totalPrice=state.totalPrice.value;
@@ -252,8 +275,27 @@ class CheckOutCon extends GetxController{
   //
   // }
 
-  void addInTotalCustomCoverageValue(double amount){
-    AppConstants.totalCustomCoverage=AppConstants.totalCustomCoverage+(amount*AppConstants.rentDays);
+  void addInTotalCustomCoverageValue(double amount) {
+    AppConstants.totalCustomCoverage =
+        AppConstants.totalCustomCoverage + (amount * AppConstants.rentDays);
   }
 
+  bool checkNecessaryValues() {
+    if (state.isDelivery.value == true) {
+      if (state.standardCoverage.value == true ||
+          state.liabilityInsurance.value == true ||
+          state.iHaveMyOwn.value == true ||
+          state.customCoverageValue.value == true) {
+        if (state.paymentCheck.value == true) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
 }

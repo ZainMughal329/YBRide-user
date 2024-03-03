@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yb_ride_user_web/checkOut/Widget/payment/paymentController.dart';
 import 'package:yb_ride_user_web/components/headingTextWidget.dart';
+import 'package:yb_ride_user_web/homePage/view.dart';
 
 import '../../../components/snackbar_widget.dart';
 import '../../../helper/AppConstants.dart';
@@ -29,19 +30,21 @@ showCustomDialog(BuildContext context) {
               HeadingTextWidget(
                   height: 1.25,
                   textAlign: TextAlign.center,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 14,
-                  title:'Make payments to the mentioned account "${AppConstants.ybAccNumber}"Booking will remain in pending state until confirmed by the YB-RIDE Administration.\nContact us on : ${AppConstants.ybPhone}\n${AppConstants.ybEmail}'),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  title:'Make payments to the mentioned account\n"${AppConstants.ybAccNumber}"\nBooking will remain in pending state until confirmed by the YB-RIDE Administration.\nContact us on : ${AppConstants.ybPhone}\n${AppConstants.ybEmail}'),
               SizedBox(height: 10),
           ],
         ),
           actions: <Widget>[
             TextButton(
               onPressed: () {
-                createBooking(context);
-                Navigator.pop(context);
+                createBooking(context).then((value){
+                  Get.off(()=>HomePage());
+                });
+
               },
-              child: Text('Oka'),
+              child: Text('Ok'),
             ),
             TextButton(
               onPressed: () {
