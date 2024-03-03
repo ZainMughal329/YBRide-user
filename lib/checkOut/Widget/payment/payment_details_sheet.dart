@@ -247,7 +247,7 @@ Future showRecipetSheet(
                           },
                         );
                         Navigator.pop(context);
-                        Navigator.pop(context);
+                        // Navigator.pop(context);
                         // final con = Get.put(PaymentController());
                         // con.makePayment(context, AppConstants.totalPrice);
                         // final payController = PaymentController();

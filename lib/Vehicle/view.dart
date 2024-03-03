@@ -134,7 +134,7 @@ class VehiclePage extends StatelessWidget {
             SizedBox(
               height: 30,
             ),
-            weekDayContainer(),
+            weekDayContainer(context),
             SizedBox(
               height: 30,
             ),
@@ -369,7 +369,7 @@ class VehiclePage extends StatelessWidget {
             SizedBox(
               height: 30,
             ),
-            appBarFooter()
+            ResponsiveWidget.isLargeScreen(context) ? appBarFooter() : appBarFooterSmall(context),
           ],
         ),
       ),
