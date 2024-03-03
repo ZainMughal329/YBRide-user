@@ -119,7 +119,7 @@ Future<void> newrangePicker(BuildContext context , HomePageCon cont) async{
                               Obx(() {
                                 return SubHeadingTextWidget(
                                   title:
-                                  "${cont.state.fromDateName.value} ${cont.state.fromMonthName.value} ${cont.state.fromDate.value} 20${cont.state.fromYear.value}",
+                                  "${cont.state.fromDateName.value} ${cont.state.fromMonthName.value} ${cont.state.fromDate.value} ${cont.state.fromYear.value}",
                                   textColor: Colors.black,
                                   fontWeight: FontWeight.w600,
                                 );
@@ -152,7 +152,7 @@ Future<void> newrangePicker(BuildContext context , HomePageCon cont) async{
                               Obx(() {
                                 return SubHeadingTextWidget(
                                     title:
-                                    "${cont.state.toDateName.value} ${cont.state.toMonthName.value} ${cont.state.toDate.value} 20${cont.state.toYear.value}",
+                                    "${cont.state.toDateName.value} ${cont.state.toMonthName.value} ${cont.state.toDate.value} ${cont.state.toYear.value}",
                                     textColor: Colors.black,
                                     fontWeight: FontWeight.w600);
                               }),

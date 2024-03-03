@@ -4,14 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:yb_ride_user_web/Vehicle/Controller.dart';
+import 'package:yb_ride_user_web/helper/responsive.dart';
 
 import '../../components/headingTextWidget.dart';
 import '../../components/subHeadingText.dart';
 import '../../helper/appColors.dart';
 
-Widget weekDayContainer(){
+Widget weekDayContainer(BuildContext context){
   final controller = VehicleCon();
-  return Material(
+  return ResponsiveWidget.isLargeScreen(context) ?  Material(
     child:
     Obx(
           () => controller.state.isContainerVisible.value
@@ -87,5 +88,83 @@ Widget weekDayContainer(){
 
                 ),
           ):SizedBox())
-  );
+  ) :
+  Material(
+      child:
+      Obx(
+              () => controller.state.isContainerVisible.value
+              ? Padding(
+            padding: EdgeInsets.symmetric(
+                vertical: 10,
+                horizontal: 70),
+            child: Container(
+
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      vertical: 20,
+                      horizontal: 10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          CircleAvatar(
+                            child: Icon(
+                              Icons.done,
+                              color: Colors.white,
+                              size: 15,
+                            ),
+                            backgroundColor: AppColors.buttonColor,
+                            radius: 12,
+                          ),
+                          SizedBox(
+                            width:20,
+                          ),
+                          HeadingTextWidget(
+                            title: 'Weekday Savings Included',
+                            textColor: AppColors.buttonColor,
+                            fontSize: 14,
+
+                          ),
+                          SizedBox(
+                            width: 40,
+                          ),
+                          GestureDetector(
+                              onTap: () {
+                                controller.hideContainer();
+                              },
+                              child: Icon(
+                                FontAwesomeIcons.xmark,
+                                color: Colors.black,
+                                size: 15,
+                              ))
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      SubHeadingTextWidget(
+                        title:
+                        'Your booking includes a weekday -you have the best prices 💸',
+                        textColor: Colors.black,
+                        fontSize: 12,
+                      ),
+                    ],
+                  ),
+                ),
+                decoration: BoxDecoration(
+                  color: Color.fromRGBO(255, 255, 255, 1),
+                  boxShadow: [
+                    BoxShadow(color: Colors.black.withOpacity(1))
+                  ],
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                      color: Colors.grey),
+                )
+
+            ),
+          ):SizedBox())
+  )
+  ;
 }

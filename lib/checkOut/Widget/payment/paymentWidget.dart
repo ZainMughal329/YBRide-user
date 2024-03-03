@@ -32,7 +32,17 @@ Widget paymentWidget(){
           SizedBox(height: 15,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: HeadingTextWidget(title: '4. Payment',fontWeight: FontWeight.bold,fontSize: 30,),
+            child: Row(
+              children: [
+                HeadingTextWidget(title: '4. Payment',fontWeight: FontWeight.bold,fontSize: 30,),
+                HeadingTextWidget(
+                  title: '*',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                  textColor: Colors.red,
+                ),
+              ],
+            ),
           ),
           SizedBox(height: 15,),
           // ReuseableTextField(contr: state.firstNameCon, label: 'Card Number',
@@ -85,7 +95,17 @@ Widget paymentWidgetSmall(){
           SizedBox(height: 15,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: HeadingTextWidget(title: '4. Payment',fontWeight: FontWeight.bold,fontSize: 23,),
+            child: Row(
+              children: [
+                HeadingTextWidget(title: '4. Payment',fontWeight: FontWeight.bold,fontSize: 23,),
+                HeadingTextWidget(
+                  title: '*',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 23,
+                  textColor: Colors.red,
+                ),
+              ],
+            ),
           ),
           SizedBox(height: 30,),
           Padding(

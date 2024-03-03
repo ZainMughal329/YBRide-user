@@ -32,7 +32,7 @@ Widget priceContainerWidget(CheckOutCon controller){
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  HeadingTextWidget(title: 'SUV'),
+                  HeadingTextWidget(title: AppConstants.vehicleType),
                   Row(
                     children: [
                       SubHeadingTextWidget(title: '${AppConstants.rentDays} days'),
@@ -68,7 +68,7 @@ Widget priceContainerWidget(CheckOutCon controller){
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SubHeadingTextWidget(title: 'Sales tax'),
-              SubHeadingTextWidget(title: '\$'+'15.88'),
+              SubHeadingTextWidget(title: 'will be calculated during payment',textColor: Colors.red,),
             ],
           ),
           SizedBox(height: 10,),
@@ -106,8 +106,8 @@ Widget priceContainerWidget(CheckOutCon controller){
                   Row(
                     children: [
                       HeadingTextWidget(title: 'Free Cancellation ',fontSize: 16,),
-                      SubHeadingTextWidget(title: 'until '),
-                      HeadingTextWidget(title: 'Feb 21',fontSize: 16,),
+                      SubHeadingTextWidget(title: 'with-in '),
+                      HeadingTextWidget(title: '2-days',fontSize: 16,),
                       SubHeadingTextWidget(title: '. Cancel at least 24 hours'),
 
 
@@ -127,7 +127,7 @@ Widget priceContainerWidget(CheckOutCon controller){
   );
 }
 
-Widget priceContainerWidgetSmall(){
+Widget priceContainerWidgetSmall(CheckOutCon controller){
   return  Container(
     decoration: BoxDecoration(
       borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -151,18 +151,18 @@ Widget priceContainerWidgetSmall(){
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  HeadingTextWidget(title: 'SUV',fontSize: 15,),
+                  HeadingTextWidget(title: AppConstants.vehicleType,fontSize: 15,),
                   Row(
                     children: [
-                      SubHeadingTextWidget(title: '5 days',fontSize: 13,textColor: Colors.black,),
+                      SubHeadingTextWidget(title: '${AppConstants.rentDays} days',fontSize: 13,),
                       SizedBox(width: 7,),
-                      SubHeadingTextWidget(title: '.',fontSize: 13,textColor: Colors.black,),
+                      SubHeadingTextWidget(title: '.'),
                       SizedBox(width: 7,),
-                      SubHeadingTextWidget(title: 'Feb 20',fontSize: 13,textColor: Colors.black,),
+                      SubHeadingTextWidget(title: '${AppConstants.fromMonthName} ${AppConstants.fromDate}',fontSize: 13),
                       SizedBox(width: 7,),
-                      SubHeadingTextWidget(title: '-',fontSize: 13,textColor: Colors.black,),
+                      SubHeadingTextWidget(title: '-',fontSize: 13),
                       SizedBox(width: 7,),
-                      SubHeadingTextWidget(title: 'Feb 24',fontSize: 13,textColor: Colors.black,),
+                      SubHeadingTextWidget(title: '${AppConstants.toMonthName} ${AppConstants.toDate}',fontSize: 13),
 
                     ],
                   )
@@ -176,8 +176,8 @@ Widget priceContainerWidgetSmall(){
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SubHeadingTextWidget(title: 'Your YBRide',fontSize: 13,textColor: Colors.black,),
-              SubHeadingTextWidget(title: '\$'+'30.00 * 5 days',fontSize: 13,textColor: Colors.black,),
+              SubHeadingTextWidget(title: 'Your YBRide'),
+              SubHeadingTextWidget(title: '\$'+'${controller.state.carPricePerDay} * ${AppConstants.rentDays} days'),
 
 
             ],
@@ -187,15 +187,15 @@ Widget priceContainerWidgetSmall(){
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SubHeadingTextWidget(title: 'Sales tax',fontSize: 13,textColor: Colors.black,),
-              SubHeadingTextWidget(title: '\$'+'15.88',fontSize: 13,textColor: Colors.black,),
+              SubHeadingTextWidget(title: 'Will be calculated during payment',fontSize: 13,textColor: Colors.red,),
             ],
           ),
           SizedBox(height: 30,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              HeadingTextWidget(title: 'Total',fontSize: 15,textColor: Colors.black,),
-              SubHeadingTextWidget(title: '\$'+'170.99',fontSize: 13,textColor: Colors.black,),
+              HeadingTextWidget(title: 'Total'),
+              Obx(() =>SubHeadingTextWidget(title: '\$'+'${controller.state.totalPrice.value}',fontSize: 13,),),
             ],
           ),
           SizedBox(height: 30,),
@@ -203,7 +203,7 @@ Widget priceContainerWidgetSmall(){
             children: [
               Icon(Icons.emoji_emotions_outlined),
               SizedBox(width: 20,),
-              SubHeadingTextWidget(title: "Weekday savings included, you're getting a great deal.",fontSize: 13,textColor: Colors.black,)
+              Flexible(child: SubHeadingTextWidget(title: "Weekday savings included, you're getting a great deal.",fontSize: 13,textColor: Colors.black,))
             ],
           ),
           SizedBox(height: 30,),
@@ -218,9 +218,9 @@ Widget priceContainerWidgetSmall(){
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       HeadingTextWidget(title: 'Free Cancellation ',fontSize: 13,),
-                      SubHeadingTextWidget(title: 'until ',fontSize: 13,textColor: Colors.black,),
-                      HeadingTextWidget(title: 'Feb 21.',fontSize: 13,),
-                      SubHeadingTextWidget(title: '. Cancel at least 24 hours',fontSize: 13,textColor: Colors.black,),
+                      SubHeadingTextWidget(title: 'with-in ',fontSize: 13,textColor: Colors.black,),
+                      HeadingTextWidget(title: '2-days.',fontSize: 13,),
+                      SubHeadingTextWidget(title: '.\nCancel at least 24 hours',fontSize: 13,textColor: Colors.black,),
 
 
 
