@@ -8,7 +8,7 @@ import 'package:yb_ride_user_web/helper/responsive.dart';
 import 'package:yb_ride_user_web/homePage/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/FaqS/view.dart';
-import 'package:yb_ride_user_web/pages/appBarPages/Trips/view.dart';
+import 'package:yb_ride_user_web/pages/appBarPages/Trips/allTripPage.dart';
 import '../../helper/api.dart';
 import '../../helper/appColors.dart';
 import '../../homePage/termsAndServices/view.dart';

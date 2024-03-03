@@ -13,7 +13,7 @@ import '../helper/responsive.dart';
 import '../pages/appBarPages/Accounts/view.dart';
 import '../pages/appBarPages/FaqS/view.dart';
 import '../pages/appBarPages/Referrals/view.dart';
-import '../pages/appBarPages/Trips/view.dart';
+import '../pages/appBarPages/Trips/allTripPage.dart';
 import 'Widgets/car_card.dart';
 import 'package:lottie/lottie.dart';
 import 'Widgets/weekdayContainer.dart';
@@ -214,6 +214,8 @@ class VehiclePage extends StatelessWidget {
                                       carType: carType,
                                       carPrice: price,
                                       carDescription: vehicleDescription,
+                                      vehicleId: snapshot
+                                          .data!.docs[index]['id'].toString(),
                                     ));
                                   },
                                 ),
@@ -269,6 +271,8 @@ class VehiclePage extends StatelessWidget {
                                     carType: carType,
                                     carPrice: price,
                                     carDescription: vehicleDescription,
+                                    vehicleId: snapshot
+                                        .data!.docs[index]['id'].toString(),
                                   ));
                                 },
                               ),
@@ -331,6 +335,8 @@ class VehiclePage extends StatelessWidget {
                                     carType: carType,
                                     carPrice: price,
                                     carDescription: vehicleDescription,
+                                    vehicleId: snapshot
+                                        .data!.docs[index]['id'].toString(),
                                   ));
                                 },
                               ),

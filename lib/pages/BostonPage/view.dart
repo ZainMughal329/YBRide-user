@@ -10,7 +10,7 @@ import '../../components/headingTextWidget.dart';
 import '../../helper/appColors.dart';
 import '../appBarPages/Accounts/view.dart';
 import '../appBarPages/Referrals/view.dart';
-import '../appBarPages/Trips/view.dart';
+import '../appBarPages/Trips/allTripPage.dart';
 import '../gotAnswerWidget/gotAnswerWidget.dart';
 import 'Widgets/RealPeopleHaveToSayWidget.dart';
 import 'Widgets/gotAnswerQuestionsWidget.dart';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yb_ride_user_web/Vehicle/addVehiclePage/widgets/form.dart';
 import 'package:yb_ride_user_web/checkOut/Widget/payment/paymentController.dart';
 import 'package:yb_ride_user_web/components/headingTextWidget.dart';
 
@@ -9,18 +10,17 @@ import '../../../helper/api.dart';
 import '../../../helper/session_Controller.dart';
 import '../../../helper/show_progress_indicator.dart';
 import '../../../model/booking_model.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 final con = Get.put(PaymentController());
-showCustomDialog(BuildContext context) {
+showCustomDialog(BuildContext context, String id,String vehicleId) {
   con.fetchContactDetails();
     return showDialog(
       barrierColor: Colors.white,
       barrierDismissible: false,
       context: context, builder: (BuildContext context) {
         return AlertDialog(
-
           backgroundColor: Colors.white,
           title: Text('Payment'),
           content: Column(
@@ -38,7 +38,9 @@ showCustomDialog(BuildContext context) {
           actions: <Widget>[
             TextButton(
               onPressed: () {
-                createBooking(context);
+                createBooking(context,id);
+                print('id:'+vehicleId);
+                updateVehicleCount(vehicleId);
                 Navigator.pop(context);
               },
               child: Text('Oka'),
@@ -56,9 +58,38 @@ showCustomDialog(BuildContext context) {
 
     );
   }
+Future<void> updateVehicleCount(String id) async {
+  final _db = APis.db.collection('vehicleData');
+  try {
+    // Retrieve the document snapshot for the specified id
+    DocumentSnapshot snapshot = await _db.doc(id).get();
+
+    // Extract the current count of vehicles from the snapshot data
+    var stringVal = snapshot.data() as Map<String, dynamic>;
+    final stringValue = stringVal['noOfVehicles'];
+
+    // Convert the extracted string value to an integer
+    int? integerValue = int.tryParse(stringValue);
+
+    // If conversion to integer is successful
+    if (integerValue != null) {
+      // Subtract one from the current count
+      int updatedValue = integerValue - 1;
+
+      // Update the count in the database
+      await _db.doc(id).update({'noOfVehicles': updatedValue.toString()});
+    } else {
+      // Handle if the conversion fails
+      // You may add error handling logic here
+    }
+  } catch (error) {
+    // Handle any errors that occur during the process
+    // You may add error handling logic here
+  }
+}
 
 
-Future<void> createBooking(BuildContext context) async{
+Future<void> createBooking(BuildContext context,String id) async{
   String docId = DateTime.now().millisecondsSinceEpoch.toString();
   showProgressIndicator(context);
   BookingModel booking = BookingModel(
@@ -95,6 +126,7 @@ Future<void> createBooking(BuildContext context) async{
   try{
     await APis.db.collection('all_bookings').doc(docId).set(booking.toJson()).then((value){
       Navigator.pop(context);
+      updateVehicleCount(docId);
       // Code to redirect to Trips Screen
       resetReferralCredit();
       Navigator.pop(context);

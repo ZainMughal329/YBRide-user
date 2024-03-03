@@ -14,7 +14,7 @@ import '../../../helper/responsive.dart';
 import '../Accounts/view.dart';
 import '../Become_Driver/view.dart';
 import '../FaqS/view.dart';
-import '../Trips/view.dart';
+import '../Trips/allTripPage.dart';
 
 class ReferralPage extends StatelessWidget {
   const ReferralPage({super.key});

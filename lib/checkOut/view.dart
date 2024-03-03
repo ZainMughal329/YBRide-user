@@ -26,13 +26,16 @@ class CheckOutPage extends StatelessWidget {
   final double carRent;
   final String carType;
   final String carDescription;
+  final String vehicleId;
 
   CheckOutPage(
       {super.key,
       required this.carType,
       required this.carRent,
       required this.carPrice,
-      required this.carDescription});
+      required this.carDescription,
+      required this.vehicleId,
+      });
 
   Widget _checkBox(bool val, ValueChanged<bool>? onChanged) {
     return Checkbox(
@@ -207,6 +210,7 @@ class CheckOutPage extends StatelessWidget {
                                     showRecipetSheet(
                                       context,
                                       AppConstants.rentDays,
+                                      AppConstants.paymentId,
                                       AppConstants.totalPrice.toStringAsFixed(2),
                                       DateTime.now().toString(),
                                       '${AppConstants.fromDate} ${AppConstants.fromTime}',
@@ -228,6 +232,8 @@ class CheckOutPage extends StatelessWidget {
                                         'Temporary Deposit':
                                         AppConstants.tempDeposit,
                                       },
+                                      vehicleId.toString(),
+
                                     );
                                   }),
                             ),
@@ -412,6 +418,7 @@ class CheckOutPage extends StatelessWidget {
                                   showRecipetSheet(
                                     context,
                                     AppConstants.rentDays,
+                                    AppConstants.paymentId,
                                     AppConstants.totalPrice.toStringAsFixed(2),
                                     DateTime.now().toString(),
                                     '${AppConstants.fromDate} ${AppConstants.fromTime}',
@@ -433,6 +440,8 @@ class CheckOutPage extends StatelessWidget {
                                       'Temporary Deposit':
                                       AppConstants.tempDeposit,
                                     },
+                                    vehicleId.toString(),
+
                                   );
                                 }),
                           ),
@@ -608,6 +617,7 @@ class CheckOutPage extends StatelessWidget {
                                   showRecipetSheet(
                                     context,
                                     AppConstants.rentDays,
+                                    AppConstants.paymentId,
                                     AppConstants.totalPrice.toStringAsFixed(2),
                                     DateTime.now().toString(),
                                     '${AppConstants.fromDate} ${AppConstants.fromTime}',
@@ -629,6 +639,8 @@ class CheckOutPage extends StatelessWidget {
                                       'Temporary Deposit':
                                       AppConstants.tempDeposit,
                                     },
+                                    vehicleId.toString(),
+
                                   );
                                 }),
                           ),
