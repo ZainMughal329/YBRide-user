@@ -64,6 +64,7 @@ class AppConstants {
   static double totalAmountToPay = 0.0;
   static double salesTaxPercentage = 0.0;
   static String pickUpLoc = "";
+  static String selectedState = "";
 
 
 

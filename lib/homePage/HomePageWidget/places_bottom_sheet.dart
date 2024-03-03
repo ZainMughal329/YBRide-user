@@ -27,10 +27,7 @@ return showModalBottomSheet(context: context, builder: (_){
 
           print('Result: $predictions');
          // print(predictions.predictions) ;
-          for(var pred in predictions.predictions){
-            // print(pred.toString());
-          print(pred.fullText.toString());
-          }
+
          //  print(predictions.predictions.toString());
          // printRes(predictions.predictions.toString());
 

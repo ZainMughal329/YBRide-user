@@ -241,25 +241,23 @@ Widget HomePageWidget(BuildContext context, HomePageCon controller) {
                                         onTap: () {
                                           whereBottomSheet(context, controller);
                                         },
-                                        child: Center(
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              HeadingTextWidget(title: 'Where',fontSize: 13,),
-                                              SizedBox(
-                                                height: 5,
-                                              ),
-                                              Flexible(
-                                                  child: SubHeadingTextWidget(
-                                                title: controller
-                                                    .state.selectedPlace.value,
-                                                    fontSize: 11,maxLines: 1,overflow: TextOverflow.ellipsis,textColor: Colors.grey,
-                                              )),
-                                            ],
-                                          ),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            HeadingTextWidget(title: 'Where',fontSize: 13,),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Flexible(
+                                                child: SubHeadingTextWidget(
+                                              title: controller
+                                                  .state.selectedPlace.value,
+                                                  fontSize: 11,maxLines: 1,overflow: TextOverflow.ellipsis,textColor: Colors.grey,
+                                            )),
+                                          ],
                                         ),
                                       ),
                                   ),
@@ -308,26 +306,24 @@ Widget HomePageWidget(BuildContext context, HomePageCon controller) {
                                         onTap: () {
                                           toBottomSheet(context, controller);
                                         },
-                                        child: Center(
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              HeadingTextWidget(title: 'To',
-                                              fontSize: 13,),
-                                              SizedBox(
-                                                height: 5,
-                                              ),
-                                              Flexible(
-                                                  child: SubHeadingTextWidget(
-                                                title: controller
-                                                    .state.returnPlace.value,
-                                                    fontSize: 11,textColor: Colors.grey,maxLines: 1,overflow: TextOverflow.ellipsis,
-                                              )),
-                                            ],
-                                          ),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            HeadingTextWidget(title: 'To',
+                                            fontSize: 13,),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Flexible(
+                                                child: SubHeadingTextWidget(
+                                              title: controller
+                                                  .state.returnPlace.value,
+                                                  fontSize: 11,textColor: Colors.grey,maxLines: 1,overflow: TextOverflow.ellipsis,
+                                            )),
+                                          ],
                                         ),
                                       ),
                               ),

@@ -37,7 +37,6 @@ class CarCardLargeScreen extends StatelessWidget {
     required this.onPress,
   }) : super(key: key);
 
-
   List<String> economyList = [
     'images/eco-1.webp',
     'images/eco-2.webp',
@@ -56,7 +55,6 @@ class CarCardLargeScreen extends StatelessWidget {
     'images/sedan-3.webp',
   ];
 
-
   List<String> avdList = [
     'images/awd-1.webp',
     'images/awd-2.webp',
@@ -70,198 +68,455 @@ class CarCardLargeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 5,horizontal: 70),
-      child: Center(
-        child: Container(
-          width: ResponsiveWidget.isLargeScreen(context)
-              ? 1300
-              : ResponsiveWidget.isMediumScreen(context)
-              ? 700
-              : 250,
-          height: 280,
-          child: Column(
+    return vehiclesLeft == '0'
+        ? Stack(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        height: 220,
-                        width: 360,
-                        // width: double.infinity,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          // color: Colors.red,
-                          border: Border.all(color: Colors.black12),
-                        ),
-                        child: Swiper(
-                          itemBuilder: (BuildContext context, int index) {
-                            return Image.asset(
-
-                              type == "Economy"? economyList[index] : type == "Premium"? premiumList[index] : type == "AllWheelDriveSUV"? avdList[index] : type == "SUV"? suvList[index] : sedanList[index],
-                              fit: BoxFit.cover,
-                              // height: 188.h,
-                              width: 288,
-                            );
-                          },
-                          autoplay: false,
-                          itemCount: economyList.length,
-                          viewportFraction: 0.8,
-                          scale: 0.9,
-                          pagination: SwiperPagination(
-                            alignment: Alignment.bottomCenter,
-                            builder: DotSwiperPaginationBuilder(
-                                color: Colors.black12,
-                                activeColor: Colors.white,
-                                activeSize: 13),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 20),
-                        child: Container(
-                          height: 220,
-                          width: 390,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              HeadingTextWidget(title: type),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              SubHeadingTextWidget(title: vehicle),
-                              SubHeadingTextWidget(
-                                  title: seats +
-                                      ' seats . ' +
-                                      suitcase +
-                                      ' suitcases'),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  showCustomAlertDialog(
-                                      context,
-                                      seats,
-                                      suitcase,
-                                      gas,
-                                      transmission,
-                                      ac,
-                                      bluetooth);
-                                },
-                                child: HeadingTextWidget(
-                                  title: 'See details',
-                                  fontSize: 15,
-                                  textColor: AppColors.buttonColor,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Container(
-                                height: 2,
-                                width: 20,
-                                color: Colors.grey,
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              SubHeadingTextWidget(
-                                title: description,
-                                fontSize: 14,
-                                textColor: AppColors.blackColor,
-                                fontWeight: FontWeight.normal,
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 20),
-                    child: Container(
-                      height: 220,
-                      width: 200,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              HeadingTextWidget(
-                                title: '\$' + price.toString() + '| day',
-                              ),
-                              SubHeadingTextWidget(
-                                title: 'excl. coverage, taxes',
-                                textColor: AppColors.blackColor,
-                                fontSize: 12,
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Container(
-                                child: Padding(
-                                  padding:
-                                  const EdgeInsets.symmetric(horizontal: 1),
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        Icons.timer,
-                                        color: Colors.blue,
-                                        size: 18,
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      HeadingTextWidget(
-                                        title: vehiclesLeft+' vehicles left',
-                                        textColor: Colors.blue,
-                                        fontSize: 10,
-                                      ),
-                                    ],
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 70),
+                child: Center(
+                  child: Container(
+                    width: ResponsiveWidget.isLargeScreen(context)
+                        ? 1300
+                        : ResponsiveWidget.isMediumScreen(context)
+                            ? 700
+                            : 250,
+                    height: 280,
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Container(
+                                  height: 220,
+                                  width: 360,
+                                  // width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    // color: Colors.red,
+                                    border: Border.all(color: Colors.black12),
+                                  ),
+                                  child: Swiper(
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return Image.asset(
+                                        type == "Economy"
+                                            ? economyList[index]
+                                            : type == "Premium"
+                                                ? premiumList[index]
+                                                : type == "AllWheelDriveSUV"
+                                                    ? avdList[index]
+                                                    : type == "SUV"
+                                                        ? suvList[index]
+                                                        : sedanList[index],
+                                        fit: BoxFit.cover,
+                                        // height: 188.h,
+                                        width: 288,
+                                      );
+                                    },
+                                    autoplay: false,
+                                    itemCount: economyList.length,
+                                    viewportFraction: 0.8,
+                                    scale: 0.9,
+                                    pagination: SwiperPagination(
+                                      alignment: Alignment.bottomCenter,
+                                      builder: DotSwiperPaginationBuilder(
+                                          color: Colors.black12,
+                                          activeColor: Colors.white,
+                                          activeSize: 13),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          Spacer(),
-                          InkWell(
-                            onTap: onPress,
-                            child: Container(
-                              height: 50,
-                              width: 110,
-                              decoration: BoxDecoration(
-                                color: AppColors.buttonColor,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Center(
-                                child: HeadingTextWidget(
-                                  title: 'Select',
-                                  fontSize: 17,
-                                  textColor: AppColors.whiteColor,
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 20),
+                                  child: Container(
+                                    height: 220,
+                                    width: 390,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        HeadingTextWidget(title: type),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        SubHeadingTextWidget(title: vehicle),
+                                        SubHeadingTextWidget(
+                                            title: seats +
+                                                ' seats . ' +
+                                                suitcase +
+                                                ' suitcases'),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            showCustomAlertDialog(
+                                                context,
+                                                seats,
+                                                suitcase,
+                                                gas,
+                                                transmission,
+                                                ac,
+                                                bluetooth);
+                                          },
+                                          child: HeadingTextWidget(
+                                            title: 'See details',
+                                            fontSize: 15,
+                                            textColor: AppColors.buttonColor,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Container(
+                                          height: 2,
+                                          width: 20,
+                                          color: Colors.grey,
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        SubHeadingTextWidget(
+                                          title: description,
+                                          fontSize: 14,
+                                          textColor: AppColors.blackColor,
+                                          fontWeight: FontWeight.normal,
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 20),
+                              child: Container(
+                                height: 220,
+                                width: 200,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        HeadingTextWidget(
+                                          title:
+                                              '\$' + price.toString() + '| day',
+                                        ),
+                                        SubHeadingTextWidget(
+                                          title: 'excl. coverage, taxes',
+                                          textColor: AppColors.blackColor,
+                                          fontSize: 12,
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Container(
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 1),
+                                            child: Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.timer,
+                                                  color: Colors.blue,
+                                                  size: 18,
+                                                ),
+                                                SizedBox(
+                                                  width: 5,
+                                                ),
+                                                HeadingTextWidget(
+                                                  title: vehiclesLeft +
+                                                      ' vehicles left',
+                                                  textColor: Colors.blue,
+                                                  fontSize: 10,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Spacer(),
+                                    InkWell(
+                                      // onTap: onPress,
+                                      child: Container(
+                                        height: 50,
+                                        width: 110,
+                                        decoration: BoxDecoration(
+                                          color: AppColors.buttonColor,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        child: Center(
+                                          child: HeadingTextWidget(
+                                            title: 'Select',
+                                            fontSize: 17,
+                                            textColor: AppColors.whiteColor,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Spacer(),
+                                  ],
                                 ),
                               ),
                             ),
-                          ),
-                          Spacer(),
-                        ],
-                      ),
+                          ],
+                        ),
+                        Divider(),
+                      ],
                     ),
                   ),
-                ],
+                ),
               ),
-              Divider(),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 70),
+                child: Center(
+                  child: Container(
+                    width: ResponsiveWidget.isLargeScreen(context)
+                        ? 1300
+                        : ResponsiveWidget.isMediumScreen(context)
+                            ? 700
+                            : 250,
+                    height: 280,
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              height: 230,
+                              width: 360,
+                              // width: double.infinity,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.black.withOpacity(.6),
+                                // color: Colors.red,
+                                border: Border.all(color: Colors.black12),
+                              ),
+                              child: Center(
+                                child: HeadingTextWidget(
+                                  title: 'Sold Out',
+                                  textColor: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              )
             ],
-          ),
-        ),
-      ),
-    );
+          )
+        : Padding(
+            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 70),
+            child: Center(
+              child: Container(
+                width: ResponsiveWidget.isLargeScreen(context)
+                    ? 1300
+                    : ResponsiveWidget.isMediumScreen(context)
+                        ? 700
+                        : 250,
+                height: 280,
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Container(
+                              height: 220,
+                              width: 360,
+                              // width: double.infinity,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                // color: Colors.red,
+                                border: Border.all(color: Colors.black12),
+                              ),
+                              child: Swiper(
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Image.asset(
+                                    type == "Economy"
+                                        ? economyList[index]
+                                        : type == "Premium"
+                                            ? premiumList[index]
+                                            : type == "AllWheelDriveSUV"
+                                                ? avdList[index]
+                                                : type == "SUV"
+                                                    ? suvList[index]
+                                                    : sedanList[index],
+                                    fit: BoxFit.cover,
+                                    // height: 188.h,
+                                    width: 288,
+                                  );
+                                },
+                                autoplay: false,
+                                itemCount: economyList.length,
+                                viewportFraction: 0.8,
+                                scale: 0.9,
+                                pagination: SwiperPagination(
+                                  alignment: Alignment.bottomCenter,
+                                  builder: DotSwiperPaginationBuilder(
+                                      color: Colors.black12,
+                                      activeColor: Colors.white,
+                                      activeSize: 13),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 20),
+                              child: Container(
+                                height: 220,
+                                width: 390,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    HeadingTextWidget(title: type),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    SubHeadingTextWidget(title: vehicle),
+                                    SubHeadingTextWidget(
+                                        title: seats +
+                                            ' seats . ' +
+                                            suitcase +
+                                            ' suitcases'),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        showCustomAlertDialog(
+                                            context,
+                                            seats,
+                                            suitcase,
+                                            gas,
+                                            transmission,
+                                            ac,
+                                            bluetooth);
+                                      },
+                                      child: HeadingTextWidget(
+                                        title: 'See details',
+                                        fontSize: 15,
+                                        textColor: AppColors.buttonColor,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Container(
+                                      height: 2,
+                                      width: 20,
+                                      color: Colors.grey,
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    SubHeadingTextWidget(
+                                      title: description,
+                                      fontSize: 14,
+                                      textColor: AppColors.blackColor,
+                                      fontWeight: FontWeight.normal,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 20),
+                          child: Container(
+                            height: 220,
+                            width: 200,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    HeadingTextWidget(
+                                      title: '\$' + price.toString() + '| day',
+                                    ),
+                                    SubHeadingTextWidget(
+                                      title: 'excl. coverage, taxes',
+                                      textColor: AppColors.blackColor,
+                                      fontSize: 12,
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Container(
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 1),
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              Icons.timer,
+                                              color: Colors.blue,
+                                              size: 18,
+                                            ),
+                                            SizedBox(
+                                              width: 5,
+                                            ),
+                                            HeadingTextWidget(
+                                              title: vehiclesLeft +
+                                                  ' vehicles left',
+                                              textColor: Colors.blue,
+                                              fontSize: 10,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Spacer(),
+                                InkWell(
+                                  onTap: onPress,
+                                  child: Container(
+                                    height: 50,
+                                    width: 110,
+                                    decoration: BoxDecoration(
+                                      color: AppColors.buttonColor,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Center(
+                                      child: HeadingTextWidget(
+                                        title: 'Select',
+                                        fontSize: 17,
+                                        textColor: AppColors.whiteColor,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Spacer(),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Divider(),
+                  ],
+                ),
+              ),
+            ),
+          );
   }
 }
 
@@ -317,7 +572,6 @@ class CarCardMediumScreen extends StatelessWidget {
     'images/sedan-3.webp',
   ];
 
-
   List<String> avdList = [
     'images/awd-1.webp',
     'images/awd-2.webp',
@@ -328,9 +582,194 @@ class CarCardMediumScreen extends StatelessWidget {
     'images/7_seater-2.webp',
     'images/7_seater-3.webp',
   ];
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return
+      vehiclesLeft == '0' ?
+          Stack(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 5),
+                child: Center(
+                  child: Container(
+                    width: 350,
+                    // height: 380,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 220,
+                          // width: 200,
+                          // width: double.infinity,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            // color: Colors.red,
+                            border: Border.all(color: Colors.black12),
+                          ),
+                          child: Swiper(
+                            itemBuilder: (BuildContext context, int index) {
+                              return Image.asset(
+                                type == "Economy"
+                                    ? economyList[index]
+                                    : type == "Premium"
+                                    ? premiumList[index]
+                                    : type == "AllWheelDriveSUV"
+                                    ? avdList[index]
+                                    : type == "SUV"
+                                    ? suvList[index]
+                                    : sedanList[index],
+                                fit: BoxFit.cover,
+                                // height: 188.h,
+                                // width: 288,
+                              );
+                            },
+                            autoplay: false,
+                            itemCount: imagesList.length,
+                            viewportFraction: 0.8,
+                            scale: 0.9,
+                            pagination: SwiperPagination(
+                              alignment: Alignment.bottomCenter,
+                              builder: DotSwiperPaginationBuilder(
+                                  color: Colors.black12,
+                                  activeColor: Colors.white,
+                                  activeSize: 13),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 20),
+                          child: Container(
+                            height: 220,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    HeadingTextWidget(title: type),
+                                    InkWell(
+                                      // onTap: onPress,
+                                      child: Container(
+                                        height: 30,
+                                        width: 70,
+                                        decoration: BoxDecoration(
+                                          color: AppColors.buttonColor,
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                        child: Center(
+                                          child: HeadingTextWidget(
+                                            title: 'Select',
+                                            fontSize: 13,
+                                            textColor: AppColors.whiteColor,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                SubHeadingTextWidget(title: vehicle),
+                                SubHeadingTextWidget(
+                                    title: seats + ' seats . ' + suitcase + ' suitcases'),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    showCustomAlertDialog(context, seats, suitcase, gas,
+                                        transmission, ac, bluetooth);
+                                  },
+                                  child: HeadingTextWidget(
+                                    title: 'See details',
+                                    fontSize: 15,
+                                    textColor: AppColors.buttonColor,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    HeadingTextWidget(
+                                      title: '\$' + price.toString() + '| day',
+                                      fontSize: 15,
+                                    ),
+                                    Container(
+                                      child: Padding(
+                                        padding:
+                                        const EdgeInsets.symmetric(horizontal: 1),
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              Icons.timer,
+                                              color: Colors.blue,
+                                              size: 18,
+                                            ),
+                                            SizedBox(
+                                              width: 5,
+                                            ),
+                                            HeadingTextWidget(
+                                              title: vehiclesLeft + ' vehicles left',
+                                              textColor: Colors.blue,
+                                              fontSize: 10,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 5),
+                child: Center(
+                  child: Container(
+                    width: 350,
+                    // height: 380,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 220,
+                          // width: 200,
+                          // width: double.infinity,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.black.withOpacity(.6),
+                            // color: Colors.red,
+                            border: Border.all(color: Colors.black12),
+                          ),
+                          child: Center(
+                            child: HeadingTextWidget(
+                              title: 'Sold Out',
+                              textColor: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              )
+            ],
+          )
+          :
+      Padding(
       padding: EdgeInsets.symmetric(vertical: 5),
       child: Center(
         child: Container(
@@ -351,7 +790,15 @@ class CarCardMediumScreen extends StatelessWidget {
                 child: Swiper(
                   itemBuilder: (BuildContext context, int index) {
                     return Image.asset(
-                      type == "Economy"? economyList[index] : type == "Premium"? premiumList[index] : type == "AllWheelDriveSUV"? avdList[index] : type == "SUV"? suvList[index] : sedanList[index],
+                      type == "Economy"
+                          ? economyList[index]
+                          : type == "Premium"
+                              ? premiumList[index]
+                              : type == "AllWheelDriveSUV"
+                                  ? avdList[index]
+                                  : type == "SUV"
+                                      ? suvList[index]
+                                      : sedanList[index],
                       fit: BoxFit.cover,
                       // height: 188.h,
                       // width: 288,
@@ -437,7 +884,7 @@ class CarCardMediumScreen extends StatelessWidget {
                           Container(
                             child: Padding(
                               padding:
-                              const EdgeInsets.symmetric(horizontal: 1),
+                                  const EdgeInsets.symmetric(horizontal: 1),
                               child: Row(
                                 children: [
                                   Icon(
@@ -523,7 +970,6 @@ class CarCardSmallScreen extends StatelessWidget {
     'images/sedan-3.webp',
   ];
 
-
   List<String> avdList = [
     'images/awd-1.webp',
     'images/awd-2.webp',
@@ -537,7 +983,231 @@ class CarCardSmallScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return
+      vehiclesLeft == '0' ?
+          Stack(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 5),
+                child: Center(
+                  child: Container(
+                    width: 350,
+                    height: 350,
+                    child: Column(
+                      children: [
+                        Column(
+                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                          children: [
+                            Column(
+                              children: [
+                                Container(
+                                  height: 150,
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    // color: Colors.red,
+                                    border: Border.all(color: Colors.black12),
+                                  ),
+                                  child: Swiper(
+                                    itemBuilder: (BuildContext context, int index) {
+                                      return Image.asset(
+                                        type == "Economy"
+                                            ? economyList[index]
+                                            : type == "Premium"
+                                            ? premiumList[index]
+                                            : type == "AllWheelDriveSUV"
+                                            ? avdList[index]
+                                            : type == "SUV"
+                                            ? suvList[index]
+                                            : sedanList[index],
+                                        fit: BoxFit.cover,
+                                        // height: 188.h,
+                                        width: 288,
+                                      );
+                                    },
+                                    autoplay: false,
+                                    itemCount: imagesList.length,
+                                    viewportFraction: 0.8,
+                                    scale: 0.9,
+                                    pagination: SwiperPagination(
+                                      alignment: Alignment.bottomCenter,
+                                      builder: DotSwiperPaginationBuilder(
+                                          color: Colors.black12,
+                                          activeColor: Colors.white,
+                                          activeSize: 13),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 20),
+                                  child: Container(
+                                    // height:220,
+                                    width: 320,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            HeadingTextWidget(title: type),
+                                            InkWell(
+                                              // onTap: onPress,
+                                              child: Container(
+                                                height: 30,
+                                                width: 70,
+                                                decoration: BoxDecoration(
+                                                  color: AppColors.buttonColor,
+                                                  borderRadius: BorderRadius.circular(10),
+                                                ),
+                                                child: Center(
+                                                  child: HeadingTextWidget(
+                                                    title: 'Select',
+                                                    fontSize: 13,
+                                                    textColor: AppColors.whiteColor,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        SubHeadingTextWidget(
+                                          title: vehicle,
+                                          textColor: AppColors.blackColor,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                        SubHeadingTextWidget(
+                                            title: seats +
+                                                ' seats . ' +
+                                                suitcase +
+                                                ' suitcases'),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            showCustomAlertDialog(
+                                                context,
+                                                seats,
+                                                suitcase,
+                                                gas,
+                                                transmission,
+                                                ac,
+                                                bluetooth);
+                                          },
+                                          child: HeadingTextWidget(
+                                            title: 'See details',
+                                            fontSize: 15,
+                                            textColor: AppColors.buttonColor,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            SubHeadingTextWidget(
+                                              title: '\$' + price.toString() + '| day',
+                                              textColor: AppColors.blackColor,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                            Column(
+                                              children: [
+                                                Container(
+                                                  child: Padding(
+                                                    padding: const EdgeInsets.symmetric(
+                                                        horizontal: 1),
+                                                    child: Row(
+                                                      children: [
+                                                        Icon(
+                                                          Icons.timer,
+                                                          color: Colors.blue,
+                                                          size: 18,
+                                                        ),
+                                                        SizedBox(
+                                                          width: 5,
+                                                        ),
+                                                        HeadingTextWidget(
+                                                          title: vehiclesLeft +
+                                                              ' vehicles left',
+                                                          textColor: Colors.blue,
+                                                          fontSize: 10,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 5),
+                child: Center(
+                  child: Container(
+                    width: 350,
+                    height: 350,
+                    child: Column(
+                      children: [
+                        Column(
+                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                          children: [
+                            Column(
+                              children: [
+                                Container(
+                                  height: 150,
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Colors.black.withOpacity(.6),
+                                    // color: Colors.red,
+                                    border: Border.all(color: Colors.black12),
+                                  ),
+                                  child: Center(
+                                    child: HeadingTextWidget(
+                                      title: 'Sold Out',
+                                      textColor: Colors.white,
+                                    ),
+                                  ),
+                                ),
+
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              )
+            ],
+          )
+          :
+      Padding(
       padding: EdgeInsets.symmetric(vertical: 5),
       child: Center(
         child: Container(
@@ -562,7 +1232,15 @@ class CarCardSmallScreen extends StatelessWidget {
                         child: Swiper(
                           itemBuilder: (BuildContext context, int index) {
                             return Image.asset(
-                              type == "Economy"? economyList[index] : type == "Premium"? premiumList[index] : type == "AllWheelDriveSUV"? avdList[index] : type == "SUV"? suvList[index] : sedanList[index],
+                              type == "Economy"
+                                  ? economyList[index]
+                                  : type == "Premium"
+                                      ? premiumList[index]
+                                      : type == "AllWheelDriveSUV"
+                                          ? avdList[index]
+                                          : type == "SUV"
+                                              ? suvList[index]
+                                              : sedanList[index],
                               fit: BoxFit.cover,
                               // height: 188.h,
                               width: 288,
@@ -594,7 +1272,7 @@ class CarCardSmallScreen extends StatelessWidget {
                             children: [
                               Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   HeadingTextWidget(title: type),
                                   InkWell(
@@ -656,7 +1334,7 @@ class CarCardSmallScreen extends StatelessWidget {
                               ),
                               Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   SubHeadingTextWidget(
                                     title: '\$' + price.toString() + '| day',
