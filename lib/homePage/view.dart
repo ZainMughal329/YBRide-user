@@ -21,6 +21,7 @@ import '../pages/appBarPages/Accounts/view.dart';
 import '../pages/appBarPages/FaqS/view.dart';
 import '../pages/appBarPages/Referrals/view.dart';
 import '../pages/appBarPages/Trips/allTripPage.dart';
+import '../pages/appBarPages/Trips/tabBarView.dart';
 import '../pages/averageRentalCarWidget/averageRentalCarWidget.dart';
 import '../pages/downlaodYBRideWidget/downlaod_ybRide.dart';
 import '../pages/gotAnswerWidget/gotAnswerWidget.dart';
@@ -32,6 +33,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SessionController().userId=FirebaseAuth.instance.currentUser!.uid.toString();
     final con = Get.put(HomePageCon());
     con.fetchContactDetails();
     final GlobalKey<ScaffoldState> _scaffoldKey =
@@ -109,7 +111,7 @@ class HomePage extends StatelessWidget {
             ),
             InkWell(
                 onTap: () {
-                  Get.to(() => TripsPages());
+                  Get.to(() => TripsHomePage());
                 },
                 child: HeadingTextWidget(
                     title: 'My Trips',
