@@ -23,14 +23,14 @@ void main() async{
   await FlutterGooglePlacesSdkPlatform.instance.initialize('AIzaSyA8mT_fcQoFRNpBokvTjVXsuc-TB9k-leI');
   await Firebase.initializeApp(
       options: FirebaseOptions(
-          apiKey: "AIzaSyDw220zwlHJ1LnBdx0udN_NM2i4nucLLwA",
-          authDomain: "yb-ride-88e8b.firebaseapp.com",
-          projectId: "yb-ride-88e8b",
-          storageBucket: "yb-ride-88e8b.appspot.com",
-          messagingSenderId: "1046745632203",
-          databaseURL: 'https://yb-ride-88e8b-default-rtdb.firebaseio.com/',
-          appId: "1:1046745632203:web:275c410a75d45b72ae7a4e",
-          measurementId: "G-MKWZLB0PF7"
+          apiKey: "AIzaSyCQ3Z12FVYyB22zTt5fsYjADiNkhS_lbu4",
+          authDomain: "yb-ride-83505.firebaseapp.com",
+          projectId: "yb-ride-83505",
+          storageBucket: "yb-ride-83505.appspot.com",
+          messagingSenderId: "782774219638",
+          databaseURL: "https://yb-ride-83505-default-rtdb.firebaseio.com",
+          appId: "1:782774219638:web:33778b1d7f080d4f0e4057",
+          measurementId: "G-X0BDLMSM45"
       )
   );
 

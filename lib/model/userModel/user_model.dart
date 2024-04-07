@@ -10,7 +10,6 @@ class UserModel {
     this.id = '',
     required this.userName,
     required this.email,
-    // required this.password,
   });
   toJson() {
     return {
