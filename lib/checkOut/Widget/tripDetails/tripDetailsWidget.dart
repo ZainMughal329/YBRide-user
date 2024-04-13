@@ -92,7 +92,7 @@ Widget TripDetailsWidget(BuildContext context,CheckOutCon controller){
           ),
           ListTile(
             leading: Icon(Icons.location_on),
-            title: controller.state.isDelivery.value ==true ? HeadingTextWidget(title: '${AppConstants.toAddress}',):HeadingTextWidget(title: '${AppConstants.pickUpLoc}'),
+            title: controller.state.isDelivery.value ==true ? HeadingTextWidget(title: '${AppConstants.toAddress}',):HeadingTextWidget(title: '${AppConstants.toAddress}'),
             subtitle: Row(
               children: [
                 SubHeadingTextWidget(title: '${AppConstants.toDateName}, ${AppConstants.toMonthName} ${AppConstants.toDate}'),
@@ -169,7 +169,14 @@ Widget TripDetailsWidget(BuildContext context,CheckOutCon controller){
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            HeadingTextWidget(title: 'Delivery'),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                HeadingTextWidget(title: 'Delivery'),
+                                HeadingTextWidget(title: '*',textColor: Colors.red,),
+                              ],
+                            ),
+
                             Obx(() =>_checkBox(
                                 state.isDelivery.value,
                                     (value) {
@@ -413,7 +420,13 @@ Widget TripDetailsWidget(BuildContext context,CheckOutCon controller){
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            HeadingTextWidget(title: 'Delivery',fontSize: 14,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                HeadingTextWidget(title: 'Delivery',fontSize: 14,),
+                                HeadingTextWidget(title: '*',fontSize: 14,textColor: Colors.red,),
+                              ],
+                            ),
                             Obx(() =>_checkBox(
                                 state.isDelivery.value,
                                     (value) {
@@ -557,7 +570,7 @@ Widget TripDetailsWidgetSmall(CheckOutCon controller){
           SizedBox(height: 15,),
           ListTile(
             leading: Icon(Icons.location_on),
-            title: controller.state.isSelfPickup.value==true? HeadingTextWidget(title: '${AppConstants.pickUpLoc}',) : HeadingTextWidget(title: '${AppConstants.fromAddress}',),
+            title: controller.state.isSelfPickup.value==true? HeadingTextWidget(title: '${AppConstants.fromAddress}',) : HeadingTextWidget(title: '${AppConstants.fromAddress}',),
             subtitle: Row(
               children: [
                 SubHeadingTextWidget(title: '${AppConstants.fromDateName}, ${AppConstants.fromMonthName} ${AppConstants.fromDate}'),
@@ -586,7 +599,7 @@ Widget TripDetailsWidgetSmall(CheckOutCon controller){
           ),
           ListTile(
             leading: Icon(Icons.location_on),
-            title: controller.state.isDelivery.value ==true ? HeadingTextWidget(title: '${AppConstants.toAddress}',):HeadingTextWidget(title: '${AppConstants.pickUpLoc}'),
+            title: controller.state.isDelivery.value ==true ? HeadingTextWidget(title: '${AppConstants.toAddress}',):HeadingTextWidget(title: '${AppConstants.toAddress}'),
             subtitle: Row(
               children: [
                 SubHeadingTextWidget(title: '${AppConstants.toDateName}, ${AppConstants.toMonthName} ${AppConstants.toDate}'),

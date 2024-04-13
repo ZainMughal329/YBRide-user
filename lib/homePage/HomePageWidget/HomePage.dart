@@ -4,12 +4,14 @@ import 'package:get/get.dart';
 import 'package:yb_ride_user_web/Vehicle/view.dart';
 import 'package:yb_ride_user_web/components/snackbar_widget.dart';
 import 'package:yb_ride_user_web/helper/AppConstants.dart';
+import 'package:yb_ride_user_web/helper/session_Controller.dart';
 import 'package:yb_ride_user_web/homePage/HomePageWidget/newRangePicker.dart';
 import 'package:yb_ride_user_web/homePage/HomePageWidget/rangePicker.dart';
 import 'package:yb_ride_user_web/homePage/HomePageWidget/to_bottom_sheet.dart';
 import 'package:yb_ride_user_web/homePage/HomePageWidget/where_bottom_sheet.dart';
 import 'package:yb_ride_user_web/homePage/controller.dart';
 import 'package:yb_ride_user_web/homePage/state.dart';
+import 'package:yb_ride_user_web/sessions/login/view.dart';
 import '../../components/headingTextWidget.dart';
 import '../../components/reuseableButton.dart';
 import '../../components/subHeadingText.dart';
@@ -61,32 +63,38 @@ Widget HomePageWidget(BuildContext context, HomePageCon controller) {
                         width: 10,
                       ),
                       Expanded(
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.10,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              HeadingTextWidget(
-                                title: 'From',
-                                fontSize: 13,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Obx(() {
-                                return controller
-                                            .state.timeandDateSelected.value ==
-                                        true
-                                    ? SubHeadingTextWidget(
-                                 fontSize: 12,textColor: Colors.grey,
-                                        title:
-                                            "${controller.state.fromMonthName.value} ${controller.state.fromDate.value}, ${controller.state.fromTime.value}")
-                                    : SubHeadingTextWidget(
-                                        title: "Select Start Date" , fontSize: 12,textColor: Colors.grey,);
-                              }),
-                            ],
+                        child: InkWell(
+                          onTap: () {
+                            // rangePicker(context, controller);
+                            newrangePicker(context, controller);
+                          },
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.10,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                HeadingTextWidget(
+                                  title: 'From',
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Obx(() {
+                                  return controller
+                                              .state.timeandDateSelected.value ==
+                                          true
+                                      ? SubHeadingTextWidget(
+                                   fontSize: 12,textColor: Colors.grey,
+                                          title:
+                                              "${controller.state.fromMonthName.value} ${controller.state.fromDate.value}, ${controller.state.fromTime.value}")
+                                      : SubHeadingTextWidget(
+                                          title: "Select Start Date" , fontSize: 12,textColor: Colors.grey,);
+                                }),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -102,34 +110,40 @@ Widget HomePageWidget(BuildContext context, HomePageCon controller) {
                       //   width: 20,
                       // ),
                       Expanded(
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.10,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              HeadingTextWidget(
-                                title: 'To',
-                                fontSize: 13,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Obx(() {
-                                return controller
-                                            .state.timeandDateSelected.value ==
-                                        true
-                                    ? SubHeadingTextWidget(
-                                 fontSize: 12,textColor: Colors.grey,
-                                        title:
-                                            "${controller.state.toMonthName.value} ${controller.state.toDate.value}, ${controller.state.toTime.value}")
-                                    : SubHeadingTextWidget(
-                                    fontSize: 12,textColor: Colors.grey,
-                        
-                                        title: 'Select End Date');
-                              }),
-                            ],
+                        child: InkWell(
+                          onTap: () {
+                            // rangePicker(context, controller);
+                            newrangePicker(context, controller);
+                          },
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.10,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                HeadingTextWidget(
+                                  title: 'To',
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Obx(() {
+                                  return controller
+                                              .state.timeandDateSelected.value ==
+                                          true
+                                      ? SubHeadingTextWidget(
+                                   fontSize: 12,textColor: Colors.grey,
+                                          title:
+                                              "${controller.state.toMonthName.value} ${controller.state.toDate.value}, ${controller.state.toTime.value}")
+                                      : SubHeadingTextWidget(
+                                      fontSize: 12,textColor: Colors.grey,
+
+                                          title: 'Select End Date');
+                                }),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -339,7 +353,7 @@ Widget HomePageWidget(BuildContext context, HomePageCon controller) {
                               Expanded(
                                 child: Align(
                                   alignment: Alignment.centerRight,
-                                  child: InkWell(
+                                  child: SessionController().userId != null ? InkWell(
                                     onTap: () {
                                       if (controller.state.fromAddressSelected
                                                   .value ==
@@ -383,7 +397,38 @@ Widget HomePageWidget(BuildContext context, HomePageCon controller) {
                                         textColor: Colors.white,
                                       )),
                                     ),
-                                  ),
+                                  )
+                                  : InkWell(
+                                    onTap: () {
+                                      Get.offAll(()=>LoginPages());
+                                    },
+                                    child: Container(
+                                      height:70,
+                                      width:130,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                        BorderRadius.circular(20),
+                                        // color: Colors.grey.withOpacity(.1),
+                                        color:
+                                        controller.state.fromAddressSelected
+                                            .value ==
+                                            true &&
+                                            controller.state.toAddressSelected
+                                                .value ==
+                                                true &&
+                                            controller.state.timeandDateSelected
+                                                .value ==
+                                                true ?
+                                        AppColors.buttonColor : Colors.grey.withOpacity(.5),),
+                                      child: Center(
+                                          child: HeadingTextWidget(
+                                            title: 'Login/Sign up\nto continue...',
+                                            fontSize: 9,
+                                            textColor: Colors.white,
+                                          )),
+                                    ),
+                                  )
+                                  ,
                                 ),
                               )
                             ],
@@ -560,7 +605,7 @@ Widget HomePageWidgetMediumScreen(
               height: 15,
             ),
             controller.state.timeandDateSelected.value == true
-                ? RoundButton(
+                ? SessionController().userId != null ?  RoundButton(
                     title: 'GO',
                     onPress: () {
                       if (controller.state.fromAddressSelected.value == true &&
@@ -571,7 +616,19 @@ Widget HomePageWidgetMediumScreen(
                         Snackbar.showSnackBar('YB-Ride',
                             "Select All Information", Icons.error_outline);
                       }
-                    })
+                    }) : RoundButton(
+                title: 'Login to continue ...',
+                onPress: () {
+                  Get.offAll(()=>LoginPages());
+                  // if (controller.state.fromAddressSelected.value == true &&
+                  //     controller.state.toAddressSelected.value == true &&
+                  //     controller.state.timeandDateSelected.value == true) {
+                  //   controller.moveToSelectVehicleScreen();
+                  // } else {
+                  //   Snackbar.showSnackBar('YB-Ride',
+                  //       "Select All Information", Icons.error_outline);
+                  // }
+                })
                 : Container(),
           ],
         ),
@@ -746,7 +803,7 @@ Widget HomePageWidgetSmallScreen(BuildContext context, HomePageCon controller) {
           ),
 
           controller.state.timeandDateSelected.value == true
-              ? RoundButton(
+              ? SessionController().userId !=null ?  RoundButton(
                   title: 'GO',
                   onPress: () {
                     if (controller.state.fromAddressSelected.value == true &&
@@ -757,7 +814,19 @@ Widget HomePageWidgetSmallScreen(BuildContext context, HomePageCon controller) {
                       Snackbar.showSnackBar('YB-Ride', "Select All Information",
                           Icons.error_outline);
                     }
-                  })
+                  }) : RoundButton(
+              title: 'Login to continue ...',
+              onPress: () {
+                Get.offAll(()=>LoginPages());
+                // if (controller.state.fromAddressSelected.value == true &&
+                //     controller.state.toAddressSelected.value == true &&
+                //     controller.state.timeandDateSelected.value == true) {
+                //   controller.moveToSelectVehicleScreen();
+                // } else {
+                //   Snackbar.showSnackBar('YB-Ride', "Select All Information",
+                //       Icons.error_outline);
+                // }
+              })
               : Container(),
         ],
       ),

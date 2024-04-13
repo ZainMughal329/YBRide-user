@@ -194,8 +194,6 @@ class HomePageCon extends GetxController{
         AppConstants.ybAccName = value['ybAccountHolderName'];
         AppConstants.ybAccNumber = value['ybAccountNumber'];
 
-        print(value['ybEmail']);
-        print(value['ybPhone']);
       }).onError((error, stackTrace) {
         Snackbar.showSnackBar("YB-Ride", error.toString(), Icons.error_outline);
       });
@@ -205,7 +203,7 @@ class HomePageCon extends GetxController{
   }
 
   void extractStartEndDate(String output) {
-    print(output.toString());
+
 
     // state.startEndDateSelected.value=true;
 

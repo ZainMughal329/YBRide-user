@@ -45,13 +45,15 @@ class MyApp extends StatelessWidget {
     // AppConstants.totalPrice = 120;
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'YbRide Users',
+      title: 'Yb-Ride',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
 
-      home: APis.auth.currentUser != null ? HomePage() : SignUpPages(),
+      // home: APis.auth.currentUser != null ? HomePage() : SignUpPages(),
+      // initialRoute: '/',
+      home:  HomePage() ,
 
       // home: CheckOutPage(carType: 'SUV',carRent: 130,carPrice: 43,carDescription: 'Nessan Versa - 5 seats',),
     );

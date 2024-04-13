@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:yb_ride_user_web/helper/AppConstants.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/view.dart';
 
 import '../../../components/headingTextWidget.dart';
@@ -249,6 +250,20 @@ Widget appBarFooterSmall(BuildContext context){
                         text('Privacy Policy'),
                         SizedBox(height: 20,),
                         text('Team of services'),
+                        SizedBox(height: 20,),
+                        Row(mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            text('Email :'),
+                            text('${AppConstants.ybEmail}'),
+                          ],
+                        ),
+                        SizedBox(height: 20,),
+                        Row(mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            text('Phone :'),
+                            text('${AppConstants.ybPhone}'),
+                          ],
+                        ),
                       ],
                     ),
                   ),
@@ -282,6 +297,8 @@ Widget appBarFooterSmall(BuildContext context){
                           text('Partner with Us'),
                           SizedBox(height: 20,),
                           text('Do not Sell My Personal Information'),
+
+                          SizedBox(height: 20,),
                         ],
                       ),
                     ),

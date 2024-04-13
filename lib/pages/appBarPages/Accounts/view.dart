@@ -8,6 +8,7 @@ import 'package:lottie/lottie.dart';
 import 'package:yb_ride_user_web/components/reuseableButton.dart';
 import 'package:yb_ride_user_web/components/textField.dart';
 import 'package:yb_ride_user_web/helper/appColors.dart';
+import 'package:yb_ride_user_web/homePage/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Accounts/controller.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/appBarFooter/appBatFooter.dart';
 
@@ -45,11 +46,26 @@ class AccountPage extends StatelessWidget {
         // scrolledUnderElevation: 1,
         leading: Container(),
         title: Padding(
-          padding: EdgeInsets.only(left: 20),
-          child: HeadingTextWidget(
-            title: 'YBRide',
-            fontWeight: FontWeight.bold,
-            fontSize: 30,
+          padding: EdgeInsets.only(left: 5),
+          child: InkWell(
+            onTap:(){
+              Get.offAll(()=>HomePage());
+            },
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  child: Image.asset('assets/images/circleLogo.png',height: 40,width: 40,),
+                ),
+                SizedBox(width: 10,),
+                HeadingTextWidget(
+                  title: 'YBRide',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                ),
+              ],
+            ),
           ),
         ),
         actions: ResponsiveWidget.isLargeScreen(context)

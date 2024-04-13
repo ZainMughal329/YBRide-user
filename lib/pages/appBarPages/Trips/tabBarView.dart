@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:yb_ride_user_web/homePage/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Trips/allTripPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Trips/widgets/completedTrips.dart';
@@ -44,11 +45,26 @@ class TripsHomePage extends GetView<TripCon> {
         // scrolledUnderElevation: 1,
         leading: Container(),
         title: Padding(
-          padding: EdgeInsets.only(left: 20),
-          child: HeadingTextWidget(
-            title: 'YBRide',
-            fontWeight: FontWeight.bold,
-            fontSize: 30,
+          padding: EdgeInsets.only(left: 5),
+          child: InkWell(
+            onTap:(){
+              Get.offAll(()=>HomePage());
+            },
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  child: Image.asset('assets/images/circleLogo.png',height: 40,width: 40,),
+                ),
+                SizedBox(width: 10,),
+                HeadingTextWidget(
+                  title: 'YBRide',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                ),
+              ],
+            ),
           ),
         ),
         actions: ResponsiveWidget.isLargeScreen(context)

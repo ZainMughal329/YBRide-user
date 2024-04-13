@@ -38,8 +38,20 @@ class SurferSignUpForm extends GetView<BecomeDriverCon> {
                 ),
                 items: [
                   DropdownMenuItem(
-                    child: Text('Bostan'),
-                    value: 'Bostan',
+                    child: Text('Massachusetts'),
+                    value: 'massachusetts',
+                  ),
+                  DropdownMenuItem(
+                    child: Text('Virginia'),
+                    value: 'virginia',
+                  ),
+                  DropdownMenuItem(
+                    child: Text('District of Columbia'),
+                    value: 'districtOfColumbia',
+                  ),
+                  DropdownMenuItem(
+                    child: Text('Maryland'),
+                    value: 'maryland',
                   ),
                 ],
                 onChanged: (value) {

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yb_ride_user_web/components/subHeadingText.dart';
+import 'package:yb_ride_user_web/homePage/view.dart';
 import 'package:yb_ride_user_web/pages/Footer/HomePageFooter.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Referrals/controller.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/appBarFooter/appBatFooter.dart';
@@ -37,7 +38,29 @@ class ReferralPage extends StatelessWidget {
         backgroundColor: Color.fromRGBO(255, 255, 255, 1),
         // scrolledUnderElevation: 1,
         leading: Container(),
-        title: HeadingTextWidget(title:'YBRide',fontWeight: FontWeight.bold,fontSize:30 ,),
+        title: Padding(
+          padding: EdgeInsets.only(left: 5),
+          child: InkWell(
+            onTap:(){
+              Get.offAll(()=>HomePage());
+            },
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  child: Image.asset('assets/images/circleLogo.png',height: 40,width: 40,),
+                ),
+                SizedBox(width: 10,),
+                HeadingTextWidget(
+                  title: 'YBRide',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                ),
+              ],
+            ),
+          ),
+        ),
         actions: ResponsiveWidget.isLargeScreen(context)
             ?  [
           InkWell(
@@ -198,113 +221,129 @@ class ReferralPage extends StatelessWidget {
               SizedBox(
                 height:20,
               ),
-              Container(
-                height: 140,
-                width: 600,
-                decoration: BoxDecoration(
-                  color:Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                  border: Border.all(color: Colors.black54),
-                  boxShadow: [
-                    BoxShadow(color: Colors.black.withOpacity(.7))
-                  ],
-                ),
+              // code to send usre to home page
+
+              InkWell(
+                onTap: (){
+                  Get.offAll(()=>HomePage());
+                },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: ListTile(
-                        leading: Icon(Icons.location_on),
-                        title: SubHeadingTextWidget(title: 'Delivery and return location',textColor: AppColors.buttonColor,),
-                        subtitle:SubHeadingTextWidget(title: 'Tap to search',) ,
+                    Container(
+                      height: 140,
+                      width: 600,
+                      decoration: BoxDecoration(
+                        color:Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        border: Border.all(color: Colors.black54),
+                        boxShadow: [
+                          BoxShadow(color: Colors.black.withOpacity(.7))
+                        ],
                       ),
-                    ),
-                    Divider(thickness: 1,),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          HeadingTextWidget(
-                            title: 'Same delivery & return locations',
-                            fontSize: 16,
+                          Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: ListTile(
+                              leading: Icon(Icons.location_on),
+                              title: SubHeadingTextWidget(title: 'Delivery and return location',textColor: AppColors.buttonColor,),
+                              subtitle:SubHeadingTextWidget(title: 'Tap to search',) ,
+                            ),
                           ),
-                          Spacer(),
-                          Obx(() =>_checkBox(con.state.isCheckBox.value, (value) {
-                            con.state.isCheckBox.value = value;
-                          }, context), ),
+                          Divider(thickness: 1,),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                HeadingTextWidget(
+                                  title: 'Same delivery & return locations',
+                                  fontSize: 16,
+                                ),
+                                Spacer(),
+                                Obx(() =>_checkBox(con.state.isCheckBox.value, (value) {
+                                  con.state.isCheckBox.value = value;
+                                }, context), ),
+
+
+                              ],
+                            ),
+                          ),
 
 
                         ],
                       ),
                     ),
-
-
-                  ],
-                ),
-              ),
-              SizedBox(
-                height:15,
-              ),
-              Container(
-                height: 90,
-                width: 600,
-                decoration: BoxDecoration(
-                  color:Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                  border: Border.all(color: Colors.black54),
-                  boxShadow: [
-                    BoxShadow(color: Colors.black.withOpacity(.7))
-                  ],
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: ListTile(
-                        leading: Icon(Icons.calendar_month),
-                        title: Row(
-                          children: [
-                            HeadingTextWidget(title: 'From',textColor: AppColors.buttonColor,fontSize: 18,),
-                            SizedBox(width: 10,),
-                            SubHeadingTextWidget(title: 'Feb 05, 11.00 AM',textColor: Colors.black,fontSize: 18,),
-                          ],
-                        ),
-                        subtitle: Row(
-                          children: [
-                            HeadingTextWidget(title: 'To     ',textColor: AppColors.buttonColor,fontSize: 18,),
-                            SizedBox(width: 10,),
-                            SubHeadingTextWidget(title: 'Feb 09, 11.00 AM',textColor: Colors.black,fontSize: 18,),
-                          ],
-                        ),
+                    SizedBox(
+                      height:15,
+                    ),
+                    Container(
+                      height: 90,
+                      width: 600,
+                      decoration: BoxDecoration(
+                        color:Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        border: Border.all(color: Colors.black54),
+                        boxShadow: [
+                          BoxShadow(color: Colors.black.withOpacity(.7))
+                        ],
                       ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: ListTile(
+                              leading: Icon(Icons.calendar_month),
+                              title: Row(
+                                children: [
+                                  HeadingTextWidget(title: 'From',textColor: AppColors.buttonColor,fontSize: 18,),
+                                  SizedBox(width: 10,),
+                                  SubHeadingTextWidget(title: 'Feb 05, 11.00 AM',textColor: Colors.black,fontSize: 18,),
+                                ],
+                              ),
+                              subtitle: Row(
+                                children: [
+                                  HeadingTextWidget(title: 'To     ',textColor: AppColors.buttonColor,fontSize: 18,),
+                                  SizedBox(width: 10,),
+                                  SubHeadingTextWidget(title: 'Feb 09, 11.00 AM',textColor: Colors.black,fontSize: 18,),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                        height: 60,
+                        width: 600,
+                        decoration: BoxDecoration(
+                          color:AppColors.buttonColor,
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          boxShadow: [
+                            BoxShadow(color: Colors.black.withOpacity(.7))
+                          ],
+                        ),
+                        child: Center(
+                          child: HeadingTextWidget(
+                            title: 'Search',
+                            fontWeight: FontWeight.bold,
+                            textColor: AppColors.whiteColor,
+                          ),
+                        )
                     ),
                   ],
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                height: 60,
-                width: 600,
-                decoration: BoxDecoration(
-                  color:AppColors.buttonColor,
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                  boxShadow: [
-                    BoxShadow(color: Colors.black.withOpacity(.7))
-                  ],
-                ),
-                child: Center(
-                  child: HeadingTextWidget(
-                    title: 'Search',
-                    fontWeight: FontWeight.bold,
-                    textColor: AppColors.whiteColor,
-                  ),
-                )
-              ),
+
+              // serach area
               SizedBox(height: 50,),
               Divider(),
               SizedBox(height: 20,),
@@ -380,121 +419,135 @@ class ReferralPage extends StatelessWidget {
                     SizedBox(
                       height:20,
                     ),
-                    Container(
-                      height: 140,
-                      width: 600,
-                      decoration: BoxDecoration(
-                        color:Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
 
-                        boxShadow: [
-                          BoxShadow(color: Colors.black.withOpacity(.2),
-                          blurRadius: 5,
-                            spreadRadius: 1,
-                            offset: Offset(1, 1),
-                          )
-                        ],
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: ListTile(
-                              leading: Icon(Icons.location_on),
-                              title: SubHeadingTextWidget(title: 'Delivery and return location',textColor: AppColors.buttonColor,fontSize: 15,fontWeight: FontWeight.w600,),
-                              subtitle:SubHeadingTextWidget(title: 'Tap to search',fontSize: 13,) ,
-                            ),
-                          ),
-                          Divider(thickness: 1,),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                HeadingTextWidget(
-                                  title: 'Same delivery & return locations',
-                                  fontSize: 14,
-                                ),
-                                Spacer(),
-                                Obx(() =>_checkBox(con.state.isCheckBox.value, (value) {
-                                  con.state.isCheckBox.value = value;
-                                }, context), ),
+                    // code for serach
+                   InkWell(
+                     onTap: (){
+                       Get.offAll(()=>HomePage());
+                     },
+                     child: Column(
+                       mainAxisAlignment: MainAxisAlignment.start,
+                       crossAxisAlignment: CrossAxisAlignment.center,
+                       mainAxisSize: MainAxisSize.min,
+                       children: [
+                         Container(
+                           height: 140,
+                           width: 600,
+                           decoration: BoxDecoration(
+                             color:Colors.white,
+                             borderRadius: BorderRadius.all(Radius.circular(10)),
+
+                             boxShadow: [
+                               BoxShadow(color: Colors.black.withOpacity(.2),
+                                 blurRadius: 5,
+                                 spreadRadius: 1,
+                                 offset: Offset(1, 1),
+                               )
+                             ],
+                           ),
+                           child: Column(
+                             mainAxisAlignment: MainAxisAlignment.start,
+                             children: [
+                               Padding(
+                                 padding: const EdgeInsets.all(5.0),
+                                 child: ListTile(
+                                   leading: Icon(Icons.location_on),
+                                   title: SubHeadingTextWidget(title: 'Delivery and return location',textColor: AppColors.buttonColor,fontSize: 15,fontWeight: FontWeight.w600,),
+                                   subtitle:SubHeadingTextWidget(title: 'Tap to search',fontSize: 13,) ,
+                                 ),
+                               ),
+                               Divider(thickness: 1,),
+                               Padding(
+                                 padding: const EdgeInsets.symmetric(horizontal: 20),
+                                 child: Row(
+                                   mainAxisAlignment: MainAxisAlignment.start,
+                                   children: [
+                                     HeadingTextWidget(
+                                       title: 'Same delivery & return locations',
+                                       fontSize: 14,
+                                     ),
+                                     Spacer(),
+                                     Obx(() =>_checkBox(con.state.isCheckBox.value, (value) {
+                                       con.state.isCheckBox.value = value;
+                                     }, context), ),
 
 
-                              ],
-                            ),
-                          ),
+                                   ],
+                                 ),
+                               ),
 
 
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height:15,
-                    ),
-                    Container(
-                      height: 90,
-                      width: 600,
-                      decoration: BoxDecoration(
-                        color:Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        boxShadow: [
-                          BoxShadow(color: Colors.black.withOpacity(.2),
-                            blurRadius: 5,
-                            spreadRadius: 1,
-                            offset: Offset(1, 1),
-                          )
-                        ],
+                             ],
+                           ),
+                         ),
+                         SizedBox(
+                           height:15,
+                         ),
+                         Container(
+                           height: 90,
+                           width: 600,
+                           decoration: BoxDecoration(
+                             color:Colors.white,
+                             borderRadius: BorderRadius.all(Radius.circular(10)),
+                             boxShadow: [
+                               BoxShadow(color: Colors.black.withOpacity(.2),
+                                 blurRadius: 5,
+                                 spreadRadius: 1,
+                                 offset: Offset(1, 1),
+                               )
+                             ],
 
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: ListTile(
-                              leading: Icon(Icons.calendar_month),
-                              title: Row(
-                                children: [
-                                  HeadingTextWidget(title: 'From',textColor: AppColors.buttonColor,fontSize: 15,fontWeight: FontWeight.w600,),
-                                  SizedBox(width: 10,),
-                                  SubHeadingTextWidget(title: 'Feb 05, 11.00 AM',textColor: Colors.black,fontSize: 14,fontWeight: FontWeight.w600,),
-                                ],
-                              ),
-                              subtitle: Row(
-                                children: [
-                                  HeadingTextWidget(title: 'To     ',textColor: AppColors.buttonColor,fontSize: 15,fontWeight: FontWeight.w600,),
-                                  SizedBox(width: 10,),
-                                  SubHeadingTextWidget(title: 'Feb 09, 11.00 AM',textColor: Colors.black,fontSize: 14,fontWeight: FontWeight.w600,),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                        height: 60,
-                        width: 600,
-                        decoration: BoxDecoration(
-                          color:AppColors.buttonColor,
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          boxShadow: [
-                            BoxShadow(color: Colors.black.withOpacity(.7))
-                          ],
-                        ),
-                        child: Center(
-                          child: HeadingTextWidget(
-                            title: 'Search',
-                            fontWeight: FontWeight.bold,
-                            textColor: AppColors.whiteColor,
-                          ),
-                        )
-                    ),
+                           ),
+                           child: Column(
+                             mainAxisAlignment: MainAxisAlignment.start,
+                             children: [
+                               Padding(
+                                 padding: const EdgeInsets.all(5.0),
+                                 child: ListTile(
+                                   leading: Icon(Icons.calendar_month),
+                                   title: Row(
+                                     children: [
+                                       HeadingTextWidget(title: 'From',textColor: AppColors.buttonColor,fontSize: 15,fontWeight: FontWeight.w600,),
+                                       SizedBox(width: 10,),
+                                       SubHeadingTextWidget(title: 'Feb 05, 11.00 AM',textColor: Colors.black,fontSize: 14,fontWeight: FontWeight.w600,),
+                                     ],
+                                   ),
+                                   subtitle: Row(
+                                     children: [
+                                       HeadingTextWidget(title: 'To     ',textColor: AppColors.buttonColor,fontSize: 15,fontWeight: FontWeight.w600,),
+                                       SizedBox(width: 10,),
+                                       SubHeadingTextWidget(title: 'Feb 09, 11.00 AM',textColor: Colors.black,fontSize: 14,fontWeight: FontWeight.w600,),
+                                     ],
+                                   ),
+                                 ),
+                               ),
+                             ],
+                           ),
+                         ),
+                         SizedBox(
+                           height: 20,
+                         ),
+                         Container(
+                             height: 60,
+                             width: 600,
+                             decoration: BoxDecoration(
+                               color:AppColors.buttonColor,
+                               borderRadius: BorderRadius.all(Radius.circular(10)),
+                               boxShadow: [
+                                 BoxShadow(color: Colors.black.withOpacity(.7))
+                               ],
+                             ),
+                             child: Center(
+                               child: HeadingTextWidget(
+                                 title: 'Search',
+                                 fontWeight: FontWeight.bold,
+                                 textColor: AppColors.whiteColor,
+                               ),
+                             )
+                         ),
+                       ],
+                     ),
+                   ),
                     SizedBox(height: 60,),
 
 

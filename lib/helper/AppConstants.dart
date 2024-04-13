@@ -94,6 +94,8 @@ class AppConstants {
 
 
   static void resetToInitialState() {
+
+    print("RESERTING IS CALLED");
     fromAddress = 'Tap to Search';
     toAddress = 'Return Place';
     epochFromDate = "";
