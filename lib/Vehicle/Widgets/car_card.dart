@@ -38,32 +38,32 @@ class CarCardLargeScreen extends StatelessWidget {
   }) : super(key: key);
 
   List<String> economyList = [
-    'images/eco-1.webp',
-    'images/eco-2.webp',
-    'images/eco-3.webp',
+    'assets/images/eco-1.webp',
+    'assets/images/eco-2.webp',
+    'assets/images/eco-3.webp',
   ];
 
   List<String> premiumList = [
-    'images/premium-1.webp',
-    'images/premium-2.webp',
-    'images/premium-3.webp',
+    'assets/images/premium-1.webp',
+    'assets/images/premium-2.webp',
+    'assets/images/premium-3.webp',
   ];
 
   List<String> sedanList = [
-    'images/sedan-1.webp',
-    'images/sedan-2.webp',
-    'images/sedan-3.webp',
+    'assets/images/sedan-1.webp',
+    'assets/images/sedan-2.webp',
+    'assets/images/sedan-3.webp',
   ];
 
   List<String> avdList = [
-    'images/awd-1.webp',
-    'images/awd-2.webp',
-    'images/awd-3.webp',
+    'assets/images/awd-1.webp',
+    'assets/images/awd-2.webp',
+    'assets/images/awd-3.webp',
   ];
   List<String> suvList = [
-    'images/7_seater-1.webp',
-    'images/7_seater-2.webp',
-    'images/7_seater-3.webp',
+    'assets/images/7_seater-1.webp',
+    'assets/images/7_seater-2.webp',
+    'assets/images/7_seater-3.webp',
   ];
 
   @override

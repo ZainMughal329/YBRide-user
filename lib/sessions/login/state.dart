@@ -11,5 +11,6 @@ class loginState{
  final ref = FirebaseFirestore.instance;
  final emailCon = TextEditingController();
  final passwordCon = TextEditingController();
+ RxBool isObscure = true.obs;
 
 }

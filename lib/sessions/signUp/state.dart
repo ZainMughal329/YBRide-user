@@ -10,4 +10,6 @@ class SignUpState{
   final emailCon = TextEditingController();
   final passwordCon = TextEditingController();
 
+  RxBool isObscure = true.obs;
+
 }
