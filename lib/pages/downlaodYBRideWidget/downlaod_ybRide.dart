@@ -21,7 +21,7 @@ Widget downlaod_YBRide(){
         child: ListTile(
           title: HeadingTextWidget(title: 'Download YBRide',textColor: Colors.white,),
           subtitle: SubHeadingTextWidget(title: 'Get discounts, support, and track your delivery. Everything is better in the app.',textColor: Colors.white,),
-          trailing: Image(image: AssetImage('assets/images/yBRideLogo.jpg'),),
+          trailing: Image(image: AssetImage('assets/images/circleLogo.png'),),
         ),
       ),
     ),

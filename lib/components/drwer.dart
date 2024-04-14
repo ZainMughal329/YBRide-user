@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:yb_ride_user_web/components/snackbar_widget.dart';
 import 'package:yb_ride_user_web/components/subHeadingText.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/FaqS/view.dart';
@@ -26,10 +27,13 @@ class BuildDrawer {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Image(
-                  image: AssetImage('assets/images/YBRIDE text.jpg'),
-                  height: 60,
-                  width: 60,
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Image(
+                    image: AssetImage('assets/images/circleLogo.png'),
+                    height: 100,
+                    width: 100,
+                  ),
                 ),
                 InkWell(
                   onTap: () {
@@ -78,24 +82,24 @@ class BuildDrawer {
             SizedBox(
               height: 10,
             ),
-            InkWell(
-              onTap: () {
-                Navigator.pop(context);
-                Get.to(()=>AccountPage());
-
-              },
-              child: Text(
-                'Settings',
-                style: GoogleFonts.montserrat(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
+            // InkWell(
+            //   onTap: () {
+            //     Navigator.pop(context);
+            //     Get.to(()=>AccountPage());
+            //
+            //   },
+            //   child: Text(
+            //     'Settings',
+            //     style: GoogleFonts.montserrat(
+            //       color: Colors.black,
+            //       fontSize: 16,
+            //       fontWeight: FontWeight.w600,
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 10,
+            // ),
             InkWell(
               onTap: () {
                 Navigator.pop(context);
@@ -116,10 +120,29 @@ class BuildDrawer {
             InkWell(
               onTap: () {
                 Navigator.pop(context);
+               SessionController().userId == null ? Snackbar.showSnackBar("YB-Ride", "Login to continue", Icons.error_outline) :
                 Get.to(TripsPages());
               },
               child: Text(
                 'My Trips',
+                style: GoogleFonts.montserrat(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.pop(context);
+                SessionController().userId == null ? Snackbar.showSnackBar("YB-Ride", "Login to continue", Icons.error_outline) :
+                Get.to(()=>AccountPage());
+              },
+              child: Text(
+                'My Account',
                 style: GoogleFonts.montserrat(
                   color: Colors.black,
                   fontSize: 16,

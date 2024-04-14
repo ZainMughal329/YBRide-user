@@ -2,7 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
 import 'package:get/get.dart';
+import 'package:yb_ride_user_web/components/snackbar_widget.dart';
 import 'package:yb_ride_user_web/components/subHeadingText.dart';
+import 'package:yb_ride_user_web/helper/AppConstants.dart';
 import 'package:yb_ride_user_web/helper/responsive.dart';
 import 'package:yb_ride_user_web/homePage/HomePageWidget/HomePage.dart';
 import 'package:yb_ride_user_web/pages/BostonPage/view.dart';
@@ -33,7 +35,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SessionController().userId=FirebaseAuth.instance.currentUser!.uid.toString();
+    // AppConstants.resetToInitialState();
+    // print("Sessionid");
+    // print(SessionController().userId.toString());
+    // SessionController().userId=FirebaseAuth.instance.currentUser!.uid.toString();
     final con = Get.put(HomePageCon());
     con.fetchContactDetails();
     final GlobalKey<ScaffoldState> _scaffoldKey =
@@ -48,13 +53,29 @@ class HomePage extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Color.fromRGBO(255, 255, 255, 1),
           // scrolledUnderElevation: 1,
-          leading: Container(),
+          leading: Container(
+          ),
           title: Padding(
-            padding: EdgeInsets.only(left: 20),
-            child: HeadingTextWidget(
-              title: 'YBRide',
-              fontWeight: FontWeight.bold,
-              fontSize: 30,
+            padding: EdgeInsets.only(left: 5),
+            child: InkWell(
+              onTap:(){
+                Get.offAll(()=>HomePage());
+              },
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    child: Image.asset('assets/images/circleLogo.png',height: 40,width: 40,),
+                  ),
+                  SizedBox(width: 10,),
+                  HeadingTextWidget(
+                    title: 'YBRide',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                  ),
+                ],
+              ),
             ),
           ),
           actions: ResponsiveWidget.isLargeScreen(context)
@@ -97,6 +118,7 @@ class HomePage extends StatelessWidget {
             ),
             InkWell(
                 onTap: () {
+                  SessionController().userId == null ? Snackbar.showSnackBar('YB-Rude',"Login to Your Account", Icons.error_outline) :
                   Get.to(() => AccountPage());
                 },
                 child: HeadingTextWidget(
@@ -111,7 +133,8 @@ class HomePage extends StatelessWidget {
             ),
             InkWell(
                 onTap: () {
-                  Get.to(() => TripsHomePage());
+                  SessionController().userId == null ? Snackbar.showSnackBar('YB-Rude',"Login to Your Account", Icons.error_outline) :
+                  Get.to(() => TripsHomePage()) ;
                 },
                 child: HeadingTextWidget(
                     title: 'My Trips',
@@ -121,7 +144,7 @@ class HomePage extends StatelessWidget {
             SizedBox(
               width: 20,
             ),
-            GestureDetector(
+            SessionController().userId != null  ? GestureDetector(
                 onTap: () async {
                   showProgressIndicator(context);
                   Future.delayed(Duration(seconds: 3) , () async {
@@ -138,7 +161,25 @@ class HomePage extends StatelessWidget {
                     title: 'Sign out',
                     textColor: AppColors.appBarTextColor,
                     fontSize: 14,
+                    fontWeight: FontWeight.normal))  : GestureDetector(
+                onTap: () async {
+                  showProgressIndicator(context);
+                  Future.delayed(Duration(seconds: 3) , () async {
+                    await FirebaseAuth.instance.signOut().then((value) {
+
+                      SessionController().userId = '';
+                      Navigator.pop(context);
+                      Get.offAll(SignUpPages());
+                    });
+                  });
+
+                },
+                child: HeadingTextWidget(
+                    title: 'Login/Sign up',
+                    textColor: AppColors.appBarTextColor,
+                    fontSize: 14,
                     fontWeight: FontWeight.normal)),
+
             SizedBox(
               width: 30,
             ),

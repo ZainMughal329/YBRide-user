@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:yb_ride_user_web/components/headingTextWidget.dart';
+import 'package:yb_ride_user_web/components/snackbar_widget.dart';
 import 'package:yb_ride_user_web/components/subHeadingText.dart';
 import 'package:yb_ride_user_web/helper/responsive.dart';
+import 'package:yb_ride_user_web/helper/session_Controller.dart';
 import 'package:yb_ride_user_web/homePage/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/FaqS/view.dart';
+import 'package:yb_ride_user_web/pages/appBarPages/Referrals/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Trips/allTripPage.dart';
 import '../../helper/api.dart';
 import '../../helper/appColors.dart';
@@ -46,7 +49,20 @@ Widget Footer(BuildContext context) {
                   ),
                 ),
                 ResponsiveWidget.isLargeScreen(context)
-                    ? Container()
+                    ? Container(
+                  height: 50,
+                  width: 100,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(25),
+                      color: Colors.deepPurple),
+                  child: Center(
+                    child: HeadingTextWidget(
+                      title: 'Download',
+                      textColor: AppColors.whiteColor,
+                      fontSize: 14,
+                    ),
+                  ),
+                )
                     : Container(
                         height: 50,
                         width: 100,
@@ -134,6 +150,7 @@ Widget Footer(BuildContext context) {
                       ),
                       InkWell(
                           onTap: () {
+                            SessionController().userId == null ? Snackbar.showSnackBar("YB-Ride", "Login to your Account", Icons.error_outline) :
                             Get.to(() => TripsPages());
                           },
                           child: SubHeadingTextWidget(
@@ -284,16 +301,26 @@ Widget Footer(BuildContext context) {
                   SizedBox(
                     height: 20,
                   ),
-                  SubHeadingTextWidget(
-                    title: 'Book a car',
-                    textColor: Colors.black,
+                  InkWell(
+                    onTap: (){
+                      Get.to(()=>HomePage());
+                    },
+                    child: SubHeadingTextWidget(
+                      title: 'Book a car',
+                      textColor: Colors.black,
+                    ),
                   ),
                   SizedBox(
                     height: 20,
                   ),
-                  SubHeadingTextWidget(
-                    title: 'Drivers Partners',
-                    textColor: Colors.black,
+                  InkWell(
+                    onTap: (){
+                      Get.to(()=>BecomeDriverPage());
+                    },
+                    child: SubHeadingTextWidget(
+                      title: 'Drivers Partners',
+                      textColor: Colors.black,
+                    ),
                   ),
                   SizedBox(
                     height: 50,
@@ -302,22 +329,42 @@ Widget Footer(BuildContext context) {
                   SizedBox(
                     height: 20,
                   ),
-                  SubHeadingTextWidget(
-                      title: 'My Trip', textColor: Colors.black),
+                  InkWell(
+                    onTap: (){
+                      SessionController().userId == null ? Snackbar.showSnackBar("YB-Ride", "Login to your Account", Icons.error_outline) :
+                      Get.to(()=>TripsPages());
+                    },
+                    child: SubHeadingTextWidget(
+                        title: 'My Trip', textColor: Colors.black),
+                  ),
                   SizedBox(
                     height: 20,
                   ),
-                  SubHeadingTextWidget(title: 'Help', textColor: Colors.black),
+                  InkWell(
+                      onTap: (){
+                        Get.to(()=>FaqPage());
+                      },
+                      child: SubHeadingTextWidget(title: 'Help', textColor: Colors.black)),
                   SizedBox(
                     height: 20,
                   ),
-                  SubHeadingTextWidget(
-                      title: 'Referrals', textColor: Colors.black),
+                  InkWell(
+                    onTap: (){
+                      Get.to(()=>ReferralPage());
+                    },
+                    child: SubHeadingTextWidget(
+                        title: 'Referrals', textColor: Colors.black),
+                  ),
                   SizedBox(
                     height: 20,
                   ),
-                  SubHeadingTextWidget(
-                      title: 'Contact us', textColor: Colors.black),
+                  InkWell(
+                    onTap: (){
+                      ContactUsAlertDialog(context);
+                    },
+                    child: SubHeadingTextWidget(
+                        title: 'Contact us', textColor: Colors.black),
+                  ),
                   SizedBox(
                     height: 20,
                   ),
@@ -331,28 +378,38 @@ Widget Footer(BuildContext context) {
                   SizedBox(
                     height: 20,
                   ),
-                  SubHeadingTextWidget(
-                      title: 'Careers', textColor: Colors.black),
+                  InkWell(
+                    onTap: (){
+                      Snackbar.showSnackBar("YB-Ride", "Coming Soon", Icons.error_outline);
+                    },
+                    child: SubHeadingTextWidget(
+                        title: 'Careers', textColor: Colors.black),
+                  ),
+                  // SizedBox(
+                  //   height: 20,
+                  // ),
+                  // InkWell(
+                  //   onTap: (){
+                  //     Get.to(()=>);
+                  //   },
+                  //   child: SubHeadingTextWidget(
+                  //       title: 'Team and conditions', textColor: Colors.black),
+                  // ),
+                  // SizedBox(
+                  //   height: 20,
+                  // ),
+                  // SubHeadingTextWidget(
+                  //     title: 'Privacy Policy', textColor: Colors.black),
                   SizedBox(
                     height: 20,
                   ),
                   InkWell(
                     onTap: (){
-                      // Get.to(TermsAndServices());
+                      Snackbar.showSnackBar("YB-Ride", "Coming Soon", Icons.error_outline);
                     },
                     child: SubHeadingTextWidget(
-                        title: 'Team and conditions', textColor: Colors.black),
+                        title: 'Accessibility', textColor: Colors.black),
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  SubHeadingTextWidget(
-                      title: 'Privacy Policy', textColor: Colors.black),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  SubHeadingTextWidget(
-                      title: 'Accessibility', textColor: Colors.black),
                 ],
               ),
       ),

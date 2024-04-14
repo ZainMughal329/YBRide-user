@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:yb_ride_user_web/helper/AppConstants.dart';
 
 import '../../../../components/subHeadingText.dart';
 
@@ -39,9 +40,21 @@ Widget becomeDriverFooter(){
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              text('contact Us'),
+              text('Contact Us'),
               SizedBox(height: 20,),
-              text('support@driverYBRide.com'),
+              Row(mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  text('Email :'),
+                  text('${AppConstants.ybEmail}'),
+                ],
+              ),
+              SizedBox(height: 20,),
+              Row(mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  text('Phone # :'),
+                  text('${AppConstants.ybPhone}'),
+                ],
+              ),
               SizedBox(height: 20,),
             ],)),
           Expanded(child: Column(

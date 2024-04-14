@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:yb_ride_user_web/components/headingTextWidget.dart';
 import 'package:yb_ride_user_web/components/subHeadingText.dart';
 import 'package:yb_ride_user_web/helper/responsive.dart';
+import 'package:yb_ride_user_web/homePage/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/widgets/RatingWidget.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/widgets/becomeDriverFooter.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/widgets/firstPageWidget.dart';
@@ -29,6 +30,16 @@ class BecomeDriverPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              SizedBox(height: 20,),
+              Align(
+                alignment: Alignment.topLeft,
+                child: IconButton(
+                  onPressed: (){
+                    Get.offAll(()=>HomePage());
+                  },
+                  icon: Icon(Icons.cancel_outlined,color: Colors.black,size: 35,),
+                ),
+              ),
               SizedBox(height: 20,),
               Padding(
                 padding: const EdgeInsets.only(right: 900),
@@ -66,6 +77,16 @@ class BecomeDriverPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: 20,),
+              Align(
+                alignment: Alignment.topLeft,
+                child: IconButton(
+                  onPressed: (){
+                    Get.offAll(()=>HomePage());
+                  },
+                  icon: Icon(Icons.cancel_outlined,color: Colors.black,size: 20,),
+                ),
+              ),
               SizedBox(height: 20,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 100),
