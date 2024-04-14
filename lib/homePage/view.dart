@@ -35,9 +35,9 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AppConstants.resetToInitialState();
-    print("Sessionid");
-    print(SessionController().userId.toString());
+    // AppConstants.resetToInitialState();
+    // print("Sessionid");
+    // print(SessionController().userId.toString());
     // SessionController().userId=FirebaseAuth.instance.currentUser!.uid.toString();
     final con = Get.put(HomePageCon());
     con.fetchContactDetails();
