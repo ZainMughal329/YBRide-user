@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
       ),
 
       // home: APis.auth.currentUser != null ? HomePage() : SignUpPages(),
-      // initialRoute: '/',
+      initialRoute: '/',
       home:  HomePage() ,
 
       // home: CheckOutPage(carType: 'SUV',carRent: 130,carPrice: 43,carDescription: 'Nessan Versa - 5 seats',),
