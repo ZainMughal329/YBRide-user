@@ -31,15 +31,16 @@ class BecomeDriverCon extends GetxController{
   Future<void> createSurfer(
       String id , String name, String email,String number,String city)async{
     try{
+      String dateTime = DateTime.timestamp().millisecondsSinceEpoch.toString();
       setLoading(true);
-      await APis.db.collection('drivers').doc(id).set(DriverModel(
+      await APis.db.collection('surferForm').doc(dateTime).set(DriverModel(
           image: '',
           name: name,
           phone: number,
           email: email,
           pushToken: '',
-          id: id,
-          dateTime: id,
+          id: dateTime,
+          dateTime: dateTime,
           isApproved: false,
           city: city
       ).toJson()).then((value) => {
