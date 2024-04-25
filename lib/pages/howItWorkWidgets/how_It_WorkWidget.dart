@@ -33,7 +33,7 @@ Widget howItWorkWidget(){
             height: 500,
             width:170,
             decoration: BoxDecoration(
-              image: DecorationImage(image: AssetImage('assets/images/howWorks.webp'),fit: BoxFit.fill),
+              image: DecorationImage(image: AssetImage('assets/images/howWorks.webp'),fit: BoxFit.contain),
               // color: Colors.blue,
               borderRadius:
               BorderRadius.all(Radius.circular(20)),
@@ -111,7 +111,7 @@ Widget onTapAnswerMediumScreen(String title,String subTitle,BuildContext context
             Container(
               height: 350,
               decoration: BoxDecoration(
-                image: DecorationImage(image: AssetImage('assets/images/howWorks.webp'),fit: BoxFit.fill),
+                image: DecorationImage(image: AssetImage('assets/images/howWorks.webp'),fit: BoxFit.contain),
                 // color: Colors.blue,
 
               ),

@@ -57,7 +57,7 @@ Widget HoeItWorks(){
           ),
           SizedBox(height: 50,),
           reuseableButton('SignUp Now', () {
-            Get.to(()=>SurferSignUpForm());
+            Get.to(()=>SurferSignUpForm(),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
 
           }),
           SizedBox(height: 50,),
@@ -93,7 +93,7 @@ Widget HoeItWorksSmall(){
               subHeading: "End by delivering the car to the customer or returning a car to our lot. It's easy!",),
             SizedBox(height: 50,),
             reuseableButton('SignUp Now', () {
-              Get.to(()=>SurferSignUpForm());
+              Get.to(()=>SurferSignUpForm(),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
             }),
             SizedBox(height: 50,),
 

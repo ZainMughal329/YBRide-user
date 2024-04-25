@@ -4,23 +4,22 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:yb_ride_user_web/components/subHeadingText.dart';
 import 'package:yb_ride_user_web/sessions/forgot/view.dart';
 import 'package:yb_ride_user_web/sessions/login/controller.dart';
+import 'package:yb_ride_user_web/sessions/signUp/controller.dart' as sg;
+// import 'package:yb_ride_user_web/sessions/signUp/controller.dart';
 import 'package:yb_ride_user_web/sessions/signUp/view.dart';
 import '../../components/headingTextWidget.dart';
 import '../../components/reusebale_textField.dart';
 import '../../helper/appColors.dart';
-
 class LoginPages extends StatelessWidget {
-  const LoginPages({super.key});
-
-
+   LoginPages({super.key});
   @override
   Widget build(BuildContext context) {
     final con =Get.put(loginCon());
+    final signUpCon = Get.put(sg.signUpCon());
     return Scaffold(
       backgroundColor: Colors.grey.withOpacity(.3),
       body: Stack(
@@ -164,44 +163,45 @@ class LoginPages extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 16.0),
-                    // Row(
-                    //   children: [
-                    //     Expanded(child: Divider()),
-                    //     SubHeadingTextWidget(title: 'OR'),
-                    //     Expanded(child: Divider()),
-                    //   ],
-                    // ),
-                    // SizedBox(height: 16.0),
-                    // Container(
-                    //   width: 400,
-                    //   height: 50,
-                    //   decoration: BoxDecoration(
-                    //       border: Border.all(color: Colors.black54)
-                    //   ),
-                    //   child: Center(
-                    //     child: InkWell(
-                    //       onTap: (){
-                    //         con.handleGoogleSignIn(context);
-                    //       },
-                    //       child: Row(
-                    //         mainAxisAlignment: MainAxisAlignment.start,
-                    //         crossAxisAlignment: CrossAxisAlignment.start,
-                    //         children: [
-                    //           SizedBox(width: 10,),
-                    //           Container(
-                    //             height:25,
-                    //             width: 30,
-                    //             decoration: BoxDecoration(
-                    //               image: DecorationImage(image: AssetImage('assets/images/google.webp')),
-                    //             ),
-                    //           ),
-                    //           SizedBox(width: 5,),
-                    //           SubHeadingTextWidget(title: 'Continue with Google',fontSize: 16,)
-                    //         ],
-                    //       ),
-                    //     ),
-                    //   ),
-                    // )
+                    Row(
+                      children: [
+                        Expanded(child: Divider()),
+                        SubHeadingTextWidget(title: ' OR '),
+                        Expanded(child: Divider()),
+                      ],
+                    ),
+                    SizedBox(height: 16.0),
+                    InkWell(
+                      onTap: (){
+                        signUpCon.handleGoogleSignIn(context);
+                        // _handleSignIn();
+                      },
+                      child: Container(
+                        width: 400,
+                        height: 50,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.black54)
+                        ),
+                        child: Center(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(width: 10,),
+                              Container(
+                                height:25,
+                                width: 30,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(image: AssetImage('assets/images/google.webp')),
+                                ),
+                              ),
+                              SizedBox(width: 5,),
+                              SubHeadingTextWidget(title: 'Continue with Google',fontSize: 16,)
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ),

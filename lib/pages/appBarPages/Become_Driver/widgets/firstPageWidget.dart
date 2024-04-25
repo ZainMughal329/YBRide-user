@@ -23,7 +23,7 @@ Widget firstPageWidget(){
               SubHeadingTextWidget(title: "you don't need a car!",fontSize: 22,textColor: Colors.black,),
               SizedBox(height: 30,),
               reuseableButton('SignUp Now', () {
-                Get.to(()=>SurferSignUpForm());
+                Get.to(()=>SurferSignUpForm(),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
               }),
               SizedBox(height: 12,),
               SubHeadingTextWidget(title: "Takes less than 5 minutes!",fontSize: 13,),
@@ -50,7 +50,7 @@ Widget firstPageWidgetSmall(){
         SizedBox(height: 20,),
 
         reuseableButton('SignUp Now', () {
-          Get.to(()=>SurferSignUpForm());
+          Get.to(()=>SurferSignUpForm(),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
         }),
         SizedBox(height: 12,),
         SubHeadingTextWidget(title: "Takes less than 5 minutes!",fontSize: 13,),

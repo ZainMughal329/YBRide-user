@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_google_places_sdk/flutter_google_places_sdk.dart';
 import 'package:get/get.dart';
 import 'package:yb_ride_user_web/Vehicle/view.dart';
@@ -20,6 +21,10 @@ import 'checkOut/view.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.deepPurple,
+    statusBarIconBrightness: Brightness.light
+  ));
   await FlutterGooglePlacesSdkPlatform.instance.initialize('AIzaSyA8mT_fcQoFRNpBokvTjVXsuc-TB9k-leI');
   await Firebase.initializeApp(
       options: FirebaseOptions(

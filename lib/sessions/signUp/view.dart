@@ -165,51 +165,53 @@ class SignUpPages extends StatelessWidget {
                           SizedBox(width: 5,),
                           InkWell(
                               onTap: (){
-                                Get.to(()=>LoginPages());
+                                Get.to(()=>LoginPages(),
+                                    transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
                               },
                               child: HeadingTextWidget(title: 'Log in',textColor: AppColors.buttonColor,fontSize: 16,))
                         ],
                       ),
                     ),
                     SizedBox(height: 16.0),
-                    // Row(
-                    //   children: [
-                    //     Expanded(child: Divider()),
-                    //     SubHeadingTextWidget(title: 'OR'),
-                    //     Expanded(child: Divider()),
-                    //   ],
-                    // ),
-                    // SizedBox(height: 16.0),
-                    // InkWell(
-                    //   onTap: (){
-                    //     _handleSignIn();
-                    //   },
-                    //   child: Container(
-                    //     width: 400,
-                    //     height: 50,
-                    //     decoration: BoxDecoration(
-                    //         border: Border.all(color: Colors.black54)
-                    //     ),
-                    //     child: Center(
-                    //       child: Row(
-                    //         mainAxisAlignment: MainAxisAlignment.start,
-                    //         crossAxisAlignment: CrossAxisAlignment.start,
-                    //         children: [
-                    //           SizedBox(width: 10,),
-                    //           Container(
-                    //             height:25,
-                    //             width: 30,
-                    //             decoration: BoxDecoration(
-                    //               image: DecorationImage(image: AssetImage('assets/images/google.webp')),
-                    //             ),
-                    //           ),
-                    //           SizedBox(width: 5,),
-                    //           SubHeadingTextWidget(title: 'Continue with Google',fontSize: 16,)
-                    //         ],
-                    //       ),
-                    //     ),
-                    //   ),
-                    // )
+                    Row(
+                      children: [
+                        Expanded(child: Divider()),
+                        SubHeadingTextWidget(title: ' OR '),
+                        Expanded(child: Divider()),
+                      ],
+                    ),
+                    SizedBox(height: 16.0),
+                    InkWell(
+                      onTap: (){
+                        con.handleGoogleSignIn(context);
+                        // _handleSignIn();
+                      },
+                      child: Container(
+                        width: 400,
+                        height: 50,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.black54)
+                        ),
+                        child: Center(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(width: 10,),
+                              Container(
+                                height:25,
+                                width: 30,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(image: AssetImage('assets/images/google.webp')),
+                                ),
+                              ),
+                              SizedBox(width: 5,),
+                              SubHeadingTextWidget(title: 'Continue with Google',fontSize: 16,)
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ),

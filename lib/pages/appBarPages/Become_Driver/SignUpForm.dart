@@ -92,8 +92,8 @@ class SurferSignUpForm extends GetView<BecomeDriverCon> {
                                 Navigator.pop(context);
                               },
                               child: Align(
-                                  alignment: Alignment.topRight,
-                                  child: Icon(FontAwesomeIcons.xmark)),
+                                  alignment: Alignment.topLeft,
+                                  child: Icon(FontAwesomeIcons.xmark,color: Colors.white,)),
                             ),
                           ),
                           Spacer(),

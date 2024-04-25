@@ -35,7 +35,7 @@ class BecomeDriverPage extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 child: IconButton(
                   onPressed: (){
-                    Get.offAll(()=>HomePage());
+                    Get.offAll(()=>HomePage(),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
                   },
                   icon: Icon(Icons.cancel_outlined,color: Colors.black,size: 35,),
                 ),
@@ -82,7 +82,7 @@ class BecomeDriverPage extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 child: IconButton(
                   onPressed: (){
-                    Get.offAll(()=>HomePage());
+                    Get.offAll(()=>HomePage(),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
                   },
                   icon: Icon(Icons.cancel_outlined,color: Colors.black,size: 20,),
                 ),

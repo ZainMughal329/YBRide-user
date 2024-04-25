@@ -129,7 +129,8 @@ class ForgotPages extends StatelessWidget {
                         children: [
                           InkWell(
                               onTap: (){
-                                Get.to(()=>LoginPages());
+                                Get.to(()=>LoginPages(),
+                                    transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
                               },
                               child: HeadingTextWidget(title: 'Back to YBRide',textColor: AppColors.buttonColor,fontSize: 16,))
                         ],

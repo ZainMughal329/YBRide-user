@@ -42,7 +42,9 @@ class VehiclePage extends StatelessWidget {
           padding: EdgeInsets.only(left: 5),
           child: InkWell(
             onTap:(){
-              Get.offAll(()=>HomePage());
+              Get.offAll(()=>HomePage(),
+                  transition: Transition.rightToLeft,duration: Duration(milliseconds: 600)
+              );
             },
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -68,7 +70,9 @@ class VehiclePage extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    Get.to(() => FaqPage());
+                    Get.to(() => FaqPage(),
+                        transition: Transition.rightToLeft,duration: Duration(milliseconds: 600)
+                    );
                   },
                   child: HeadingTextWidget(
                       title: 'FAQ',
@@ -81,7 +85,9 @@ class VehiclePage extends StatelessWidget {
                 ),
                 InkWell(
                     onTap: () {
-                      Get.to(() => AccountPage());
+                      Get.to(() => AccountPage(),
+                          transition: Transition.rightToLeft,duration: Duration(milliseconds: 600)
+                      );
                     },
                     child: HeadingTextWidget(
                       title: 'Account',
@@ -94,7 +100,9 @@ class VehiclePage extends StatelessWidget {
                 ),
                 InkWell(
                     onTap: () {
-                      Get.to(() => ReferralPage());
+                      Get.to(() => ReferralPage(),
+                          transition: Transition.rightToLeft,duration: Duration(milliseconds: 600)
+                      );
                     },
                     child: HeadingTextWidget(
                       title: 'Referrals',
@@ -107,7 +115,9 @@ class VehiclePage extends StatelessWidget {
                 ),
                 InkWell(
                     onTap: () {
-                      Get.to(() => TripsPages());
+                      Get.to(() => TripsPages(),
+                          transition: Transition.rightToLeft,duration: Duration(milliseconds: 600)
+                      );
                     },
                     child: HeadingTextWidget(
                         title: 'My Trips',
@@ -232,7 +242,7 @@ class VehiclePage extends StatelessWidget {
                                       carDescription: vehicleDescription,
                                       vehicleId: snapshot
                                           .data!.docs[index]['id'].toString(),
-                                    ));
+                                    ),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
                                   },
                                 ),
                               ],
@@ -289,7 +299,7 @@ class VehiclePage extends StatelessWidget {
                                     carDescription: vehicleDescription,
                                     vehicleId: snapshot
                                         .data!.docs[index]['id'].toString(),
-                                  ));
+                                  ),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
                                 },
                               ),
                             ],
@@ -353,7 +363,7 @@ class VehiclePage extends StatelessWidget {
                                     carDescription: vehicleDescription,
                                     vehicleId: snapshot
                                         .data!.docs[index]['id'].toString(),
-                                  ));
+                                  ),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
                                 },
                               ),
                             ],

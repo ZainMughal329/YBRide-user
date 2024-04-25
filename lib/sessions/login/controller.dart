@@ -73,7 +73,8 @@ class loginCon extends GetxController{
          // If user does not exist in the drivers collection, proceed with login
          state.auth.signInWithEmailAndPassword(email: email, password: password).then((value) async {
            SessionController().userId = value.user!.uid.toString();
-           Get.offAll(() => HomePage());
+           Get.offAll(() => HomePage(),
+               transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
            state.emailCon.clear();
            state.passwordCon.clear();
            setLoading(false);

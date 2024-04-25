@@ -17,7 +17,8 @@ void setLoading(bool value){
     try{
       state.auth.sendPasswordResetEmail(email: email).then((value) {
         setLoading(false);
-        Get.to(()=>LoginPages());
+        Get.to(()=>LoginPages(),
+            transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
         // state.email.value.text.trim() ==null;
         Get.snackbar('Sucess','Check your email to recover your password',backgroundColor:Colors.white ,colorText: AppColors.buttonColor.withOpacity(.8));
 

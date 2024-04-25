@@ -66,7 +66,9 @@ Widget HomePageWidget(BuildContext context, HomePageCon controller) {
                         child: InkWell(
                           onTap: () {
                             // rangePicker(context, controller);
-                            newrangePicker(context, controller);
+                            newrangePicker(context, controller,
+                                );
+
                           },
                           child: Container(
                             width: MediaQuery.of(context).size.width * 0.10,

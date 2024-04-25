@@ -483,7 +483,9 @@ class HomePageCon extends GetxController{
     // }
 
 
-    Get.to(() => VehiclePage());
+    Get.to(() => VehiclePage(),
+        transition: Transition.upToDown,duration: Duration(milliseconds: 600)
+    );
     // Get.toNamed(RoutesName.carDetailsScreen,arguments: {'isTextShow',false});
 
   }

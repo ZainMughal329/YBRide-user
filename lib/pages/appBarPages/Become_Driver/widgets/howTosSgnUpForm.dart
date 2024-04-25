@@ -53,7 +53,7 @@ Widget howToSignUpSmall(){
             SubHeadingTextWidget(title: "to start earning! You must be 21+ years old and have a valid driver's license.",fontSize: 16,textColor: Colors.black,textAlign: TextAlign.center,),
             SizedBox(height: 30,),
             reuseableButton('SignUp Now', () {
-              Get.to(()=>SurferSignUpForm());
+              Get.to(()=>SurferSignUpForm(),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
             }),
             SizedBox(height: 50,),
 
