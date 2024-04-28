@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:yb_ride_user_web/components/headingTextWidget.dart';
 import 'package:yb_ride_user_web/helper/appColors.dart';
 import 'package:yb_ride_user_web/helper/responsive.dart';
+import 'package:yb_ride_user_web/helper/show_progress_indicator.dart';
 import 'package:yb_ride_user_web/homePage/view.dart';
 
 Widget RentalcarsWidget(BuildContext context){
@@ -37,7 +38,12 @@ Widget RentalcarsWidget(BuildContext context){
         alignment: Alignment.topLeft,
         child: IconButton(
           onPressed: (){
-            Get.offAll(()=>HomePage(),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
+            showProgressIndicator(context);
+            Future.delayed(Duration(seconds: 2),(){
+              Navigator.pop(context);
+              Get.to(()=>HomePage());
+            });
+            // Get.offAll(()=>HomePage(),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
           },
           icon: Icon(Icons.cancel_outlined,color: Colors.white,size: 35,),
         ),
@@ -72,7 +78,12 @@ Stack(
       alignment: Alignment.topLeft,
       child:  IconButton(
         onPressed: (){
-          Get.offAll(()=>HomePage(),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
+          showProgressIndicator(context);
+          Future.delayed(Duration(seconds: 2),(){
+            Navigator.pop(context);
+            Get.to(()=>HomePage());
+          });
+          // Get.offAll(()=>HomePage(),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
         },
         icon: Icon(Icons.cancel_outlined,color: Colors.white,size: 35,),
       ),
@@ -80,7 +91,7 @@ Stack(
 
   ],
 );}
-Widget RentalcarsWidgetSmall(){
+Widget RentalcarsWidgetSmall(BuildContext context){
   return Container(
     width: double.infinity,
     decoration: BoxDecoration(
@@ -97,7 +108,12 @@ Widget RentalcarsWidgetSmall(){
             padding: const EdgeInsets.only(right: 450),
             child: IconButton(
               onPressed: (){
-                Get.offAll(()=>HomePage(),transition: Transition.downToUp,duration: Duration(milliseconds: 600));
+                showProgressIndicator(context);
+                Future.delayed(Duration(seconds: 2),(){
+                  Navigator.pop(context);
+                  Get.to(()=>HomePage());
+                });
+                // Get.offAll(()=>HomePage(),transition: Transition.downToUp,duration: Duration(milliseconds: 600));
               },
               icon: Icon(Icons.cancel_outlined,color: Colors.black,size: 35,),
             ),

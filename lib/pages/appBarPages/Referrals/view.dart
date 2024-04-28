@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yb_ride_user_web/components/subHeadingText.dart';
+import 'package:yb_ride_user_web/helper/show_progress_indicator.dart';
 import 'package:yb_ride_user_web/homePage/view.dart';
 import 'package:yb_ride_user_web/pages/Footer/HomePageFooter.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Referrals/controller.dart';
@@ -16,6 +17,7 @@ import '../Accounts/view.dart';
 import '../Become_Driver/view.dart';
 import '../FaqS/view.dart';
 import '../Trips/allTripPage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ReferralPage extends StatelessWidget {
   const ReferralPage({super.key});
@@ -42,7 +44,12 @@ class ReferralPage extends StatelessWidget {
           padding: EdgeInsets.only(left: 5),
           child: InkWell(
             onTap:(){
-              Get.offAll(()=>HomePage());
+              showProgressIndicator(context);
+              Future.delayed(Duration(seconds: 2),(){
+                Navigator.pop(context);
+                Get.offAll(()=>HomePage());
+              });
+              // Get.offAll(()=>HomePage());
             },
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -65,7 +72,12 @@ class ReferralPage extends StatelessWidget {
             ?  [
           InkWell(
             onTap: () {
-              Get.to(() => BecomeDriverPage());
+              showProgressIndicator(context);
+              Future.delayed(Duration(seconds: 2),(){
+                Navigator.pop(context);
+                Get.to(()=>BecomeDriverPage());
+              });
+              // Get.to(() => BecomeDriverPage());
             },
             child: HeadingTextWidget(
                 title: 'Become a driver partner',
@@ -86,7 +98,12 @@ class ReferralPage extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Get.to(() => FaqPage());
+              showProgressIndicator(context);
+              Future.delayed(Duration(seconds: 2),(){
+                Navigator.pop(context);
+                Get.to(()=>FaqPage());
+              });
+              // Get.to(() => FaqPage());
             },
             child: HeadingTextWidget(
                 title: 'FAQ',
@@ -99,7 +116,12 @@ class ReferralPage extends StatelessWidget {
           ),
           InkWell(
               onTap: () {
-                Get.to(() => AccountPage());
+                showProgressIndicator(context);
+                Future.delayed(Duration(seconds: 2),(){
+                  Navigator.pop(context);
+                  Get.to(()=>AccountPage());
+                });
+                // Get.to(() => AccountPage());
               },
               child: HeadingTextWidget(
                 title: 'Account',
@@ -110,22 +132,27 @@ class ReferralPage extends StatelessWidget {
           SizedBox(
             width: 20,
           ),
+          // InkWell(
+          //     onTap: () {
+          //       Get.to(() => ReferralPage());
+          //     },
+          //     child: HeadingTextWidget(
+          //       title: 'Referrals',
+          //       textColor: AppColors.appBarTextColor,
+          //       fontSize: 14,
+          //       fontWeight: FontWeight.normal,
+          //     )),
+          // SizedBox(
+          //   width: 20,
+          // ),
           InkWell(
               onTap: () {
-                Get.to(() => ReferralPage());
-              },
-              child: HeadingTextWidget(
-                title: 'Referrals',
-                textColor: AppColors.appBarTextColor,
-                fontSize: 14,
-                fontWeight: FontWeight.normal,
-              )),
-          SizedBox(
-            width: 20,
-          ),
-          InkWell(
-              onTap: () {
-                Get.to(() => TripsPages());
+                showProgressIndicator(context);
+                Future.delayed(Duration(seconds: 2),(){
+                  Navigator.pop(context);
+                  Get.to(()=>TripsPages());
+                });
+                // Get.to(() => TripsPages());
               },
               child: HeadingTextWidget(
                   title: 'My Trips',
@@ -136,7 +163,13 @@ class ReferralPage extends StatelessWidget {
             width: 20,
           ),
           InkWell(
-              onTap: () {
+              onTap: () async{
+                await FirebaseAuth.instance.signOut().then((value){
+
+                }).onError((error, stackTrace){
+
+                });
+
               },
               child: HeadingTextWidget(
                   title: 'Sign out',
@@ -347,7 +380,7 @@ class ReferralPage extends StatelessWidget {
               SizedBox(height: 50,),
               Divider(),
               SizedBox(height: 20,),
-              appBarFooter(),
+              appBarFooter(context),
               SizedBox(
                 height: 20,
               ),
@@ -560,7 +593,7 @@ class ReferralPage extends StatelessWidget {
               ),
 
               Divider(),
-              ResponsiveWidget.isLargeScreen(context) ?  appBarFooter() : appBarFooterSmall(context),
+              ResponsiveWidget.isLargeScreen(context) ?  appBarFooter(context) : appBarFooterSmall(context),
               SizedBox(
                 height: 20,
               ),

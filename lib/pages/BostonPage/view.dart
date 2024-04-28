@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yb_ride_user_web/helper/responsive.dart';
+import 'package:yb_ride_user_web/helper/show_progress_indicator.dart';
 import 'package:yb_ride_user_web/pages/BostonPage/Widgets/deliverToYourWidget.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/appBarFooter/appBatFooter.dart';
 
@@ -37,13 +38,23 @@ class BostonPage extends StatelessWidget {
           SizedBox(width: 20,),
           InkWell(
               onTap: (){
-                Get.to(()=>AccountPage());
+                showProgressIndicator(context);
+                Future.delayed(Duration(seconds: 2),(){
+                  Navigator.pop(context);
+                  Get.to(()=>AccountPage());
+                });
+                // Get.to(()=>AccountPage());
               },
               child: HeadingTextWidget(title: 'Account',textColor: AppColors.appBarTextColor,fontSize: 14,fontWeight: FontWeight.normal,)),
           SizedBox(width: 20,),
           InkWell(
               onTap: (){
-                Get.to(()=>TripsPages());
+                showProgressIndicator(context);
+                Future.delayed(Duration(seconds: 2),(){
+                  Navigator.pop(context);
+                  Get.to(()=>TripsPages());
+                });
+                // Get.to(()=>TripsPages());
               },
               child: HeadingTextWidget(title: 'My Trips',textColor: AppColors.appBarTextColor,fontSize: 14,fontWeight: FontWeight.normal)),
           SizedBox(width: 20,),
@@ -85,7 +96,7 @@ class BostonPage extends StatelessWidget {
               SizedBox(height: 100,),
               Divider(),
               SizedBox(height:15,),
-              ResponsiveWidget.isLargeScreen(context) ? appBarFooter() : appBarFooterSmall(context),
+              ResponsiveWidget.isLargeScreen(context) ? appBarFooter(context) : appBarFooterSmall(context),
             ],
           ),
         ),

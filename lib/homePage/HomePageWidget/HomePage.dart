@@ -5,6 +5,7 @@ import 'package:yb_ride_user_web/Vehicle/view.dart';
 import 'package:yb_ride_user_web/components/snackbar_widget.dart';
 import 'package:yb_ride_user_web/helper/AppConstants.dart';
 import 'package:yb_ride_user_web/helper/session_Controller.dart';
+import 'package:yb_ride_user_web/helper/show_progress_indicator.dart';
 import 'package:yb_ride_user_web/homePage/HomePageWidget/newRangePicker.dart';
 import 'package:yb_ride_user_web/homePage/HomePageWidget/rangePicker.dart';
 import 'package:yb_ride_user_web/homePage/HomePageWidget/to_bottom_sheet.dart';
@@ -366,7 +367,7 @@ Widget HomePageWidget(BuildContext context, HomePageCon controller) {
                                           controller.state.timeandDateSelected
                                                   .value ==
                                               true) {
-                                        controller.moveToSelectVehicleScreen();
+                                        controller.moveToSelectVehicleScreen(context);
                                       } else {
                                         Snackbar.showSnackBar(
                                             'YB-Ride',
@@ -402,7 +403,13 @@ Widget HomePageWidget(BuildContext context, HomePageCon controller) {
                                   )
                                   : InkWell(
                                     onTap: () {
-                                      Get.offAll(()=>LoginPages());
+                                      showProgressIndicator(context);
+                                      Future.delayed(Duration(seconds: 2),(){
+                                        Navigator.pop(context);
+                                        Get.offAll(()=>LoginPages());
+
+                                      });
+
                                     },
                                     child: Container(
                                       height:70,
@@ -613,7 +620,7 @@ Widget HomePageWidgetMediumScreen(
                       if (controller.state.fromAddressSelected.value == true &&
                           controller.state.toAddressSelected.value == true &&
                           controller.state.timeandDateSelected.value == true) {
-                        controller.moveToSelectVehicleScreen();
+                        controller.moveToSelectVehicleScreen(context);
                       } else {
                         Snackbar.showSnackBar('YB-Ride',
                             "Select All Information", Icons.error_outline);
@@ -621,7 +628,12 @@ Widget HomePageWidgetMediumScreen(
                     }) : RoundButton(
                 title: 'Login to continue ...',
                 onPress: () {
-                  Get.offAll(()=>LoginPages());
+                  showProgressIndicator(context);
+                  Future.delayed(Duration(seconds: 2),(){
+                    Navigator.pop(context);
+                    Get.offAll(()=>LoginPages());
+                  });
+
                   // if (controller.state.fromAddressSelected.value == true &&
                   //     controller.state.toAddressSelected.value == true &&
                   //     controller.state.timeandDateSelected.value == true) {
@@ -811,7 +823,7 @@ Widget HomePageWidgetSmallScreen(BuildContext context, HomePageCon controller) {
                     if (controller.state.fromAddressSelected.value == true &&
                         controller.state.toAddressSelected.value == true &&
                         controller.state.timeandDateSelected.value == true) {
-                      controller.moveToSelectVehicleScreen();
+                      controller.moveToSelectVehicleScreen(context);
                     } else {
                       Snackbar.showSnackBar('YB-Ride', "Select All Information",
                           Icons.error_outline);
@@ -819,7 +831,12 @@ Widget HomePageWidgetSmallScreen(BuildContext context, HomePageCon controller) {
                   }) : RoundButton(
               title: 'Login to continue ...',
               onPress: () {
-                Get.offAll(()=>LoginPages());
+                showProgressIndicator(context);
+                Future.delayed(Duration(seconds: 2),(){
+                  Navigator.pop(context);
+                  Get.offAll(()=>LoginPages());
+                });
+                // Get.offAll(()=>LoginPages());
                 // if (controller.state.fromAddressSelected.value == true &&
                 //     controller.state.toAddressSelected.value == true &&
                 //     controller.state.timeandDateSelected.value == true) {

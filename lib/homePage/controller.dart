@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:yb_ride_user_web/Vehicle/view.dart';
 import 'package:yb_ride_user_web/helper/AppConstants.dart';
+import 'package:yb_ride_user_web/helper/show_progress_indicator.dart';
 import 'package:yb_ride_user_web/homePage/state.dart';
 import 'package:http/http.dart' as http;
 import 'package:geocoding/geocoding.dart';
@@ -455,7 +456,7 @@ class HomePageCon extends GetxController{
   }
 
 
-  void moveToSelectVehicleScreen(){
+  void moveToSelectVehicleScreen(BuildContext context){
     print("______________________________");
     print(AppConstants.epochFromDate);
     print(AppConstants.epochFromDate);
@@ -481,12 +482,15 @@ class HomePageCon extends GetxController{
     // }else{
     //
     // }
+    showProgressIndicator(context);
+    Future.delayed(Duration(seconds: 2),(){
+      Navigator.pop(context);
+      Get.to(() => VehiclePage());
+    });
+    // Get.to(() => VehiclePage(),
+    //     transition: Transition.upToDown,duration: Duration(milliseconds: 600)
+    // );
 
-
-    Get.to(() => VehiclePage(),
-        transition: Transition.upToDown,duration: Duration(milliseconds: 600)
-    );
-    // Get.toNamed(RoutesName.carDetailsScreen,arguments: {'isTextShow',false});
 
   }
 

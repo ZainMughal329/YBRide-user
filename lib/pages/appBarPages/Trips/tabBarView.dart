@@ -48,7 +48,12 @@ class TripsHomePage extends GetView<TripCon> {
           padding: EdgeInsets.only(left: 5),
           child: InkWell(
             onTap:(){
-              Get.offAll(()=>HomePage());
+              showProgressIndicator(context);
+            Future.delayed(Duration(seconds: 2),(){
+              Navigator.pop(context);
+              Get.to(()=>HomePage());
+            });
+              // Get.offAll(()=>HomePage());
             },
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -71,7 +76,12 @@ class TripsHomePage extends GetView<TripCon> {
             ? [
           InkWell(
             onTap: () {
-              Get.to(() => BecomeDriverPage());
+              showProgressIndicator(context);
+              Future.delayed(Duration(seconds: 2),(){
+                Navigator.pop(context);
+                Get.to(()=>BecomeDriverPage());
+              });
+              // Get.to(() => BecomeDriverPage());
             },
             child: HeadingTextWidget(
                 title: 'Become a driver partner',
@@ -92,7 +102,12 @@ class TripsHomePage extends GetView<TripCon> {
           ),
           InkWell(
             onTap: () {
-              Get.to(() => FaqPage());
+              showProgressIndicator(context);
+              Future.delayed(Duration(seconds: 2),(){
+                Navigator.pop(context);
+                Get.to(()=>FaqPage());
+              });
+              // Get.to(() => FaqPage());
             },
             child: HeadingTextWidget(
                 title: 'FAQ',
@@ -105,7 +120,12 @@ class TripsHomePage extends GetView<TripCon> {
           ),
           InkWell(
               onTap: () {
-                Get.to(() => AccountPage());
+                showProgressIndicator(context);
+                Future.delayed(Duration(seconds: 2),(){
+                  Navigator.pop(context);
+                  Get.to(()=>AccountPage());
+                });
+                // Get.to(() => AccountPage());
               },
               child: HeadingTextWidget(
                 title: 'Account',
@@ -119,7 +139,12 @@ class TripsHomePage extends GetView<TripCon> {
           ),
           InkWell(
               onTap: () {
-                Get.to(() => TripsHomePage());
+                showProgressIndicator(context);
+                Future.delayed(Duration(seconds: 2),(){
+                  Navigator.pop(context);
+                  Get.to(()=>TripsHomePage());
+                });
+                // Get.to(() => TripsHomePage());
               },
               child: HeadingTextWidget(
                   title: 'My Trips',

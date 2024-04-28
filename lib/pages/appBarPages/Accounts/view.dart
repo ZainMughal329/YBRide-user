@@ -49,7 +49,12 @@ class AccountPage extends StatelessWidget {
           padding: EdgeInsets.only(left: 5),
           child: InkWell(
             onTap:(){
-              Get.offAll(()=>HomePage());
+              showProgressIndicator(context);
+              Future.delayed(Duration(seconds: 2),(){
+                Navigator.pop(context);
+                Get.offAll(()=>HomePage());
+              });
+              // Get.offAll(()=>HomePage());
             },
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -72,7 +77,12 @@ class AccountPage extends StatelessWidget {
             ? [
           InkWell(
             onTap: () {
-              Get.to(() => BecomeDriverPage());
+              showProgressIndicator(context);
+              Future.delayed(Duration(seconds: 2),(){
+                Navigator.pop(context);
+                Get.to(()=>BecomeDriverPage());
+              });
+              // Get.to(() => BecomeDriverPage());
             },
             child: HeadingTextWidget(
                 title: 'Become a driver partner',
@@ -93,7 +103,12 @@ class AccountPage extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Get.to(() => FaqPage());
+              showProgressIndicator(context);
+              Future.delayed(Duration(seconds: 2),(){
+                Navigator.pop(context);
+                Get.to(()=>FaqPage());
+              });
+              // Get.to(() => FaqPage());
             },
             child: HeadingTextWidget(
                 title: 'FAQ',
@@ -106,7 +121,12 @@ class AccountPage extends StatelessWidget {
           ),
           InkWell(
               onTap: () {
-                Get.to(() => AccountPage());
+                showProgressIndicator(context);
+                Future.delayed(Duration(seconds: 2),(){
+                  Navigator.pop(context);
+                  Get.to(()=>AccountPage());
+                });
+                // Get.to(() => AccountPage());
               },
               child: HeadingTextWidget(
                 title: 'Account',
@@ -120,7 +140,12 @@ class AccountPage extends StatelessWidget {
           ),
           InkWell(
               onTap: () {
-                Get.to(() => TripsHomePage());
+                showProgressIndicator(context);
+                Future.delayed(Duration(seconds: 2),(){
+                  Navigator.pop(context);
+                  Get.to(()=>TripsHomePage());
+                });
+                // Get.to(() => TripsHomePage());
               },
               child: HeadingTextWidget(
                   title: 'My Trips',
@@ -208,7 +233,7 @@ class AccountPage extends StatelessWidget {
                   SizedBox(height: 50,),
                   Divider(),
                   SizedBox(height: 20,),
-                  appBarFooter(),
+                  appBarFooter(context),
                   SizedBox(
                     height: 20,
                   ),
@@ -264,7 +289,7 @@ class AccountPage extends StatelessWidget {
                     SizedBox(height: 50,),
                     Divider(),
                     SizedBox(height: 20,),
-                    ResponsiveWidget.isLargeScreen(context) ? appBarFooter() : appBarFooterSmall(context),
+                    ResponsiveWidget.isLargeScreen(context) ? appBarFooter(context) : appBarFooterSmall(context),
                     SizedBox(
                       height: 20,
                     ),

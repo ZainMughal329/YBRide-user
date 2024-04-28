@@ -27,8 +27,8 @@ import '../../helper/show_progress_indicator.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 
 
-class TermsAndServices extends StatelessWidget {
-  TermsAndServices({super.key});
+class PrivacyPolicy extends StatelessWidget {
+  PrivacyPolicy({super.key});
 
   QuillController controller = QuillController.basic(
 
@@ -157,7 +157,7 @@ class TermsAndServices extends StatelessWidget {
         ],
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: APis.db.collection('termsAndConditions').snapshots(),
+        stream: APis.db.collection('privacyPolicy').snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
             return Center(
@@ -172,7 +172,7 @@ class TermsAndServices extends StatelessWidget {
           var fromDateString =
           data['dateTime']
           as String;
-          log('terms and services:$fromDateString');
+          // log('terms and services:$fromDateString');
           var fromDateMillis =
           int.parse(fromDateString);
           var fromDate = DateTime
@@ -181,7 +181,7 @@ class TermsAndServices extends StatelessWidget {
           var fromFormattedDate =
           DateFormat.yMd().format(
               fromDate.toLocal());
-          controller.document = Document.fromJson(jsonDecode(data['termsAndConditions']));
+          controller.document = Document.fromJson(jsonDecode(data['privacyPolicy']));
           // controller.document = Document.fromJson(jsonDecode(data['termsAndConditions']));
           return Padding(
             padding: const EdgeInsets.all(15.0),

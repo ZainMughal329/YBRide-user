@@ -2,13 +2,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yb_ride_user_web/helper/show_progress_indicator.dart';
 
 import '../../../../components/headingTextWidget.dart';
 import '../../../../components/subHeadingText.dart';
 import '../SignUpForm.dart';
 import '../view.dart';
 
-Widget HoeItWorks(){
+Widget HoeItWorks(BuildContext context){
   return
     Container(
       width: double.infinity,
@@ -57,7 +58,12 @@ Widget HoeItWorks(){
           ),
           SizedBox(height: 50,),
           reuseableButton('SignUp Now', () {
-            Get.to(()=>SurferSignUpForm(),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
+            showProgressIndicator(context);
+            Future.delayed(Duration(seconds: 2),(){
+              Navigator.pop(context);
+              Get.to(()=>SurferSignUpForm());
+            });
+            // Get.to(()=>SurferSignUpForm(),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
 
           }),
           SizedBox(height: 50,),
@@ -69,7 +75,7 @@ Widget HoeItWorks(){
 
 }
 
-Widget HoeItWorksSmall(){
+Widget HoeItWorksSmall(BuildContext context){
   return
     Container(
       width: double.infinity,
@@ -93,7 +99,12 @@ Widget HoeItWorksSmall(){
               subHeading: "End by delivering the car to the customer or returning a car to our lot. It's easy!",),
             SizedBox(height: 50,),
             reuseableButton('SignUp Now', () {
-              Get.to(()=>SurferSignUpForm(),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
+              showProgressIndicator(context);
+              Future.delayed(Duration(seconds: 2),(){
+                Navigator.pop(context);
+                Get.to(()=>SurferSignUpForm());
+              });
+              // Get.to(()=>SurferSignUpForm(),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
             }),
             SizedBox(height: 50,),
 

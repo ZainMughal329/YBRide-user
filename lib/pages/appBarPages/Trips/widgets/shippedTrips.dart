@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:yb_ride_user_web/helper/api.dart';
 import 'package:yb_ride_user_web/helper/responsive.dart';
+import 'package:yb_ride_user_web/helper/show_progress_indicator.dart';
 import 'package:yb_ride_user_web/homePage/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Trips/widgets/tripsCustomAlertBox.dart';
 import 'package:card_swiper/card_swiper.dart';
@@ -404,7 +405,12 @@ class shippedTripspage extends StatelessWidget {
                         padding: EdgeInsets.only(left: 20, right: 20),
                         child: InkWell(
                           onTap: (){
-                            Get.to(()=>HomePage());
+                            showProgressIndicator(context);
+                            Future.delayed(Duration(seconds: 2),(){
+                              Navigator.pop(context);
+                              Get.to(()=>HomePage());
+                            });
+                            // Get.to(()=>HomePage());
                           },
                           child: Container(
                             width: ResponsiveWidget.isLargeScreen(context)
@@ -435,7 +441,7 @@ class shippedTripspage extends StatelessWidget {
                       height: 20,
                     ),
                     ResponsiveWidget.isLargeScreen(context)
-                        ? appBarFooter()
+                        ? appBarFooter(context)
                         : appBarFooterSmall(context),
                     SizedBox(
                       height: 30,

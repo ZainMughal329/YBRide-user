@@ -50,7 +50,12 @@ class BuildDrawer {
               onTap: () {
 
                 Navigator.pop(context);
-                Get.to(()=>BecomeDriverPage());
+                showProgressIndicator(context);
+                Future.delayed(Duration(seconds: 2),(){
+                  Navigator.pop(context);
+                  Get.offAll(()=>BecomeDriverPage());
+                });
+                // Get.to(()=>BecomeDriverPage());
 
               },
               child: Text(
@@ -68,7 +73,12 @@ class BuildDrawer {
             InkWell(
               onTap: () {
                 Navigator.pop(context);
-                Get.to(()=>FaqPage());
+                showProgressIndicator(context);
+                Future.delayed(Duration(seconds: 2),(){
+                  Navigator.pop(context);
+                  Get.offAll(()=>FaqPage());
+                });
+                // Get.to(()=>FaqPage());
               },
               child: Text(
                 'FAQ',
@@ -100,28 +110,33 @@ class BuildDrawer {
             // SizedBox(
             //   height: 10,
             // ),
-            InkWell(
-              onTap: () {
-                Navigator.pop(context);
-                Get.to(()=>ReferralPage());
-              },
-              child: Text(
-                'Referrals',
-                style: GoogleFonts.montserrat(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
+            // InkWell(
+            //   onTap: () {
+            //     Navigator.pop(context);
+            //     Get.to(()=>ReferralPage());
+            //   },
+            //   child: Text(
+            //     'Referrals',
+            //     style: GoogleFonts.montserrat(
+            //       color: Colors.black,
+            //       fontSize: 16,
+            //       fontWeight: FontWeight.w600,
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 10,
+            // ),
             InkWell(
               onTap: () {
                 Navigator.pop(context);
                SessionController().userId == null ? Snackbar.showSnackBar("YB-Ride", "Login to continue", Icons.error_outline) :
-                Get.to(TripsPages());
+               showProgressIndicator(context);
+                Future.delayed(Duration(seconds: 2),(){
+                  Navigator.pop(context);
+                  Get.offAll(()=>TripsPages());
+                });
+               // Get.to(TripsPages());
               },
               child: Text(
                 'My Trips',
@@ -139,7 +154,12 @@ class BuildDrawer {
               onTap: () {
                 Navigator.pop(context);
                 SessionController().userId == null ? Snackbar.showSnackBar("YB-Ride", "Login to continue", Icons.error_outline) :
-                Get.to(()=>AccountPage());
+                showProgressIndicator(context);
+                Future.delayed(Duration(seconds: 2),(){
+                  Navigator.pop(context);
+                  Get.offAll(()=>AccountPage());
+                });
+                // Get.to(()=>AccountPage());
               },
               child: Text(
                 'My Account',
@@ -156,7 +176,12 @@ class BuildDrawer {
             InkWell(
               onTap: () {
                 Navigator.pop(context);
-                Get.to(()=>FaqPage());
+                showProgressIndicator(context);
+                Future.delayed(Duration(seconds: 2),(){
+                  Navigator.pop(context);
+                  Get.offAll(()=>FaqPage());
+                });
+                // Get.to(()=>FaqPage());
               },
               child: Text(
                 'Get Help',

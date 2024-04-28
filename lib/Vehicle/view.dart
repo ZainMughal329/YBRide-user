@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yb_ride_user_web/Vehicle/Controller.dart';
 import 'package:yb_ride_user_web/helper/AppConstants.dart';
+import 'package:yb_ride_user_web/helper/show_progress_indicator.dart';
 import 'package:yb_ride_user_web/homePage/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/appBarFooter/appBatFooter.dart';
 import '../checkOut/view.dart';
@@ -42,9 +43,14 @@ class VehiclePage extends StatelessWidget {
           padding: EdgeInsets.only(left: 5),
           child: InkWell(
             onTap:(){
-              Get.offAll(()=>HomePage(),
-                  transition: Transition.rightToLeft,duration: Duration(milliseconds: 600)
-              );
+              showProgressIndicator(context);
+              Future.delayed(Duration(seconds: 2),(){
+                Navigator.pop(context);
+                Get.offAll(()=>HomePage());
+              });
+              // Get.offAll(()=>HomePage(),
+              //     transition: Transition.rightToLeft,duration: Duration(milliseconds: 600)
+              // );
             },
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -70,9 +76,14 @@ class VehiclePage extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    Get.to(() => FaqPage(),
-                        transition: Transition.rightToLeft,duration: Duration(milliseconds: 600)
-                    );
+                    showProgressIndicator(context);
+                    Future.delayed(Duration(seconds: 2),(){
+                      Navigator.pop(context);
+                      Get.to(()=>FaqPage());
+                    });
+                    // // Get.to(() => FaqPage(),
+                    // //     transition: Transition.rightToLeft,duration: Duration(milliseconds: 600)
+                    // );
                   },
                   child: HeadingTextWidget(
                       title: 'FAQ',
@@ -85,9 +96,14 @@ class VehiclePage extends StatelessWidget {
                 ),
                 InkWell(
                     onTap: () {
-                      Get.to(() => AccountPage(),
-                          transition: Transition.rightToLeft,duration: Duration(milliseconds: 600)
-                      );
+                      showProgressIndicator(context);
+                      Future.delayed(Duration(seconds: 2),(){
+                        Navigator.pop(context);
+                        Get.to(()=>AccountPage());
+                      });
+                      // Get.to(() => AccountPage(),
+                      //     transition: Transition.rightToLeft,duration: Duration(milliseconds: 600)
+                      // );
                     },
                     child: HeadingTextWidget(
                       title: 'Account',
@@ -98,26 +114,36 @@ class VehiclePage extends StatelessWidget {
                 SizedBox(
                   width: 20,
                 ),
+                // InkWell(
+                //     onTap: () {
+                //       showProgressIndicator(context);
+                //       Future.delayed(Duration(seconds: 2),(){
+                //         Navigator.pop(context);
+                //         Get.to(()=>ReferralPage());
+                //       });
+                //       // Get.to(() => ReferralPage(),
+                //       //     transition: Transition.rightToLeft,duration: Duration(milliseconds: 600)
+                //       // );
+                //     },
+                //     child: HeadingTextWidget(
+                //       title: 'Referrals',
+                //       textColor: AppColors.appBarTextColor,
+                //       fontSize: 14,
+                //       fontWeight: FontWeight.normal,
+                //     )),
+                // SizedBox(
+                //   width: 20,
+                // ),
                 InkWell(
                     onTap: () {
-                      Get.to(() => ReferralPage(),
-                          transition: Transition.rightToLeft,duration: Duration(milliseconds: 600)
-                      );
-                    },
-                    child: HeadingTextWidget(
-                      title: 'Referrals',
-                      textColor: AppColors.appBarTextColor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal,
-                    )),
-                SizedBox(
-                  width: 20,
-                ),
-                InkWell(
-                    onTap: () {
-                      Get.to(() => TripsPages(),
-                          transition: Transition.rightToLeft,duration: Duration(milliseconds: 600)
-                      );
+                      showProgressIndicator(context);
+                      Future.delayed(Duration(seconds: 2),(){
+                        Navigator.pop(context);
+                        Get.to(()=>TripsPages());
+                      });
+                      // Get.to(() => TripsPages(),
+                      //     transition: Transition.rightToLeft,duration: Duration(milliseconds: 600)
+                      // );
                     },
                     child: HeadingTextWidget(
                         title: 'My Trips',
@@ -235,14 +261,26 @@ class VehiclePage extends StatelessWidget {
                                     // double rent = double.parse(controller.state.rentPerDay.toString());
                                     print(controller.state.rentPerDay);
                                     controller.calculateNoDays();
-                                    Get.to(() => CheckOutPage(
-                                      carRent: controller.state.rentPerDay * AppConstants.rentDays,
-                                      carType: carType,
-                                      carPrice: price,
-                                      carDescription: vehicleDescription,
-                                      vehicleId: snapshot
-                                          .data!.docs[index]['id'].toString(),
-                                    ),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
+                                    showProgressIndicator(context);
+                                    Future.delayed(Duration(seconds: 2),(){
+                                      Navigator.pop(context);
+                                      Get.to(()=>CheckOutPage(
+                                        carRent: controller.state.rentPerDay * AppConstants.rentDays,
+                                        carType: carType,
+                                        carPrice: price,
+                                        carDescription: vehicleDescription,
+                                        vehicleId: snapshot
+                                            .data!.docs[index]['id'].toString(),
+                                      ));
+                                    });
+                                    // Get.to(() => CheckOutPage(
+                                    //   carRent: controller.state.rentPerDay * AppConstants.rentDays,
+                                    //   carType: carType,
+                                    //   carPrice: price,
+                                    //   carDescription: vehicleDescription,
+                                    //   vehicleId: snapshot
+                                    //       .data!.docs[index]['id'].toString(),
+                                    // ),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
                                   },
                                 ),
                               ],
@@ -292,14 +330,27 @@ class VehiclePage extends StatelessWidget {
                                   // double rent = double.parse(controller.state.rentPerDay.toString());
                                   print(controller.state.rentPerDay);
                                   controller.calculateNoDays();
-                                  Get.to(() => CheckOutPage(
-                                    carRent: controller.state.rentPerDay * AppConstants.rentDays,
-                                    carType: carType,
-                                    carPrice: price,
-                                    carDescription: vehicleDescription,
-                                    vehicleId: snapshot
-                                        .data!.docs[index]['id'].toString(),
-                                  ),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
+                                  showProgressIndicator(context);
+                                  Future.delayed(Duration(seconds: 2),(){
+                                    Navigator.pop(context);
+                                    Get.to(()=>CheckOutPage(
+                                      carRent: controller.state.rentPerDay * AppConstants.rentDays,
+                                      carType: carType,
+                                      carPrice: price,
+                                      carDescription: vehicleDescription,
+                                      vehicleId: snapshot
+                                          .data!.docs[index]['id'].toString(),
+                                    ));
+                                  });
+
+                                  // Get.to(() => CheckOutPage(
+                                  //   carRent: controller.state.rentPerDay * AppConstants.rentDays,
+                                  //   carType: carType,
+                                  //   carPrice: price,
+                                  //   carDescription: vehicleDescription,
+                                  //   vehicleId: snapshot
+                                  //       .data!.docs[index]['id'].toString(),
+                                  // ),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
                                 },
                               ),
                             ],
@@ -355,15 +406,26 @@ class VehiclePage extends StatelessWidget {
 
                                   print(controller.state.rentPerDay * AppConstants.rentDays);
                                   print(carType);
-
-                                  Get.to(() => CheckOutPage(
-                                    carRent: controller.state.rentPerDay * AppConstants.rentDays,
-                                    carType: carType,
-                                    carPrice: price,
-                                    carDescription: vehicleDescription,
-                                    vehicleId: snapshot
-                                        .data!.docs[index]['id'].toString(),
-                                  ),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
+                                  showProgressIndicator(context);
+                                  Future.delayed(Duration(seconds: 2),(){
+                                    Navigator.pop(context);
+                                    Get.to(()=>CheckOutPage(
+                                      carRent: controller.state.rentPerDay * AppConstants.rentDays,
+                                      carType: carType,
+                                      carPrice: price,
+                                      carDescription: vehicleDescription,
+                                      vehicleId: snapshot
+                                          .data!.docs[index]['id'].toString(),
+                                    ));
+                                  });
+                                  // Get.to(() => CheckOutPage(
+                                  //   carRent: controller.state.rentPerDay * AppConstants.rentDays,
+                                  //   carType: carType,
+                                  //   carPrice: price,
+                                  //   carDescription: vehicleDescription,
+                                  //   vehicleId: snapshot
+                                  //       .data!.docs[index]['id'].toString(),
+                                  // ),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
                                 },
                               ),
                             ],
@@ -395,7 +457,7 @@ class VehiclePage extends StatelessWidget {
             SizedBox(
               height: 30,
             ),
-            ResponsiveWidget.isLargeScreen(context) ? appBarFooter() : appBarFooterSmall(context),
+            ResponsiveWidget.isLargeScreen(context) ? appBarFooter(context) : appBarFooterSmall(context),
           ],
         ),
       ),

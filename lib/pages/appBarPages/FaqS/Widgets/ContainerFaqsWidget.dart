@@ -6,9 +6,10 @@ import 'package:get/get.dart';
 import 'package:yb_ride_user_web/components/headingTextWidget.dart';
 import 'package:yb_ride_user_web/components/subHeadingText.dart';
 import 'package:yb_ride_user_web/helper/appColors.dart';
+import 'package:yb_ride_user_web/helper/show_progress_indicator.dart';
 import 'Faqs/GettingStarted/view.dart';
 
-Widget ContainerFaqs(){
+Widget ContainerFaqs(BuildContext context){
 
   return Material(
     child: Padding(
@@ -22,7 +23,12 @@ Widget ContainerFaqs(){
             children: [
               Expanded(child: ReusebaleContainer(
               'Getting Started','Articles',Icons.star,(){
-                Get.to(()=>GettingStartedPage(colName: 'gettingStarted', appBarName: 'Getting Started',));
+                showProgressIndicator(context);
+                Future.delayed(Duration(seconds: 2),(){
+                  Navigator.pop(context);
+                  Get.to(()=>GettingStartedPage(colName: 'gettingStarted', appBarName: 'Getting Started',));
+                });
+                // Get.to(()=>GettingStartedPage(colName: 'gettingStarted', appBarName: 'Getting Started',));
 
               }
               )),
@@ -30,7 +36,12 @@ Widget ContainerFaqs(){
               Expanded(child: ReusebaleContainer(
                 'Booking Charges & Cancellation','Articles',Icons.edit_note,
                       (){
-                        Get.to(()=>GettingStartedPage(colName: 'bookingChanges', appBarName: 'Booking Charges & Cancellation',));
+                        showProgressIndicator(context);
+                        Future.delayed(Duration(seconds: 2),(){
+                          Navigator.pop(context);
+                          Get.to(()=>GettingStartedPage(colName: 'bookingChanges', appBarName: 'Booking Charges & Cancellation',));
+                        });
+                        // Get.to(()=>GettingStartedPage(colName: 'bookingChanges', appBarName: 'Booking Charges & Cancellation',));
 
                   }
               ))
@@ -42,7 +53,12 @@ Widget ContainerFaqs(){
               Expanded(child: ReusebaleContainer(
                 'Delivery & Return','Articles',Icons.location_on,
                       (){
-                        Get.to(()=>GettingStartedPage(colName: 'deliveryReturn', appBarName: 'Delivery & Return',));
+                        showProgressIndicator(context);
+                        Future.delayed(Duration(seconds: 2),(){
+                          Navigator.pop(context);
+                          Get.to(()=>GettingStartedPage(colName: 'deliveryReturn', appBarName: 'Delivery & Return',));
+                        });
+                        // Get.to(()=>GettingStartedPage(colName: 'deliveryReturn', appBarName: 'Delivery & Return',));
 
 
                   }
@@ -51,7 +67,12 @@ Widget ContainerFaqs(){
               Expanded(child: ReusebaleContainer(
                 'Deposits, Charges,Payment & Referrals','Articles',Icons.money_rounded,
                       (){
-                        Get.to(()=>GettingStartedPage(colName: 'deposits', appBarName: 'Charges,Payment & Referrals',));
+                        showProgressIndicator(context);
+                        Future.delayed(Duration(seconds: 2),(){
+                          Navigator.pop(context);
+                          Get.to(()=>GettingStartedPage(colName: 'deposits', appBarName: 'Charges,Payment & Referrals',));
+                        });
+                        // Get.to(()=>GettingStartedPage(colName: 'deposits', appBarName: 'Charges,Payment & Referrals',));
 
                   }
               ))
@@ -61,13 +82,23 @@ Widget ContainerFaqs(){
           Row(
             children: [
               Expanded(child: ReusebaleContainer('Electric Vehicles (EV)','Articles',Icons.flash_on,(){
-                Get.to(()=>GettingStartedPage(colName: 'electricVehicles', appBarName: 'Electric Vehicles (EV)',));
+                showProgressIndicator(context);
+                Future.delayed(Duration(seconds: 2),(){
+                  Navigator.pop(context);
+                  Get.to(()=>GettingStartedPage(colName: 'electricVehicles', appBarName: 'Electric Vehicles (EV)',));
+                });
+                // Get.to(()=>GettingStartedPage(colName: 'electricVehicles', appBarName: 'Electric Vehicles (EV)',));
 
               })),
               SizedBox(width: 20,),
               Expanded(child: ReusebaleContainer('Insurance , Accidents & Incidents','Articles',Icons.article_outlined,
                       (){
-                        Get.to(()=>GettingStartedPage(colName: 'insurance', appBarName: 'Insurance , Accidents & Incidents',));
+                        showProgressIndicator(context);
+                        Future.delayed(Duration(seconds: 2),(){
+                          Navigator.pop(context);
+                          Get.to(()=>GettingStartedPage(colName: 'insurance', appBarName: 'Insurance , Accidents & Incidents',));
+                        });
+                        // Get.to(()=>GettingStartedPage(colName: 'insurance', appBarName: 'Insurance , Accidents & Incidents',));
 
 
                   }
@@ -78,8 +109,12 @@ Widget ContainerFaqs(){
           Row(
             children: [
               Expanded(child: ReusebaleContainer('Self PickUp and Return','Articles',Icons.location_on,(){
-
-                Get.to(()=>GettingStartedPage(colName: 'selfPickup', appBarName: 'Self PickUp and Return',));
+                showProgressIndicator(context);
+                Future.delayed(Duration(seconds: 2),(){
+                  Navigator.pop(context);
+                  Get.to(()=>GettingStartedPage(colName: 'selfPickup', appBarName: 'Self PickUp and Return',));
+                });
+                // Get.to(()=>GettingStartedPage(colName: 'selfPickup', appBarName: 'Self PickUp and Return',));
 
               })),
               SizedBox(width: 20,),
