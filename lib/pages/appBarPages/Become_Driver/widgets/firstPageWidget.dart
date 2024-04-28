@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yb_ride_user_web/helper/show_progress_indicator.dart';
 
 import '../../../../components/subHeadingText.dart';
 import '../SignUpForm.dart';
 import '../view.dart';
 
-Widget firstPageWidget(){
+Widget firstPageWidget(BuildContext context){
   return
     Padding(
       padding: const EdgeInsets.symmetric(horizontal: 200),
@@ -23,7 +24,12 @@ Widget firstPageWidget(){
               SubHeadingTextWidget(title: "you don't need a car!",fontSize: 22,textColor: Colors.black,),
               SizedBox(height: 30,),
               reuseableButton('SignUp Now', () {
-                Get.to(()=>SurferSignUpForm(),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
+                showProgressIndicator(context);
+                Future.delayed(Duration(seconds: 2),(){
+                  Navigator.pop(context);
+                  Get.to(()=>SurferSignUpForm());
+                });
+                // Get.to(()=>SurferSignUpForm(),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
               }),
               SizedBox(height: 12,),
               SubHeadingTextWidget(title: "Takes less than 5 minutes!",fontSize: 13,),
@@ -40,7 +46,7 @@ Widget firstPageWidget(){
 
 }
 
-Widget firstPageWidgetSmall(){
+Widget firstPageWidgetSmall(BuildContext context){
   return
     Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -50,7 +56,12 @@ Widget firstPageWidgetSmall(){
         SizedBox(height: 20,),
 
         reuseableButton('SignUp Now', () {
-          Get.to(()=>SurferSignUpForm(),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
+          showProgressIndicator(context);
+          Future.delayed(Duration(seconds: 2),(){
+            Navigator.pop(context);
+            Get.to(()=>SurferSignUpForm());
+          });
+          // Get.to(()=>SurferSignUpForm(),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
         }),
         SizedBox(height: 12,),
         SubHeadingTextWidget(title: "Takes less than 5 minutes!",fontSize: 13,),

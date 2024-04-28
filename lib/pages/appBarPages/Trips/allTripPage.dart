@@ -9,19 +9,13 @@ import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:yb_ride_user_web/helper/api.dart';
 import 'package:yb_ride_user_web/helper/responsive.dart';
+import 'package:yb_ride_user_web/helper/show_progress_indicator.dart';
 import 'package:yb_ride_user_web/homePage/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Trips/widgets/tripsCustomAlertBox.dart';
 import '../../../components/drwer.dart';
 import '../../../components/headingTextWidget.dart';
 import '../../../components/subHeadingText.dart';
 import '../../../helper/appColors.dart';
-import '../../../helper/session_Controller.dart';
-import '../../../helper/show_progress_indicator.dart';
-import '../../../sessions/signUp/view.dart';
-import '../Accounts/view.dart';
-import '../Become_Driver/view.dart';
-import '../FaqS/view.dart';
-import '../Referrals/view.dart';
 import '../appBarFooter/appBatFooter.dart';
 import 'controller.dart';
 
@@ -417,7 +411,12 @@ class TripsPages extends StatelessWidget {
                               padding: EdgeInsets.only(left: 20, right: 20),
                               child: InkWell(
                                 onTap: (){
-                                  Get.to(()=>HomePage());
+                                  showProgressIndicator(context);
+                                  Future.delayed(Duration(seconds: 2),(){
+                                    Navigator.pop(context);
+                                    Get.to(()=>HomePage());
+                                  });
+                                  // Get.to(()=>HomePage());
                                 },
                                 child: Container(
                                   width: ResponsiveWidget.isLargeScreen(context)
@@ -448,7 +447,7 @@ class TripsPages extends StatelessWidget {
                             height: 20,
                           ),
                           ResponsiveWidget.isLargeScreen(context)
-                              ? appBarFooter()
+                              ? appBarFooter(context)
                               : appBarFooterSmall(context),
                           SizedBox(
                             height: 30,

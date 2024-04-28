@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:yb_ride_user_web/components/headingTextWidget.dart';
 import 'package:yb_ride_user_web/components/subHeadingText.dart';
 import 'package:yb_ride_user_web/helper/responsive.dart';
+import 'package:yb_ride_user_web/helper/show_progress_indicator.dart';
 import 'package:yb_ride_user_web/homePage/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/widgets/RatingWidget.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/widgets/becomeDriverFooter.dart';
@@ -35,7 +36,12 @@ class BecomeDriverPage extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 child: IconButton(
                   onPressed: (){
-                    Get.offAll(()=>HomePage(),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
+                    showProgressIndicator(context);
+                    Future.delayed(Duration(seconds: 2),(){
+                      Navigator.pop(context);
+                      Get.to(()=>HomePage());
+                    });
+                    // Get.offAll(()=>HomePage(),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
                   },
                   icon: Icon(Icons.cancel_outlined,color: Colors.black,size: 35,),
                 ),
@@ -50,15 +56,15 @@ class BecomeDriverPage extends StatelessWidget {
               SizedBox(height: 30,),
               HeadingTextWidget(title: 'Earn More With Flexible Hours',fontWeight: FontWeight.bold,fontSize: 28,),
               SizedBox(height: 50,),
-              firstPageWidget(),
+              firstPageWidget(context),
               SizedBox(height: 40,),
-              HoeItWorks(),
+              HoeItWorks(context),
               SizedBox(height: 70,),
               HeadingTextWidget(title: 'Why earn with YBRide?',fontWeight: FontWeight.bold,fontSize: 40,),
               SizedBox(height: 70,),
               WhyEarnWithYBRide(),
               SizedBox(height: 70,),
-              howToSignUp(),
+              howToSignUp(context),
               SizedBox(height: 70,),
               HeadingTextWidget(title: 'Users already love YBRide!',fontWeight: FontWeight.bold,fontSize: 40,),
               SizedBox(height: 70,),
@@ -82,7 +88,12 @@ class BecomeDriverPage extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 child: IconButton(
                   onPressed: (){
-                    Get.offAll(()=>HomePage(),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
+                    showProgressIndicator(context);
+                    Future.delayed(Duration(seconds: 2),(){
+                      Navigator.pop(context);
+                      Get.to(()=>HomePage());
+                    });
+                    // Get.offAll(()=>HomePage(),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
                   },
                   icon: Icon(Icons.cancel_outlined,color: Colors.black,size: 20,),
                 ),
@@ -105,16 +116,16 @@ class BecomeDriverPage extends StatelessWidget {
               SizedBox(height: 50,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 100),
-                child: firstPageWidgetSmall(),
+                child: firstPageWidgetSmall(context),
               ),
               SizedBox(height: 40,),
-              HoeItWorksSmall(),
+              HoeItWorksSmall(context),
               SizedBox(height: 70,),
               Center(child: HeadingTextWidget(title: 'Why earn with YBRide?',fontWeight: FontWeight.bold,fontSize: ResponsiveWidget.isLargeScreen(context) ? 40 : 20,)),
               SizedBox(height: 70,),
               WhyEarnWithYBRideSmall(),
               SizedBox(height: 70,),
-              howToSignUpSmall(),
+              howToSignUpSmall(context),
               SizedBox(height: 70,),
               Center(child: HeadingTextWidget(title: 'Users already love YBRide!',textAlign: TextAlign.center,fontWeight: FontWeight.bold,fontSize: 20,height: 1.25,)),
               SizedBox(height: 70,),

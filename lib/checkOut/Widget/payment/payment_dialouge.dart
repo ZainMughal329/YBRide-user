@@ -42,7 +42,12 @@ showCustomDialog(BuildContext context, String id,String vehicleId) {
 
                 createBooking(context,id).then((value){
                 updateVehicleCount(vehicleId);
-                  Get.off(()=>HomePage());
+                showProgressIndicator(context);
+                Future.delayed(Duration(seconds: 2),(){
+                  // Navigator.pop(context);
+                  Get.offAll(()=>HomePage());
+                });
+                  // Get.off(()=>HomePage());
                 });
               },
               child: Text('Ok'),

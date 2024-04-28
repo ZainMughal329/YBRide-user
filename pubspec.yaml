@@ -79,8 +79,9 @@ dependencies:
   web: ^0.5.0
   stripe_checkout: ^1.0.2
   lazy_sign_in_google: ^2.1.2
-#  flutter_quill: ^9.3.1
+  flutter_quill: ^9.3.1
   icons_launcher: ^2.1.7
+  smooth_scroll_multiplatform: ^1.0.8
 
 
   date_ranger: ^1.0.1

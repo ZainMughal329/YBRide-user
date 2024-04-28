@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:yb_ride_user_web/components/subHeadingText.dart';
 import 'package:yb_ride_user_web/helper/api.dart';
+import 'package:yb_ride_user_web/helper/show_progress_indicator.dart';
 
 import '../../../../../../components/headingTextWidget.dart';
 import '../../../../../../helper/appColors.dart';
@@ -33,7 +34,13 @@ Widget GettingStartedWidgte(String colName, appBarName) {
                   children: [
                     InkWell(
                       onTap: (){
-                        Get.back();
+                        showProgressIndicator(context);
+                        Future.delayed(Duration(seconds: 2),(){
+                          Navigator.pop(context);
+                          // Get.to(()=>HomePage());
+                          Get.back();
+                        });
+                        // Get.back();
                       },
                       child: SubHeadingTextWidget(
                           title: 'All Collections > ${appBarName}'),
@@ -116,7 +123,12 @@ Widget GettingStartedWidgteSmall(String colName, String appBarName) {
                   children: [
                     InkWell(
                       onTap: () {
-                        Get.back();
+                        showProgressIndicator(context);
+                        Future.delayed(Duration(seconds: 2),(){
+                          Navigator.pop(context);
+                          Get.back();
+                        });
+                        // Get.back();
                       },
                       child: SubHeadingTextWidget(
                           title: 'All Collections > ${appBarName}'),

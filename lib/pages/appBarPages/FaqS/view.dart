@@ -24,7 +24,7 @@ class FaqPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            RentalcarsWidgetSmall(),
+            RentalcarsWidgetSmall(context),
             SizedBox(height: 50,),
             ContainerFaqsSmall(),
             SizedBox(height: 100,),
@@ -42,7 +42,7 @@ class FaqPage extends StatelessWidget {
           children: [
             RentalcarsWidget(context),
             SizedBox(height: 50,),
-            ContainerFaqs(),
+            ContainerFaqs(context),
             SizedBox(height: 100,),
             FooterWidget(),
 

@@ -7,6 +7,8 @@ import 'package:yb_ride_user_web/components/snackbar_widget.dart';
 import 'package:yb_ride_user_web/components/subHeadingText.dart';
 import 'package:yb_ride_user_web/helper/responsive.dart';
 import 'package:yb_ride_user_web/helper/session_Controller.dart';
+import 'package:yb_ride_user_web/helper/show_progress_indicator.dart';
+import 'package:yb_ride_user_web/homePage/privacyPolicy/view.dart';
 import 'package:yb_ride_user_web/homePage/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/FaqS/view.dart';
@@ -117,7 +119,12 @@ Widget Footer(BuildContext context) {
                       ),
                       InkWell(
                           onTap: () {
-                            Get.to(() => HomePage());
+                            showProgressIndicator(context);
+                            Future.delayed(Duration(seconds: 2),(){
+                              Navigator.pop(context);
+                              Get.to(()=>HomePage());
+                            });
+                            // Get.to(() => HomePage());
                           },
                           child: SubHeadingTextWidget(
                             title: 'Book a car',
@@ -128,10 +135,51 @@ Widget Footer(BuildContext context) {
                       ),
                       InkWell(
                           onTap: () {
-                            Get.to(() => BecomeDriverPage());
+                            showProgressIndicator(context);
+                            Future.delayed(Duration(seconds: 2),(){
+                              Navigator.pop(context);
+                              Get.to(()=>BecomeDriverPage());
+                            });
+                            // Get.to(() => BecomeDriverPage());
                           },
+
                           child: SubHeadingTextWidget(
                             title: 'Drivers Partners',
+                            textColor: Colors.black,
+                          )),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      InkWell(
+                          onTap: () {
+                            showProgressIndicator(context);
+                            Future.delayed(Duration(seconds: 2),(){
+                              Navigator.pop(context);
+                              Get.to(()=>PrivacyPolicy());
+                            });
+                            // Get.to(() => BecomeDriverPage());
+                          },
+
+                          child: SubHeadingTextWidget(
+                            title: 'Privacy Policies',
+                            textColor: Colors.black,
+                          )),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      InkWell(
+                          onTap: () {
+                            showProgressIndicator(context);
+                            Future.delayed(Duration(seconds: 2),(){
+                              Navigator.pop(context);
+                              // Get.to(()=>BecomeDriverPage());
+                              Get.to(()=>TermsAndServices());
+                            });
+                            // Get.to(() => BecomeDriverPage());
+                          },
+
+                          child: SubHeadingTextWidget(
+                            title: 'Terms and Conditions',
                             textColor: Colors.black,
                           ))
                     ],
@@ -151,7 +199,12 @@ Widget Footer(BuildContext context) {
                       InkWell(
                           onTap: () {
                             SessionController().userId == null ? Snackbar.showSnackBar("YB-Ride", "Login to your Account", Icons.error_outline) :
-                            Get.to(() => TripsPages());
+                            showProgressIndicator(context);
+                            Future.delayed(Duration(seconds: 2),(){
+                              Navigator.pop(context);
+                              Get.to(()=>TripsPages());
+                            });
+                            // Get.to(() => TripsPages());
                           },
                           child: SubHeadingTextWidget(
                               title: 'My Trip', textColor: Colors.black)),
@@ -160,7 +213,12 @@ Widget Footer(BuildContext context) {
                       ),
                       InkWell(
                           onTap: () {
-                            Get.to(() => FaqPage());
+                            showProgressIndicator(context);
+                            Future.delayed(Duration(seconds: 2),(){
+                              Navigator.pop(context);
+                              Get.to(()=>FaqPage());
+                            });
+                            // Get.to(() => FaqPage());
                           },
                           child: SubHeadingTextWidget(
                               title: 'Help', textColor: Colors.black)),
@@ -303,7 +361,12 @@ Widget Footer(BuildContext context) {
                   ),
                   InkWell(
                     onTap: (){
-                      Get.to(()=>HomePage());
+                      showProgressIndicator(context);
+                      Future.delayed(Duration(seconds: 2),(){
+                        Navigator.pop(context);
+                        Get.to(()=>HomePage());
+                      });
+                      // Get.to(()=>HomePage());
                     },
                     child: SubHeadingTextWidget(
                       title: 'Book a car',
@@ -315,7 +378,12 @@ Widget Footer(BuildContext context) {
                   ),
                   InkWell(
                     onTap: (){
-                      Get.to(()=>BecomeDriverPage());
+                      showProgressIndicator(context);
+                      Future.delayed(Duration(seconds: 2),(){
+                        Navigator.pop(context);
+                        Get.to(()=>BecomeDriverPage());
+                      });
+                      // Get.to(()=>BecomeDriverPage());
                     },
                     child: SubHeadingTextWidget(
                       title: 'Drivers Partners',
@@ -332,7 +400,12 @@ Widget Footer(BuildContext context) {
                   InkWell(
                     onTap: (){
                       SessionController().userId == null ? Snackbar.showSnackBar("YB-Ride", "Login to your Account", Icons.error_outline) :
-                      Get.to(()=>TripsPages());
+                      showProgressIndicator(context);
+                      Future.delayed(Duration(seconds: 2),(){
+                        Navigator.pop(context);
+                        Get.to(()=>TripsPages());
+                      });
+                      // Get.to(()=>TripsPages());
                     },
                     child: SubHeadingTextWidget(
                         title: 'My Trip', textColor: Colors.black),
@@ -342,19 +415,24 @@ Widget Footer(BuildContext context) {
                   ),
                   InkWell(
                       onTap: (){
-                        Get.to(()=>FaqPage());
+                        showProgressIndicator(context);
+                        Future.delayed(Duration(seconds: 2),(){
+                          Navigator.pop(context);
+                          Get.to(()=>FaqPage());
+                        });
+                        // Get.to(()=>FaqPage());
                       },
                       child: SubHeadingTextWidget(title: 'Help', textColor: Colors.black)),
                   SizedBox(
                     height: 20,
                   ),
-                  InkWell(
-                    onTap: (){
-                      Get.to(()=>ReferralPage());
-                    },
-                    child: SubHeadingTextWidget(
-                        title: 'Referrals', textColor: Colors.black),
-                  ),
+                  // InkWell(
+                  //   onTap: (){
+                  //     Get.to(()=>ReferralPage());
+                  //   },
+                  //   child: SubHeadingTextWidget(
+                  //       title: 'Referrals', textColor: Colors.black),
+                  // ),
                   SizedBox(
                     height: 20,
                   ),

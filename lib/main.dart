@@ -7,17 +7,6 @@ import 'package:yb_ride_user_web/Vehicle/view.dart';
 import 'package:yb_ride_user_web/helper/AppConstants.dart';
 import 'package:yb_ride_user_web/helper/api.dart';
 import 'package:yb_ride_user_web/homePage/view.dart';
-import 'package:yb_ride_user_web/pages/appBarPages/Trips/tabBarView.dart';
-import 'package:yb_ride_user_web/sessions/signUp/view.dart';
-import 'package:yb_ride_user_web/pages/appBarPages/Accounts/view.dart';
-import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/SignUpForm.dart';
-import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/view.dart';
-import 'package:yb_ride_user_web/pages/appBarPages/FaqS/view.dart';
-import 'package:yb_ride_user_web/pages/appBarPages/Trips/allTripPage.dart';
-import 'package:yb_ride_user_web/sessions/login/view.dart';
-import 'package:yb_ride_user_web/sessions/signUp/view.dart';
-
-import 'checkOut/view.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -59,6 +48,7 @@ class MyApp extends StatelessWidget {
       // home: APis.auth.currentUser != null ? HomePage() : SignUpPages(),
       initialRoute: '/',
       home:  HomePage() ,
+      // home: ResponseAPI(),
 
       // home: CheckOutPage(carType: 'SUV',carRent: 130,carPrice: 43,carDescription: 'Nessan Versa - 5 seats',),
     );

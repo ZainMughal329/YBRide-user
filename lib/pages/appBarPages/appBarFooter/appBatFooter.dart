@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:yb_ride_user_web/helper/AppConstants.dart';
+import 'package:yb_ride_user_web/helper/show_progress_indicator.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/view.dart';
 
 import '../../../components/headingTextWidget.dart';
 import '../../../components/subHeadingText.dart';
 import '../../../helper/api.dart';
 
-Widget appBarFooter(){
+Widget appBarFooter(BuildContext context){
 
   return
     Padding(
@@ -40,7 +41,12 @@ Widget appBarFooter(){
               SizedBox(height: 20,),
               InkWell(
                   onTap: (){
-                    Get.to(()=>BecomeDriverPage());
+                    showProgressIndicator(context);
+                    Future.delayed(Duration(seconds: 2),(){
+                      Navigator.pop(context);
+                      Get.to(()=>BecomeDriverPage());
+                    });
+                    // Get.to(()=>BecomeDriverPage());
                   },
                   child: text('Become a driver partner')),
               SizedBox(height: 20,),
