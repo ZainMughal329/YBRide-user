@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yb_ride_user_web/homePage/view.dart';
+import 'package:yb_ride_user_web/main.dart';
 import 'package:yb_ride_user_web/sessions/login/state.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -73,6 +74,7 @@ class loginCon extends GetxController{
          // If user does not exist in the drivers collection, proceed with login
          state.auth.signInWithEmailAndPassword(email: email, password: password).then((value) async {
            SessionController().userId = value.user!.uid.toString();
+           userId = value.user!.uid.toString();
            Get.offAll(() => HomePage(),
                transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
            state.emailCon.clear();

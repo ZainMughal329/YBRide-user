@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,6 +9,7 @@ import 'package:yb_ride_user_web/helper/AppConstants.dart';
 import 'package:yb_ride_user_web/helper/api.dart';
 import 'package:yb_ride_user_web/homePage/view.dart';
 
+String? userId;
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -35,6 +37,9 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
+    if(FirebaseAuth.instance.currentUser!=null){
+      userId=FirebaseAuth.instance.currentUser!.uid.toString();
+    }
     AppConstants.rentDays = 3;
     // AppConstants.totalPrice = 120;
     return GetMaterialApp(

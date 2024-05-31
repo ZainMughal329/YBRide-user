@@ -72,124 +72,124 @@ class TripsHomePage extends GetView<TripCon> {
             ),
           ),
         ),
-        actions: ResponsiveWidget.isLargeScreen(context)
-            ? [
-          InkWell(
-            onTap: () {
-              showProgressIndicator(context);
-              Future.delayed(Duration(seconds: 2),(){
-                Navigator.pop(context);
-                Get.to(()=>BecomeDriverPage());
-              });
-              // Get.to(() => BecomeDriverPage());
-            },
-            child: HeadingTextWidget(
-                title: 'Become a driver partner',
-                textColor: AppColors.appBarTextColor,
-                fontSize: 14,
-                fontWeight: FontWeight.normal),
-          ),
-          SizedBox(
-            width: 20,
-          ),
-          HeadingTextWidget(
-              title: '|',
-              textColor: AppColors.appBarTextColor,
-              fontSize: 14,
-              fontWeight: FontWeight.normal),
-          SizedBox(
-            width: 20,
-          ),
-          InkWell(
-            onTap: () {
-              showProgressIndicator(context);
-              Future.delayed(Duration(seconds: 2),(){
-                Navigator.pop(context);
-                Get.to(()=>FaqPage());
-              });
-              // Get.to(() => FaqPage());
-            },
-            child: HeadingTextWidget(
-                title: 'FAQ',
-                textColor: AppColors.appBarTextColor,
-                fontSize: 14,
-                fontWeight: FontWeight.normal),
-          ),
-          SizedBox(
-            width: 20,
-          ),
-          InkWell(
-              onTap: () {
-                showProgressIndicator(context);
-                Future.delayed(Duration(seconds: 2),(){
-                  Navigator.pop(context);
-                  Get.to(()=>AccountPage());
-                });
-                // Get.to(() => AccountPage());
-              },
-              child: HeadingTextWidget(
-                title: 'Account',
-                textColor: AppColors.appBarTextColor,
-                fontSize: 14,
-                fontWeight: FontWeight.normal,
-              )),
-
-          SizedBox(
-            width: 20,
-          ),
-          InkWell(
-              onTap: () {
-                showProgressIndicator(context);
-                Future.delayed(Duration(seconds: 2),(){
-                  Navigator.pop(context);
-                  Get.to(()=>TripsHomePage());
-                });
-                // Get.to(() => TripsHomePage());
-              },
-              child: HeadingTextWidget(
-                  title: 'My Trips',
-                  textColor: AppColors.appBarTextColor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.normal)),
-          SizedBox(
-            width: 20,
-          ),
-          GestureDetector(
-              onTap: () async {
-                showProgressIndicator(context);
-                Future.delayed(Duration(seconds: 3) , () async {
-                  await FirebaseAuth.instance.signOut().then((value) {
-
-                    SessionController().userId = '';
-                    Navigator.pop(context);
-                    Get.offAll(SignUpPages());
-                  });
-                });
-
-              },
-              child: HeadingTextWidget(
-                  title: 'Sign out',
-                  textColor: AppColors.appBarTextColor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.normal)),
-          SizedBox(
-            width: 30,
-          ),
-        ]
-            : [
-          IconButton(
-            onPressed: () {
-              _scaffoldKey.currentState!.openDrawer();
-            },
-            icon: Icon(
-              Icons.menu,
-              color: Colors.grey,
-            ),
-          ),
-          SizedBox(
-            width: 30,
-          ),
-        ],
+        // actions: ResponsiveWidget.isLargeScreen(context)
+        //     ? [
+        //   InkWell(
+        //     onTap: () {
+        //       showProgressIndicator(context);
+        //       Future.delayed(Duration(seconds: 2),(){
+        //         Navigator.pop(context);
+        //         Get.to(()=>BecomeDriverPage());
+        //       });
+        //       // Get.to(() => BecomeDriverPage());
+        //     },
+        //     child: HeadingTextWidget(
+        //         title: 'Become a driver partner',
+        //         textColor: AppColors.appBarTextColor,
+        //         fontSize: 14,
+        //         fontWeight: FontWeight.normal),
+        //   ),
+        //   SizedBox(
+        //     width: 20,
+        //   ),
+        //   HeadingTextWidget(
+        //       title: '|',
+        //       textColor: AppColors.appBarTextColor,
+        //       fontSize: 14,
+        //       fontWeight: FontWeight.normal),
+        //   SizedBox(
+        //     width: 20,
+        //   ),
+        //   InkWell(
+        //     onTap: () {
+        //       showProgressIndicator(context);
+        //       Future.delayed(Duration(seconds: 2),(){
+        //         Navigator.pop(context);
+        //         Get.to(()=>FaqPage());
+        //       });
+        //       // Get.to(() => FaqPage());
+        //     },
+        //     child: HeadingTextWidget(
+        //         title: 'FAQ',
+        //         textColor: AppColors.appBarTextColor,
+        //         fontSize: 14,
+        //         fontWeight: FontWeight.normal),
+        //   ),
+        //   SizedBox(
+        //     width: 20,
+        //   ),
+        //   InkWell(
+        //       onTap: () {
+        //         showProgressIndicator(context);
+        //         Future.delayed(Duration(seconds: 2),(){
+        //           Navigator.pop(context);
+        //           Get.to(()=>AccountPage());
+        //         });
+        //         // Get.to(() => AccountPage());
+        //       },
+        //       child: HeadingTextWidget(
+        //         title: 'Account',
+        //         textColor: AppColors.appBarTextColor,
+        //         fontSize: 14,
+        //         fontWeight: FontWeight.normal,
+        //       )),
+        //
+        //   SizedBox(
+        //     width: 20,
+        //   ),
+        //   InkWell(
+        //       onTap: () {
+        //         showProgressIndicator(context);
+        //         Future.delayed(Duration(seconds: 2),(){
+        //           Navigator.pop(context);
+        //           Get.to(()=>TripsHomePage());
+        //         });
+        //         // Get.to(() => TripsHomePage());
+        //       },
+        //       child: HeadingTextWidget(
+        //           title: 'My Trips',
+        //           textColor: AppColors.appBarTextColor,
+        //           fontSize: 14,
+        //           fontWeight: FontWeight.normal)),
+        //   SizedBox(
+        //     width: 20,
+        //   ),
+        //   GestureDetector(
+        //       onTap: () async {
+        //         showProgressIndicator(context);
+        //         Future.delayed(Duration(seconds: 3) , () async {
+        //           await FirebaseAuth.instance.signOut().then((value) {
+        //
+        //             SessionController().userId = '';
+        //             Navigator.pop(context);
+        //             Get.offAll(SignUpPages());
+        //           });
+        //         });
+        //
+        //       },
+        //       child: HeadingTextWidget(
+        //           title: 'Sign out',
+        //           textColor: AppColors.appBarTextColor,
+        //           fontSize: 14,
+        //           fontWeight: FontWeight.normal)),
+        //   SizedBox(
+        //     width: 30,
+        //   ),
+        // ]
+        //     : [
+        //   IconButton(
+        //     onPressed: () {
+        //       _scaffoldKey.currentState!.openDrawer();
+        //     },
+        //     icon: Icon(
+        //       Icons.menu,
+        //       color: Colors.grey,
+        //     ),
+        //   ),
+        //   SizedBox(
+        //     width: 30,
+        //   ),
+        // ],
       ),
       body: SafeArea(
         child: Column(

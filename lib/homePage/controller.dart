@@ -194,6 +194,8 @@ class HomePageCon extends GetxController{
         AppConstants.ybPhone = value['ybPhone'];
         AppConstants.ybAccName = value['ybAccountHolderName'];
         AppConstants.ybAccNumber = value['ybAccountNumber'];
+        AppConstants.appStoreLink = value['appStoreLink'];
+        AppConstants.playStoreLink = value['playStoreLink'];
 
       }).onError((error, stackTrace) {
         Snackbar.showSnackBar("YB-Ride", error.toString(), Icons.error_outline);

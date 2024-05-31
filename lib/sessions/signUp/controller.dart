@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yb_ride_user_web/helper/appColors.dart';
 import 'package:yb_ride_user_web/homePage/view.dart';
+import 'package:yb_ride_user_web/main.dart';
 import 'package:yb_ride_user_web/sessions/signUp/state.dart';
 import '../../helper/api.dart';
 import '../../helper/session_Controller.dart';
@@ -30,6 +31,7 @@ class signUpCon extends GetxController {
         );
         userinfo.id = userCredential.user!.uid.toString();
         SessionController().userId = userCredential.user!.uid;
+        userId = userCredential.user!.uid.toString();
         createUser(userinfo);
         setLoading(false);
       // var user = await state.auth
@@ -60,6 +62,7 @@ class signUpCon extends GetxController {
       Get.snackbar('Message', 'Registered Successfully',
           backgroundColor: Colors.white,
           colorText: AppColors.buttonColor.withOpacity(.8));
+
       Get.off(() => HomePage()
 
        , transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));

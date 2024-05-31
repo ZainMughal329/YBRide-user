@@ -125,11 +125,15 @@ class _CardWidgetState extends State<CardWidget> {
           height: 150,
           width: 250,
           decoration: BoxDecoration(
-            image: DecorationImage(image: AssetImage(widget.image),fit: BoxFit.fill),
+            // image: DecorationImage(image: AssetImage(widget.image),fit: BoxFit.contain),
             // color: Colors.blue,
             borderRadius:
             BorderRadius.all(Radius.circular(20)),
           ),
+          child: ClipRRect(
+              borderRadius:
+              BorderRadius.all(Radius.circular(20)),
+              child: Image(image: AssetImage(widget.image),fit: BoxFit.contain)),
         ),
         SizedBox(height: 20,),
         HeadingTextWidget(title:widget.heading,),

@@ -1,4 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
+// import 'dart:html' as html;
+import 'dart:js' as js;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,6 +13,7 @@ import 'package:yb_ride_user_web/components/subHeadingText.dart';
 import 'package:yb_ride_user_web/helper/AppConstants.dart';
 import 'package:yb_ride_user_web/helper/responsive.dart';
 import 'package:yb_ride_user_web/homePage/HomePageWidget/HomePage.dart';
+import 'package:yb_ride_user_web/main.dart';
 import 'package:yb_ride_user_web/pages/BostonPage/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/view.dart';
 import 'package:yb_ride_user_web/sessions/signUp/view.dart';
@@ -59,43 +62,32 @@ class HomePage extends StatelessWidget {
           leading: Container(),
           title: Padding(
             padding: EdgeInsets.only(left: 5),
-            child: InkWell(
-              onTap: () {
-                // if(Get.currentRoute!="/") {
-                //   showProgressIndicator(context);
-                //   Future.delayed(Duration(seconds: 2),(){
-                //     Navigator.pop(context);
-                //     Get.offAll(
-                //           () => HomePage(),);
-                //   });
-                // }
-              },
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    child: Image.asset(
-                      'assets/images/circleLogo.png',
-                      height: 40,
-                      width: 40,
-                    ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  child: Image.asset(
+                    'assets/images/circleLogo.png',
+                    height: 40,
+                    width: 40,
                   ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  HeadingTextWidget(
-                    title: 'YBRide',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30,
-                  ),
-                ],
-              ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                HeadingTextWidget(
+                  title: 'YBRide',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                ),
+              ],
             ),
           ),
           actions: ResponsiveWidget.isLargeScreen(context)
               ? [
                   InkWell(
+                    hoverColor: Colors.transparent,
                     onTap: () {
                       showProgressIndicator(context);
                       Future.delayed(Duration(seconds: 2),(){
@@ -122,6 +114,7 @@ class HomePage extends StatelessWidget {
                     width: 20,
                   ),
                   InkWell(
+                    hoverColor: Colors.transparent,
                     onTap: () {
 
                       showProgressIndicator(context);
@@ -141,17 +134,29 @@ class HomePage extends StatelessWidget {
                     width: 20,
                   ),
                   InkWell(
-                      onTap: () {
-                        SessionController().userId == null
-                            ? Snackbar.showSnackBar('YB-Rude',
-                                "Login to Your Account", Icons.error_outline)
-                            :
+                      hoverColor: Colors.transparent,
+                      onTap: userId == null ? (){
+                        Snackbar.showSnackBar('YB-Rude',
+                            "Login to Your Account", Icons.error_outline);
+                      } : (){
                         showProgressIndicator(context);
                         Future.delayed(Duration(seconds: 2),(){
                           Navigator.pop(context);
                           Get.to(() => AccountPage(),);
                         });
                       },
+
+                      // onTap: () {
+                      //   userId == null
+                      //       ? Snackbar.showSnackBar('YB-Rude',
+                      //           "Login to Your Account", Icons.error_outline)
+                      //       :
+                      //   showProgressIndicator(context);
+                      //   Future.delayed(Duration(seconds: 2),(){
+                      //     Navigator.pop(context);
+                      //     Get.to(() => AccountPage(),);
+                      //   });
+                      // },
                       child: HeadingTextWidget(
                         title: 'Account',
                         textColor: AppColors.appBarTextColor,
@@ -162,19 +167,31 @@ class HomePage extends StatelessWidget {
                     width: 20,
                   ),
                   InkWell(
-                      onTap: () {
-                        SessionController().userId == null
-                            ? Snackbar.showSnackBar('YB-Rude',
-                                "Login to Your Account", Icons.error_outline)
-                            : showProgressIndicator(context);
+                      hoverColor: Colors.transparent,
+
+                      onTap: userId == null ? (){
+                        Snackbar.showSnackBar('YB-Rude',
+                            "Login to Your Account", Icons.error_outline);
+                      } : (){
+                        showProgressIndicator(context);
                         Future.delayed(Duration(seconds: 2),(){
                           Navigator.pop(context);
                           Get.to(() => TripsHomePage(),);
                         });
-
-                        // Get.to(() => TripsHomePage(),
-                        //     transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
                       },
+
+                      // onTap: () {
+                      //   SessionController().userId == null
+                      //       ? Snackbar.showSnackBar('YB-Rude',
+                      //           "Login to Your Account", Icons.error_outline)
+                      //       : showProgressIndicator(context);
+                      //   Future.delayed(Duration(seconds: 2),(){
+                      //     Navigator.pop(context);
+                      //     Get.to(() => TripsHomePage(),);
+                      //   });
+
+
+
                       child: HeadingTextWidget(
                           title: 'My Trips',
                           textColor: AppColors.appBarTextColor,
@@ -184,44 +201,49 @@ class HomePage extends StatelessWidget {
                     width: 20,
                   ),
                   SessionController().userId != null
-                      ? GestureDetector(
-                          onTap: () async {
-                            showProgressIndicator(context);
-                            Future.delayed(Duration(seconds: 3), () async {
-                              await FirebaseAuth.instance
-                                  .signOut()
-                                  .then((value) {
-                                SessionController().userId = '';
-                                Navigator.pop(context);
-                                Get.offAll(SignUpPages(),
-                                    transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
-                              });
-                            });
-                          },
-                          child: HeadingTextWidget(
-                              title: 'Sign out',
-                              textColor: AppColors.appBarTextColor,
-                              fontSize: 14,
-                              fontWeight: FontWeight.normal))
-                      : GestureDetector(
-                          onTap: () async {
-                            showProgressIndicator(context);
-                            Future.delayed(Duration(seconds: 3), () async {
-                              await FirebaseAuth.instance
-                                  .signOut()
-                                  .then((value) {
-                                SessionController().userId = '';
-                                Navigator.pop(context);
-                                Get.offAll(SignUpPages(),
-                                    transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
-                              });
-                            });
-                          },
-                          child: HeadingTextWidget(
-                              title: 'Login/Sign up',
-                              textColor: AppColors.appBarTextColor,
-                              fontSize: 14,
-                              fontWeight: FontWeight.normal)),
+                      ? InkWell(
+                    hoverColor:Colors.transparent,
+                    onTap: () async {
+                      showProgressIndicator(context);
+                      Future.delayed(Duration(seconds: 3), () async {
+                        await FirebaseAuth.instance
+                            .signOut()
+                            .then((value) {
+                          SessionController().userId = '';
+                          userId = null;
+                          Navigator.pop(context);
+                          Get.offAll(SignUpPages(),
+                              transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
+                        });
+                      });
+                    },
+                        child: HeadingTextWidget(
+                            title: 'Sign out',
+                            textColor: AppColors.appBarTextColor,
+                            fontSize: 14,
+                            fontWeight: FontWeight.normal),
+                      )
+                      : InkWell(
+                    hoverColor : Colors.transparent,
+                    onTap: () async {
+                      showProgressIndicator(context);
+                      Future.delayed(Duration(seconds: 3), () async {
+                        await FirebaseAuth.instance
+                            .signOut()
+                            .then((value) {
+                          SessionController().userId = '';
+                          Navigator.pop(context);
+                          Get.offAll(SignUpPages(),
+                              transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
+                        });
+                      });
+                    },
+                    child: HeadingTextWidget(
+                            title: 'Login/Sign up',
+                            textColor: AppColors.appBarTextColor,
+                            fontSize: 14,
+                            fontWeight: FontWeight.normal),
+                      ),
                   SizedBox(
                     width: 30,
                   ),
@@ -261,148 +283,178 @@ class HomePage extends StatelessWidget {
                   SizedBox(
                     height: 70,
                   ),
-                  HeadingTextWidget(
-                    title: 'Not your average rental car',
-                    fontSize: ResponsiveWidget.isLargeScreen(context) ? 40 : 26,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  SizedBox(
-                    height: 50,
-                  ),
-                  ResponsiveWidget.isLargeScreen(context)
-                      ? Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 48),
-                    child: AverageRentalCar(),
-                  )
-                      : ResponsiveWidget.isMediumScreen(context)
-                      ? Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 250),
-                    child: AverageRentalCarMediumScreen(),
-                  )
-                      : Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: AverageRentalCarSmallScreen(),
-                  ),
-                  SizedBox(
-                    height: 90,
-                  ),
-                  ResponsiveWidget.isLargeScreen(context)
-                      ? downlaod_YBRide()
-                      : downlaod_YBRideMediumScreen(),
-                  SizedBox(
-                    height: 90,
-                  ),
-                  HeadingTextWidget(
-                    title: 'Cars in our fleet',
-                    fontSize: ResponsiveWidget.isLargeScreen(context) ? 40 : 26,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal:
-                        ResponsiveWidget.isLargeScreen(context) ? 64 : 0),
-                    child: ResponsiveWidget.isLargeScreen(context)
-                        ? CarTypes()
-                        : SingleChildScrollView(child: CarTypesMediumScreen()),
-                  ),
-                  SizedBox(
-                    height: 50,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal:
-                        ResponsiveWidget.isLargeScreen(context) ? 70 : 0),
-                    child: ResponsiveWidget.isLargeScreen(context)
-                        ? howItWorkWidget()
-                        : howItWorkWidgetMediumScreen(context),
-                  ),
-                  SizedBox(
-                    height: 50,
-                  ),
-                  HeadingTextWidget(
-                    title: '150,000 customers later',
-                    fontSize: ResponsiveWidget.isLargeScreen(context) ? 40 : 26,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  SubHeadingTextWidget(
-                      title: '93% of customers give us five stars'),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  ResponsiveWidget.isLargeScreen(context)
-                      ? Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 80),
-                    child: ratingStarsWidget(),
-                  )
-                      : Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: ratingStarsWidgetMediumScreen(),
-                  ),
-                  SizedBox(
-                    height: 50,
-                  ),
-                  HeadingTextWidget(
-                    title: 'Locations',
-                    fontSize: ResponsiveWidget.isLargeScreen(context) ? 40 : 26,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Container(
-                    height: ResponsiveWidget.isLargeScreen(context)
-                        ? 350
-                        : ResponsiveWidget.isMediumScreen(context)
-                        ? 250
-                        : 150,
-                    width: ResponsiveWidget.isLargeScreen(context)
-                        ? 1050
-                        : MediaQuery.of(context).size.width * .85,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('assets/images/locations.webp'),
-                            fit: BoxFit.fill),
-                        borderRadius: BorderRadius.all(Radius.circular(15))),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      showProgressIndicator(context);
-                      Future.delayed(Duration(seconds: 2),(){
-                        Navigator.pop(context);
-                        Get.to(() => HomePage(),);
-                      });
-                      // Get.to(() => HomePage(), transition: Transition.downToUp);
-                    },
-                    child: SubHeadingTextWidget(
-                      title: 'Across 4 states in USA',
-                      textColor: AppColors.blackColor,
-                      decorationColor: AppColors.blackColor,
-                      decoration: TextDecoration.underline,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  SizedBox(
-                    height: 60,
-                  ),
-                  ResponsiveWidget.isLargeScreen(context)
-                      ? Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 80),
-                      child: gotAnswerWidget(context))
-                      : gotAnswerWidgetMediumScreen(context),
-                  SizedBox(
-                    height: 90,
-                  ),
+
+                  // start of padding widget
+
+
+                 Padding(
+                   padding:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width/5),
+                   child: Column(
+                     children: [
+                       HeadingTextWidget(
+                         title: 'Not your average rental car',
+                         fontSize: ResponsiveWidget.isLargeScreen(context) ? 40 : 26,
+                         fontWeight: FontWeight.bold,
+                       ),
+                       SizedBox(
+                         height: 50,
+                       ),
+                       ResponsiveWidget.isLargeScreen(context)
+                           ? Padding(
+                         padding: EdgeInsets.symmetric(horizontal: 48),
+                         child: AverageRentalCar(),
+                       )
+                           : ResponsiveWidget.isMediumScreen(context)
+                           ? Padding(
+                         padding: EdgeInsets.symmetric(horizontal: 250),
+                         child: AverageRentalCarMediumScreen(),
+                       )
+                           : Padding(
+                         padding: EdgeInsets.symmetric(horizontal: 10),
+                         child: AverageRentalCarSmallScreen(),
+                       ),
+                       SizedBox(
+                         height: 90,
+                       ),
+
+
+                       ResponsiveWidget.isLargeScreen(context)
+                           ? downlaod_YBRide()
+                           : downlaod_YBRideMediumScreen(),
+                       Row(
+                         mainAxisSize: MainAxisSize.min,
+                         mainAxisAlignment: MainAxisAlignment.center,
+                         children: [
+                           InkWell(
+                               hoverColor: Colors.transparent,
+                               splashColor: Colors.transparent,
+                             focusColor: Colors.transparent,
+                               onTap: (){
+                                 js.context.callMethod('open', ['${AppConstants.playStoreLink}/','new tab']);
+                               },
+                               child: Image(image: AssetImage('assets/playstoreQR.png'),height: 200)),
+                           InkWell(
+                               hoverColor: Colors.transparent,
+                               splashColor: Colors.transparent,
+                               focusColor: Colors.transparent,
+                               onTap: (){
+                                 js.context.callMethod('open', ['${AppConstants.appStoreLink}/','new tab']);
+                               },
+                               child: Image(image: AssetImage('assets/applestoreQR.png'),height: 200)),
+                         ],
+                       ),
+                       SizedBox(
+                         height: 90,
+                       ),
+                       HeadingTextWidget(
+                         title: 'Cars in our fleet',
+                         fontSize: ResponsiveWidget.isLargeScreen(context) ? 40 : 26,
+                         fontWeight: FontWeight.bold,
+                       ),
+                       SizedBox(
+                         height: 30,
+                       ),
+                       Padding(
+                         padding: EdgeInsets.symmetric(
+                             horizontal:
+                             ResponsiveWidget.isLargeScreen(context) ? 64 : 0),
+                         child: ResponsiveWidget.isLargeScreen(context)
+                             ? CarTypes()
+                             : SingleChildScrollView(child: CarTypesMediumScreen()),
+                       ),
+                       SizedBox(
+                         height: 50,
+                       ),
+                       Padding(
+                         padding: EdgeInsets.symmetric(
+                             horizontal:
+                             ResponsiveWidget.isLargeScreen(context) ? 70 : 0),
+                         child: ResponsiveWidget.isLargeScreen(context)
+                             ? howItWorkWidget()
+                             : howItWorkWidgetMediumScreen(context),
+                       ),
+                       SizedBox(
+                         height: 50,
+                       ),
+                       HeadingTextWidget(
+                         title: '150,000 customers later',
+                         fontSize: ResponsiveWidget.isLargeScreen(context) ? 40 : 26,
+                         fontWeight: FontWeight.bold,
+                       ),
+                       SizedBox(
+                         height: 5,
+                       ),
+                       SubHeadingTextWidget(
+                           title: '93% of customers give us five stars'),
+                       SizedBox(
+                         height: 20,
+                       ),
+                       ResponsiveWidget.isLargeScreen(context)
+                           ? Padding(
+                         padding: EdgeInsets.symmetric(horizontal: 80),
+                         child: ratingStarsWidget(),
+                       )
+                           : Padding(
+                         padding: EdgeInsets.symmetric(horizontal: 20),
+                         child: ratingStarsWidgetMediumScreen(),
+                       ),
+                       SizedBox(
+                         height: 50,
+                       ),
+                       HeadingTextWidget(
+                         title: 'Locations',
+                         fontSize: ResponsiveWidget.isLargeScreen(context) ? 40 : 26,
+                         fontWeight: FontWeight.bold,
+                       ),
+                       SizedBox(
+                         height: 30,
+                       ),
+                       Container(
+                         height: ResponsiveWidget.isLargeScreen(context)
+                             ? 350
+                             : ResponsiveWidget.isMediumScreen(context)
+                             ? 250
+                             : 150,
+                         width: ResponsiveWidget.isLargeScreen(context)
+                             ? 1050
+                             : MediaQuery.of(context).size.width * .85,
+                         decoration: BoxDecoration(
+                             image: DecorationImage(
+                                 image: AssetImage('assets/images/locations.png'),
+                                 fit: BoxFit.contain),
+                             borderRadius: BorderRadius.all(Radius.circular(15))),
+                       ),
+                       SizedBox(
+                         height: 15,
+                       ),
+                       SubHeadingTextWidget(
+                         textAlign: TextAlign.center,
+                         title: 'Across 4 states in USA\nMassachusetts, District of Columbia, Maryland, Virginia',
+                         textColor: AppColors.blackColor,
+                         decorationColor: AppColors.blackColor,
+                         // decoration: TextDecoration.underline,
+                       ),
+                       SizedBox(
+                         height: 15,
+                       ),
+                       SizedBox(
+                         height: 60,
+                       ),
+                       ResponsiveWidget.isLargeScreen(context)
+                           ? Padding(
+                           padding: EdgeInsets.symmetric(horizontal: 80),
+                           child: gotAnswerWidget(context))
+                           : gotAnswerWidgetMediumScreen(context),
+                       SizedBox(
+                         height: 90,
+                       ),
+                     ],
+                   ),
+                 ),
+
+
+                  // footer
+
                   Footer(context),
                   SizedBox(
                     height: 40,
@@ -415,9 +467,23 @@ class HomePage extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 100),
                     child: Row(
                       children: [
-                        Image(image: AssetImage('assets/app-store.webp'),height: 100,width: 150,),
+                        InkWell(
+                            splashColor:Colors.transparent,
+                            focusColor:Colors.transparent,
+                          hoverColor:Colors.transparent,
+                            onTap: (){
+                              js.context.callMethod('open', ['${AppConstants.appStoreLink}/','new tab']);
+                            },
+                            child: Image(image: AssetImage('assets/app-store.webp'),height: 100,width: 150,)),
                         SizedBox(width: 20,),
-                        Image(image: AssetImage('assets/google-play.webp'),height: 100,width: 150)
+                        InkWell(
+                            splashColor:Colors.transparent,
+                            focusColor:Colors.transparent,
+                            hoverColor:Colors.transparent,
+                            onTap: (){
+                              js.context.callMethod('open', ['${AppConstants.playStoreLink}/','new tab']);
+                            },
+                            child: Image(image: AssetImage('assets/google-play.webp'),height: 100,width: 150))
                       ],
                     ),
                   ),

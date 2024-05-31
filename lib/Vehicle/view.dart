@@ -39,6 +39,7 @@ class VehiclePage extends StatelessWidget {
         backgroundColor: Color.fromRGBO(255, 255, 255, 1),
         // scrolledUnderElevation: 1,
         leading: Container(),
+        centerTitle: false,
         title: Padding(
           padding: EdgeInsets.only(left: 5),
           child: InkWell(
@@ -71,62 +72,42 @@ class VehiclePage extends StatelessWidget {
         ),
         actions: ResponsiveWidget.isLargeScreen(context)
             ? [
-                SizedBox(
-                  width: 20,
-                ),
-                InkWell(
-                  onTap: () {
-                    showProgressIndicator(context);
-                    Future.delayed(Duration(seconds: 2),(){
-                      Navigator.pop(context);
-                      Get.to(()=>FaqPage());
-                    });
-                    // // Get.to(() => FaqPage(),
-                    // //     transition: Transition.rightToLeft,duration: Duration(milliseconds: 600)
-                    // );
-                  },
-                  child: HeadingTextWidget(
-                      title: 'FAQ',
-                      textColor: AppColors.appBarTextColor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal),
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                InkWell(
-                    onTap: () {
-                      showProgressIndicator(context);
-                      Future.delayed(Duration(seconds: 2),(){
-                        Navigator.pop(context);
-                        Get.to(()=>AccountPage());
-                      });
-                      // Get.to(() => AccountPage(),
-                      //     transition: Transition.rightToLeft,duration: Duration(milliseconds: 600)
-                      // );
-                    },
-                    child: HeadingTextWidget(
-                      title: 'Account',
-                      textColor: AppColors.appBarTextColor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal,
-                    )),
-                SizedBox(
-                  width: 20,
-                ),
+                // SizedBox(
+                //   width: 20,
+                // ),
+                // InkWell(
+                //   onTap: () {
+                //     showProgressIndicator(context);
+                //     Future.delayed(Duration(seconds: 2),(){
+                //       Navigator.pop(context);
+                //       Get.to(()=>FaqPage());
+                //     });
+                //     // // Get.to(() => FaqPage(),
+                //     // //     transition: Transition.rightToLeft,duration: Duration(milliseconds: 600)
+                //     // );
+                //   },
+                //   child: HeadingTextWidget(
+                //       title: 'FAQ',
+                //       textColor: AppColors.appBarTextColor,
+                //       fontSize: 14,
+                //       fontWeight: FontWeight.normal),
+                // ),
+                // SizedBox(
+                //   width: 20,
+                // ),
                 // InkWell(
                 //     onTap: () {
                 //       showProgressIndicator(context);
                 //       Future.delayed(Duration(seconds: 2),(){
                 //         Navigator.pop(context);
-                //         Get.to(()=>ReferralPage());
+                //         Get.to(()=>AccountPage());
                 //       });
-                //       // Get.to(() => ReferralPage(),
+                //       // Get.to(() => AccountPage(),
                 //       //     transition: Transition.rightToLeft,duration: Duration(milliseconds: 600)
                 //       // );
                 //     },
                 //     child: HeadingTextWidget(
-                //       title: 'Referrals',
+                //       title: 'Account',
                 //       textColor: AppColors.appBarTextColor,
                 //       fontSize: 14,
                 //       fontWeight: FontWeight.normal,
@@ -134,35 +115,55 @@ class VehiclePage extends StatelessWidget {
                 // SizedBox(
                 //   width: 20,
                 // ),
-                InkWell(
-                    onTap: () {
-                      showProgressIndicator(context);
-                      Future.delayed(Duration(seconds: 2),(){
-                        Navigator.pop(context);
-                        Get.to(()=>TripsPages());
-                      });
-                      // Get.to(() => TripsPages(),
-                      //     transition: Transition.rightToLeft,duration: Duration(milliseconds: 600)
-                      // );
-                    },
-                    child: HeadingTextWidget(
-                        title: 'My Trips',
-                        textColor: AppColors.appBarTextColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal)),
-                SizedBox(
-                  width: 20,
-                ),
-                InkWell(
-                    onTap: () {},
-                    child: HeadingTextWidget(
-                        title: 'Sign out',
-                        textColor: AppColors.appBarTextColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal)),
-                SizedBox(
-                  width: 30,
-                ),
+                // // InkWell(
+                // //     onTap: () {
+                // //       showProgressIndicator(context);
+                // //       Future.delayed(Duration(seconds: 2),(){
+                // //         Navigator.pop(context);
+                // //         Get.to(()=>ReferralPage());
+                // //       });
+                // //       // Get.to(() => ReferralPage(),
+                // //       //     transition: Transition.rightToLeft,duration: Duration(milliseconds: 600)
+                // //       // );
+                // //     },
+                // //     child: HeadingTextWidget(
+                // //       title: 'Referrals',
+                // //       textColor: AppColors.appBarTextColor,
+                // //       fontSize: 14,
+                // //       fontWeight: FontWeight.normal,
+                // //     )),
+                // // SizedBox(
+                // //   width: 20,
+                // // ),
+                // InkWell(
+                //     onTap: () {
+                //       showProgressIndicator(context);
+                //       Future.delayed(Duration(seconds: 2),(){
+                //         Navigator.pop(context);
+                //         Get.to(()=>TripsPages());
+                //       });
+                //       // Get.to(() => TripsPages(),
+                //       //     transition: Transition.rightToLeft,duration: Duration(milliseconds: 600)
+                //       // );
+                //     },
+                //     child: HeadingTextWidget(
+                //         title: 'My Trips',
+                //         textColor: AppColors.appBarTextColor,
+                //         fontSize: 14,
+                //         fontWeight: FontWeight.normal)),
+                // SizedBox(
+                //   width: 20,
+                // ),
+                // InkWell(
+                //     onTap: () {},
+                //     child: HeadingTextWidget(
+                //         title: 'Sign out',
+                //         textColor: AppColors.appBarTextColor,
+                //         fontSize: 14,
+                //         fontWeight: FontWeight.normal)),
+                // SizedBox(
+                //   width: 30,
+                // ),
               ]
             : [
                 IconButton(

@@ -41,7 +41,8 @@ Widget RentalcarsWidget(BuildContext context){
             showProgressIndicator(context);
             Future.delayed(Duration(seconds: 2),(){
               Navigator.pop(context);
-              Get.to(()=>HomePage());
+              Get.back();
+              // Get.to(()=>HomePage());
             });
             // Get.offAll(()=>HomePage(),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
           },
@@ -81,7 +82,8 @@ Stack(
           showProgressIndicator(context);
           Future.delayed(Duration(seconds: 2),(){
             Navigator.pop(context);
-            Get.to(()=>HomePage());
+            Get.back();
+            // Get.to(()=>HomePage());
           });
           // Get.offAll(()=>HomePage(),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
         },
@@ -111,7 +113,8 @@ Widget RentalcarsWidgetSmall(BuildContext context){
                 showProgressIndicator(context);
                 Future.delayed(Duration(seconds: 2),(){
                   Navigator.pop(context);
-                  Get.to(()=>HomePage());
+                  Get.back();
+                  // Get.to(()=>HomePage());
                 });
                 // Get.offAll(()=>HomePage(),transition: Transition.downToUp,duration: Duration(milliseconds: 600));
               },

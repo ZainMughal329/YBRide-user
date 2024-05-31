@@ -20,6 +20,8 @@ class FooterCon extends GetxController{
         AppConstants.fbLink = value['fbLink'];
         AppConstants.instagramLink = value['instaLink'];
         AppConstants.twitterLink = value['twitterLink'];
+        AppConstants.appStoreLink = value['appStoreLink'];
+        AppConstants.playStoreLink = value['playStoreLink'];
       }).onError((error, stackTrace) {
         Snackbar.showSnackBar("YB-Ride", error.toString(), Icons.error_outline);
       });

@@ -242,10 +242,13 @@ class CardLargeWidget extends StatelessWidget {
         Container(
           height: 250,
           width: 450,
+          child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset(image,fit: BoxFit.fitHeight,)),
           decoration: BoxDecoration(
-            image: DecorationImage(image: AssetImage(image), fit: BoxFit.fill),
+            // image: DecorationImage(image: AssetImage(image), fit: BoxFit.contain),
             // color: Colors.blue,
-            borderRadius: BorderRadius.all(Radius.circular(20)),
+            borderRadius: BorderRadius.circular(20),
           ),
         ),
         SizedBox(

@@ -10,7 +10,7 @@ import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/view.dart';
 import '../../../components/headingTextWidget.dart';
 import '../../../components/subHeadingText.dart';
 import '../../../helper/api.dart';
-
+import 'dart:js' as js;
 Widget appBarFooter(BuildContext context){
 
   return
@@ -83,8 +83,14 @@ Widget appBarFooter(BuildContext context){
                       children: [
                         Icon(FontAwesomeIcons.googlePlay),
                         SizedBox(width: 8,),
-                        text(
-                          ybPlayStoreLink.toString(),
+                        InkWell(
+                          onTap:(){
+                            js.context.callMethod('open', ['${AppConstants.playStoreLink}/','new tab']);
+                            // ybPlayStoreLink.toString(),
+                          },
+                          child: text(
+                            "PlayStore"
+                          ),
                         ),
                       ],
                     ),
@@ -95,8 +101,17 @@ Widget appBarFooter(BuildContext context){
                       children: [
                         Icon(FontAwesomeIcons.appStore),
                         SizedBox(width: 8,),
-                        text(
-                          ybAppStoreLink.toString(),
+                        InkWell(
+                          splashColor:Colors.transparent,
+                          focusColor:Colors.transparent,
+                          hoverColor:Colors.transparent,
+                          onTap:(){
+                            // ybAppStoreLink.toString(),
+                            js.context.callMethod('open', ['${AppConstants.appStoreLink}/','new tab']);
+                          },
+                          child: text(
+                            "AppStore"
+                          ),
                         ),
                       ],
                     ),
@@ -327,9 +342,25 @@ Widget appBarFooterSmall(BuildContext context){
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(height: 20,),
-                          text('For iOS'),
+                          InkWell(
+                              splashColor:Colors.transparent,
+                              focusColor:Colors.transparent,
+                              hoverColor:Colors.transparent,
+                              onTap:(){
+                                // ybAppStoreLink.toString(),
+                                js.context.callMethod('open', ['${AppConstants.appStoreLink}/','new tab']);
+                              },
+                              child: text('For iOS')),
                           SizedBox(height: 20,),
-                          text('For Android'),
+                          InkWell(
+                              splashColor:Colors.transparent,
+                              focusColor:Colors.transparent,
+                              hoverColor:Colors.transparent,
+                              onTap:(){
+                                // ybAppStoreLink.toString(),
+                                js.context.callMethod('open', ['${AppConstants.playStoreLink}/','new tab']);
+                              },
+                              child: text('For Android')),
                         ],
                       ),
                     ),
@@ -387,5 +418,7 @@ Widget appBarFooterSmall(BuildContext context){
 
 
 Widget text(String title){
-  return SubHeadingTextWidget(title: title,textColor: Colors.black,fontSize: 12,fontWeight: FontWeight.w600,);
+  return SubHeadingTextWidget(title: title,textColor: Colors.black,fontSize: 12,fontWeight: FontWeight.w600,
+  overflow: TextOverflow.ellipsis,
+  );
 }

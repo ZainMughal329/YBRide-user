@@ -10,6 +10,7 @@ import 'package:yb_ride_user_web/helper/session_Controller.dart';
 import 'package:yb_ride_user_web/helper/show_progress_indicator.dart';
 import 'package:yb_ride_user_web/homePage/privacyPolicy/view.dart';
 import 'package:yb_ride_user_web/homePage/view.dart';
+import 'package:yb_ride_user_web/main.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/FaqS/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Referrals/view.dart';
@@ -50,35 +51,35 @@ Widget Footer(BuildContext context) {
                     ),
                   ),
                 ),
-                ResponsiveWidget.isLargeScreen(context)
-                    ? Container(
-                  height: 50,
-                  width: 100,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                      color: Colors.deepPurple),
-                  child: Center(
-                    child: HeadingTextWidget(
-                      title: 'Download',
-                      textColor: AppColors.whiteColor,
-                      fontSize: 14,
-                    ),
-                  ),
-                )
-                    : Container(
-                        height: 50,
-                        width: 100,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            color: Colors.deepPurple),
-                        child: Center(
-                          child: HeadingTextWidget(
-                            title: 'Download',
-                            textColor: AppColors.whiteColor,
-                            fontSize: 14,
-                          ),
-                        ),
-                      ),
+                // ResponsiveWidget.isLargeScreen(context)
+                //     ? Container(
+                //   height: 50,
+                //   width: 100,
+                //   decoration: BoxDecoration(
+                //       borderRadius: BorderRadius.circular(25),
+                //       color: Colors.deepPurple),
+                //   child: Center(
+                //     child: HeadingTextWidget(
+                //       title: 'Download',
+                //       textColor: AppColors.whiteColor,
+                //       fontSize: 14,
+                //     ),
+                //   ),
+                // )
+                //     : Container(
+                //         height: 50,
+                //         width: 100,
+                //         decoration: BoxDecoration(
+                //             borderRadius: BorderRadius.circular(25),
+                //             color: Colors.deepPurple),
+                //         child: Center(
+                //           child: HeadingTextWidget(
+                //             title: 'Download',
+                //             textColor: AppColors.whiteColor,
+                //             fontSize: 14,
+                //           ),
+                //         ),
+                //       ),
                 Spacer(),
               ],
             ),
@@ -118,6 +119,9 @@ Widget Footer(BuildContext context) {
                         height: 20,
                       ),
                       InkWell(
+                        hoverColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          splashColor: Colors.transparent,
                           onTap: () {
                             showProgressIndicator(context);
                             Future.delayed(Duration(seconds: 2),(){
@@ -134,6 +138,9 @@ Widget Footer(BuildContext context) {
                         height: 20,
                       ),
                       InkWell(
+                          hoverColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          splashColor: Colors.transparent,
                           onTap: () {
                             showProgressIndicator(context);
                             Future.delayed(Duration(seconds: 2),(){
@@ -151,6 +158,9 @@ Widget Footer(BuildContext context) {
                         height: 20,
                       ),
                       InkWell(
+                          hoverColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          splashColor: Colors.transparent,
                           onTap: () {
                             showProgressIndicator(context);
                             Future.delayed(Duration(seconds: 2),(){
@@ -168,6 +178,9 @@ Widget Footer(BuildContext context) {
                         height: 20,
                       ),
                       InkWell(
+                          hoverColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          splashColor: Colors.transparent,
                           onTap: () {
                             showProgressIndicator(context);
                             Future.delayed(Duration(seconds: 2),(){
@@ -197,14 +210,18 @@ Widget Footer(BuildContext context) {
                         height: 20,
                       ),
                       InkWell(
-                          onTap: () {
-                            SessionController().userId == null ? Snackbar.showSnackBar("YB-Ride", "Login to your Account", Icons.error_outline) :
+                          hoverColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          splashColor: Colors.transparent,
+                          onTap: userId == null ? (){
+                            Snackbar.showSnackBar('YB-Rude',
+                                "Login to Your Account", Icons.error_outline);
+                          } : (){
                             showProgressIndicator(context);
                             Future.delayed(Duration(seconds: 2),(){
                               Navigator.pop(context);
                               Get.to(()=>TripsPages());
                             });
-                            // Get.to(() => TripsPages());
                           },
                           child: SubHeadingTextWidget(
                               title: 'My Trip', textColor: Colors.black)),
@@ -212,6 +229,9 @@ Widget Footer(BuildContext context) {
                         height: 20,
                       ),
                       InkWell(
+                          hoverColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          splashColor: Colors.transparent,
                           onTap: () {
                             showProgressIndicator(context);
                             Future.delayed(Duration(seconds: 2),(){
@@ -226,6 +246,9 @@ Widget Footer(BuildContext context) {
                         height: 20,
                       ),
                       InkWell(
+                          hoverColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          splashColor: Colors.transparent,
                           onTap: () {
                             ContactUsAlertDialog(context);
                           },
@@ -360,6 +383,9 @@ Widget Footer(BuildContext context) {
                     height: 20,
                   ),
                   InkWell(
+                    hoverColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    splashColor: Colors.transparent,
                     onTap: (){
                       showProgressIndicator(context);
                       Future.delayed(Duration(seconds: 2),(){
@@ -377,6 +403,9 @@ Widget Footer(BuildContext context) {
                     height: 20,
                   ),
                   InkWell(
+                    hoverColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    splashColor: Colors.transparent,
                     onTap: (){
                       showProgressIndicator(context);
                       Future.delayed(Duration(seconds: 2),(){
@@ -398,15 +427,28 @@ Widget Footer(BuildContext context) {
                     height: 20,
                   ),
                   InkWell(
-                    onTap: (){
-                      SessionController().userId == null ? Snackbar.showSnackBar("YB-Ride", "Login to your Account", Icons.error_outline) :
+                    hoverColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    splashColor: Colors.transparent,
+                    onTap: userId == null ? (){
+                      Snackbar.showSnackBar('YB-Rude',
+                          "Login to Your Account", Icons.error_outline);
+                    } : (){
                       showProgressIndicator(context);
                       Future.delayed(Duration(seconds: 2),(){
                         Navigator.pop(context);
                         Get.to(()=>TripsPages());
                       });
-                      // Get.to(()=>TripsPages());
                     },
+                    // onTap: (){
+                    //   SessionController().userId == null ? Snackbar.showSnackBar("YB-Ride", "Login to your Account", Icons.error_outline) :
+                    //   showProgressIndicator(context);
+                    //   Future.delayed(Duration(seconds: 2),(){
+                    //     Navigator.pop(context);
+                    //     Get.to(()=>TripsPages());
+                    //   });
+                    //   // Get.to(()=>TripsPages());
+                    // },
                     child: SubHeadingTextWidget(
                         title: 'My Trip', textColor: Colors.black),
                   ),
@@ -414,6 +456,9 @@ Widget Footer(BuildContext context) {
                     height: 20,
                   ),
                   InkWell(
+                      hoverColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      splashColor: Colors.transparent,
                       onTap: (){
                         showProgressIndicator(context);
                         Future.delayed(Duration(seconds: 2),(){
@@ -437,6 +482,9 @@ Widget Footer(BuildContext context) {
                     height: 20,
                   ),
                   InkWell(
+                    hoverColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    splashColor: Colors.transparent,
                     onTap: (){
                       ContactUsAlertDialog(context);
                     },
@@ -457,6 +505,9 @@ Widget Footer(BuildContext context) {
                     height: 20,
                   ),
                   InkWell(
+                    hoverColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    splashColor: Colors.transparent,
                     onTap: (){
                       Snackbar.showSnackBar("YB-Ride", "Coming Soon", Icons.error_outline);
                     },
@@ -482,6 +533,9 @@ Widget Footer(BuildContext context) {
                     height: 20,
                   ),
                   InkWell(
+                    hoverColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    splashColor: Colors.transparent,
                     onTap: (){
                       Snackbar.showSnackBar("YB-Ride", "Coming Soon", Icons.error_outline);
                     },

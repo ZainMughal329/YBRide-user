@@ -8,7 +8,7 @@ import 'package:yb_ride_user_web/helper/responsive.dart';
 import 'package:yb_ride_user_web/helper/show_progress_indicator.dart';
 import 'package:yb_ride_user_web/homePage/view.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/widgets/RatingWidget.dart';
-import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/widgets/becomeDriverFooter.dart';
+import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/widgets/footer.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/widgets/firstPageWidget.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/widgets/howItWorksWidget.dart';
 import 'package:yb_ride_user_web/pages/appBarPages/Become_Driver/widgets/howTosSgnUpForm.dart';
@@ -39,7 +39,8 @@ class BecomeDriverPage extends StatelessWidget {
                     showProgressIndicator(context);
                     Future.delayed(Duration(seconds: 2),(){
                       Navigator.pop(context);
-                      Get.to(()=>HomePage());
+                      Get.back();
+                      // Get.to(()=>HomePage());
                     });
                     // Get.offAll(()=>HomePage(),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
                   },
@@ -70,8 +71,7 @@ class BecomeDriverPage extends StatelessWidget {
               SizedBox(height: 70,),
               RetingWidgte(),
               SizedBox(height: 100,),
-              becomeDriverFooter(),
-              SizedBox(height: 100,),
+              FooterWidget(),
 
               
             ],
@@ -91,7 +91,8 @@ class BecomeDriverPage extends StatelessWidget {
                     showProgressIndicator(context);
                     Future.delayed(Duration(seconds: 2),(){
                       Navigator.pop(context);
-                      Get.to(()=>HomePage());
+                      Get.back();
+                      // Get.to(()=>HomePage());
                     });
                     // Get.offAll(()=>HomePage(),transition: Transition.rightToLeft,duration: Duration(milliseconds: 600));
                   },
