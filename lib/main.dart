@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:yb_ride_user_web/Vehicle/view.dart';
 import 'package:yb_ride_user_web/helper/AppConstants.dart';
 import 'package:yb_ride_user_web/helper/api.dart';
+import 'package:yb_ride_user_web/helper/session_Controller.dart';
 import 'package:yb_ride_user_web/homePage/view.dart';
 
 String? userId;
@@ -33,15 +34,56 @@ void main() async{
 
   runApp(const MyApp());
 }
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+
+
   @override
-  Widget build(BuildContext context) {
-    if(FirebaseAuth.instance.currentUser!=null){
-      userId=FirebaseAuth.instance.currentUser!.uid.toString();
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  Future<void> _checkAuthState() async {
+    // if (token != "") {
+    // Reinitialize Firebase Auth with the token
+    User? user = FirebaseAuth.instance.currentUser;
+    print('token:::$user');
+
+    if (user != null) {
+
+      setState(() {
+        userId = user.uid;
+        SessionController().userId = user.uid;
+      });
+    }else{
     }
+    // }else{
+    //   isAlreadyLogin = false;
+    // }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _checkAuthState();
     AppConstants.rentDays = 3;
+
+    super.initState();
+  }
+  @override
+
+
+  Widget build(BuildContext context) {
+    // if(FirebaseAuth.instance.currentUser!=null){
+    //   userId=FirebaseAuth.instance.currentUser!.uid.toString();
+    // }
     // AppConstants.totalPrice = 120;
+
+
+
+
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Yb-Ride',
