@@ -44,6 +44,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    print('id::::::::::::::::::$userId');
+
     ScrollController _scController = ScrollController();
     final con = Get.put(HomePageCon());
     con.fetchContactDetails();
